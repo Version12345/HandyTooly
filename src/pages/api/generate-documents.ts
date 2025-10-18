@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import dotenv from 'dotenv';
 import { ChatOpenAI } from '@langchain/openai';
 import { ChatPromptTemplate } from "@langchain/core/prompts";
-import { calculateChecksum } from '@/utils/checkSum';
 
 dotenv.config();
 
@@ -93,11 +92,10 @@ export default async function handler(
     try {
         const { jobDescription, resume, coverLetter }: RequestBody = req.body;
         
-        // Get the ip and user agent
-        const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-        const userAgent = req.headers['user-agent'];
-
-        const checkSum = calculateChecksum(`${ip}-${userAgent}`);
+        // TODO: Implement rate limiting if needed
+        // const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+        // const userAgent = req.headers['user-agent'];
+        // const checkSum = calculateChecksum(`${ip}-${userAgent}`);
 
         if (!jobDescription || !resume || !coverLetter) {
             return res.status(400).json({

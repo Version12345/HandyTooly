@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import { copyToClipboard } from '../../../utils/copyToClipboard';
-import { downloadAsDocx } from '../../../utils/markdownToDocx';
+import { copyToClipboard } from '../../utils/copyToClipboard';
+import { downloadAsDocx } from '../../utils/markdownToDocx';
 
 interface Step5Props {
     finalResume: string;

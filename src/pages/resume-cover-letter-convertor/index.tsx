@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Step1, Step2, Step3, Step4, Step5 } from '../component/uploadSteps';
+import { Step1, Step2, Step3, Step4, Step5 } from '../../components/uploadSteps';
 import Layout from '../_layout';
 
 interface UploadModalProps {
@@ -82,7 +82,7 @@ export default function ResumeCoverLetterConvertor({ closeModal }: UploadModalPr
                                 onComplete={() => setCurrentStep(5)}
                             />
                         )}
-                        {currentStep === 5 && (
+                        {!isLoading && currentStep === 5 && (
                             <Step5 
                                 finalResume={finalResume} 
                                 finalCoverLetter={finalCoverLetter} 
