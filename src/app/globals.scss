@@ -27,7 +27,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
-  color: black;
+  color: var(--color-black);
 }
 
 h1 {
@@ -76,7 +76,18 @@ li {
 }
 
 .main-layout {
-    header {
-        border-bottom: 1px solid #e5e7eb; /* Tailwind gray-200 */
+  header {
+      border-bottom: 1px solid #e5e7eb; /* Tailwind gray-200 */
+  }
+}
+
+.tool-list-item {
+  h3 {
+    color: var(--color-orange-600);
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--color-orange-400);
     }
+  }
 }

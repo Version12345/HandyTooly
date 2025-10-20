@@ -1,24 +1,8 @@
-import { NextRequest } from 'next/server';
 import dotenv from 'dotenv';
 import { ChatOpenAI } from '@langchain/openai';
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 
 dotenv.config();
-
-
-interface RequestBody {
-    jobDescription: string;
-    resume: string;
-    coverLetter: string;
-}
-
-interface ResponseData {
-    finalResume: string;
-    finalCoverLetter: string;
-    success: boolean;
-    message?: string;
-}
-
 
 const user = [
     'human',

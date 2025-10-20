@@ -16,8 +16,8 @@ export default function Header() {
 
     // change if router.pathname starts with the href
     const routeClass = pathname.startsWith(href) ? 
-      'text-orange-500 hover:text-orange-700' : 
-      'text-gray-700 hover:text-gray-900';
+      'text-orange-600 hover:text-orange-400' : 
+      'text-gray-600 hover:text-gray-400';
 
     return `${baseClass} ${routeClass}`;
   };
