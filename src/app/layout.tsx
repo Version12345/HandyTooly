@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Link from "next/link";
-import Image from 'next/image'
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 
 import "./globals.scss";
 
@@ -9,17 +10,6 @@ const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
 });
-
-const HEADER_LINKS = [
-  { href: '/tools/resume-cover-letter-convertor', label: 'Resume/Cover Letter Converter' },
-  { href: '/donate', label: 'Donate' }
-];
-
-const FOOTER_LINKS = [
-  { href: '/about', label: 'About Us' },
-  { href: '/privacy', label: 'Privacy Policy' },
-  { href: '/terms', label: 'Terms of Service' }
-];
 
 export const metadata: Metadata = {
   title: {
@@ -52,62 +42,13 @@ export default async function RootLayout({
           </div>
           
           {/* Header */}
-          <header className="p-4">
-            <div className="max-w-6xl mx-auto flex justify-between items-center">
-              <Link 
-                className="inline-block"
-                href="/"
-              >
-                <Image 
-                  src="/images/handy-tooly-logo.svg" 
-                  alt="HandyTooly Logo" 
-                  className="h-8 w-auto"
-                  width={300}
-                  height={100}
-                />
-              </Link>
-              
-              {/* Navigation Menu */}
-              <nav className="flex items-center space-x-6">
-                {HEADER_LINKS.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="transition-colors font-medium text-gray-700 hover:text-gray-900"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-          </header>
+          <Header />
 
           {/* Page Content */}
           {children}
 
           {/* Footer */}
-          <footer className="border-t border-gray-300 py-8 px-8 mt-16">
-            <div className="max-w-6xl mx-auto flex justify-between items-center">
-              <Image 
-                src="/images/handy-tooly-logo.svg" 
-                alt="HandyTooly Logo" 
-                className="h-6 w-auto"
-                width={300}
-                height={100}
-              />
-              <div className="flex space-x-8">
-                {FOOTER_LINKS.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="text-gray-500 hover:text-gray-700 transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </footer>
+          <Footer />
         </div>
       </body>
     </html>

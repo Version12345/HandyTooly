@@ -96,13 +96,13 @@ export default function Home() {
                     <Link 
                       key={index} 
                       href={tool.link}
-                      className="block bg-white border border-gray-200 rounded-lg p-6 hover:border-gray-300 hover:shadow-md transition-all duration-200 group"
+                      className="block bg-white border border-gray-200 rounded-lg p-4 md:p-6 hover:border-gray-300 hover:shadow-md transition-all duration-200 group"
                     >
                       <div className="space-y-3">
                         <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
                           {tool.name}
                         </h3>
-                        <p className="text-gray-600 text-sm leading-relaxed">
+                        <p className="text-gray-600 text-sm leading-relaxed hidden md:block">
                           {tool.description}
                         </p>
                       </div>
