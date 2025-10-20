@@ -8,11 +8,11 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
 
-  // Debounce search term with 3 seconds delay
+  // Debounce search term with 500 milliseconds delay
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
-    }, 1000);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [searchTerm]);
