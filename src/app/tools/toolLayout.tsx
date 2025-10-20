@@ -1,3 +1,4 @@
+import { RightCol } from '@/components/rightCol';
 import React from 'react';
 
 interface LayoutProps {
@@ -14,8 +15,17 @@ export default function ToolLayout({ pageTitle, children }: LayoutProps) {
             {pageTitle}
           </h1>
 
-          {/* Page Content */}
-          {children}
+          <div className="grid grid-cols-1 lg:grid-cols-[70%_30%] gap-8">
+            <div>
+              {/* Left Column */}
+              {children}
+            </div>
+            <div>
+              <RightCol
+                title={pageTitle}
+              />
+            </div>
+          </div>
         </div>
     </main>
   );

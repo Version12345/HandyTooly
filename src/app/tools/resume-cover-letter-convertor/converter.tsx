@@ -55,63 +55,48 @@ export default function ResumeCoverLetterConvertor() {
             <p className="leading-relaxed mb-8">
                 Job searching can be frustrating. You spend hours rewriting your resume and cover letter for each role. Our tool fixes that. It matches your resume and cover letter to the job description in minutes. No more guessing what to change or where to start. Save time, stay focused, and make your search less stressful.
             </p>
-            {/* <div className="grid grid-cols-1 lg:grid-cols-[70%_30%] gap-8"> */}
-            <div>
-                {/* Left Column - Step Components */}
-                <div className="space-y-4">
-                    {currentStep === 1 && (
-                        <Step1 
-                            jobDescription={jobDescription} 
-                            setJobDescription={setJobDescription} 
-                            onNext={handleNext} 
-                        />
-                    )}
-                    {currentStep === 2 && (
-                        <Step2 
-                            resume={resume} 
-                            setResume={setResume} 
-                            onNext={handleNext} 
-                            onBack={handleBack} 
-                        />
-                    )}
-                    {currentStep === 3 && (
-                        <Step3 
-                            coverLetter={coverLetter} 
-                            setCoverLetter={setCoverLetter} 
-                            onNext={handleNext} 
-                            onBack={handleBack} 
-                        />
-                    )}
-                    {currentStep === 4 && (
-                        <Step4 
-                            jobDescription={jobDescription}
-                            resume={resume}
-                            coverLetter={coverLetter}
-                            setFinalResume={setFinalResume}
-                            setFinalCoverLetter={setFinalCoverLetter}
-                            setIsLoading={setIsLoading}
-                            onComplete={() => setCurrentStep(5)}
-                        />
-                    )}
-                    {!isLoading && currentStep === 5 && (
-                        <Step5 
-                            finalResume={finalResume} 
-                            finalCoverLetter={finalCoverLetter} 
-                            onComplete={handleComplete} 
-                        />
-                    )}
-                </div>
-                
-                {/* Right Column - Placeholder */}
-                {/* <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-8 flex items-center justify-center min-h-[400px]">
-                    <div className="text-center text-gray-500">
-                        <div className="text-6xl mb-4">📄</div>
-                        <h3 className="text-lg font-semibold mb-2">Preview Area</h3>
-                        <p className="text-sm">
-                            Your generated documents will appear here as you progress through the steps.
-                        </p>
-                    </div>
-                </div> */}
+            <div className="space-y-4">
+                {currentStep === 1 && (
+                    <Step1 
+                        jobDescription={jobDescription} 
+                        setJobDescription={setJobDescription} 
+                        onNext={handleNext} 
+                    />
+                )}
+                {currentStep === 2 && (
+                    <Step2 
+                        resume={resume} 
+                        setResume={setResume} 
+                        onNext={handleNext} 
+                        onBack={handleBack} 
+                    />
+                )}
+                {currentStep === 3 && (
+                    <Step3 
+                        coverLetter={coverLetter} 
+                        setCoverLetter={setCoverLetter} 
+                        onNext={handleNext} 
+                        onBack={handleBack} 
+                    />
+                )}
+                {currentStep === 4 && (
+                    <Step4 
+                        jobDescription={jobDescription}
+                        resume={resume}
+                        coverLetter={coverLetter}
+                        setFinalResume={setFinalResume}
+                        setFinalCoverLetter={setFinalCoverLetter}
+                        setIsLoading={setIsLoading}
+                        onComplete={() => setCurrentStep(5)}
+                    />
+                )}
+                {!isLoading && currentStep === 5 && (
+                    <Step5 
+                        finalResume={finalResume} 
+                        finalCoverLetter={finalCoverLetter} 
+                        onComplete={handleComplete} 
+                    />
+                )}
             </div>
         </ToolLayout>
     );
