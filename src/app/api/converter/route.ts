@@ -1,9 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest } from 'next/server';
 import dotenv from 'dotenv';
 import { ChatOpenAI } from '@langchain/openai';
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 
 dotenv.config();
+
 
 interface RequestBody {
     jobDescription: string;
@@ -74,23 +75,11 @@ const formatter = [
 
         Return the final resume and cover letter in markdown format with escaped special characters, then put them in a JSON object with keys "finalResume" and "finalCoverLetter". Make sure the JSON is properly formatted and can be parsed by JSON.parse().
     `
-]
+];
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<ResponseData>
-) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({
-            success: false,
-            message: 'Method not allowed',
-            finalResume: '',
-            finalCoverLetter: ''
-        });
-    }
-
+export async function POST(request: Request) {
     try {
-        const { jobDescription, resume, coverLetter }: RequestBody = req.body;
+        const { jobDescription, resume, coverLetter } = await request.json()
         
         // TODO: Implement rate limiting if needed
         // const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
@@ -98,12 +87,18 @@ export default async function handler(
         // const checkSum = calculateChecksum(`${ip}-${userAgent}`);
 
         if (!jobDescription || !resume || !coverLetter) {
-            return res.status(400).json({
-                success: false,
-                message: 'Missing required fields',
-                finalResume: '',
-                finalCoverLetter: ''
-            });
+            return new Response(
+                JSON.stringify({
+                    success: false,
+                    message: 'Missing required fields',
+                    finalResume: '',
+                    finalCoverLetter: ''
+                }),
+                { 
+                    status: 400,
+                    headers: { 'Content-Type': 'application/json' } 
+                }
+            );
         }
 
         const prompt = ChatPromptTemplate.fromMessages([
@@ -125,30 +120,48 @@ export default async function handler(
         });
 
         if (!response || !response.content) {
-            return res.status(500).json({
-                success: false,
-                message: 'Failed to generate documents',
-                finalResume: '',
-                finalCoverLetter: ''
-            });
+            return new Response(
+                JSON.stringify({
+                    success: false,
+                    message: 'Failed to generate documents',
+                    finalResume: '',
+                    finalCoverLetter: ''
+                }),
+                { 
+                    status: 500,
+                    headers: { 'Content-Type': 'application/json' }
+                }
+            );
         }
 
         const json = JSON.parse(response.content.toString());
 
-        res.status(200).json({
-            success: true,
-            finalResume: json["finalResume"],
-            finalCoverLetter: json["finalCoverLetter"],
-            message: 'Documents generated successfully'
-        });
+        return new Response(
+            JSON.stringify({
+                success: true,
+                finalResume: json["finalResume"],
+                finalCoverLetter: json["finalCoverLetter"],
+                message: 'Documents generated successfully'
+            }),
+            {
+                status: 200,
+                headers: { 'Content-Type': 'application/json' }
+            }
+        );
 
     } catch (error) {
         console.error('Error generating documents:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Internal server error',
-            finalResume: '',
-            finalCoverLetter: ''
-        });
+        return new Response(
+            JSON.stringify({
+                success: false,
+                message: 'Internal server error',
+                finalResume: '',
+                finalCoverLetter: ''
+            }),
+            {
+                status: 500,
+                headers: { 'Content-Type': 'application/json' }
+            }
+        );
     }
 }

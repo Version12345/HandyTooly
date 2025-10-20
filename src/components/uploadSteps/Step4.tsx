@@ -42,7 +42,7 @@ export const Step4: React.FC<Step4Props> = ({
         
         try {
             // API call to generate final resume and cover letter
-            const response = await fetch('/api/generate-documents', {
+            const response = await fetch('/api/converter', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -11,7 +11,7 @@ export default function ToolLayout({ pageTitle, children }: LayoutProps) {
         <div className="max-w-6xl mx-auto">
           {/* Heading */}
           <h1>
-            {pageTitle || 'HandyTooly'}
+            {pageTitle}
           </h1>
 
           {/* Page Content */}
