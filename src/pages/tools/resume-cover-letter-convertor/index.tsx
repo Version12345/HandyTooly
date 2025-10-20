@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Step1, Step2, Step3, Step4, Step5 } from '../../components/uploadSteps';
-import Layout from '../_layout';
+import { Step1, Step2, Step3, Step4, Step5 } from '../../../components/uploadSteps';
+import Layout from '../../_layout';
+import ToolLayout from '../_tool_layout';
 
 interface UploadModalProps {
     closeModal: () => void;
@@ -43,11 +44,16 @@ export default function ResumeCoverLetterConvertor({ closeModal }: UploadModalPr
 
     return (
         <Layout>
-            {/* Main Content */}
-            <main className="px-8 py-16">
-                <div className="max-w-6xl mx-auto">
-                    {/* Modal content */}
-                    <div className="mt-4">
+            <ToolLayout
+                pageTitle="Resume/Cover Letter Converter"
+            >
+                <p className="leading-relaxed mb-8">
+                    Job searching can be frustrating. You spend hours rewriting your resume and cover letter for each role. Our tool fixes that. It matches your resume and cover letter to the job description in minutes. No more guessing what to change or where to start. Save time, stay focused, and make your search less stressful.
+                </p>
+                {/* <div className="grid grid-cols-1 lg:grid-cols-[70%_30%] gap-8"> */}
+                <div>
+                    {/* Left Column - Step Components */}
+                    <div className="space-y-4">
                         {currentStep === 1 && (
                             <Step1 
                                 jobDescription={jobDescription} 
@@ -90,8 +96,19 @@ export default function ResumeCoverLetterConvertor({ closeModal }: UploadModalPr
                             />
                         )}
                     </div>
+                    
+                    {/* Right Column - Placeholder */}
+                    {/* <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-8 flex items-center justify-center min-h-[400px]">
+                        <div className="text-center text-gray-500">
+                            <div className="text-6xl mb-4">📄</div>
+                            <h3 className="text-lg font-semibold mb-2">Preview Area</h3>
+                            <p className="text-sm">
+                                Your generated documents will appear here as you progress through the steps.
+                            </p>
+                        </div>
+                    </div> */}
                 </div>
-            </main>
+            </ToolLayout>
         </Layout>
     );
 };

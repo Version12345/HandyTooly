@@ -9,12 +9,8 @@ interface Step1Props {
 export const Step1: React.FC<Step1Props> = ({ jobDescription, setJobDescription, onNext }) => {
     return (
         <div className="w-full">
-            <h2 className="text-xl font-bold mb-6 text-center">
-                Convert Job Description to Resume And Cover Letter
-            </h2>
-            
             <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-4">Enter Job Description</h3>
+                <h2 className="text-lg font-semibold mb-4">Enter Job Description</h2>
                 
                 <div className="grid grid-cols-1 gap-6">
                     {/* Job Description Textarea */}

@@ -7,7 +7,7 @@ interface LayoutProps {
 }
 
 const HEADER_LINKS = [
-  { href: '/resume-cover-letter-convertor', label: 'Resume/Cover Letter Converter' },
+  { href: '/tools/resume-cover-letter-convertor', label: 'Resume/Cover Letter Converter' },
   { href: '/donate', label: 'Donate' }
 ];
 
@@ -32,7 +32,7 @@ export default function Layout({ children }: LayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-white relative">
+    <div className="min-h-screen bg-white relative main-layout font-[Roboto]">
       {/* Red Corner Flag */}
       <div className="fixed -top-1 -right-1 z-50">
         <div className="relative">
@@ -45,13 +45,17 @@ export default function Layout({ children }: LayoutProps) {
       </div>
       
       {/* Header */}
-      <header className="p-8">
+      <header className="p-4">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <Link 
-            className="bg-gray-400 inline-block px-8 py-4 text-black font-bold text-lg"
+            className="inline-block"
             href="/"
           >
-            LOGO
+            <img 
+              src="/images/handy-tooly-logo.svg" 
+              alt="HandyTooly Logo" 
+              className="h-8 w-auto"
+            />
           </Link>
           
           {/* Navigation Menu */}
@@ -75,9 +79,11 @@ export default function Layout({ children }: LayoutProps) {
       {/* Footer */}
       <footer className="border-t border-gray-300 py-8 px-8 mt-16">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <div className="bg-gray-400 inline-block px-6 py-2 text-black font-bold text-sm">
-            LOGO
-          </div>
+          <img 
+            src="/images/handy-tooly-logo.svg" 
+            alt="HandyTooly Logo" 
+            className="h-6 w-auto"
+          />
           <div className="flex space-x-8">
             {FOOTER_LINKS.map((link) => (
               <Link
