@@ -2,9 +2,8 @@ import Link from "next/link";
 import Image from 'next/image';
 
 const FOOTER_LINKS = [
-  { href: '/about', label: 'About Us' },
-  { href: '/privacy', label: 'Privacy Policy' },
-  { href: '/terms', label: 'Terms of Service' }
+  { href: '/about-us', label: 'About Us' },
+  { href: '/contact-us', label: 'Contact Us' }
 ];
 
 export default function Footer() {
