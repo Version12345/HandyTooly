@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 const HEADER_LINKS = [
+  { href: '/tools', label: 'Tools' },
   { href: '/tools/resume-cover-letter-convertor', label: 'Resume/Cover Letter Converter' },
   { href: '/donate', label: 'Donate' }
 ];
@@ -15,7 +16,7 @@ export default function Header() {
     const baseClass = 'transition-colors font-medium';
 
     // change if router.pathname starts with the href
-    const routeClass = pathname.startsWith(href) ? 
+    const routeClass = pathname === href ? 
       'text-orange-600 hover:text-orange-400' : 
       'text-gray-600 hover:text-gray-400';
 

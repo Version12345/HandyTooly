@@ -45,7 +45,7 @@ export default async function RootLayout({
           <Header />
 
           {/* Page Content */}
-          <div className="bg-slate-100 pb-20">
+          <div className="bg-slate-100 pb-10">
             {children}
           </div>
 

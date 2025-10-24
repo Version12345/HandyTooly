@@ -10,16 +10,6 @@ export const Tools: Record<string, Tool[]> = {
             name: "Resume/Cover Letter Converter",
             description: "A tool to convert job descriptions into tailored resumes and cover letters.",
             link: "/tools/resume-cover-letter-convertor"
-        }, 
-        {
-            name: "Resume/Cover Letter Converter 2",
-            description: "A tool to convert job descriptions into tailored resumes and cover letters.",
-            link: "/tools/resume-cover-letter-convertor"
-        }, 
-        {
-            name: "Resume/Cover Letter Converter 3",
-            description: "A tool to convert job descriptions into tailored resumes and cover letters.",
-            link: "/tools/resume-cover-letter-convertor"
         }
     ],
     "Health": [
