@@ -8,7 +8,7 @@ const FOOTER_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-300 py-8 px-8 mt-16">
+    <footer className="border-t border-gray-300 py-8 px-8 bg-white">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         <Link 
           className="inline-block"

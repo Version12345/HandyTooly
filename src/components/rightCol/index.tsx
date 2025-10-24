@@ -9,8 +9,6 @@ import {
     PinterestShareButton,
     RedditIcon,
     RedditShareButton,
-    TelegramIcon,
-    TelegramShareButton,
     TwitterShareButton,
     WhatsappIcon,
     WhatsappShareButton,
@@ -45,9 +43,6 @@ export const RightCol = ({ title }: RightColProps) => {
                     <RedditShareButton url={shareUrl} title={title} className="mr-2">
                         <RedditIcon size={32} round />
                     </RedditShareButton>
-                    <TelegramShareButton url={shareUrl} title={title} className="mr-2">
-                        <TelegramIcon size={32} round />
-                    </TelegramShareButton>
                     <EmailShareButton url={shareUrl} title={title} className="mr-2">
                         <EmailIcon size={32} round />
                     </EmailShareButton>

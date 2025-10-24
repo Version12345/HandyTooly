@@ -22,21 +22,11 @@ export const Tools: Record<string, Tool[]> = {
             link: "/tools/resume-cover-letter-convertor"
         }
     ],
-    "Finance": [
+    "Health": [
         {
-            name: "Resume/Cover Letter Converter 4",
-            description: "A tool to convert job descriptions into tailored resumes and cover letters.",
-            link: "/tools/resume-cover-letter-convertor"
-        }, 
-        {
-            name: "Resume/Cover Letter Converter 5",
-            description: "A tool to convert job descriptions into tailored resumes and cover letters.",
-            link: "/tools/resume-cover-letter-convertor"
-        }, 
-        {
-            name: "Resume/Cover Letter Converter 6",
-            description: "A tool to convert job descriptions into tailored resumes and cover letters.",
-            link: "/tools/resume-cover-letter-convertor"
+            name: "BMI Calculator",
+            description: "A tool to calculate your Body Mass Index (BMI) quickly and easily.",
+            link: "/tools/health/bmi-calculator"
         }
     ]
 };

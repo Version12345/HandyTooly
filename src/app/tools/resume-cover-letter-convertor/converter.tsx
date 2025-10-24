@@ -52,10 +52,13 @@ export default function ResumeCoverLetterConvertor() {
         <ToolLayout
             pageTitle="Resume/Cover Letter Converter"
         >
-            <p className="leading-relaxed mb-8">
-                Job searching can be frustrating. You spend hours rewriting your resume and cover letter for each role. Our tool fixes that. It matches your resume and cover letter to the job description in minutes. No more guessing what to change or where to start. Save time, stay focused, and make your search less stressful.
-            </p>
-            <div className="space-y-4">
+            {/* Description */}
+            <div className="bg-orange-50 border-l-4 border-orange-400 p-4 pb-1 rounded-r-lg">
+                <p className="text-orange-800 text-sm leading-relaxed">
+                    Job searching can be frustrating. You spend hours rewriting your resume and cover letter for each role. Our tool fixes that. It matches your resume and cover letter to the job description in minutes. No more guessing what to change or where to start. Save time, stay focused, and make your search less stressful.
+                </p>
+            </div>
+            <div className="bg-white border border-gray-200 rounded-lg p-6 mt-6">
                 {currentStep === 1 && (
                     <Step1 
                         jobDescription={jobDescription} 

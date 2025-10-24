@@ -23,7 +23,7 @@ export default function Header() {
   };
 
   return (
-    <header className="p-4">
+    <header className="p-4 bg-white">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         <Link 
           className="inline-block"

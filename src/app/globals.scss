@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --dark-gray: #818181;
+  --dark-gray: #575757;
 }
 
 @theme inline {
@@ -78,6 +78,10 @@ ul {
 
 li {
   margin-left: 1rem;
+}
+
+input, textarea, select {
+  background-color: var(--color-white);
 }
 
 .main-layout {

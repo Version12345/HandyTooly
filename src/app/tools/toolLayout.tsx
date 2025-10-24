@@ -15,7 +15,7 @@ export default function ToolLayout({ pageTitle, children }: LayoutProps) {
             {pageTitle}
           </h1>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[70%_30%] gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[75%_25%] gap-8">
             <div>
               {/* Left Column */}
               {children}
