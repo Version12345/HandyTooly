@@ -3,6 +3,7 @@
 import { Categories, Tools } from "@/constants/tools";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import ToolCard from "@/components/toolCard";
 
 export const ToolList = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -89,20 +90,11 @@ export const ToolList = () => {
                     {/* Tools Grid - 3 columns on large screens */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {toolsList.map((tool, index) => (
-                        <Link 
+                        <ToolCard 
                             key={index} 
-                            href={tool.link}
-                            className="block bg-white border border-gray-200 rounded-lg p-4 pb-1 hover:border-gray-300 hover:shadow-md transition-all duration-200 group tool-list-item"
-                        >
-                        <div className="space-y-3">
-                            <h3 className="transition-colors">
-                            {tool.name}
-                            </h3>
-                            <p className="text-sm leading-relaxed hidden md:block">
-                            {tool.description}
-                            </p>
-                        </div>
-                        </Link>
+                            tool={tool}
+                            category={category}
+                        />
                     ))}
                     </div>
                 </div>

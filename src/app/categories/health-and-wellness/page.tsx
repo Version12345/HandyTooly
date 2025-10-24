@@ -1,9 +1,9 @@
 import { ToolCategory, Tools } from '@/constants/tools';
-import Link from 'next/link';
 import { Metadata } from 'next';
 
 import MedicalDisclaimer from '@/components/disclaimers/medicalDisclaimer';
 import CategoryLayout from '../categoryLayout';
+import ToolCard from '@/components/toolCard';
 
 export const metadata: Metadata = {
   title: 'Health Tools - BMI Calculator & Wellness Tools',
@@ -30,26 +30,12 @@ export default function HealthCategory() {
         {/* Tools Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {healthTools.map((tool, index) => (
-            <Link 
+            <ToolCard 
               key={index} 
-              href={tool.link}
-              className="block bg-white border border-gray-200 rounded-lg p-6 hover:border-gray-300 hover:shadow-md transition-all duration-200 group"
-            >
-              <div className="space-y-3">
-                <h3 className="text-xl font-semibold text-orange-600 group-hover:text-orange-500 transition-colors">
-                  {tool.name}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {tool.description}
-                </p>
-                <div className="flex items-center text-orange-500 text-sm font-medium">
-                  <span>Calculate now</span>
-                  <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-            </Link>
+              tool={tool}
+              category="Health"
+              className="p-6"
+            />
           ))}
         </div>
 

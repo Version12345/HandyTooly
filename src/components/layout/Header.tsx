@@ -2,10 +2,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { ToolCategorySlug } from '@/constants/tools';
 
 const HEADER_LINKS = [
   { href: '/tools', label: 'Tools' },
-  { href: '/tools/jobs/resume-cover-letter-convertor', label: 'Resume/Cover Letter Converter' },
+  { href: `/tools/${ToolCategorySlug.Jobs}/resume-cover-letter-convertor`, label: 'Resume/Cover Letter Converter' },
   { href: '/donate', label: 'Donate' }
 ];
 

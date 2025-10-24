@@ -107,7 +107,7 @@ export function IncomeToDebtCalculator() {
     }));
   }, []);
 
-  // Calculate DTI ratio
+  // Calculate ITD Ratio
   const calculateDTI = useCallback((incomeData: IncomeData, debtData: DebtData): DTIResult => {
     const monthlyIncome = incomeData.primaryIncome + incomeData.additionalIncome;
     const monthlyDebtPayments = 
@@ -385,7 +385,7 @@ export function IncomeToDebtCalculator() {
             
             {result ? (
               <div className="space-y-6">
-                {/* DTI Ratio Display */}
+                {/* ITD Ratio Display */}
                 <div className="text-center">
                   <div className={`text-4xl font-bold ${result.riskColor} mb-2`}>
                     {result.ratio.toFixed(1)}%
@@ -396,13 +396,13 @@ export function IncomeToDebtCalculator() {
                     result.riskLevel === 'moderate' ? 'bg-yellow-100 text-yellow-800' :
                     'bg-red-100 text-red-800'
                   }`}>
-                    {result.riskLevel === 'low' ? 'Low DTI Ratio' :
+                    {result.riskLevel === 'low' ? 'Low ITD Ratio' :
                      result.riskLevel === 'moderate' ? 'Moderate ITD Ratio' :
-                     'High DTI Ratio'}
+                     'High ITD Ratio'}
                   </div>
                   {result.riskLevel === 'high' && (
                     <p className="text-sm text-red-600 mt-2">
-                      High DTI may significantly limit borrowing options. Focus on debt reduction and income growth.
+                      High ITD may significantly limit borrowing options. Focus on debt reduction and income growth.
                     </p>
                   )}
                 </div>
@@ -432,7 +432,7 @@ export function IncomeToDebtCalculator() {
                   <div className="space-y-2 text-sm">
                     {[
                       { type: 'Conventional Mortgage', limit: '≤ 28% (front-end)', status: result.lendingGuidelines.conventional.status },
-                      { type: 'Total DTI (back-end)', limit: '≤ 43%', status: result.lendingGuidelines.fha.status },
+                      { type: 'Total ITD (back-end)', limit: '≤ 43%', status: result.lendingGuidelines.fha.status },
                       { type: 'FHA Loans', limit: '≤ 31%/43%', status: result.lendingGuidelines.fha.status },
                       { type: 'Auto Loans', limit: '≤ 10-18%', status: result.lendingGuidelines.auto.status },
                     ].map((guideline, index) => (
