@@ -5,8 +5,6 @@ import {
     EmailShareButton,
     FacebookIcon,
     FacebookShareButton,
-    PinterestIcon,
-    PinterestShareButton,
     RedditIcon,
     RedditShareButton,
     TwitterShareButton,
@@ -34,9 +32,6 @@ export const RightCol = ({ title }: RightColProps) => {
                     <TwitterShareButton url={shareUrl} title={title} className="mr-2">
                         <XIcon size={32} round />
                     </TwitterShareButton>
-                    <PinterestShareButton url={shareUrl} media="" className="mr-2">
-                        <PinterestIcon size={32} round />
-                    </PinterestShareButton>
                     <WhatsappShareButton url={shareUrl} title={title} className="mr-2">
                         <WhatsappIcon size={32} round />
                     </WhatsappShareButton>
