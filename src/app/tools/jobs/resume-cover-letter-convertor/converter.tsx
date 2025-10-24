@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
-import { Step1, Step2, Step3, Step4, Step5 } from '../../../components/uploadSteps';
-import ToolLayout from '../toolLayout';
+import { Step1, Step2, Step3, Step4, Step5 } from '../../../../components/uploadSteps';
+import ToolLayout from '../../toolLayout';
 
 export default function ResumeCoverLetterConvertor() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -53,11 +53,9 @@ export default function ResumeCoverLetterConvertor() {
             pageTitle="Resume/Cover Letter Converter"
         >
             {/* Description */}
-            <div className="bg-orange-50 border-l-4 border-orange-400 p-4 pb-1 rounded-r-lg">
-                <p className="text-orange-800 text-sm leading-relaxed">
-                    Job searching can be frustrating. You spend hours rewriting your resume and cover letter for each role. Our tool fixes that. It matches your resume and cover letter to the job description in minutes. No more guessing what to change or where to start. Save time, stay focused, and make your search less stressful.
-                </p>
-            </div>
+            <p className="text-sm">
+                Job searching can be frustrating. You spend hours rewriting your resume and cover letter for each role. Our tool fixes that. It matches your resume and cover letter to the job description in minutes. No more guessing what to change or where to start. Save time, stay focused, and make your search less stressful.
+            </p>
             <div className="bg-white border border-gray-200 rounded-lg p-6 mt-6">
                 {currentStep === 1 && (
                     <Step1 

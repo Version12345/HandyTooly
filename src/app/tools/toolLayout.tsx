@@ -1,6 +1,7 @@
 'use client';
 
 import { RightCol } from '@/components/rightCol';
+import Breadcrumb from '@/components/breadcrumb';
 import React, { useState } from 'react';
 
 interface LayoutProps {
@@ -17,10 +18,13 @@ export default function ToolLayout({ pageTitle, children, disclaimer }: LayoutPr
   };
 
   return (
-    <main className="pt-x-8 py-8 tool-layout"> 
+    <main className="pt-4 py-8 tool-layout"> 
         <div className="max-w-6xl mx-auto">
+          {/* Breadcrumb */}
+          <Breadcrumb />
+
           {/* Heading with Toggle Button */}
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-center mb-2">
             <h1 className="mb-0">
               {pageTitle}
             </h1>
@@ -32,7 +36,7 @@ export default function ToolLayout({ pageTitle, children, disclaimer }: LayoutPr
               title={isRightColExpanded ? "Hide sidebar" : "Show sidebar"}
             >
               <svg 
-                className={`w-4 h-4 transition-transform ${isRightColExpanded ? 'rotate-180' : ''}`} 
+                className={`w-4 h-4 transition-transform ${isRightColExpanded ? 'rotate-0' : 'rotate-180'}`} 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"

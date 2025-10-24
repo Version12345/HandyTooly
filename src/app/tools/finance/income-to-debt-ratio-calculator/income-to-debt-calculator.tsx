@@ -4,6 +4,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
 
+export const metadata = {
+    title: 'Income-to-Debt Ratio Calculator',
+    description: 'Calculate your Income-to-Debt Ratio quickly and easily with our free calculator. Determine if you are in a healthy financial position.',
+};
+
+type riskLevel = 'low' | 'moderate' | 'high';
+type Status = 'good' | 'challenging' | 'difficult' | 'limited';
+
 interface DebtItem {
   id: string;
   name: string;
@@ -30,14 +38,14 @@ interface DTIResult {
   monthlyIncome: number;
   monthlyDebtPayments: number;
   availableForOtherExpenses: number;
-  riskLevel: 'low' | 'moderate' | 'high';
+  riskLevel: riskLevel;
   riskColor: string;
   lendingGuidelines: {
-    conventional: { limit: number; status: 'good' | 'challenging' | 'difficult' };
-    fha: { limit: number; status: 'good' | 'challenging' | 'difficult' };
-    auto: { limit: number; status: 'good' | 'challenging' | 'difficult' };
+    conventional: { limit: number; status: Status };
+    fha: { limit: number; status: Status };
+    auto: { limit: number; status: Status };
   };
-  qualificationOutlook: 'good' | 'limited' | 'difficult';
+  qualificationOutlook: Status;
 }
 
 const CURRENCY_SYMBOLS = {
@@ -115,9 +123,9 @@ export function IncomeToDebtCalculator() {
     const availableForOtherExpenses = monthlyIncome - monthlyDebtPayments;
 
     // Determine risk level and color
-    let riskLevel: 'low' | 'moderate' | 'high';
+    let riskLevel: riskLevel;
     let riskColor: string;
-    let qualificationOutlook: 'good' | 'limited' | 'difficult';
+    let qualificationOutlook: Status;
 
     if (ratio <= 28) {
       riskLevel = 'low';
@@ -138,7 +146,7 @@ export function IncomeToDebtCalculator() {
     }
 
     // Lending guidelines
-    const getStatus = (limit: number): 'good' | 'challenging' | 'difficult' => {
+    const getStatus = (limit: number): Status => {
       if (ratio <= limit * 0.8) return 'good';
       if (ratio <= limit) return 'challenging';
       return 'difficult';
@@ -178,11 +186,11 @@ export function IncomeToDebtCalculator() {
 
   return (
     <ToolLayout
-      pageTitle="Debt-to-Income Ratio Calculator"
+      pageTitle="Income-to-Debt Ratio Calculator"
       disclaimer={<FinancialDisclaimer />}
     >
       <div className="max-w-7xl mx-auto">
-        <p>
+        <p className="text-sm">
           The Income-to-Debt Calculator helps you measure how much of your income goes toward paying debts each month. Enter your income and monthly debt payments to see your debt-to-income ratio. This simple tool shows whether your finances are balanced or stretched, helping you plan smarter for loans, mortgages, or budgeting.
         </p>
 
@@ -373,7 +381,7 @@ export function IncomeToDebtCalculator() {
 
           {/* DTI Analysis Section */}
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">DTI Analysis</h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">Analysis</h2>
             
             {result ? (
               <div className="space-y-6">
@@ -389,7 +397,7 @@ export function IncomeToDebtCalculator() {
                     'bg-red-100 text-red-800'
                   }`}>
                     {result.riskLevel === 'low' ? 'Low DTI Ratio' :
-                     result.riskLevel === 'moderate' ? 'Moderate DTI Ratio' :
+                     result.riskLevel === 'moderate' ? 'Moderate ITD Ratio' :
                      'High DTI Ratio'}
                   </div>
                   {result.riskLevel === 'high' && (
@@ -465,23 +473,23 @@ export function IncomeToDebtCalculator() {
               </div>
             ) : (
               <div className="text-center text-gray-500 py-8">
-                <p>Enter your income and debt information to see your DTI analysis</p>
+                <p>Enter your income and debt information to see your income-to-debt analysis</p>
               </div>
             )}
           </div>
         </div>
 
-        <div>
-          <h4>Understanding Income and Debt</h4>
+        <div className="mt-8">
+          <h3>Understanding Income and Debt</h3>
           <p>Your income is the total money you earn from work, investments, or other sources each month. Debt includes all the money you owe, such as loans, credit cards, or mortgages. The key to healthy finances is keeping your debt smaller than your income. Lenders often use your debt-to-income ratio to see if you can handle more credit. A lower ratio means better financial balance and less stress.</p>
 
-          <h4>Why the Debt-to-Income Ratio Matters</h4>
+          <h3>Why the Debt-to-Income Ratio Matters</h3>
           <p>A good debt-to-income ratio is usually under 36 percent. This means no more than one-third of your income goes to debt. If the number is higher, it can be harder to save or qualify for loans. Checking your ratio often helps you spot problems early. The goal is to keep payments manageable and avoid living paycheck to paycheck.</p>
 
-          <h4>Tips for Managing Debt</h4>
+          <h3>Tips for Managing Debt</h3>
           <p>Start by listing all your debts and their interest rates. Pay off the most expensive ones first to save money over time. Avoid adding new debt unless it is for something essential. Use cash or debit cards for everyday spending to stay within your limits. Create a simple budget that tracks income, bills, and goals. Review it once a month to stay on track.</p>
 
-          <h4>Steps Toward a Debt-Free Life</h4>
+          <h3>Steps Toward a Debt-Free Life</h3>
           <p>Pay more than the minimum on each balance when possible. Set small milestones to stay motivated. Try a side income or sell unused items to pay faster. Build an emergency fund equal to three months of expenses to avoid new debt. Celebrate progress as you go. Debt-free living brings freedom, lower stress, and more room for saving and investing.</p>
         </div>
       </div>

@@ -609,9 +609,9 @@ export default function BMICalculator() {
         </div>
 
         <div>
-          <p className="font-bold">
+          <h3>
             What is BMI?
-          </p>
+          </h3>
           <p className="text-md">
             Body Mass Index (BMI) is a simple calculation using a person&apos;s height and weight. The formula is BMI = kg/m², where kg is a person&apos;s weight in kilograms and m² is their height in meters squared.
 

@@ -1,0 +1,90 @@
+import { ToolCategory, Tools } from '@/constants/tools';
+import Link from 'next/link';
+import { Metadata } from 'next';
+import CategoryLayout from '../categoryLayout';
+
+export const metadata: Metadata = {
+  title: 'Jobs Tools - Resume & Career Tools',
+  description: 'Professional job search and career development tools including resume builders, cover letter generators, and career planning resources.',
+};
+
+export default function JobsCategory() {
+  const jobsTools = Tools[ToolCategory.Jobs] || [];
+
+  return (
+    <CategoryLayout pageTitle="Jobs & Career Tools">
+      <div className="space-y-6">
+        {/* Page Header */}
+        <div className="space-y-4">
+          <p>
+            Professional tools to help you succeed in your job search and career development. 
+            Create tailored resumes, write compelling cover letters, and optimize your job applications.
+          </p>
+        </div>
+
+        {/* Tools Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          {jobsTools.map((tool, index) => (
+            <Link 
+              key={index} 
+              href={tool.link}
+              className="block bg-white border border-gray-200 rounded-lg p-6 hover:border-gray-300 hover:shadow-md transition-all duration-200 group"
+            >
+              <div className="space-y-3">
+                <h3 className="text-xl font-semibold text-orange-600 group-hover:text-orange-500 transition-colors">
+                  {tool.name}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {tool.description}
+                </p>
+                <div className="flex items-center text-orange-500 text-sm font-medium">
+                  <span>Try it now</span>
+                  <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Category Description */}
+        <div className="bg-gray-50 rounded-lg p-6 mt-8">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            Why Use Our Job Search Tools?
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6 text-gray-700">
+            <div>
+              <h3 className="font-medium text-gray-900 mb-2">Save Time</h3>
+              <p className="text-sm">
+                Stop spending hours rewriting resumes for every job. Our tools help you quickly customize 
+                your application materials to match specific job requirements.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-medium text-gray-900 mb-2">Increase Success</h3>
+              <p className="text-sm">
+                Tailored resumes and cover letters significantly improve your chances of getting interviews. 
+                Match your skills to what employers are looking for.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-medium text-gray-900 mb-2">Professional Results</h3>
+              <p className="text-sm">
+                Generate polished, professional documents that highlight your strengths and 
+                align with industry standards and best practices.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-medium text-gray-900 mb-2">Easy to Use</h3>
+              <p className="text-sm">
+                Simple, step-by-step process that guides you through creating compelling 
+                job application materials without the complexity.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </CategoryLayout>
+  );
+}

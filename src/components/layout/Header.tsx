@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 const HEADER_LINKS = [
   { href: '/tools', label: 'Tools' },
-  { href: '/tools/resume-cover-letter-convertor', label: 'Resume/Cover Letter Converter' },
+  { href: '/tools/jobs/resume-cover-letter-convertor', label: 'Resume/Cover Letter Converter' },
   { href: '/donate', label: 'Donate' }
 ];
 

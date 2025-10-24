@@ -1,6 +1,6 @@
 "use client"
 
-import { Tools } from "@/constants/tools";
+import { Categories, Tools } from "@/constants/tools";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
@@ -69,14 +69,22 @@ export const ToolList = () => {
                 Object.entries(filteredTools).map(([category, toolsList]) => (
                 <div key={category} className="mb-6">
                     {/* Category Heading with Gray Underline */}
-                    <h2 className="text-2xl font-bold text-gray-900 pb-2 border-b-2 border-gray-300">
-                    {category}
-                    {debouncedSearchTerm && (
-                        <span className="text-sm font-normal text-gray-500 ml-2">
-                        ({toolsList.length} result{toolsList.length !== 1 ? 's' : ''})
-                        </span>
-                    )}
-                    </h2>
+                    <div className="mb-4 border-b-2 border-gray-300">
+                        <Link 
+                            href={`/categories/${Categories[category].slug}`}
+                            className="inline-flex items-center gap-2 text-lg font-bold text-gray-900 hover:text-orange-600 transition-colors group"
+                        >
+                            {category}
+                            <svg className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </Link>
+                        {debouncedSearchTerm && (
+                            <span className="text-sm font-normal text-gray-500 ml-2">
+                                ({toolsList.length} result{toolsList.length !== 1 ? 's' : ''})
+                            </span>
+                        )}
+                    </div>
                     
                     {/* Tools Grid - 3 columns on large screens */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
