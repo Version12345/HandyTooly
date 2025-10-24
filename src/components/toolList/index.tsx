@@ -48,7 +48,7 @@ export const ToolList = () => {
                 placeholder="Search tools..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-3 pl-12 border border-gray-300 bg-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                className="w-full px-4 py-3 pl-12 border border-gray-300 bg-white rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all"
             />
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,9 +67,9 @@ export const ToolList = () => {
                 </div>
             ) : (
                 Object.entries(filteredTools).map(([category, toolsList]) => (
-                <div key={category} className="mb-12">
+                <div key={category} className="mb-6">
                     {/* Category Heading with Gray Underline */}
-                    <h2 className="text-2xl font-bold text-gray-900 pb-2 mb-8 border-b-2 border-gray-300">
+                    <h2 className="text-2xl font-bold text-gray-900 pb-2 border-b-2 border-gray-300">
                     {category}
                     {debouncedSearchTerm && (
                         <span className="text-sm font-normal text-gray-500 ml-2">
@@ -84,7 +84,7 @@ export const ToolList = () => {
                         <Link 
                             key={index} 
                             href={tool.link}
-                            className="block bg-white border border-gray-200 rounded-lg p-4 md:p-6 hover:border-gray-300 hover:shadow-md transition-all duration-200 group tool-list-item"
+                            className="block bg-white border border-gray-200 rounded-lg p-4 pb-1 hover:border-gray-300 hover:shadow-md transition-all duration-200 group tool-list-item"
                         >
                         <div className="space-y-3">
                             <h3 className="transition-colors">

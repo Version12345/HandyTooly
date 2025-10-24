@@ -18,5 +18,12 @@ export const Tools: Record<string, Tool[]> = {
             description: "A tool to calculate your Body Mass Index (BMI) quickly and easily.",
             link: "/tools/health/bmi-calculator"
         }
+    ],
+    "Finance": [
+        {
+            name: "Debt-to-Income Ratio Calculator",
+            description: "Assess your financial health by calculating your debt-to-income ratio and get lending guidance.",
+            link: "/tools/finance/income-to-debt-ratio-calculator"
+        }
     ]
 };

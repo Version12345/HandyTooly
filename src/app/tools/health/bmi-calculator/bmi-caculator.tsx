@@ -372,7 +372,7 @@ export default function BMICalculator() {
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
                     placeholder={unit === 'metric' ? 'e.g., 70' : 'e.g., 154'}
-                    className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
                   />
                   <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
                     {unit === 'metric' ? 'kg' : 'lbs'}
@@ -392,7 +392,7 @@ export default function BMICalculator() {
                       value={height}
                       onChange={(e) => setHeight(e.target.value)}
                       placeholder="e.g., 175"
-                      className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
                     />
                     <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
                       cm
@@ -407,7 +407,7 @@ export default function BMICalculator() {
                           value={heightFeet}
                           onChange={(e) => setHeightFeet(e.target.value)}
                           placeholder="5"
-                          className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
                         />
                         <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
                           ft
@@ -421,7 +421,7 @@ export default function BMICalculator() {
                           value={heightInches}
                           onChange={(e) => setHeightInches(e.target.value)}
                           placeholder="9"
-                          className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
                         />
                         <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
                           in
@@ -448,7 +448,7 @@ export default function BMICalculator() {
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
                   placeholder="e.g., 30"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
                 />
               </div>
 
