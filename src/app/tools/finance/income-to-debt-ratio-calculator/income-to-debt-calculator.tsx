@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
+import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
 
 interface DebtItem {
   id: string;
@@ -178,6 +179,7 @@ export function IncomeToDebtCalculator() {
   return (
     <ToolLayout
       pageTitle="Debt-to-Income Ratio Calculator"
+      disclaimer={<FinancialDisclaimer />}
     >
       <div className="max-w-7xl mx-auto">
         <p>
@@ -467,6 +469,20 @@ export function IncomeToDebtCalculator() {
               </div>
             )}
           </div>
+        </div>
+
+        <div>
+          <h4>Understanding Income and Debt</h4>
+          <p>Your income is the total money you earn from work, investments, or other sources each month. Debt includes all the money you owe, such as loans, credit cards, or mortgages. The key to healthy finances is keeping your debt smaller than your income. Lenders often use your debt-to-income ratio to see if you can handle more credit. A lower ratio means better financial balance and less stress.</p>
+
+          <h4>Why the Debt-to-Income Ratio Matters</h4>
+          <p>A good debt-to-income ratio is usually under 36 percent. This means no more than one-third of your income goes to debt. If the number is higher, it can be harder to save or qualify for loans. Checking your ratio often helps you spot problems early. The goal is to keep payments manageable and avoid living paycheck to paycheck.</p>
+
+          <h4>Tips for Managing Debt</h4>
+          <p>Start by listing all your debts and their interest rates. Pay off the most expensive ones first to save money over time. Avoid adding new debt unless it is for something essential. Use cash or debit cards for everyday spending to stay within your limits. Create a simple budget that tracks income, bills, and goals. Review it once a month to stay on track.</p>
+
+          <h4>Steps Toward a Debt-Free Life</h4>
+          <p>Pay more than the minimum on each balance when possible. Set small milestones to stay motivated. Try a side income or sell unused items to pay faster. Build an emergency fund equal to three months of expenses to avoid new debt. Celebrate progress as you go. Debt-free living brings freedom, lower stress, and more room for saving and investing.</p>
         </div>
       </div>
     </ToolLayout>
