@@ -1,45 +1,6 @@
-"use client"
-import Link from 'next/link';
-import { useState, useEffect, useMemo } from 'react';
-
-import { Tools } from '../constants/tools';
 import { ToolList } from '@/components/toolList';
 
 export default function Home() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
-
-  // Debounce search term with 500 milliseconds delay
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [searchTerm]);
-
-  // Filter tools based on debounced search term
-  const filteredTools = useMemo(() => {
-    if (!debouncedSearchTerm.trim()) {
-      return Tools;
-    }
-
-    const filtered: Record<string, typeof Tools[string]> = {};
-    
-    Object.entries(Tools).forEach(([category, toolsList]) => {
-      const filteredToolsList = toolsList.filter(tool =>
-        tool.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
-        tool.description.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
-      );
-      
-      if (filteredToolsList.length > 0) {
-        filtered[category] = filteredToolsList;
-      }
-    });
-
-    return filtered;
-  }, [debouncedSearchTerm]);
-
   return (
     <main className="p-8">
       <div className="max-w-6xl mx-auto">
@@ -52,7 +13,7 @@ export default function Home() {
           </p>
 
           <ToolList />
-          
+
           <div>
             <h2>
               HandyTooly: Your One-Stop Hub for Everyday Tools
