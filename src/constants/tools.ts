@@ -13,13 +13,15 @@ interface Category {
 export enum ToolCategory {
     Jobs = "Jobs & Career",
     Health = "Health & Wellness",
-    Finance = "Finance & Money"
+    Finance = "Finance & Money",
+    Conversions = "Conversions & Units"
 }
 
 export enum ToolCategorySlug {
     Jobs = "jobs-and-career",
     Health = "health-and-wellness",
-    Finance = "finance-and-money"
+    Finance = "finance-and-money",
+    Conversions = "conversions-and-units"
 }
 
 export const Categories: Record<string, Category> = {
@@ -37,6 +39,11 @@ export const Categories: Record<string, Category> = {
         name: "Finance & Money Tools",
         description: "Financial planning and assessment calculators", 
         slug: "finance-and-money"
+    },
+    [ToolCategory.Conversions]: {
+        name: "Conversions & Units Tools",
+        description: "Convert between different units and measurements", 
+        slug: "conversions-and-units"
     }
 };
 
@@ -60,6 +67,13 @@ export const Tools: Record<string, Tool[]> = {
             name: "Debt-to-Income Ratio Calculator",
             description: "Assess your financial health by calculating your debt-to-income ratio and get lending guidance.",
             link: `/tools/${ToolCategorySlug.Finance}/income-to-debt-ratio-calculator`
+        }
+    ],
+    [ToolCategory.Conversions]: [
+        {
+            name: "Time Unit Converter",
+            description: "Convert between different time units like seconds, minutes, hours, days, and more.",
+            link: `/tools/${ToolCategorySlug.Conversions}/time-unit-converter`
         }
     ]
 };
