@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Your donations help us keep this service free and continuously improve our AI-powered tools.',
-  description: "Our platform helps job seekers create better resumes and cover letters. Your donations help us keep this service free and continuously improve our AI-powered tools.",
+  title: 'Your support help us keep this service free and continuously improve our AI-powered tools.',
+  description: "Our platform helps job seekers create better resumes and cover letters and many other useful tools. Your support helps us keep this service free and continuously improve our AI-powered tools.",
 };
 
-export default function Donate() {
+export default function SupportUs() {
   return (
     <main className="px-8 py-16">
       <div className="max-w-4xl mx-auto text-center space-y-8">

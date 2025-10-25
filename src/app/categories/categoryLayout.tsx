@@ -11,7 +11,7 @@ interface LayoutProps {
 
 export default function CategoryLayout({ pageTitle, children, disclaimer }: LayoutProps) {
   return (
-    <main className="pt-4 py-8 tool-layout"> 
+    <main className="p-8 pt-4 tool-layout"> 
         <div className="max-w-6xl mx-auto">
           {/* Breadcrumb */}
           <Breadcrumb />

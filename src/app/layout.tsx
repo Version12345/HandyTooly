@@ -31,11 +31,11 @@ export default async function RootLayout({
       >
         <div className="min-h-screen bg-white relative main-layout font-[Roboto]">
           {/* Red Corner Flag */}
-          <div className="fixed -top-1 -right-1 z-50">
+          <div className="fixed top-0 -right-2 z-50">
             <div className="relative">
-              <Link href="/donate" className="block">
-                <div className="bg-red-600 text-white text-xs font-bold py-2 px-8 transform rotate-45 translate-x-6 translate-y-4 shadow-lg cursor-pointer hover:bg-red-700 transition-colors">
-                  DONATE
+              <Link href="/support-us" className="block">
+                <div className="bg-red-600 text-white text-[10px] font-bold py-2 px-8 transform rotate-45 translate-x-6 translate-y-4 shadow-lg cursor-pointer hover:bg-red-700 transition-colors">
+                  SUPPORT US
                 </div>
               </Link>
             </div>

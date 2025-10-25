@@ -4,11 +4,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
 
-export const metadata = {
-    title: 'Income-to-Debt Ratio Calculator',
-    description: 'Calculate your Income-to-Debt Ratio quickly and easily with our free calculator. Determine if you are in a healthy financial position.',
-};
-
 type riskLevel = 'low' | 'moderate' | 'high';
 type Status = 'good' | 'challenging' | 'difficult' | 'limited';
 
