@@ -6,7 +6,7 @@ import ToolCard from '@/components/toolCard';
 
 export const metadata: Metadata = {
   title: 'Finance Tools - Financial Calculators & Planning Tools',
-  description: 'Financial planning and assessment tools including debt-to-income calculator, budget planners, and other financial health tools.',
+  description: 'Financial planning and assessment tools including income-to-debt calculator, budget planners, and other financial health tools.',
 };
 
 export default function FinanceCategory() {
@@ -21,7 +21,7 @@ export default function FinanceCategory() {
       <div className="space-y-4">
         <p>
           Take control of your financial health with our comprehensive financial calculators. 
-          Assess your debt-to-income ratio, plan budgets, and make informed financial decisions.
+          Assess your income-to-debt ratio, plan budgets, and make informed financial decisions.
         </p>
       </div>
 
@@ -53,7 +53,7 @@ export default function FinanceCategory() {
           <div>
             <h3 className="font-medium text-gray-900 mb-2">Loan Approval</h3>
             <p className="text-sm">
-              Know your debt-to-income ratio before applying for mortgages or loans. 
+              Know your income-to-debt ratio before applying for mortgages or loans. 
               Improve your chances of approval by understanding lender requirements.
             </p>
           </div>

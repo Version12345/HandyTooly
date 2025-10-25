@@ -186,7 +186,7 @@ export function IncomeToDebtCalculator() {
     >
       <div className="max-w-7xl mx-auto">
         <p className="text-sm">
-          The Income-to-Debt Calculator helps you measure how much of your income goes toward paying debts each month. Enter your income and monthly debt payments to see your debt-to-income ratio. This simple tool shows whether your finances are balanced or stretched, helping you plan smarter for loans, mortgages, or budgeting.
+          The Income-to-Debt Calculator helps you measure how much of your income goes toward paying debts each month. Enter your income and monthly debt payments to see your income-to-debt ratio. This simple tool shows whether your finances are balanced or stretched, helping you plan smarter for loans, mortgages, or budgeting.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -385,7 +385,7 @@ export function IncomeToDebtCalculator() {
                   <div className={`text-4xl font-bold ${result.riskColor} mb-2`}>
                     {result.ratio.toFixed(1)}%
                   </div>
-                  <div className="text-sm text-gray-600">Your Debt-to-Income Ratio</div>
+                  <div className="text-sm text-gray-600">Your Income-to-Debt Ratio</div>
                   <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium mt-2 ${
                     result.riskLevel === 'low' ? 'bg-green-100 text-green-800' :
                     result.riskLevel === 'moderate' ? 'bg-yellow-100 text-yellow-800' :
@@ -476,10 +476,10 @@ export function IncomeToDebtCalculator() {
 
         <div className="mt-8">
           <h3>Understanding Income and Debt</h3>
-          <p>Your income is the total money you earn from work, investments, or other sources each month. Debt includes all the money you owe, such as loans, credit cards, or mortgages. The key to healthy finances is keeping your debt smaller than your income. Lenders often use your debt-to-income ratio to see if you can handle more credit. A lower ratio means better financial balance and less stress.</p>
+          <p>Your income is the total money you earn from work, investments, or other sources each month. Debt includes all the money you owe, such as loans, credit cards, or mortgages. The key to healthy finances is keeping your debt smaller than your income. Lenders often use your income-to-debt ratio to see if you can handle more credit. A lower ratio means better financial balance and less stress.</p>
 
-          <h3>Why the Debt-to-Income Ratio Matters</h3>
-          <p>A good debt-to-income ratio is usually under 36 percent. This means no more than one-third of your income goes to debt. If the number is higher, it can be harder to save or qualify for loans. Checking your ratio often helps you spot problems early. The goal is to keep payments manageable and avoid living paycheck to paycheck.</p>
+          <h3>Why the Income-to-Debt Ratio Matters</h3>
+          <p>A good income-to-debt ratio is usually under 36 percent. This means no more than one-third of your income goes to debt. If the number is higher, it can be harder to save or qualify for loans. Checking your ratio often helps you spot problems early. The goal is to keep payments manageable and avoid living paycheck to paycheck.</p>
 
           <h3>Tips for Managing Debt</h3>
           <p>Start by listing all your debts and their interest rates. Pay off the most expensive ones first to save money over time. Avoid adding new debt unless it is for something essential. Use cash or debit cards for everyday spending to stay within your limits. Create a simple budget that tracks income, bills, and goals. Review it once a month to stay on track.</p>

@@ -64,8 +64,8 @@ export const Tools: Record<string, Tool[]> = {
     ],
     [ToolCategory.Finance]: [
         {
-            name: "Debt-to-Income Ratio Calculator",
-            description: "Assess your financial health by calculating your debt-to-income ratio and get lending guidance.",
+            name: "Income-to-Debt Ratio Calculator",
+            description: "Assess your financial health by calculating your income-to-debt ratio and get lending guidance.",
             link: `/tools/${ToolCategorySlug.Finance}/income-to-debt-ratio-calculator`
         }
     ],
