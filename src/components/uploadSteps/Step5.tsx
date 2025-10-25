@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
+import Markdown from 'markdown-to-jsx'
 
 import { copyToClipboard } from '../../utils/copyToClipboard';
 import { downloadAsDocx } from '../../utils/markdownToDocx';
@@ -71,7 +71,7 @@ export const Step5: React.FC<Step5Props> = ({ finalResume, finalCoverLetter, onC
                     <h3 className="text-lg font-semibold mb-4">Final Resume</h3>
                     <div className="border border-gray-300 rounded-md p-4 h-64 bg-gray-50 overflow-y-auto">
                         <pre className="text-sm text-gray-700">
-                            <ReactMarkdown>{finalResume}</ReactMarkdown>
+                            <Markdown>{finalResume}</Markdown>
                         </pre>
                     </div>
                     <div className="flex gap-2 mt-2">
@@ -111,7 +111,7 @@ export const Step5: React.FC<Step5Props> = ({ finalResume, finalCoverLetter, onC
                     <h3 className="text-lg font-semibold mb-4">Final Cover Letter</h3>
                     <div className="border border-gray-300 rounded-md p-4 h-64 bg-gray-50 overflow-y-auto">
                         <pre className="text-sm text-gray-700">
-                            <ReactMarkdown>{finalCoverLetter}</ReactMarkdown>
+                            <Markdown>{finalCoverLetter}</Markdown>
                         </pre>
                     </div>
                     <div className="flex gap-2 mt-2">
