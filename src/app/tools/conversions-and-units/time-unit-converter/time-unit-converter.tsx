@@ -570,23 +570,23 @@ export function TimeUnitConverter() {
                 {Object.entries(conversions).map(([label, value]) => (
                   <div key={label} className="px-3 py-2 bg-orange-100 rounded-lg">
                     <div className="grid grid-cols-1 md:grid-cols-[25%_65%_10%] items-center">
-                        <div>
-                            <span className='text-sm'>{label}</span>
-                        </div>
-                        <div>
-                            {' '} 
-                            <span className="text-lg font-semibold text-gray-900">
-                            {typeof value === 'string' ? value : formatNumber(value)}
-                            </span>
-                        </div>
-                        <button
-                            onClick={() => copyToClipboard(typeof value === 'string' ? value : formatNumber(value))}
-                            className="px-2 py-1 text-[10px] bg-orange-300 hover:bg-gray-400 text-white rounded transition-colors"
-                            title="Copy to clipboard"
-                        >
-                            Copy
-                        </button>
-                        </div>
+                      <div>
+                          <span className='text-sm'>{label}</span>
+                      </div>
+                      <div>
+                          {' '} 
+                          <span className="text-lg font-semibold text-gray-900">
+                          {typeof value === 'string' ? value : formatNumber(value)}
+                          </span>
+                      </div>
+                      <button
+                          onClick={() => copyToClipboard(typeof value === 'string' ? value : formatNumber(value))}
+                          className="px-2 py-1 text-[10px] bg-orange-300 hover:bg-gray-400 text-white rounded transition-colors"
+                          title="Copy to clipboard"
+                      >
+                          Copy
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
