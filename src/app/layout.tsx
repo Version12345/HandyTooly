@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Link from "next/link";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 
@@ -51,6 +53,8 @@ export default async function RootLayout({
 
           {/* Footer */}
           <Footer />
+
+          <SpeedInsights/>
         </div>
       </body>
     </html>

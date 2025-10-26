@@ -11,6 +11,7 @@
   "dependencies": {
     "@langchain/openai": "^1.0.0",
     "@mohtasham/md-to-docx": "^2.4.0",
+    "@vercel/speed-insights": "^1.2.0",
     "crypto": "^1.0.1",
     "markdown-to-jsx": "^7.7.17",
     "next": "15.5.6",
