@@ -2,7 +2,8 @@
 
 import { RightCol } from '@/components/rightCol';
 import Breadcrumb from '@/components/breadcrumb';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getSessionStorageItem, setSessionStorageItem } from '@/utils/sessionStorage';
 
 interface LayoutProps {
   pageTitle: string;
@@ -13,8 +14,18 @@ interface LayoutProps {
 export default function ToolLayout({ pageTitle, children, disclaimer }: LayoutProps) {
   const [isRightColExpanded, setIsRightColExpanded] = useState(true);
 
+  useEffect(() => {
+    const savedState = getSessionStorageItem('isRightColExpanded');
+
+    if (savedState !== null && (savedState === 'true' || savedState === 'false')) {
+      setIsRightColExpanded(JSON.parse(savedState));
+    }
+  }, []);
+
   const toggleRightCol = () => {
-    setIsRightColExpanded(!isRightColExpanded);
+    const newState = !isRightColExpanded;
+    setIsRightColExpanded(newState);
+    setSessionStorageItem('isRightColExpanded', JSON.stringify(newState));
   };
 
   return (
