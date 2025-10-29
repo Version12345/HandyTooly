@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Step1, Step2, Step3, Step4, Step5 } from '../../../../components/uploadSteps';
 import ToolLayout from '../../toolLayout';
+import JobDisclaimer from '../../../../components/disclaimers/jobDisclaimer';
 
 export default function ResumeCoverLetterConvertor() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -51,6 +52,7 @@ export default function ResumeCoverLetterConvertor() {
     return (
         <ToolLayout
             pageTitle="Resume/Cover Letter Converter"
+            disclaimer={<JobDisclaimer />}
         >
             {/* Description */}
             <p className="text-sm">

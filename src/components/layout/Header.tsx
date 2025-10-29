@@ -30,7 +30,7 @@ export default function Header() {
   };
 
   return (
-    <header className="p-4 bg-white border-b border-gray-200">
+    <header className="p-4 bg-white border-b border-gray-200 class-main-header">
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center">
           <Link 

@@ -12,7 +12,7 @@ export default function ContactUs() {
         <h1>
           Contact HandyTooly
         </h1>
-        <p>Have a question about one of our calculators, found a bug, or want to suggest a new tool? We would love to hear from you. Our team usually responds within 24 hours. Whether you are reporting an issue, requesting a new feature, or just saying hello, we are here to help make HandyTooly better for everyone. The fastest way to reach us is by email at <a href="mailto:handytooly@gmail.com">handytooly@gmail.com</a>. We read every message and reply personally. No automated messages or copy-paste responses. We are based in Pacific Standard Time, UTC-8 timezone, and most emails get a reply withing 48 hours.</p>
+        <p>Have a question about one of our calculators, found a bug, or want to suggest a new tool? We would love to hear from you. Our team usually responds within 24 hours. Whether you are reporting an issue, requesting a new feature, or just saying hello, we are here to help make HandyTooly better for everyone. The fastest way to reach us is by email at <a href="mailto:handytooly@gmail.com" className="text-orange-500">handytooly@gmail.com</a>. We read every message and reply personally. No automated messages or copy-paste responses. We are based in Pacific Standard Time, UTC-8 timezone, and most emails get a reply withing 48 hours.</p>
 
         <h1>
           How to Contact Us

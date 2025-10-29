@@ -324,287 +324,285 @@ export default function BMICalculator() {
         </p>
 
         {/* Calculator Form */}
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left Column - Enhanced Input Form */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Calculate Your BMI</h3>
-              
-              {/* Unit System */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Unit System
-                </label>
-                <div className="flex space-x-2">
-                  <button
-                    type="button"
-                    onClick={() => handleUnitChange('metric')}
-                    className={`flex-1 px-3 py-2 text-sm rounded-md border font-medium transition-colors ${
-                      unit === 'metric'
-                        ? 'bg-orange-500 text-white border-orange-500'
-                        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    Metric
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleUnitChange('imperial')}
-                    className={`flex-1 px-3 py-2 text-sm rounded-md border font-medium transition-colors ${
-                      unit === 'imperial'
-                        ? 'bg-orange-500 text-white border-orange-500'
-                        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    Imperial
-                  </button>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left Column - Enhanced Input Form */}
+          <div className="space-y-4 bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Calculate Your BMI</h3>
+            
+            {/* Unit System */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Unit System
+              </label>
+              <div className="flex space-x-2">
+                <button
+                  type="button"
+                  onClick={() => handleUnitChange('metric')}
+                  className={`flex-1 px-3 py-2 text-sm rounded-md border font-medium transition-colors ${
+                    unit === 'metric'
+                      ? 'bg-orange-500 text-white border-orange-500 hover:bg-orange-600'
+                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-200'
+                  }`}
+                >
+                  Metric
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleUnitChange('imperial')}
+                  className={`flex-1 px-3 py-2 text-sm rounded-md border font-medium transition-colors ${
+                    unit === 'imperial'
+                      ? 'bg-orange-500 text-white border-orange-500 hover:bg-orange-600'
+                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-200'
+                  }`}
+                >
+                  Imperial
+                </button>
               </div>
+            </div>
 
-              {/* Weight Input */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Weight
-                </label>
+            {/* Weight Input */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Weight
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  value={weight}
+                  onChange={(e) => setWeight(e.target.value)}
+                  placeholder={unit === 'metric' ? 'e.g., 70' : 'e.g., 154'}
+                  className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
+                />
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
+                  {unit === 'metric' ? 'kg' : 'lbs'}
+                </span>
+              </div>
+            </div>
+            
+            {/* Height Input */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Height
+              </label>
+              {unit === 'metric' ? (
                 <div className="relative">
                   <input
                     type="number"
-                    value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
-                    placeholder={unit === 'metric' ? 'e.g., 70' : 'e.g., 154'}
+                    value={height}
+                    onChange={(e) => setHeight(e.target.value)}
+                    placeholder="e.g., 175"
                     className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
                   />
                   <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
-                    {unit === 'metric' ? 'kg' : 'lbs'}
+                    cm
                   </span>
                 </div>
+              ) : (
+                <div className="flex space-x-2">
+                  <div className="flex-1">
+                    <div className="relative">
+                      <input
+                        type="number"
+                        value={heightFeet}
+                        onChange={(e) => setHeightFeet(e.target.value)}
+                        placeholder="5"
+                        className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
+                      />
+                      <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
+                        ft
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="relative">
+                      <input
+                        type="number"
+                        value={heightInches}
+                        onChange={(e) => setHeightInches(e.target.value)}
+                        placeholder="9"
+                        className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
+                      />
+                      <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
+                        in
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {unit === 'metric' && (
+                <p className="text-xs text-gray-500 mt-1">Enter height in centimeters</p>
+              )}
+              {unit === 'imperial' && (
+                <p className="text-xs text-gray-500 mt-1">Enter feet and inches separately</p>
+              )}
+            </div>
+
+            {/* Age Input (Optional) */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Age (optional)
+              </label>
+              <input
+                type="number"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                placeholder="e.g., 30"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
+              />
+            </div>
+
+            {/* Gender Selection (Optional) */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Gender (optional)
+              </label>
+              <div className="flex space-x-2">
+                <button
+                  type="button"
+                  onClick={() => setGender('male')}
+                  className={`flex-1 px-3 py-2 text-sm rounded-md border font-medium transition-colors ${
+                    gender === 'male'
+                      ? 'bg-orange-500 text-white border-orange-500 hover:bg-orange-600'
+                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-200'
+                  }`}
+                >
+                  Male
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setGender('female')}
+                  className={`flex-1 px-3 py-2 text-sm rounded-md border font-medium transition-colors ${
+                    gender === 'female'
+                      ? 'bg-orange-500 text-white border-orange-500 hover:bg-orange-600'
+                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-200'
+                  }`}
+                >
+                  Female
+                </button>
+              </div>
+            </div>
+
+            {/* Reset Button */}
+            <button
+              onClick={resetCalculateBMI}
+              className="w-full font-medium py-3 px-6 rounded-md transition-colors bg-gray-400 hover:bg-gray-600 text-white"
+            >
+              Reset Calculator
+            </button>
+          </div>
+
+          {/* Middle Column - BMI Scale */}
+          <div className="space-y-4 bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">BMI Scale & Categories</h3>
+
+            {/* Visual BMI Scale Bar */}
+            <div className="relative mb-6">
+              {/* Color-coded BMI scale bar */}
+              <div className="h-8 rounded-lg overflow-hidden flex shadow-sm">
+                {
+                  Object.values(BMI_CATEGORIES).map((scale, index) => (
+                    <div key={index} className={scale.color} style={{ width: scale.width }}></div>
+                  ))
+                }
               </div>
               
-              {/* Height Input */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Height
-                </label>
-                {unit === 'metric' ? (
+              {/* Scale labels */}
+              <div className="flex justify-between text-xs text-gray-600 mt-2">
+                <span>10</span>
+                <span>20</span>
+                <span>30</span>
+                <span>40</span>
+                <span>50+</span>
+              </div>
+              
+              {/* Current BMI Indicator */}
+              {result && (
+                <div 
+                  className="absolute top-4 transform -translate-x-1/2 transition-all duration-300"
+                  style={{ left: `${getBMIPosition(result.bmi)}%` }}
+                >
                   <div className="relative">
-                    <input
-                      type="number"
-                      value={height}
-                      onChange={(e) => setHeight(e.target.value)}
-                      placeholder="e.g., 175"
-                      className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
-                    />
-                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
-                      cm
+                    {/* Arrow pointing down */}
+                    <div className="w-0 h-0 border-l-2 border-r-2 border-t-4 border-l-transparent border-r-transparent border-t-black mx-auto"></div>
+                    {/* BMI value label */}
+                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                      {result.bmi}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              {Object.values(BMI_CATEGORIES).map((scale, index) => {
+                const isCurrentCategory = result && getBMICategory(result.bmi).category === scale.category;
+                return (
+                  <div key={index} className={`flex items-center justify-between p-3 rounded border transition-all duration-200 ${
+                    isCurrentCategory ? 'border-gray-300 bg-gray-100 shadow-sm' : 'border-gray-200'
+                  }`}>
+                    <div className={`w-4 h-4 rounded ${scale.color} ${isCurrentCategory ? 'shadow-sm' : ''}`}></div>
+                    <span className={`text-sm flex-1 mx-3 ${isCurrentCategory ? 'font-medium text-gray-900' : 'text-gray-700'}`}>
+                      {scale.category}
+                    </span>
+                    <span className={`text-sm ${isCurrentCategory ? 'text-gray-700 font-medium' : 'text-gray-600'}`}>
+                      {scale.range}
                     </span>
                   </div>
-                ) : (
-                  <div className="flex space-x-2">
-                    <div className="flex-1">
-                      <div className="relative">
-                        <input
-                          type="number"
-                          value={heightFeet}
-                          onChange={(e) => setHeightFeet(e.target.value)}
-                          placeholder="5"
-                          className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
-                        />
-                        <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
-                          ft
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <div className="relative">
-                        <input
-                          type="number"
-                          value={heightInches}
-                          onChange={(e) => setHeightInches(e.target.value)}
-                          placeholder="9"
-                          className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
-                        />
-                        <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
-                          in
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {unit === 'metric' && (
-                  <p className="text-xs text-gray-500 mt-1">Enter height in centimeters</p>
-                )}
-                {unit === 'imperial' && (
-                  <p className="text-xs text-gray-500 mt-1">Enter feet and inches separately</p>
-                )}
-              </div>
-
-              {/* Age Input (Optional) */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Age (optional)
-                </label>
-                <input
-                  type="number"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  placeholder="e.g., 30"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
-                />
-              </div>
-
-              {/* Gender Selection (Optional) */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Gender (optional)
-                </label>
-                <div className="flex space-x-2">
-                  <button
-                    type="button"
-                    onClick={() => setGender('male')}
-                    className={`flex-1 px-3 py-2 text-sm rounded-md border font-medium transition-colors ${
-                      gender === 'male'
-                        ? 'bg-orange-600 text-white border-orange-500'
-                        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    Male
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setGender('female')}
-                    className={`flex-1 px-3 py-2 text-sm rounded-md border font-medium transition-colors ${
-                      gender === 'female'
-                        ? 'bg-orange-500 text-white border-orange-500'
-                        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    Female
-                  </button>
-                </div>
-              </div>
-
-              {/* Reset Button */}
-              <button
-                onClick={resetCalculateBMI}
-                className="w-full font-medium py-3 px-6 rounded-md transition-colors bg-gray-400 hover:bg-gray-600 text-white"
-              >
-                Reset Calculator
-              </button>
+                );
+              })}
             </div>
+          </div>
 
-            {/* Middle Column - BMI Scale */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">BMI Scale & Categories</h3>
+          {/* Right Column - Results */}
+          <div className="space-y-4 bg-white rounded-lg shadow-md p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Your Results</h3>
+            
+            {!result && (
+              <div className="text-center text-gray-500 py-8">
+                <p>Enter your weight and height to calculate your BMI</p>
+              </div>
+            )}
 
-              {/* Visual BMI Scale Bar */}
-              <div className="relative mb-6">
-                {/* Color-coded BMI scale bar */}
-                <div className="h-8 rounded-lg overflow-hidden flex shadow-sm">
-                  {
-                    Object.values(BMI_CATEGORIES).map((scale, index) => (
-                      <div key={index} className={scale.color} style={{ width: scale.width }}></div>
-                    ))
-                  }
+            {result && (
+              <div className="space-y-4">
+                {/* BMI Value Display */}
+                <div className="text-center p-6 bg-gray-100 rounded-lg">
+                  <div className="text-3xl font-bold text-gray-900">{result.bmi}</div>
+                  <div className="text-lg text-gray-600 mt-1">BMI Score</div>
                 </div>
-                
-                {/* Scale labels */}
-                <div className="flex justify-between text-xs text-gray-600 mt-2">
-                  <span>10</span>
-                  <span>20</span>
-                  <span>30</span>
-                  <span>40</span>
-                  <span>50+</span>
+
+                {/* Status */}
+                <div className="p-4 bg-blue-50 rounded-lg">
+                  <h4 className="font-medium text-blue-900">Status</h4>
+                  <p className="text-blue-800 text-sm mt-1">{result.status}</p>
                 </div>
-                
-                {/* Current BMI Indicator */}
-                {result && (
-                  <div 
-                    className="absolute top-4 transform -translate-x-1/2 transition-all duration-300"
-                    style={{ left: `${getBMIPosition(result.bmi)}%` }}
-                  >
-                    <div className="relative">
-                      {/* Arrow pointing down */}
-                      <div className="w-0 h-0 border-l-2 border-r-2 border-t-4 border-l-transparent border-r-transparent border-t-black mx-auto"></div>
-                      {/* BMI value label */}
-                      <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                        {result.bmi}
-                      </div>
-                    </div>
+
+                {/* Health Risk */}
+                <div className="p-4 bg-orange-50 rounded-lg">
+                  <h4 className="font-medium text-orange-900">Health Assessment</h4>
+                  <p className="text-orange-800 text-sm mt-1">{result.healthRisk}</p>
+                </div>
+
+                {/* Ideal Weight Range */}
+                <div className="p-4 bg-green-50 rounded-lg">
+                  <h4 className="font-medium text-green-900">Ideal Weight Range</h4>
+                  <p className="text-green-800 text-sm mt-1">{result.idealWeightRange}</p>
+                </div>
+
+                {/* Body Fat Estimate */}
+                {result.bodyFatPercentage !== null && (
+                  <div className="p-4 bg-purple-50 rounded-lg">
+                    <h4 className="font-medium text-purple-900">Body Fat Estimate</h4>
+                    <p className="text-purple-800 text-lg font-semibold mt-1">
+                      {result.bodyFatPercentage.toFixed(1)}%
+                    </p>
+                    <p className="text-purple-700 text-xs mt-1">
+                      Based on BMI, gender and age. BMI doesn&apos;t account for bone density, muscle mass or body composition
+                    </p>
                   </div>
                 )}
               </div>
-
-              <div className="space-y-2">
-                {Object.values(BMI_CATEGORIES).map((scale, index) => {
-                  const isCurrentCategory = result && getBMICategory(result.bmi).category === scale.category;
-                  return (
-                    <div key={index} className={`flex items-center justify-between p-3 rounded border transition-all duration-200 ${
-                      isCurrentCategory ? 'border-gray-300 bg-gray-100 shadow-sm' : 'border-gray-200'
-                    }`}>
-                      <div className={`w-4 h-4 rounded ${scale.color} ${isCurrentCategory ? 'shadow-sm' : ''}`}></div>
-                      <span className={`text-sm flex-1 mx-3 ${isCurrentCategory ? 'font-medium text-gray-900' : 'text-gray-700'}`}>
-                        {scale.category}
-                      </span>
-                      <span className={`text-sm ${isCurrentCategory ? 'text-gray-700 font-medium' : 'text-gray-600'}`}>
-                        {scale.range}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Right Column - Results */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Your Results</h3>
-              
-              {!result && (
-                <div className="text-center text-gray-500 py-8">
-                  <p>Enter your weight and height to calculate your BMI</p>
-                </div>
-              )}
-
-              {result && (
-                <div className="space-y-4">
-                  {/* BMI Value Display */}
-                  <div className="text-center p-6 bg-gray-100 rounded-lg">
-                    <div className="text-3xl font-bold text-gray-900">{result.bmi}</div>
-                    <div className="text-lg text-gray-600 mt-1">BMI Score</div>
-                  </div>
-
-                  {/* Status */}
-                  <div className="p-4 bg-blue-50 rounded-lg">
-                    <h4 className="font-medium text-blue-900">Status</h4>
-                    <p className="text-blue-800 text-sm mt-1">{result.status}</p>
-                  </div>
-
-                  {/* Health Risk */}
-                  <div className="p-4 bg-orange-50 rounded-lg">
-                    <h4 className="font-medium text-orange-900">Health Assessment</h4>
-                    <p className="text-orange-800 text-sm mt-1">{result.healthRisk}</p>
-                  </div>
-
-                  {/* Ideal Weight Range */}
-                  <div className="p-4 bg-green-50 rounded-lg">
-                    <h4 className="font-medium text-green-900">Ideal Weight Range</h4>
-                    <p className="text-green-800 text-sm mt-1">{result.idealWeightRange}</p>
-                  </div>
-
-                  {/* Body Fat Estimate */}
-                  {result.bodyFatPercentage !== null && (
-                    <div className="p-4 bg-purple-50 rounded-lg">
-                      <h4 className="font-medium text-purple-900">Body Fat Estimate</h4>
-                      <p className="text-purple-800 text-lg font-semibold mt-1">
-                        {result.bodyFatPercentage.toFixed(1)}%
-                      </p>
-                      <p className="text-purple-700 text-xs mt-1">
-                        Based on BMI, gender and age. BMI doesn&apos;t account for bone density, muscle mass or body composition
-                      </p>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+            )}
           </div>
         </div>
 

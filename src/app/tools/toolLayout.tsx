@@ -43,7 +43,7 @@ export default function ToolLayout({ pageTitle, children, disclaimer }: LayoutPr
           {/* Toggle Button */}
           <button
             onClick={toggleRightCol}
-            className="lg:flex hidden items-center gap-2 px-3 py-2 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md transition-colors"
+            className="lg:flex hidden items-center gap-2 px-3 py-2 text-sm bg-orange-100 hover:bg-gray-200 text-gray-700 rounded-md transition-colors"
             title={isRightColExpanded ? "Hide sidebar" : "Show sidebar"}
           >
             <svg 
