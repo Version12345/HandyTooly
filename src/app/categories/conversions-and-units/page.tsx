@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Metadata } from 'next';
 
 import ToolCard from '../../../components/toolCard';
