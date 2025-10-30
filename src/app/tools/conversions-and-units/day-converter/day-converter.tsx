@@ -25,6 +25,13 @@ interface CalculationResult {
   businessDays?: number;
 }
 
+const formatDateToString = (date: Date): string => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
 const QUICK_DATE_OPTIONS = [
   { label: 'Today', getValue: () => new Date() },
   { label: 'Tomorrow', getValue: () => { const d = new Date(); d.setDate(d.getDate() + 1); return d; } },
@@ -40,7 +47,7 @@ const QUICK_DATE_OPTIONS = [
 
 export function DayConverter() {
   const [calculationType, setCalculationType] = useState<CALCULATION_TYPE>(CALCULATION_TYPE.FIND_WEEKDAY);
-  const [dateToCheck, setDateToCheck] = useState('');
+  const [dateToCheck, setDateToCheck] = useState(() => formatDateToString(new Date()));
   const [secondDate, setSecondDate] = useState('');
   const [timeAmount, setTimeAmount] = useState('');
   const [timeUnit, setTimeUnit] = useState('days');
