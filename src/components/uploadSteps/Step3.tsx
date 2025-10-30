@@ -20,7 +20,7 @@ export const Step3: React.FC<Step3Props> = ({ coverLetter, setCoverLetter, onNex
                     value={coverLetter}
                     onChange={(e) => setCoverLetter(e.target.value)}
                     rows={15}
-                    className="w-full p-4 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 resize-none text-sm"
+                    className="w-full shadow-sm p-4 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 resize-none text-sm"
                     placeholder="Enter your cover letter content here..."
                     autoFocus
                 />

@@ -202,7 +202,7 @@ export function IncomeToDebtCalculator() {
               <select
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value as Currency)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               >
                 {Object.keys(CURRENCY_SYMBOLS).map((curr) => (
                   <option key={curr} value={curr}>
@@ -224,7 +224,7 @@ export function IncomeToDebtCalculator() {
                     type="number"
                     value={income.primaryIncome || ''}
                     onChange={(e) => setIncome(prev => ({ ...prev, primaryIncome: Number(e.target.value) || 0 }))}
-                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full shadow-sm pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="5000"
                   />
                 </div>
@@ -243,7 +243,7 @@ export function IncomeToDebtCalculator() {
                     type="number"
                     value={income.additionalIncome || ''}
                     onChange={(e) => setIncome(prev => ({ ...prev, additionalIncome: Number(e.target.value) || 0 }))}
-                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full shadow-sm pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="100"
                   />
                 </div>
@@ -297,7 +297,7 @@ export function IncomeToDebtCalculator() {
                       type="number"
                       value={debts[key] as number || ''}
                       onChange={(e) => setDebts(prev => ({ ...prev, [key]: Number(e.target.value) || 0 }))}
-                      className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full shadow-sm pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                       placeholder={placeholder}
                     />
                   </div>
@@ -322,7 +322,7 @@ export function IncomeToDebtCalculator() {
                     type="text"
                     value={debt.name}
                     onChange={(e) => updateCustomDebt(debt.id, 'name', e.target.value)}
-                    className="w-full mb-2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full shadow-sm mb-2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="Debt Name"
                   />
                   <div className="relative">
@@ -333,7 +333,7 @@ export function IncomeToDebtCalculator() {
                       type="number"
                       value={debt.monthlyPayment || ''}
                       onChange={(e) => updateCustomDebt(debt.id, 'monthlyPayment', Number(e.target.value) || 0)}
-                      className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full shadow-sm pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                       placeholder="2"
                     />
                   </div>

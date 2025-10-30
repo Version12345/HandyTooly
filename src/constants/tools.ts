@@ -63,7 +63,7 @@ export const Tools: Record<string, Tool[]> = {
         },
         {
             name: "Weight Loss Percentage Calculator",
-            description: "Track your weight loss progress with scientific accuracy, calculate BMI changes, and get personalized insights.",
+            description: "Track your weight loss progress, calculate BMI changes, and get personalized insights.",
             link: `/tools/${ToolCategorySlug.Health}/weight-loss-calculator`
         }
     ],
@@ -82,7 +82,7 @@ export const Tools: Record<string, Tool[]> = {
         },
         {
             name: "Day Converter & Date Calculator",
-            description: "Calculate dates, find weekdays, determine date differences, and perform various date-related calculations.",
+            description: "Calculate dates, find weekdays, date differences, and perform various date-related calculations.",
             link: `/tools/${ToolCategorySlug.Conversions}/day-converter`
         }
     ]

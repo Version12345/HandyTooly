@@ -455,7 +455,7 @@ export function TimeUnitConverter() {
                 <select
                   value={inputUnit}
                   onChange={(e) => setInputUnit(e.target.value as keyof typeof TIME_UNITS_CONVERSIONS)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 >
                   {Object.keys(TIME_UNITS_CONVERSIONS).map((unit) => (
                     <option key={unit} value={unit}>
@@ -472,7 +472,7 @@ export function TimeUnitConverter() {
                 <select
                   value={precision}
                   onChange={(e) => setPrecision(Number(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 >
                   {PRECISION_OPTIONS.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -489,7 +489,7 @@ export function TimeUnitConverter() {
                 <select
                   value={displayFormat}
                   onChange={(e) => setDisplayFormat(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 >
                   {DISPLAY_FORMATS_VALUES.map((format) => (
                     <option key={format.value} value={format.value}>
@@ -505,15 +505,15 @@ export function TimeUnitConverter() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Enter Time
               </label>
-              <div className="flex">
+              <div className="relative">
                 <input
                     type="number"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="60"
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    className="w-full shadow-sm px-3 py-2 pr-25 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
-                <span className="px-3 py-2 bg-gray-50 border border-l-0 border-gray-300 rounded-r-md text-gray-600 text-sm">
+                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
                   {inputUnit}
                 </span>
               </div>

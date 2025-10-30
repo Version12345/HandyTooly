@@ -295,7 +295,7 @@ export function WeightLossCalculator() {
                   onChange={(e) => {
                     handleInputChange('age', e.target.value);
                   }}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full shadow-sm px-3 py-2 pr-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="30 years"
                 />
                 <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
@@ -318,7 +318,7 @@ export function WeightLossCalculator() {
                         onChange={(e) => {
                             handleInputChange('height', e.target.value);
                         }}
-                        className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full shadow-sm px-3 py-2 pr-8 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                         placeholder="170 cm"
                     />
                     <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
@@ -375,7 +375,7 @@ export function WeightLossCalculator() {
                   onChange={(e) => {
                     handleInputChange('startingWeight', e.target.value);
                   }}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full shadow-sm px-3 py-2 pr-8 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder={weightData.isMetric ? "80 kg" : "175 lbs"}
                 />
                 <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
@@ -395,7 +395,7 @@ export function WeightLossCalculator() {
                   onChange={(e) => {
                     handleInputChange('currentWeight', e.target.value);
                   }}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full shadow-sm px-3 py-2 pr-8 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder={weightData.isMetric ? "75 kg" : "165 lbs"}
                 />
                 <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
@@ -414,7 +414,7 @@ export function WeightLossCalculator() {
                   onChange={(e) => {
                     handleInputChange('timePeriod', e.target.value);
                   }}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full shadow-sm px-3 py-2 pr-13 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="12 weeks"
                 />
                 <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
@@ -434,7 +434,7 @@ export function WeightLossCalculator() {
                   onChange={(e) => {
                     handleInputChange('goalWeight', e.target.value);
                   }}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full shadow-sm px-3 py-2 pr-8 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder={weightData.isMetric ? "70 kg" : "150 lbs"}
                 />
                 <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
