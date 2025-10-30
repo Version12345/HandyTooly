@@ -60,6 +60,11 @@ export const Tools: Record<string, Tool[]> = {
             name: "BMI Calculator",
             description: "A tool to calculate your Body Mass Index (BMI) quickly and easily.",
             link: `/tools/${ToolCategorySlug.Health}/bmi-calculator`
+        },
+        {
+            name: "Weight Loss Percentage Calculator",
+            description: "Track your weight loss progress with scientific accuracy, calculate BMI changes, and get personalized insights.",
+            link: `/tools/${ToolCategorySlug.Health}/weight-loss-calculator`
         }
     ],
     [ToolCategory.Finance]: [
