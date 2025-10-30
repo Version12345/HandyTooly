@@ -74,6 +74,11 @@ export const Tools: Record<string, Tool[]> = {
             name: "Time Unit Converter",
             description: "Convert between different time units like seconds, minutes, hours, days, and more.",
             link: `/tools/${ToolCategorySlug.Conversions}/time-unit-converter`
+        },
+        {
+            name: "Day Converter & Date Calculator",
+            description: "Calculate dates, find weekdays, determine date differences, and perform various date-related calculations.",
+            link: `/tools/${ToolCategorySlug.Conversions}/day-converter`
         }
     ]
 };
