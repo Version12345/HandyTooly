@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack && npm run postbuild",
+    "build": "next build --turbopack",
     "start": "next start",
     "postbuild": "next-sitemap",
     "lint": "eslint"
@@ -34,5 +34,12 @@
     "sass": "^1.93.2",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "vercel": {
+    "build": {
+      "env": {
+        "VERCEL_BUILD_COMMAND": "npm run build && npm run postbuild"
+      }
+    }
   }
 }
