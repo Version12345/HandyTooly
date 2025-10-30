@@ -4,6 +4,7 @@ import { RightCol } from '@/components/rightCol';
 import Breadcrumb from '@/components/breadcrumb';
 import React, { useState, useEffect } from 'react';
 import { getSessionStorageItem, setSessionStorageItem } from '@/utils/sessionStorage';
+import AdBanner from '@/components/adsBanner/adBanner';
 
 interface LayoutProps {
   pageTitle: string;
@@ -63,6 +64,13 @@ export default function ToolLayout({ pageTitle, children, disclaimer }: LayoutPr
             {/* Left Column */}
             {children}
             {disclaimer}
+
+            <AdBanner
+              data-ad-slot="slotnumber"
+              data-full-width-responsive="true"
+              data-ad-layout="in-article"
+              data-ad-format="fluid"
+            />
           </div>
           
           {/* Right Column - Conditionally Rendered */}
