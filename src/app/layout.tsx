@@ -41,6 +41,7 @@ export default async function RootLayout({
         <meta property="og:site_name" content={SITE_NAME} />
         <meta name="robots" content="index, follow" />
         <meta property="og:url" content={SITE_URL} />
+        <meta name="google-adsense-account" content="ca-pub-6309653411409847" />
         <link rel="icon" type="image/png" href="/favicon-32x96.png" sizes="32x96"></link>
         <link rel="shortcut icon" href="/favicon.ico"></link>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"></link>

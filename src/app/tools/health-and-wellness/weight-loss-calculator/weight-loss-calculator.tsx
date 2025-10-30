@@ -644,28 +644,11 @@ export function WeightLossCalculator() {
         </div>
 
         {/* Usage Information */}
-        <div className="bg-gray-50 rounded-lg p-6">
+        <div>
           <h3 className="text-lg font-semibold text-gray-900 mb-3">How to Use This Calculator</h3>
-          <div className="grid md:grid-cols-2 gap-6 text-sm text-gray-700">
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Key Metrics</h4>
-              <ul className="space-y-1">
-                <li>• <strong>Weight Loss %:</strong> Percentage of body weight lost from starting point</li>
-                <li>• <strong>BMI Reduction:</strong> Change in Body Mass Index score</li>
-                <li>• <strong>Health Category:</strong> BMI-based health classification changes</li>
-                <li>• <strong>Achievements:</strong> Milestone recognition for health improvements</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Health Guidelines</h4>
-              <ul className="space-y-1">
-                <li>• 3-5% weight loss shows health benefits</li>
-                <li>• 5-10% loss significantly improves health markers</li>
-                <li>• Sustainable rate: 1-2 lbs per week</li>
-                <li>• Always consult healthcare providers for personalized advice</li>
-              </ul>
-            </div>
-          </div>
+          <p>This calculator helps you track your weight loss progress and health improvements. Enter your starting and current weight to see your weight loss percentage, BMI change, and updated health category. It also highlights key milestones to help you stay motivated and celebrate your progress.</p>
+
+          <p>A weight loss of 3&ndash;5 percent can already show health benefits, while 5&ndash;10 percent often leads to major improvements in blood pressure, cholesterol, and energy levels. A safe and steady pace is about 1&ndash;2 pounds per week. Always talk to your healthcare provider before making big changes to your diet or exercise plan.</p>
         </div>
       </div>
     </ToolLayout>
