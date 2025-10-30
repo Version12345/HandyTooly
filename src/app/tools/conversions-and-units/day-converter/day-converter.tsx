@@ -447,28 +447,26 @@ export function DayConverter() {
         </div>
 
         {/* Usage Information */}
-        <div className="bg-gray-50 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-3">How to Use</h3>
-          <div className="grid md:grid-cols-2 gap-6 text-sm text-gray-700">
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Calculation Types</h4>
-              <ul className="space-y-1">
-                <li>• <strong>Find Weekday:</strong> Determine what day of the week a date falls on</li>
-                <li>• <strong>Date Difference:</strong> Calculate the time between two dates</li>
-                <li>• <strong>Add/Subtract Time:</strong> Add or subtract time from a specific date</li>
-                <li>• <strong>Business Days:</strong> Count working days between dates</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Features</h4>
-              <ul className="space-y-1">
-                <li>• Quick date selection buttons for common dates</li>
-                <li>• Multiple result formats and time zones</li>
-                <li>• Copy results to clipboard</li>
-                <li>• Real-time calculations as you type</li>
-              </ul>
-            </div>
-          </div>
+        <div className="mt-5">
+            <h2>How to Use</h2>
+            <p>This Date Calculator helps you work with time in simple ways. You can find what weekday a date falls on, calculate the time between two dates, or add and subtract time from any date. It can also count business days between two dates, making it useful for planning work schedules or deadlines.</p>
+
+            <p>Use quick buttons to pick common dates or adjust results by time zone. Choose from multiple formats to display your results clearly. All calculations update instantly as you type. You can also copy any result to your clipboard with one click for easy sharing or saving.</p>
+
+            <h2>Find Weekday</h2>
+            <p>Use this tool to learn what day of the week any date falls on. Type in a date, and it instantly tells you if it&apos;s a Monday, Friday, or any other day. It&apos;s perfect for checking birthdays, anniversaries, or planning events.</p>
+
+            <h2>Date Difference</h2>
+            <p>This calculator finds the exact time between two dates. It shows the result in days, weeks, months, or years. It&apos;s a simple way to track project timelines, deadlines, or time since an important event.</p>
+
+            <h2>Add Time to Date</h2>
+            <p>Add days, weeks, months, or years to any starting date. The calculator gives you the new date right away. It&apos;s handy for planning future events, due dates, or countdowns.</p>
+
+            <h2>Subtract Time from Date</h2>
+            <p>Enter a date and subtract any number of days, weeks, months, or years. You&apos;ll see the earlier date instantly. It&apos;s useful when checking how far back something happened or planning reminders.</p>
+
+            <h2>Business Days Calculator</h2>
+            <p>This tool counts only working days between two dates, skipping weekends and holidays. It&apos;s ideal for business planning, payroll, or tracking workdays in a project.</p>
         </div>
       </div>
     </ToolLayout>
