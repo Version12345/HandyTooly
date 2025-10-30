@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { GoogleAnalytics } from '@next/third-parties/google'
 import Link from "next/link";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
@@ -26,6 +27,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const GOOGLE_ANALYTICS_ID = process.env.GOOGLE_ANALYTICS_ID || '';
+
   return (
     <html lang="en">
       <body
@@ -54,6 +57,7 @@ export default async function RootLayout({
           {/* Footer */}
           <Footer />
 
+          <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />
           <SpeedInsights/>
         </div>
       </body>
