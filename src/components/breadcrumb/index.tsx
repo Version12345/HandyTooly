@@ -119,7 +119,7 @@ export default function Breadcrumb() {
         }
       }
     } else {
-      // Handle other paths (like direct tool paths /resume-cover-letter-convertor)
+      // Handle other paths (like direct tool paths /resume-cover-letter-converter)
       let currentPath = '';
       
       for (let i = 0; i < pathSegments.length; i++) {

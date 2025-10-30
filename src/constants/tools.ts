@@ -10,6 +10,8 @@ interface Category {
     slug: string;
 }
 
+const URL_BASE = "/tools";
+
 export enum ToolCategory {
     Jobs = "Jobs & Career",
     Health = "Health & Wellness",
@@ -47,43 +49,61 @@ export const Categories: Record<string, Category> = {
     }
 };
 
+export enum ToolNameLists {
+    BMICalculator = "BMI Calculator",
+    DayConverterDateCalculator = "Day Converter & Date Calculator",
+    IncomeToDebtRatioCalculator = "Income-to-Debt Ratio Calculator",
+    ResumeCoverLetterConverter = "Resume/Cover Letter Converter",
+    TimeUnitConverter = "Time Unit Converter",
+    WeightLossCalculator = "Weight Loss Percentage Calculator",
+}
+
+export const ToolDescription: Record<string, string> = {
+    [ToolNameLists.BMICalculator]: "A tool to calculate your Body Mass Index (BMI) quickly and easily.",
+    [ToolNameLists.DayConverterDateCalculator]: "Calculate dates, find weekdays, date differences, and perform various date-related calculations.",
+    [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio and get lending guidance.",
+    [ToolNameLists.ResumeCoverLetterConverter]: "A tool to convert job descriptions into tailored resumes and cover letters.",
+    [ToolNameLists.TimeUnitConverter]: "Convert between different time units like seconds, minutes, hours, days, and more.",
+    [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, and get personalized insights.",
+}
+
 export const Tools: Record<string, Tool[]> = {
     [ToolCategory.Jobs]: [
         {
-            name: "Resume/Cover Letter Converter",
-            description: "A tool to convert job descriptions into tailored resumes and cover letters.",
-            link: `/tools/${ToolCategorySlug.Jobs}/resume-cover-letter-convertor`
+            name: ToolNameLists.ResumeCoverLetterConverter,
+            description: ToolDescription[ToolNameLists.ResumeCoverLetterConverter],
+            link: `${URL_BASE}/${ToolCategorySlug.Jobs}/resume-cover-letter-converter`
         }
     ],
     [ToolCategory.Health]: [
         {
-            name: "BMI Calculator",
-            description: "A tool to calculate your Body Mass Index (BMI) quickly and easily.",
-            link: `/tools/${ToolCategorySlug.Health}/bmi-calculator`
+            name: ToolNameLists.BMICalculator,
+            description: ToolDescription[ToolNameLists.BMICalculator],
+            link: `${URL_BASE}/${ToolCategorySlug.Health}/bmi-calculator`
         },
         {
-            name: "Weight Loss Percentage Calculator",
-            description: "Track your weight loss progress, calculate BMI changes, and get personalized insights.",
-            link: `/tools/${ToolCategorySlug.Health}/weight-loss-calculator`
+            name: ToolNameLists.WeightLossCalculator,
+            description: ToolDescription[ToolNameLists.WeightLossCalculator],
+            link: `${URL_BASE}/${ToolCategorySlug.Health}/weight-loss-calculator`
         }
     ],
     [ToolCategory.Finance]: [
         {
-            name: "Income-to-Debt Ratio Calculator",
-            description: "Assess your financial health by calculating your income-to-debt ratio and get lending guidance.",
-            link: `/tools/${ToolCategorySlug.Finance}/income-to-debt-ratio-calculator`
+            name: ToolNameLists.IncomeToDebtRatioCalculator,
+            description: ToolDescription[ToolNameLists.IncomeToDebtRatioCalculator],
+            link: `${URL_BASE}/${ToolCategorySlug.Finance}/income-to-debt-ratio-calculator`
         }
     ],
     [ToolCategory.Conversions]: [
         {
-            name: "Time Unit Converter",
-            description: "Convert between different time units like seconds, minutes, hours, days, and more.",
-            link: `/tools/${ToolCategorySlug.Conversions}/time-unit-converter`
+            name: ToolNameLists.TimeUnitConverter,
+            description: ToolDescription[ToolNameLists.TimeUnitConverter],
+            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/time-unit-converter`
         },
         {
-            name: "Day Converter & Date Calculator",
-            description: "Calculate dates, find weekdays, date differences, and perform various date-related calculations.",
-            link: `/tools/${ToolCategorySlug.Conversions}/day-converter`
+            name: ToolNameLists.DayConverterDateCalculator,
+            description: ToolDescription[ToolNameLists.DayConverterDateCalculator],
+            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/day-converter`
         }
     ]
 };

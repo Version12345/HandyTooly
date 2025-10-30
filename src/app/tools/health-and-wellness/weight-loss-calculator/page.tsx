@@ -1,8 +1,9 @@
+import { ToolDescription, ToolNameLists } from '@/constants/tools';
 import { WeightLossCalculator } from './weight-loss-calculator';
 
 export const metadata = {
-    title: 'Weight Loss Percentage Calculator',
-    description: 'Track your weight loss progress, calculate BMI changes, and get personalized insights.',
+    title: ToolNameLists.WeightLossCalculator,
+    description: ToolDescription[ToolNameLists.WeightLossCalculator],
 };
 
 export default function WeightLossCalculatorPage() {

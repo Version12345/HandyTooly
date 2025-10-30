@@ -4,6 +4,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import Link from "next/link";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/constants/site-info";
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 
@@ -16,10 +17,10 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | HandyTooly',
-    default: 'HandyTooly | A collection of online tools for fast, free, and built for everyone.',
+    template: `%s | ${SITE_NAME}`,
+    default: `${SITE_NAME} | ${SITE_DESCRIPTION}`,
   },
-  description: "A collection of online tools for fast, free, and built for everyone.",
+  description: SITE_DESCRIPTION,
 };
 
 export default async function RootLayout({
@@ -31,6 +32,20 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="theme-color" content="#ffffff" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:url" content={SITE_URL} />
+        <link rel="icon" type="image/png" href="/favicon-32x96.png" sizes="32x96"></link>
+        <link rel="shortcut icon" href="/favicon.ico"></link>
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"></link>
+        <link rel="canonical" href={SITE_URL} ></link>
+      </head>
       <body
         className={`${roboto.variable} antialiased`}
       >

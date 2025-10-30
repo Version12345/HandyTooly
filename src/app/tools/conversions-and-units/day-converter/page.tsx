@@ -1,8 +1,9 @@
+import { ToolDescription, ToolNameLists } from '@/constants/tools';
 import { DayConverter } from './day-converter';
 
 export const metadata = {
-    title: 'Day Converter & Date Calculator',
-    description: 'Calculate dates, find weekdays, determine date differences, and perform various date-related calculations. Perfect for planning, scheduling, and date arithmetic.',
+    title: ToolNameLists.DayConverterDateCalculator,
+    description: ToolDescription[ToolNameLists.DayConverterDateCalculator],
 };
 
 export default function DayConverterPage() {

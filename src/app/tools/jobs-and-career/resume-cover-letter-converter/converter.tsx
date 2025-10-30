@@ -4,7 +4,7 @@ import { Step1, Step2, Step3, Step4, Step5 } from '../../../../components/upload
 import ToolLayout from '../../toolLayout';
 import JobDisclaimer from '../../../../components/disclaimers/jobDisclaimer';
 
-export default function ResumeCoverLetterConvertor() {
+export default function ResumeCoverLetterConverter() {
     const [currentStep, setCurrentStep] = useState(1);
     const [jobDescription, setJobDescription] = useState('');
     const [resume, setResume] = useState('');

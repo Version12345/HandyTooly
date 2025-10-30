@@ -7,7 +7,7 @@ import { ToolCategorySlug } from '@/constants/tools';
 
 const HEADER_LINKS = [
   { href: '/tools', label: 'Tools' },
-  { href: `/tools/${ToolCategorySlug.Jobs}/resume-cover-letter-convertor`, label: 'Resume/Cover Letter Converter' }
+  { href: `/tools/${ToolCategorySlug.Jobs}/resume-cover-letter-converter`, label: 'Resume/Cover Letter Converter' }
 ];
 
 export default function Header() {
