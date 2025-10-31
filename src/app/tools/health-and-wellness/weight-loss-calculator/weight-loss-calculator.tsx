@@ -645,10 +645,31 @@ export function WeightLossCalculator() {
 
         {/* Usage Information */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-3">How to Use This Calculator</h3>
+          <h3>How to Use This Calculator</h3>
           <p>This calculator helps you track your weight loss progress and health improvements. Enter your starting and current weight to see your weight loss percentage, BMI change, and updated health category. It also highlights key milestones to help you stay motivated and celebrate your progress.</p>
 
           <p>A weight loss of 3&ndash;5 percent can already show health benefits, while 5&ndash;10 percent often leads to major improvements in blood pressure, cholesterol, and energy levels. A safe and steady pace is about 1&ndash;2 pounds per week. Always talk to your healthcare provider before making big changes to your diet or exercise plan.</p>
+
+          <h3>What is Body Mass Index (BMI)?</h3>
+          <p>Body Mass Index, or BMI, is a simple way to measure body fat using height and weight. It helps you understand if your weight is in a healthy range for your body size. A BMI between 18.5 and 24.9 is considered healthy for most adults. Scores below or above that range can suggest being underweight, overweight, or obese. While BMI is useful for tracking general health, it does not measure muscle or fat directly. It works best when used alongside other health checks and professional advice.</p>
+
+          <h3>How Daily Calories Are Calculated</h3>
+          <p>The daily calorie recommendations are based on the Mifflin-St Jeor Equation, which estimates your Basal Metabolic Rate (BMR), which is the energy your body needs to function at rest. It depends on your age, gender, weight, and height. Then activity level is added, such as walking, working, or exercising. More active people burn more calories. The result shows how many calories you need to maintain your current weight. A standard deficit of 500 calories per day is suggested for weight loss, which typically results in about 1 pound of weight loss per week. Individual calorie needs may vary, so consider consulting a healthcare professional for personalized advice.</p>
+
+          <h3>Why Daily Calories Are Different from Male and Female</h3>
+          <p>Daily calorie needs can differ between males and females due to several factors, including body composition, hormonal differences, and metabolic rate. Generally, males tend to have a higher muscle mass and lower body fat percentage than females, which can result in higher calorie requirements. Additionally, hormonal fluctuations in females, such as those related to the menstrual cycle, can impact metabolism and appetite. It&apos;s important to consider these differences when using calorie calculators and to tailor dietary plans to individual needs.</p>
+
+          <h3>Tips for Healthy Weight Loss</h3>
+          <p>Here are some tips to help you achieve and maintain a healthy weight:</p>
+          <ul className="list-disc list-inside space-y-2">
+            <li><strong>Set realistic goals:</strong> Aim for a steady weight loss of 1&ndash;2 pounds per week.</li>
+            <li><strong>Eat a balanced diet:</strong> Focus on whole foods, including fruits, vegetables, lean proteins, and whole grains.</li>
+            <li><strong>Stay hydrated:</strong> Drink plenty of water throughout the day.</li>
+            <li><strong>Exercise regularly:</strong> Aim for at least 150 minutes of moderate-intensity exercise per week.</li>
+            <li><strong>Get enough sleep:</strong> Aim for 7&ndash;9 hours of quality sleep each night.</li>
+            <li><strong>Monitor your progress:</strong> Keep track of your weight, measurements, and how you feel.</li>
+            <li><strong>Seek support:</strong> Consider joining a weight loss group or working with a healthcare professional.</li>
+          </ul>
         </div>
       </div>
     </ToolLayout>
