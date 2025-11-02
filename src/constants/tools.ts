@@ -51,6 +51,7 @@ export const Categories: Record<string, Category> = {
 
 export enum ToolNameLists {
     BMICalculator = "BMI Calculator",
+    CompoundInterestCalculator = "Compound Interest Calculator",
     DayConverterDateCalculator = "Day Converter & Date Calculator",
     IncomeToDebtRatioCalculator = "Income-to-Debt Ratio Calculator",
     ResumeCoverLetterConverter = "Resume/Cover Letter Converter",
@@ -60,6 +61,7 @@ export enum ToolNameLists {
 
 export const ToolDescription: Record<string, string> = {
     [ToolNameLists.BMICalculator]: "A tool to calculate your Body Mass Index (BMI) quickly and easily.",
+    [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest, track contributions, and visualize your financial future.",
     [ToolNameLists.DayConverterDateCalculator]: "Calculate dates, find weekdays, date differences, and perform various date-related calculations.",
     [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio and get lending guidance.",
     [ToolNameLists.ResumeCoverLetterConverter]: "A tool to convert job descriptions into tailored resumes and cover letters.",
@@ -88,6 +90,11 @@ export const Tools: Record<string, Tool[]> = {
         }
     ],
     [ToolCategory.Finance]: [
+        {
+            name: ToolNameLists.CompoundInterestCalculator,
+            description: ToolDescription[ToolNameLists.CompoundInterestCalculator],
+            link: `${URL_BASE}/${ToolCategorySlug.Finance}/compound-interest-calculator`
+        },
         {
             name: ToolNameLists.IncomeToDebtRatioCalculator,
             description: ToolDescription[ToolNameLists.IncomeToDebtRatioCalculator],
