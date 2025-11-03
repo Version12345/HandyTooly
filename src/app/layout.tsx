@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import { GoogleAnalytics } from '@next/third-parties/google'
 import Link from "next/link";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/constants/site-info";
 import Header from '../components/layout/Header';
@@ -75,6 +76,7 @@ export default async function RootLayout({
 
           <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />
           <SpeedInsights/>
+          <Analytics/>
           <script 
             async 
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6309653411409847"
