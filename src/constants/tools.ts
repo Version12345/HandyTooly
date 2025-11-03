@@ -55,6 +55,7 @@ export enum ToolNameLists {
     DayConverterDateCalculator = "Day Converter & Date Calculator",
     IncomeToDebtRatioCalculator = "Income-to-Debt Ratio Calculator",
     ResumeCoverLetterConverter = "Resume/Cover Letter Converter",
+    RomanNumeralsConverter = "Roman Numerals Converter",
     TimeUnitConverter = "Time Unit Converter",
     WeightLossCalculator = "Weight Loss Percentage Calculator",
 }
@@ -65,6 +66,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.DayConverterDateCalculator]: "Calculate dates, find weekdays, date differences, and perform various date-related calculations.",
     [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio and get lending guidance.",
     [ToolNameLists.ResumeCoverLetterConverter]: "A tool to convert job descriptions into tailored resumes and cover letters.",
+    [ToolNameLists.RomanNumeralsConverter]: "Convert between regular numbers and Roman numerals with detailed explanations and references",
     [ToolNameLists.TimeUnitConverter]: "Convert between different time units like seconds, minutes, hours, days, and more.",
     [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, and get personalized insights.",
 }
@@ -103,14 +105,19 @@ export const Tools: Record<string, Tool[]> = {
     ],
     [ToolCategory.Conversions]: [
         {
+            name: ToolNameLists.DayConverterDateCalculator,
+            description: ToolDescription[ToolNameLists.DayConverterDateCalculator],
+            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/day-converter`
+        },
+        {
+            name: ToolNameLists.RomanNumeralsConverter,
+            description: ToolDescription[ToolNameLists.RomanNumeralsConverter],
+            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/roman-numerals-converter`
+        },
+        {
             name: ToolNameLists.TimeUnitConverter,
             description: ToolDescription[ToolNameLists.TimeUnitConverter],
             link: `${URL_BASE}/${ToolCategorySlug.Conversions}/time-unit-converter`
         },
-        {
-            name: ToolNameLists.DayConverterDateCalculator,
-            description: ToolDescription[ToolNameLists.DayConverterDateCalculator],
-            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/day-converter`
-        }
     ]
 };
