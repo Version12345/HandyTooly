@@ -11,23 +11,32 @@ interface EquivalentExample {
 
 interface CalculationResult {
   miles: number;
+  kilometers: number;
   stepsPerMile: number;
+  stepsPerKm: number;
   caloriesBurned: number;
   stepsPerMinute: number;
   minutesForMile: number;
+  minutesForKm: number;
   equivalentDistance: string;
   equivalentExamples: EquivalentExample[];
 }
 
 type PaceOption = 'very-slow' | 'slow' | 'average' | 'brisk' | 'jog' | 'run' | 'fast-run' | 'very-fast-run';
+type UnitSystem = 'metric' | 'imperial';
 
 interface PersonData {
   biologicalSex: 'female' | 'male';
   height: {
     feet: number;
     inches: number;
+    cm: number;
   };
-  weight: number;
+  weight: {
+    lbs: number;
+    kg: number;
+  };
+  unit: UnitSystem;
   paceOfWalking: PaceOption;
   steps: number;
   calculateCalories: boolean;
@@ -39,9 +48,14 @@ export function StepsToMilesCalculator() {
     biologicalSex: 'female',
     height: {
       feet: 5,
-      inches: 9
+      inches: 9,
+      cm: 175
     },
-    weight: 175,
+    weight: {
+      lbs: 175,
+      kg: 79
+    },
+    unit: 'imperial',
     paceOfWalking: 'average',
     steps: 10000,
     calculateCalories: true,
@@ -64,6 +78,86 @@ export function StepsToMilesCalculator() {
     };
     return paceMap[pace];
   }, []);
+
+  // Unit conversion helpers
+  const cmToInches = useCallback((cm: number): number => {
+    return cm / 2.54;
+  }, []);
+
+  const inchesToCm = useCallback((inches: number): number => {
+    return inches * 2.54;
+  }, []);
+
+  const lbsToKg = useCallback((lbs: number): number => {
+    return lbs / 2.205;
+  }, []);
+
+  const kgToLbs = useCallback((kg: number): number => {
+    return kg * 2.205;
+  }, []);
+
+  // Handle unit system change with conversion
+  const handleUnitChange = useCallback((newUnit: UnitSystem) => {
+    if (newUnit === personData.unit) return;
+
+    setPersonData(prev => ({
+      ...prev,
+      unit: newUnit
+    }));
+  }, [personData.unit]);
+
+  // Handle height changes with unit conversion
+  const handleHeightChange = (type: 'feet' | 'inches' | 'cm', value: number) => {
+    setPersonData(prev => {
+      if (type === 'cm') {
+        const totalInches = cmToInches(value);
+        const feet = Math.floor(totalInches / 12);
+        const inches = totalInches % 12;
+        return {
+          ...prev,
+          height: {
+            feet,
+            inches: Math.round(inches * 10) / 10,
+            cm: value
+          }
+        };
+      } else {
+        const newHeight = { ...prev.height, [type]: value };
+        const totalInches = (newHeight.feet * 12) + newHeight.inches;
+        const cm = inchesToCm(totalInches);
+        return {
+          ...prev,
+          height: {
+            ...newHeight,
+            cm: Math.round(cm * 10) / 10
+          }
+        };
+      }
+    });
+  };
+
+  // Handle weight changes with unit conversion
+  const handleWeightChange = (unit: 'lbs' | 'kg', value: number) => {
+    setPersonData(prev => {
+      if (unit === 'lbs') {
+        return {
+          ...prev,
+          weight: {
+            lbs: value,
+            kg: Math.round(lbsToKg(value) * 10) / 10
+          }
+        };
+      } else {
+        return {
+          ...prev,
+          weight: {
+            kg: value,
+            lbs: Math.round(kgToLbs(value) * 10) / 10
+          }
+        };
+      }
+    });
+  };
 
   // Generate equivalent distance examples
   const generateEquivalentExamples = useCallback((miles: number): EquivalentExample[] => {
@@ -379,15 +473,17 @@ export function StepsToMilesCalculator() {
     // Convert stride length to feet
     const strideLengthFeet = strideLengthInches / 12;
     
-    // Calculate distance in feet, then convert to miles
+    // Calculate distance in feet, then convert to miles and kilometers
     const totalDistanceFeet = steps * strideLengthFeet;
     const miles = totalDistanceFeet / 5280; // 5280 feet in a mile
+    const kilometers = miles * 1.609344; // Convert miles to kilometers
     
-    // Calculate steps per mile
+    // Calculate steps per mile and per kilometer
     const stepsPerMile = Math.round(5280 / strideLengthFeet);
+    const stepsPerKm = Math.round(stepsPerMile / 1.609344);
     
-    // Calculate calories if enabled
-    const caloriesBurned = shouldCalculateCalories ? calculateCalories(steps, weight, biologicalSex, paceOfWalking) : 0;
+    // Calculate calories if enabled (use lbs for calculation)
+    const caloriesBurned = shouldCalculateCalories ? calculateCalories(steps, weight.lbs, biologicalSex, paceOfWalking) : 0;
     
     // Calculate steps per minute based on pace
     const speedMph = getPaceSpeed(paceOfWalking);
@@ -410,8 +506,9 @@ export function StepsToMilesCalculator() {
       stepsPerMinute = 250; // Very fast running
     }
     
-    // Calculate minutes needed to walk a mile at this pace
+    // Calculate minutes needed to walk a mile and kilometer at this pace
     const minutesForMile = stepsPerMile / stepsPerMinute;
+    const minutesForKm = stepsPerKm / stepsPerMinute;
     
     // Generate equivalent distance description
     let equivalentDistance = '';
@@ -431,10 +528,13 @@ export function StepsToMilesCalculator() {
 
     setResult({
       miles,
+      kilometers,
       stepsPerMile,
+      stepsPerKm,
       caloriesBurned,
       stepsPerMinute: stepsPerMinute,
       minutesForMile,
+      minutesForKm,
       equivalentDistance,
       equivalentExamples
     });
@@ -448,16 +548,6 @@ export function StepsToMilesCalculator() {
 
   const updatePersonData = <K extends keyof PersonData>(field: K, value: PersonData[K]) => {
     setPersonData(prev => ({ ...prev, [field]: value }));
-  };
-
-  const handleHeightChange = (type: 'feet' | 'inches', value: number) => {
-    setPersonData(prev => ({
-      ...prev,
-      height: {
-        ...prev.height,
-        [type]: value
-      }
-    }));
   };
 
   const formatNumber = (num: number, decimals: number = 1): string => {
@@ -477,6 +567,34 @@ export function StepsToMilesCalculator() {
           <div className="bg-white rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Personal Information</h2>
             
+            {/* Unit System */}
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">Unit System</label>
+              <div className="flex bg-gray-100 rounded-lg p-1">
+                <button
+                  onClick={() => handleUnitChange('metric')}
+                  className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    personData.unit === 'metric'
+                      ? 'bg-orange-500 text-white shadow-sm'
+                      : 'text-gray-600 hover:text-gray-800'
+                  }`}
+                >
+                  Metric
+                </button>
+                <button
+                  onClick={() => handleUnitChange('imperial')}
+                  className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    personData.unit === 'imperial'
+                      ? 'bg-orange-500 text-white shadow-sm'
+                      : 'text-gray-600 hover:text-gray-800'
+                  }`}
+                >
+                  Imperial
+                </button>
+              </div>
+              <p className="text-xs text-gray-500 mt-1">Choose your preferred measurement system</p>
+            </div>
+
             {/* Biological Sex */}
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">Biological Sex</label>
@@ -508,30 +626,50 @@ export function StepsToMilesCalculator() {
             {/* Height */}
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">Height</label>
-              <div className="grid grid-cols-2 gap-2">
-                <div>
+              {personData.unit === 'metric' ? (
+                <div className="relative">
                   <input
                     type="number"
-                    min="3"
-                    max="8"
-                    value={personData.height.feet}
-                    onChange={(e) => handleHeightChange('feet', parseInt(e.target.value) || 0)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    min="100"
+                    max="250"
+                    value={personData.height.cm}
+                    onChange={(e) => handleHeightChange('cm', parseInt(e.target.value) || 0)}
+                    className="w-full px-3 py-2 pr-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    placeholder="175"
                   />
-                  <p className="text-xs text-gray-500 mt-1">Feet</p>
+                  <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
+                    cm
+                  </span>
                 </div>
-                <div>
-                  <input
-                    type="number"
-                    min="0"
-                    max="11"
-                    value={personData.height.inches}
-                    onChange={(e) => handleHeightChange('inches', parseInt(e.target.value) || 0)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  />
-                  <p className="text-xs text-gray-500 mt-1">Inches</p>
+              ) : (
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <input
+                      type="number"
+                      min="3"
+                      max="8"
+                      value={personData.height.feet}
+                      onChange={(e) => handleHeightChange('feet', parseInt(e.target.value) || 0)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Feet</p>
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      min="0"
+                      max="11"
+                      value={personData.height.inches}
+                      onChange={(e) => handleHeightChange('inches', parseInt(e.target.value) || 0)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Inches</p>
+                  </div>
                 </div>
-              </div>
+              )}
+              <p className="text-xs text-gray-500 mt-1">
+                {personData.unit === 'metric' ? 'Enter height in centimeters' : 'Enter feet and inches separately'}
+              </p>
             </div>
 
             {/* Pace of Walking */}
@@ -589,33 +727,20 @@ export function StepsToMilesCalculator() {
                 <div className="relative">
                   <input
                     type="number"
-                    min="50"
-                    max="500"
-                    value={personData.weight}
-                    onChange={(e) => updatePersonData('weight', parseInt(e.target.value) || 0)}
+                    min={personData.unit === 'metric' ? '30' : '60'}
+                    max={personData.unit === 'metric' ? '200' : '400'}
+                    value={personData.unit === 'metric' ? personData.weight.kg : personData.weight.lbs}
+                    onChange={(e) => handleWeightChange(personData.unit === 'metric' ? 'kg' : 'lbs', parseInt(e.target.value) || 0)}
                     className="w-full px-3 py-2 pr-16 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                    placeholder="175"
+                    placeholder={personData.unit === 'metric' ? '70' : '175'}
                   />
                   <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
-                    lbs
+                    {personData.unit === 'metric' ? 'kg' : 'lbs'}
                   </span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">Weight is needed for calorie calculations</p>
               </div>
             )}
-
-            {/* Remember Info */}
-            <div className="mb-4">
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  checked={personData.rememberEnteredInfo}
-                  onChange={(e) => updatePersonData('rememberEnteredInfo', e.target.checked)}
-                  className="rounded border-gray-300 text-orange-500 focus:ring-orange-500"
-                />
-                <span className="ml-2 text-sm font-medium text-gray-700">Remember entered info?</span>
-              </label>
-            </div>
           </div>
 
           {/* Results Section */}
@@ -636,24 +761,36 @@ export function StepsToMilesCalculator() {
                     <svg className="w-8 h-8 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
                     </svg>
-                    <h3 className="text-lg font-semibold text-blue-800">Miles for {personData.steps.toLocaleString()} steps</h3>
+                    <h3 className="text-lg font-semibold text-blue-800">
+                      {personData.unit === 'metric' ? 'Kilometers' : 'Miles'} for {personData.steps.toLocaleString()} steps
+                    </h3>
                   </div>
                   <div className="text-3xl font-bold text-blue-600 mb-2">
-                    {formatNumber(result.miles)} miles
+                    {personData.unit === 'metric' 
+                      ? `${formatNumber(result.kilometers)} km` 
+                      : `${formatNumber(result.miles)} miles`
+                    }
                   </div>
                   <p className="text-sm text-blue-700">{result.equivalentDistance}</p>
                 </div>
 
-                {/* Steps Per Mile */}
-                <div className="p-4 bg-gray-50 rounded-lg">
+                {/* Steps Per Mile/KM */}
+                <div className="p-4 bg-gray-100 rounded-lg">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                      <svg className="w-6 h-6 text-gray-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-6 h-6 text-gray-600 mr-2" fill="currentColor" viewBox="0 0 22 22">
                         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      <span className="font-medium text-gray-800">Your steps per mile</span>
+                      <span className="font-medium text-gray-800">
+                        Your steps per {personData.unit === 'metric' ? 'kilometer' : 'mile'}
+                      </span>
                     </div>
-                    <span className="text-xl font-bold text-gray-900">{result.stepsPerMile.toLocaleString()}</span>
+                    <span className="text-xl font-bold text-gray-900">
+                      {personData.unit === 'metric' 
+                        ? result.stepsPerKm.toLocaleString() 
+                        : result.stepsPerMile.toLocaleString()
+                      }
+                    </span>
                   </div>
                 </div>
 
@@ -690,8 +827,15 @@ export function StepsToMilesCalculator() {
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <div className="text-xl font-bold text-green-600">{Math.round(result.minutesForMile)}</div>
-                    <div className="text-sm text-green-700">minutes for a mile</div>
+                    <div className="text-xl font-bold text-green-600">
+                      {personData.unit === 'metric' 
+                        ? Math.round(result.minutesForKm) 
+                        : Math.round(result.minutesForMile)
+                      }
+                    </div>
+                    <div className="text-sm text-green-700">
+                      minutes for a {personData.unit === 'metric' ? 'kilometer' : 'mile'}
+                    </div>
                   </div>
                 </div>
 
@@ -732,6 +876,17 @@ export function StepsToMilesCalculator() {
           <p>Steps are converted to miles using your stride length. Stride length depends on height and biological sex. For most people, the formula is simple. Female stride length equals height multiplied by 0.413. Male stride length equals height multiplied by 0.415. Each person&post;s walking style and speed can change the result slightly, so individual variation is normal.</p>
 
           <p>Walking 10,000 steps equals about 4 to 5 miles for most adults. This distance burns roughly 300 to 500 calories depending on pace and body weight. It strengthens the heart, improves circulation, and supports healthy weight control. Reaching this step goal each day is a simple way to boost overall fitness.</p>
+
+          <h3>How Calories Are Calculated</h3>
+          <p>Calories burned while walking depend on several factors, including weight, walking speed, and duration. On average, a person burns about 100 calories per mile walked. Therefore, walking 10,000 steps (approximately 4 to 5 miles) can burn between 300 to 500 calories.</p>
+          
+          <p>Heavier individuals tend to burn more calories for the same distance due to the increased energy required to move a larger mass. Additionally, walking at a brisk pace or uphill increases calorie expenditure compared to a leisurely stroll. Using a pedometer or fitness tracker can help estimate calories burned based on your specific data.</p>
+
+          <h3>Why Track Steps and Distance?</h3>
+          <p>Tracking steps and distance helps monitor physical activity levels. Walking is a low-impact exercise that benefits cardiovascular health, aids weight management, and enhances mental well-being. Setting daily step goals encourages movement throughout the day, reducing sedentary behavior. Understanding the distance covered provides motivation to stay active and improve fitness over time.</p>
+
+          <h3>Tips to Increase Daily Steps</h3>
+          <p>Incorporate walking into your daily routine by taking short breaks to stroll, using stairs instead of elevators, and parking farther from entrances. Consider walking meetings or phone calls to stay active during work hours. Setting reminders to move every hour can help break up long periods of sitting. Using a pedometer or fitness tracker can provide motivation and accountability to reach your step goals.</p>
         </div>
       </div>
     </ToolLayout>
