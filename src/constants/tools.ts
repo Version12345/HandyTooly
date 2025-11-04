@@ -56,6 +56,7 @@ export enum ToolNameLists {
     IncomeToDebtRatioCalculator = "Income-to-Debt Ratio Calculator",
     ResumeCoverLetterConverter = "Resume/Cover Letter Converter",
     RomanNumeralsConverter = "Roman Numerals Converter",
+    StepsToMilesCalculator = "Steps to Miles Calculator",
     TimeUnitConverter = "Time Unit Converter",
     WeightLossCalculator = "Weight Loss Percentage Calculator",
 }
@@ -67,6 +68,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio and get lending guidance.",
     [ToolNameLists.ResumeCoverLetterConverter]: "A tool to convert job descriptions into tailored resumes and cover letters.",
     [ToolNameLists.RomanNumeralsConverter]: "Convert between regular numbers and Roman numerals with detailed explanations and references",
+    [ToolNameLists.StepsToMilesCalculator]: "Convert daily steps to miles, calculate calories burned, and track your walking distance with personalized metrics.",
     [ToolNameLists.TimeUnitConverter]: "Convert between different time units like seconds, minutes, hours, days, and more.",
     [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, and get personalized insights.",
 }
@@ -113,6 +115,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.RomanNumeralsConverter,
             description: ToolDescription[ToolNameLists.RomanNumeralsConverter],
             link: `${URL_BASE}/${ToolCategorySlug.Conversions}/roman-numerals-converter`
+        },
+        {
+            name: ToolNameLists.StepsToMilesCalculator,
+            description: ToolDescription[ToolNameLists.StepsToMilesCalculator],
+            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/steps-to-miles-calculator`
         },
         {
             name: ToolNameLists.TimeUnitConverter,

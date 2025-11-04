@@ -2,6 +2,7 @@
 
 import { RightCol } from '@/components/rightCol';
 import Breadcrumb from '@/components/breadcrumb';
+import RelatedTools from '@/components/relatedTools';
 import React, { useState, useEffect } from 'react';
 import { getSessionStorageItem, setSessionStorageItem } from '@/utils/sessionStorage';
 import AdBanner from '@/components/adsBanner/adBanner';
@@ -64,6 +65,9 @@ export default function ToolLayout({ pageTitle, children, disclaimer }: LayoutPr
             {/* Left Column */}
             {children}
             {disclaimer}
+
+            {/* Related Tools Section */}
+            <RelatedTools className="mt-8" />
 
             <AdBanner
               data-ad-slot="slotnumber"
