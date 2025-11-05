@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
+import { ToolNameLists } from '@/constants/tools';
 
 interface ConversionResult {
   romanNumeral: string;
@@ -176,14 +177,11 @@ export function RomanNumeralsConverter() {
   }, [handleConvert]);
 
   return (
-    <ToolLayout pageTitle="Roman Numerals Converter">
+    <ToolLayout
+      toolCategory={ToolNameLists.RomanNumeralsConverter}
+      secondaryToolDescription='Convert between regular numbers (1&ndash;1,000,000) and Roman numerals. Perfect for academic work, historical references, clock faces, and formal document numbering.'
+    >
       <div className="space-y-6">
-        <p className="text-sm text-gray-600">
-          Convert between regular numbers (1-1,000,000) and Roman numerals. Supports traditional notation 
-          and vinculum (overline) for large numbers. Perfect for academic work, historical references, 
-          clock faces, and formal document numbering.
-        </p>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Input Section */}
           <div className="bg-white rounded-lg shadow-md p-6">

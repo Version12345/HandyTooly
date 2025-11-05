@@ -57,21 +57,21 @@ export enum ToolNameLists {
     ResumeCoverLetterConverter = "Resume/Cover Letter Converter",
     RomanNumeralsConverter = "Roman Numerals Converter",
     SalaryCalculator = "Salary Calculator",
-    StepsToMilesCalculator = "Steps to Miles Calculator",
+    StepsToDistanceCalculator = "Steps to Distance Calculator",
     TimeUnitConverter = "Time Unit Converter",
     UTCTimeZoneConverter = "UTC Time Zone Converter",
     WeightLossCalculator = "Weight Loss Percentage Calculator",
 }
 
 export const ToolDescription: Record<string, string> = {
-    [ToolNameLists.BMICalculator]: "A tool to calculate your Body Mass Index (BMI) quickly and easily.",
-    [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest, track contributions, and visualize your financial future.",
+    [ToolNameLists.BMICalculator]: "Calculate your Body Mass Index (BMI). You can use kg and cm or lbs and inches conversions.",
+    [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest and track contributions in different currencies.",
     [ToolNameLists.DayConverterDateCalculator]: "Calculate dates, find weekdays, date differences, and perform various date-related calculations.",
-    [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio and get lending guidance.",
-    [ToolNameLists.ResumeCoverLetterConverter]: "A tool to convert job descriptions into tailored resumes and cover letters.",
-    [ToolNameLists.RomanNumeralsConverter]: "Convert between regular numbers and Roman numerals with detailed explanations and references",
-    [ToolNameLists.SalaryCalculator]: "Calculate take-home pay, tax breakdowns, and detailed salary analysis with comprehensive insights and comparisons.",
-    [ToolNameLists.StepsToMilesCalculator]: "Convert daily steps to miles, calculate calories burned, and track your walking distance with personalized metrics.",
+    [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio and get lending guidance in different currencies.",
+    [ToolNameLists.ResumeCoverLetterConverter]: "Convert job descriptions into tailored resumes and cover letters using our AI tools.",
+    [ToolNameLists.RomanNumeralsConverter]: "Convert between regular numbers and Roman numerals with detailed explanations. Support traditional notation and vinculum (overline) for large numbers.",
+    [ToolNameLists.SalaryCalculator]: "Calculate take-home pay, tax breakdowns, and detailed salary analysis in different currencies.",
+    [ToolNameLists.StepsToDistanceCalculator]: "Convert daily steps to distance (miles or kilometers), calculate calories burned, and track your walking distance with personalized metrics.",
     [ToolNameLists.TimeUnitConverter]: "Convert between different time units like seconds, minutes, hours, days, and more.",
     [ToolNameLists.UTCTimeZoneConverter]: "Convert between UTC and local time zones with real-time conversion and multiple time zone support.",
     [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, and get personalized insights.",
@@ -126,9 +126,9 @@ export const Tools: Record<string, Tool[]> = {
             link: `${URL_BASE}/${ToolCategorySlug.Conversions}/roman-numerals-converter`
         },
         {
-            name: ToolNameLists.StepsToMilesCalculator,
-            description: ToolDescription[ToolNameLists.StepsToMilesCalculator],
-            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/steps-to-miles-calculator`
+            name: ToolNameLists.StepsToDistanceCalculator,
+            description: ToolDescription[ToolNameLists.StepsToDistanceCalculator],
+            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/steps-to-distance-calculator`
         },
         {
             name: ToolNameLists.TimeUnitConverter,

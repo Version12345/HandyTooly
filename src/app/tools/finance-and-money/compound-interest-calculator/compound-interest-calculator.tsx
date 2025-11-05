@@ -6,6 +6,7 @@ import HighchartsReact from 'highcharts-react-official'
 
 import ToolLayout from '../../toolLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
+import { ToolNameLists } from '@/constants/tools';
 
 interface InvestmentData {
   initialPrincipal: number;
@@ -318,15 +319,11 @@ export function CompoundInterestCalculator() {
 
   return (
     <ToolLayout 
-      pageTitle="Compound Interest Calculator"
+      toolCategory={ToolNameLists.CompoundInterestCalculator}
+      secondaryToolDescription={'Use the power of compound interest with detailed projections, investment tracking, and growth analysis. Plan your financial future with accurate calculations and visual breakdowns.'}
       disclaimer={<FinancialDisclaimer />}
     >
       <div className="space-y-6">
-        <p className="text-sm text-gray-600">
-          Calculate the power of compound interest with detailed projections, investment tracking, and growth analysis. 
-          Plan your financial future with accurate calculations and visual breakdowns.
-        </p>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Investment Details */}
           <div className="bg-white rounded-lg shadow-md p-6">

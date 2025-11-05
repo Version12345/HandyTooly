@@ -6,14 +6,16 @@ import RelatedTools from '@/components/relatedTools';
 import React, { useState, useEffect } from 'react';
 import { getSessionStorageItem, setSessionStorageItem } from '@/utils/sessionStorage';
 import AdBanner from '@/components/adsBanner/adBanner';
+import { ToolDescription, ToolNameLists } from '@/constants/tools';
 
 interface LayoutProps {
-  pageTitle: string;
+  toolCategory: ToolNameLists;
+  secondaryToolDescription?: string;
   children: React.ReactNode;
   disclaimer?: React.ReactNode;
 }
 
-export default function ToolLayout({ pageTitle, children, disclaimer }: LayoutProps) {
+export default function ToolLayout({ toolCategory, children, disclaimer, secondaryToolDescription }: LayoutProps) {
   const [isRightColExpanded, setIsRightColExpanded] = useState(true);
 
   useEffect(() => {
@@ -39,7 +41,7 @@ export default function ToolLayout({ pageTitle, children, disclaimer }: LayoutPr
         {/* Heading with Toggle Button */}
         <div className="flex justify-between items-center mb-2">
           <h1 className="mb-0">
-            {pageTitle}
+            {toolCategory}
           </h1>
           
           {/* Toggle Button */}
@@ -61,8 +63,14 @@ export default function ToolLayout({ pageTitle, children, disclaimer }: LayoutPr
         </div>
 
         <div className={`grid grid-cols-1 gap-8 ${isRightColExpanded ? 'lg:grid-cols-[75%_22%]' : 'lg:grid-cols-1'}`}>
+          {/* Left Column */}
           <div>
-            {/* Left Column */}
+            {/* Description */}
+            {ToolDescription[toolCategory] && (
+              <p className="text-sm">
+                {ToolDescription[toolCategory]} {secondaryToolDescription}
+              </p>
+            )}
             {children}
             {disclaimer}
 
@@ -81,7 +89,7 @@ export default function ToolLayout({ pageTitle, children, disclaimer }: LayoutPr
           {isRightColExpanded && (
             <div className="transition-all duration-300">
               <RightCol
-                title={pageTitle}
+                title={toolCategory}
               />
             </div>
           )}

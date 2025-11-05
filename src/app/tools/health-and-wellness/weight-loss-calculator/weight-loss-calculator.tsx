@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import MedicalDisclaimer from '@/components/disclaimers/medicalDisclaimer';
+import { ToolNameLists } from '@/constants/tools';
 
 interface WeightData {
   startingWeight: number;
@@ -225,15 +226,11 @@ export function WeightLossCalculator() {
 
   return (
     <ToolLayout 
-      pageTitle="Weight Loss Percentage Calculator"
+      toolCategory={ToolNameLists.WeightLossCalculator}
+      secondaryToolDescription="Monitor progress with healthy timelines and evidence-based recommendations for sustainable results."
       disclaimer={<MedicalDisclaimer />}
     >
       <div className="space-y-6">
-        <p className="text-sm text-gray-600">
-          Calculate your weight loss percentage, track BMI changes, and get personalized insights on your weight loss journey. 
-          Monitor progress with healthy timelines and evidence-based recommendations for sustainable results.
-        </p>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Weight Information */}
           <div className="bg-white rounded-lg shadow-md p-6">
@@ -522,7 +519,7 @@ export function WeightLossCalculator() {
                 </div>
 
                 {/* Daily Calories */}
-                <div className="bg-orange-50 rounded-lg p-4">
+                <div className="bg-orange-100 rounded-lg p-4">
                   <h3 className="text-sm font-medium text-orange-700 mb-1">Daily Calories</h3>
                   <div className="text-sm text-orange-600 mb-2">
                     Maintenance: {calculateMaintenanceCalories(weightData.currentWeight, weightData.height, weightData.age, weightData.gender, weightData.activityLevel, weightData.isMetric)} cal/day
@@ -539,19 +536,19 @@ export function WeightLossCalculator() {
 
             {/* Weekly Breakdown */}
             {result && (
-              <div className="bg-yellow-50 rounded-lg p-4">
-                <h3 className="text-sm font-medium text-yellow-800 mb-2">Weekly Breakdown</h3>
+              <div className="bg-amber-100 rounded-lg p-4">
+                <h3 className="text-sm font-medium text-amber-800 mb-2">Weekly Breakdown</h3>
                 <div className="space-y-1 text-sm">
-                  <div className="text-yellow-700">
+                  <div className="text-amber-700">
                     <span className="font-medium">Weekly deficit needed:</span> 3500 calories
                   </div>
-                  <div className="text-yellow-700">
+                  <div className="text-amber-700">
                     <span className="font-medium">Daily deficit:</span> 500 calories
                   </div>
-                  <div className="text-yellow-700">
+                  <div className="text-amber-700">
                     <span className="font-medium">Through diet:</span> Reduce 350 cal/day
                   </div>
-                  <div className="text-yellow-700">
+                  <div className="text-amber-700">
                     <span className="font-medium">Through exercise:</span> Burn 150 cal/day
                   </div>
                 </div>
@@ -608,9 +605,9 @@ export function WeightLossCalculator() {
                     ) : (
                         <div className="space-y-3">
                         {result.achievements.map((achievement, index) => (
-                            <div key={index} className="flex items-start gap-3 p-3 bg-yellow-50 rounded-lg">
-                            <span className="text-yellow-600 text-lg">🏆</span>
-                            <div className="text-sm text-yellow-800">{achievement}</div>
+                            <div key={index} className="flex items-start gap-3 p-3 bg-amber-100 rounded-lg">
+                            <span className="text-amber-600 text-lg">🏆</span>
+                            <div className="text-sm text-amber-800">{achievement}</div>
                             </div>
                         ))}
                         </div>

@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import MedicalDisclaimer from '@/components/disclaimers/medicalDisclaimer';
+import { ToolNameLists } from '@/constants/tools';
 
 enum BMICategory {
   SEVERELY_UNDERWEIGHT = 'Severely underweight',
@@ -314,15 +315,10 @@ export default function BMICalculator() {
 
   return (
     <ToolLayout 
-      pageTitle="BMI Calculator"
+      toolCategory={ToolNameLists.BMICalculator}
       disclaimer={<MedicalDisclaimer />}
     >
       <div className="space-y-6">
-        {/* Description */}
-        <p className="text-sm">
-          Easily calculate a person&apos;s weight relative to their height using the body mass index(BMI). The calculation formula for BMI is fixed, but each country adjusts the results of the index according to the situation to meet the actual situation of the nationals. Our calculator supports both metric and imperial units.
-        </p>
-
         {/* Calculator Form */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Enhanced Input Form */}
@@ -583,7 +579,7 @@ export default function BMICalculator() {
                 </div>
 
                 {/* Health Risk */}
-                <div className="p-4 bg-orange-50 rounded-lg">
+                <div className="p-4 bg-orange-100 rounded-lg">
                   <h4 className="font-medium text-orange-900">Health Assessment</h4>
                   <p className="text-orange-800 text-sm mt-1">{result.healthRisk}</p>
                 </div>

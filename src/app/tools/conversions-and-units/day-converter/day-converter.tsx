@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
+import { ToolNameLists } from '@/constants/tools';
 
 enum CALCULATION_TYPE {
   FIND_WEEKDAY = 'Find Weekday',
@@ -235,13 +236,10 @@ export function DayConverter() {
   };
 
   return (
-    <ToolLayout pageTitle="Day Converter & Date Calculator">
+    <ToolLayout
+      toolCategory={ToolNameLists.DayConverterDateCalculator}
+    >
       <div className="space-y-6">
-        <p className="text-sm text-gray-600">
-          Calculate dates, find weekdays, determine date differences, and perform various date-related calculations. 
-          Perfect for planning, scheduling, and date arithmetic.
-        </p>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Input Section */}
           <div className="bg-white rounded-lg shadow-md p-6">

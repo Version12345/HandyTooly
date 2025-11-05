@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
+import { ToolNameLists } from '@/constants/tools';
 
 interface TimeZoneData {
   utcTime: string;
@@ -396,13 +397,10 @@ export function UTCTimeZoneConverter() {
   };
 
   return (
-    <ToolLayout pageTitle="UTC Time Zone Converter">
+    <ToolLayout
+      toolCategory={ToolNameLists.UTCTimeZoneConverter}
+    >
       <div className="space-y-6">
-        <p className="text-sm text-gray-600">
-          Convert between UTC and local time zones with real-time updates. 
-          Perfect for scheduling meetings, coordinating across time zones, and understanding global time differences.
-        </p>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Input Section */}
           <div className="bg-white rounded-lg shadow-md p-6">

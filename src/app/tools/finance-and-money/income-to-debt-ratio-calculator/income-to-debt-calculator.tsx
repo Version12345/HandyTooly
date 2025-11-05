@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
+import { ToolNameLists } from '@/constants/tools';
 
 type riskLevel = 'low' | 'moderate' | 'high';
 type Status = 'good' | 'challenging' | 'difficult' | 'limited';
@@ -181,14 +182,11 @@ export function IncomeToDebtCalculator() {
 
   return (
     <ToolLayout
-      pageTitle="Income-to-Debt Ratio Calculator"
+      toolCategory={ToolNameLists.IncomeToDebtRatioCalculator}
+      secondaryToolDescription='This tool helps you measure how much of your income goes toward paying debts each month. Enter your income and monthly debt payments to see your income-to-debt ratio. This simple tool shows whether your finances are balanced or stretched, helping you plan smarter for loans, mortgages, or budgeting.'
       disclaimer={<FinancialDisclaimer />}
     >
       <div className="max-w-7xl mx-auto">
-        <p className="text-sm">
-          The Income-to-Debt Calculator helps you measure how much of your income goes toward paying debts each month. Enter your income and monthly debt payments to see your income-to-debt ratio. This simple tool shows whether your finances are balanced or stretched, helping you plan smarter for loans, mortgages, or budgeting.
-        </p>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Monthly Income Section */}
           <div className="bg-white rounded-lg shadow-md p-6">

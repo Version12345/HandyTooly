@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
+import { ToolNameLists } from '@/constants/tools';
 
 type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | 'JPY';
 
@@ -322,15 +323,11 @@ export function SalaryCalculator() {
 
   return (
     <ToolLayout
-      pageTitle="Salary Calculator"
+      toolCategory={ToolNameLists.SalaryCalculator}
+      secondaryToolDescription='Get detailed insights into your gross vs net income across different time periods.'
       disclaimer={<FinancialDisclaimer />}
     >
       <div className="space-y-6">
-        <p className="text-sm text-gray-600">
-          Calculate your take-home pay, tax breakdowns, and comprehensive salary analysis. 
-          Get detailed insights into your gross vs net income across different time periods.
-        </p>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Salary Information */}
           <div className="bg-white rounded-lg shadow-md p-6">

@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
+import { ToolNameLists } from '@/constants/tools';
 
 enum TIME_UNIT {
     MILLISECONDS = 'Milliseconds',
@@ -434,11 +435,12 @@ export function TimeUnitConverter() {
   };
 
   return (
-    <ToolLayout pageTitle="Time Unit Converter">
+    <ToolLayout
+      toolCategory={ToolNameLists.TimeUnitConverter}
+    >
       <div className="space-y-6">
         <p className="text-sm text-gray-600">
-          Convert between different time units from milliseconds to cosmic scales including light years and eons. 
-          See real-world comparisons to understand time durations better, from everyday activities to geological and cosmic events.
+          From milliseconds to cosmic scales including light years and eons. You can see real-world comparisons to understand time durations better, from everyday activities to geological and cosmic events.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

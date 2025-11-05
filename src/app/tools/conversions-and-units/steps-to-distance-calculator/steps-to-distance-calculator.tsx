@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
+import { ToolDescription, ToolNameLists } from '@/constants/tools';
 
 interface EquivalentExample {
   icon: string;
@@ -555,13 +556,10 @@ export function StepsToMilesCalculator() {
   };
 
   return (
-    <ToolLayout pageTitle="Steps to Miles Calculator - Convert Walking Steps to Distance">
+    <ToolLayout 
+      toolCategory={ToolNameLists.StepsToDistanceCalculator}
+    >
       <div className="space-y-6">
-        <p className="text-sm text-gray-600">
-          Convert your daily steps into miles and track your walking distance. Calculate calories burned, 
-          pace metrics, and get insights into your daily activity levels.
-        </p>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Input Section */}
           <div className="bg-white rounded-lg shadow-md p-6">
@@ -680,14 +678,29 @@ export function StepsToMilesCalculator() {
                 onChange={(e) => updatePersonData('paceOfWalking', e.target.value as PaceOption)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               >
-                <option value="very-slow">Very slow walk (&lt;2mph)</option>
-                <option value="slow">Slow walk (2mph)</option>
-                <option value="average">Average walk (3mph)</option>
-                <option value="brisk">Brisk walk (4mph)</option>
-                <option value="jog">Jog (5mph)</option>
-                <option value="run">Run (6mph)</option>
-                <option value="fast-run">Fast Run (7.5mph)</option>
-                <option value="very-fast-run">Very Fast Run (10mph)</option>
+                {personData.unit === 'metric' ? (
+                  <>
+                    <option value="very-slow">Very slow walk (&lt;3.2km/h)</option>
+                    <option value="slow">Slow walk (3.2km/h)</option>
+                    <option value="average">Average walk (4.8km/h)</option>
+                    <option value="brisk">Brisk walk (6.4km/h)</option>
+                    <option value="jog">Jog (8km/h)</option>
+                    <option value="run">Run (9.7km/h)</option>
+                    <option value="fast-run">Fast Run (12km/h)</option>
+                    <option value="very-fast-run">Very Fast Run (16km/h)</option>
+                  </>
+                ) : (
+                  <>
+                    <option value="very-slow">Very slow walk (&lt;2mph)</option>
+                    <option value="slow">Slow walk (2mph)</option>
+                    <option value="average">Average walk (3mph)</option>
+                    <option value="brisk">Brisk walk (4mph)</option>
+                    <option value="jog">Jog (5mph)</option>
+                    <option value="run">Run (6mph)</option>
+                    <option value="fast-run">Fast Run (7.5mph)</option>
+                    <option value="very-fast-run">Very Fast Run (10mph)</option>
+                  </>
+                )}
               </select>
               <p className="text-xs text-gray-500 mt-1">Walking/running speed affects calorie calculation</p>
             </div>
