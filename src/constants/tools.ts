@@ -59,6 +59,7 @@ export enum ToolNameLists {
     SalaryCalculator = "Salary Calculator",
     StepsToMilesCalculator = "Steps to Miles Calculator",
     TimeUnitConverter = "Time Unit Converter",
+    UTCTimeZoneConverter = "UTC Time Zone Converter",
     WeightLossCalculator = "Weight Loss Percentage Calculator",
 }
 
@@ -72,6 +73,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.SalaryCalculator]: "Calculate take-home pay, tax breakdowns, and detailed salary analysis with comprehensive insights and comparisons.",
     [ToolNameLists.StepsToMilesCalculator]: "Convert daily steps to miles, calculate calories burned, and track your walking distance with personalized metrics.",
     [ToolNameLists.TimeUnitConverter]: "Convert between different time units like seconds, minutes, hours, days, and more.",
+    [ToolNameLists.UTCTimeZoneConverter]: "Convert between UTC and local time zones with real-time conversion and multiple time zone support.",
     [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, and get personalized insights.",
 }
 
@@ -132,6 +134,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.TimeUnitConverter,
             description: ToolDescription[ToolNameLists.TimeUnitConverter],
             link: `${URL_BASE}/${ToolCategorySlug.Conversions}/time-unit-converter`
+        },
+        {
+            name: ToolNameLists.UTCTimeZoneConverter,
+            description: ToolDescription[ToolNameLists.UTCTimeZoneConverter],
+            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/utc-time-zone-converter`
         },
     ]
 };
