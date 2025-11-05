@@ -5,11 +5,11 @@ import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 
 interface TimeZoneData {
-  utcTime: string;
-  localTime: string;
+  inputTime: string;
   utcOffset: number;
   timeZone: string;
   is24Hour: boolean;
+  conversionDirection: 'utc-to-local' | 'local-to-utc';
 }
 
 interface ConversionResult {
@@ -220,11 +220,11 @@ export function UTCTimeZoneConverter() {
   const defaults = getCurrentDefaults();
 
   const [timeZoneData, setTimeZoneData] = useState<TimeZoneData>({
-    utcTime: defaults.utcTime,
-    localTime: '',
+    inputTime: defaults.utcTime,
     utcOffset: 0,
     timeZone: defaults.timeZone,
     is24Hour: true,
+    conversionDirection: 'utc-to-local',
   });
 
   const [result, setResult] = useState<ConversionResult | null>(null);
@@ -264,23 +264,35 @@ export function UTCTimeZoneConverter() {
     });
   }, []);
 
-  const convertTime = useCallback((utcTimeStr: string, targetTimeZone: string, is24Hour: boolean): ConversionResult => {
+  const convertTime = useCallback((inputTimeStr: string, targetTimeZone: string, is24Hour: boolean, direction: 'utc-to-local' | 'local-to-utc'): ConversionResult => {
     let utcDate: Date;
+    let localTime: Date;
     
-    if (utcTimeStr) {
-      // Parse the input UTC time
-      utcDate = new Date(utcTimeStr + (utcTimeStr.includes('Z') ? '' : 'Z'));
+    if (inputTimeStr) {
+      if (direction === 'utc-to-local') {
+        // Input is UTC time, convert to local
+        utcDate = new Date(inputTimeStr + (inputTimeStr.includes('Z') ? '' : 'Z'));
+        localTime = new Date(utcDate.toLocaleString('en-US', { timeZone: targetTimeZone }));
+      } else {
+        // Input is local time, convert to UTC
+        const inputDate = new Date(inputTimeStr);
+        // Create a date as if it were in the target timezone
+        const tempDate = new Date(inputTimeStr);
+        const utcTime = new Date(tempDate.toLocaleString('en-US', { timeZone: 'UTC' }));
+        const localTimeInTarget = new Date(tempDate.toLocaleString('en-US', { timeZone: targetTimeZone }));
+        const offset = utcTime.getTime() - localTimeInTarget.getTime();
+        utcDate = new Date(inputDate.getTime() + offset);
+        localTime = inputDate;
+      }
     } else {
       // Use current time if no input
       utcDate = new Date();
+      localTime = new Date(utcDate.toLocaleString('en-US', { timeZone: targetTimeZone }));
     }
-
-    // Create local time in target timezone
-    const localTime = new Date(utcDate.toLocaleString('en-US', { timeZone: targetTimeZone }));
     
     // Format times
     const utcTimeString = formatTime(utcDate, is24Hour, 'UTC');
-    const localTimeString = formatTime(utcDate, is24Hour, targetTimeZone);
+    const localTimeString = formatTime(direction === 'utc-to-local' ? utcDate : localTime, is24Hour, targetTimeZone);
     
     // Get timezone info
     const timeZoneName = new Intl.DateTimeFormat('en', {
@@ -354,7 +366,7 @@ export function UTCTimeZoneConverter() {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       try {
-        const conversionResult = convertTime(timeZoneData.utcTime, timeZoneData.timeZone, timeZoneData.is24Hour);
+        const conversionResult = convertTime(timeZoneData.inputTime, timeZoneData.timeZone, timeZoneData.is24Hour, timeZoneData.conversionDirection);
         setResult(conversionResult);
       } catch (error) {
         console.error('Time conversion error:', error);
@@ -371,8 +383,25 @@ export function UTCTimeZoneConverter() {
 
   const setCurrentTime = () => {
     const now = new Date();
-    const utcTimeString = now.toISOString().slice(0, 19); // Remove Z and milliseconds
-    updateTimeZoneData('utcTime', utcTimeString);
+    let currentTimeString: string;
+    
+    if (timeZoneData.conversionDirection === 'utc-to-local') {
+      currentTimeString = now.toISOString().slice(0, 19); // UTC time
+    } else {
+      // Local time in selected timezone
+      currentTimeString = formatTime(now, true, timeZoneData.timeZone).replace(/(\d{2})\/(\d{2})\/(\d{4}), (\d{2}:\d{2}:\d{2})/, '$3-$1-$2T$4');
+    }
+    
+    updateTimeZoneData('inputTime', currentTimeString);
+  };
+
+  const swapConversion = () => {
+    const newDirection = timeZoneData.conversionDirection === 'utc-to-local' ? 'local-to-utc' : 'utc-to-local';
+    setTimeZoneData(prev => ({ 
+      ...prev, 
+      conversionDirection: newDirection,
+      inputTime: '' // Clear input when switching
+    }));
   };
 
   const copyToClipboard = (text: string) => {
@@ -407,11 +436,46 @@ export function UTCTimeZoneConverter() {
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Time Conversion</h2>
             
             <div className="space-y-4">
-              {/* UTC Time Input */}
+              {/* Conversion Direction Toggle */}
+              <div className="flex justify-center">
+                <div className="bg-gray-100 rounded-lg p-1 flex items-center">
+                  <button
+                    onClick={() => updateTimeZoneData('conversionDirection', 'utc-to-local')}
+                    className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+                      timeZoneData.conversionDirection === 'utc-to-local'
+                        ? 'bg-orange-500 text-white shadow-sm'
+                        : 'text-gray-600 hover:text-gray-800'
+                    }`}
+                  >
+                    UTC → Local
+                  </button>
+                  <button
+                    onClick={swapConversion}
+                    className="mx-2 p-1 text-gray-500 hover:text-gray-700 transition-colors"
+                    title="Swap conversion direction"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => updateTimeZoneData('conversionDirection', 'local-to-utc')}
+                    className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+                      timeZoneData.conversionDirection === 'local-to-utc'
+                        ? 'bg-orange-500 text-white shadow-sm'
+                        : 'text-gray-600 hover:text-gray-800'
+                    }`}
+                  >
+                    Local → UTC
+                  </button>
+                </div>
+              </div>
+
+              {/* Input Time */}
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="block text-sm font-medium text-gray-700">
-                    UTC Time
+                    {timeZoneData.conversionDirection === 'utc-to-local' ? 'UTC Time' : 'Local Time'}
                   </label>
                   <button
                     onClick={setCurrentTime}
@@ -422,18 +486,23 @@ export function UTCTimeZoneConverter() {
                 </div>
                 <input
                   type="datetime-local"
-                  value={timeZoneData.utcTime}
-                  onChange={(e) => updateTimeZoneData('utcTime', e.target.value)}
+                  value={timeZoneData.inputTime}
+                  onChange={(e) => updateTimeZoneData('inputTime', e.target.value)}
                   className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <p className="text-xs text-gray-500 mt-1">Enter time in UTC format</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {timeZoneData.conversionDirection === 'utc-to-local' 
+                    ? 'Enter time in UTC format'
+                    : 'Enter time in the selected timezone'
+                  }
+                </p>
               </div>
 
               {/* Time Zone Selection */}
               <div>
                 <div className="flex justify-between items-center mb-1">
                   <label className="block text-sm font-medium text-gray-700">
-                    Convert to Time Zone
+                    {timeZoneData.conversionDirection === 'utc-to-local' ? 'Convert to Time Zone' : 'From Time Zone'}
                   </label>
                   <button
                     onClick={() => updateTimeZoneData('timeZone', getUserTimeZone())}
@@ -512,23 +581,25 @@ export function UTCTimeZoneConverter() {
             
             {!result && (
               <div className="text-center text-gray-500 py-8">
-                <p>Enter a UTC time to see the conversion results</p>
+                <p>Enter a time to see the conversion results</p>
               </div>
             )}
 
             {result && (
               <div className="space-y-6">
-                {/* UTC Time */}
+                {/* First Time (Input or UTC) */}
                 <div className="bg-blue-50 rounded-lg p-4">
                   <div className="flex justify-between items-center">
                     <div>
-                      <div className="text-sm text-blue-700 mb-1">UTC Time</div>
+                      <div className="text-sm text-blue-700 mb-1">
+                        {timeZoneData.conversionDirection === 'utc-to-local' ? 'UTC Time' : 'Input Time'}
+                      </div>
                       <div className="text-xl font-bold text-blue-800 font-mono">
-                        {result.utcTimeString}
+                        {timeZoneData.conversionDirection === 'utc-to-local' ? result.utcTimeString : result.localTimeString}
                       </div>
                     </div>
                     <button
-                      onClick={() => copyToClipboard(result.utcTimeString)}
+                      onClick={() => copyToClipboard(timeZoneData.conversionDirection === 'utc-to-local' ? result.utcTimeString : result.localTimeString)}
                       className="text-blue-600 hover:text-blue-800 p-2"
                       title="Copy to clipboard"
                     >
@@ -539,20 +610,22 @@ export function UTCTimeZoneConverter() {
                   </div>
                 </div>
 
-                {/* Local Time */}
+                {/* Second Time (Output or Local) */}
                 <div className="bg-green-50 rounded-lg p-4">
                   <div className="flex justify-between items-center">
                     <div>
-                      <div className="text-sm text-green-700 mb-1">Local Time</div>
+                      <div className="text-sm text-green-700 mb-1">
+                        {timeZoneData.conversionDirection === 'utc-to-local' ? 'Local Time' : 'UTC Time'}
+                      </div>
                       <div className="text-xl font-bold text-green-800 font-mono">
-                        {result.localTimeString}
+                        {timeZoneData.conversionDirection === 'utc-to-local' ? result.localTimeString : result.utcTimeString}
                       </div>
                       <div className="text-sm text-green-600 mt-1">
-                        {result.timeZoneName}
+                        {timeZoneData.conversionDirection === 'utc-to-local' ? result.timeZoneName : 'Coordinated Universal Time'}
                       </div>
                     </div>
                     <button
-                      onClick={() => copyToClipboard(result.localTimeString)}
+                      onClick={() => copyToClipboard(timeZoneData.conversionDirection === 'utc-to-local' ? result.localTimeString : result.utcTimeString)}
                       className="text-green-600 hover:text-green-800 p-2"
                       title="Copy to clipboard"
                     >
