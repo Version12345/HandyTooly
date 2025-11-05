@@ -307,24 +307,26 @@ export function UTCTimeZoneConverter() {
           return offsetPart.value.replace('GMT', 'UTC');
         }
       } catch {
-        // Fallback calculation
-        const utcTime = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
-        const localTime = new Date(date.toLocaleString('en-US', { timeZone }));
-        const diffMs = localTime.getTime() - utcTime.getTime();
-        const diffHours = diffMs / (1000 * 60 * 60);
-        
-        if (diffHours === 0) return 'UTC±0';
-        
-        const sign = diffHours >= 0 ? '+' : '-';
-        const absHours = Math.abs(diffHours);
-        const hours = Math.floor(absHours);
-        const minutes = Math.round((absHours - hours) * 60);
-        
-        if (minutes === 0) {
-          return `UTC${sign}${hours}`;
-        } else {
-          return `UTC${sign}${hours}:${minutes.toString().padStart(2, '0')}`;
-        }
+        // Fallback for browsers that don't support longOffset
+      }
+      
+      // Fallback calculation
+      const utcTime = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+      const localTime = new Date(date.toLocaleString('en-US', { timeZone }));
+      const diffMs = localTime.getTime() - utcTime.getTime();
+      const diffHours = diffMs / (1000 * 60 * 60);
+      
+      if (diffHours === 0) return 'UTC±0';
+      
+      const sign = diffHours >= 0 ? '+' : '-';
+      const absHours = Math.abs(diffHours);
+      const hours = Math.floor(absHours);
+      const minutes = Math.round((absHours - hours) * 60);
+      
+      if (minutes === 0) {
+        return `UTC${sign}${hours}`;
+      } else {
+        return `UTC${sign}${hours}:${minutes.toString().padStart(2, '0')}`;
       }
     };
     
