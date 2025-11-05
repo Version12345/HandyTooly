@@ -292,10 +292,43 @@ export function UTCTimeZoneConverter() {
       timeZoneName: 'short'
     }).formatToParts().find(part => part.type === 'timeZoneName')?.value || '';
     
-    // Calculate UTC offset
-    const offsetMinutes = new Date().getTimezoneOffset() - new Date(utcDate.toLocaleString('en-US', { timeZone: targetTimeZone })).getTimezoneOffset();
-    const offsetHours = offsetMinutes / 60;
-    const utcOffset = `UTC${offsetHours >= 0 ? '+' : ''}${offsetHours}`;
+    // Calculate UTC offset using a more reliable method
+    const getTimezoneOffset = (date: Date, timeZone: string): string => {
+      // Create formatter to get offset information
+      const offsetFormatter = new Intl.DateTimeFormat('en', {
+        timeZone,
+        timeZoneName: 'longOffset'
+      });
+      
+      try {
+        const parts = offsetFormatter.formatToParts(date);
+        const offsetPart = parts.find(part => part.type === 'timeZoneName');
+        if (offsetPart?.value && offsetPart.value.startsWith('GMT')) {
+          return offsetPart.value.replace('GMT', 'UTC');
+        }
+      } catch {
+        // Fallback calculation
+        const utcTime = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+        const localTime = new Date(date.toLocaleString('en-US', { timeZone }));
+        const diffMs = localTime.getTime() - utcTime.getTime();
+        const diffHours = diffMs / (1000 * 60 * 60);
+        
+        if (diffHours === 0) return 'UTC±0';
+        
+        const sign = diffHours >= 0 ? '+' : '-';
+        const absHours = Math.abs(diffHours);
+        const hours = Math.floor(absHours);
+        const minutes = Math.round((absHours - hours) * 60);
+        
+        if (minutes === 0) {
+          return `UTC${sign}${hours}`;
+        } else {
+          return `UTC${sign}${hours}:${minutes.toString().padStart(2, '0')}`;
+        }
+      }
+    };
+    
+    const utcOffset = getTimezoneOffset(utcDate, targetTimeZone);
     
     // Check if DST (simplified check)
     const janOffset = new Date(utcDate.getFullYear(), 0, 1).toLocaleString('en-US', { timeZone: targetTimeZone });
