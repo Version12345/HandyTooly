@@ -4,11 +4,11 @@ import { canonicalUrl } from '@/utils/canonicalUrl';
 import { WeightConverter } from './weight-converter';
 
 export const metadata: Metadata = {
-    title: ToolNameLists.WeightConverter,
-    description: ToolDescription[ToolNameLists.WeightConverter],
-    alternates: {
-        canonical: canonicalUrl(ToolUrls[ToolNameLists.WeightConverter]),
-    },
+  title: ToolNameLists.WeightConverter,
+  description: ToolDescription[ToolNameLists.WeightConverter],
+  alternates: {
+      canonical: canonicalUrl(ToolUrls[ToolNameLists.WeightConverter]),
+  },
 };
 
 export default function WeightConverterPage() {
