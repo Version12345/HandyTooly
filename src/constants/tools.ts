@@ -64,6 +64,7 @@ export enum ToolNameLists {
     WeightConverter = "Weight Converter",
     WeightLossCalculator = "Weight Loss Percentage Calculator",
     LengthConverter = "Length Converter",
+    VolumeConverter = "Volume Converter",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -81,6 +82,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.WeightConverter]: "Convert pounds, kilograms, ounces, grams, stones, and more with our precise weight converter. Perfect for cooking, shipping, fitness tracking, and scientific measurements.",
     [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, and get personalized insights.",
     [ToolNameLists.LengthConverter]: "Convert meters, feet, inches, kilometers, miles, and more with our comprehensive length converter. Perfect for construction, travel, sports, and scientific measurements.",
+    [ToolNameLists.VolumeConverter]: "Convert liters, gallons, cups, milliliters, and more with our comprehensive volume converter. Perfect for cooking, chemistry, engineering, and everyday measurements.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -98,6 +100,7 @@ export const ToolUrls: Record<string, string> = {
     [ToolNameLists.WeightConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/weight-converter`,
     [ToolNameLists.WeightLossCalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/weight-loss-calculator`,
     [ToolNameLists.LengthConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/length-converter`,
+    [ToolNameLists.VolumeConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/volume-converter`,
 }
 
 export const Tools: Record<string, Tool[]> = {
@@ -177,6 +180,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.LengthConverter,
             description: ToolDescription[ToolNameLists.LengthConverter],
             link: ToolUrls[ToolNameLists.LengthConverter]
+        },
+        {
+            name: ToolNameLists.VolumeConverter,
+            description: ToolDescription[ToolNameLists.VolumeConverter],
+            link: ToolUrls[ToolNameLists.VolumeConverter]
         },
     ]
 };

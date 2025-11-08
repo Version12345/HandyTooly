@@ -1,4 +1,4 @@
-import { ToolCategory, Tools } from '@/constants/tools';
+import { ToolCategory, ToolCategorySlug, Tools } from '@/constants/tools';
 import { Metadata } from 'next';
 import { canonicalUrl } from '@/utils/canonicalUrl';
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Health Tools - BMI Calculator & Wellness Tools',
   description: 'Health and wellness calculators including BMI calculator, body fat estimation, and other health assessment tools.',
   alternates: {
-    canonical: canonicalUrl('/categories/health-and-wellness'),
+    canonical: canonicalUrl(`/${ToolCategorySlug.Health}/health-and-wellness`),
   },
 };
 
