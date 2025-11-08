@@ -66,7 +66,7 @@ export enum ToolNameLists {
 
 export const ToolDescription: Record<string, string> = {
     [ToolNameLists.BMICalculator]: "Calculate your Body Mass Index (BMI). You can use kg and cm or lbs and inches conversions.",
-    [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest and track contributions in different currencies.",
+    [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest and track continuous contributions in different currencies.",
     [ToolNameLists.DayConverterDateCalculator]: "Calculate dates, find weekdays, date differences, and perform various date-related calculations.",
     [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio and get lending guidance in different currencies.",
     [ToolNameLists.InflationCalculator]: "Calculate the impact of inflation on purchasing power, analyze future value, and understand real-world cost changes over time.",
