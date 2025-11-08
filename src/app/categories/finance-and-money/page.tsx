@@ -1,5 +1,6 @@
-import { ToolCategory, Tools } from '@/constants/tools';
+import { ToolCategory, ToolCategorySlug, Tools } from '@/constants/tools';
 import { Metadata } from 'next';
+import { canonicalUrl } from '@/utils/canonicalUrl';
 import CategoryLayout from '../categoryLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
 import ToolCard from '@/components/toolCard';
@@ -7,6 +8,9 @@ import ToolCard from '@/components/toolCard';
 export const metadata: Metadata = {
   title: 'Finance Tools - Financial Calculators & Planning Tools',
   description: 'Financial planning and assessment tools including income-to-debt calculator, budget planners, and other financial health tools.',
+  alternates: {
+    canonical: canonicalUrl(`/${ToolCategorySlug.Finance}/finance-and-money`),
+  },
 };
 
 export default function FinanceCategory() {

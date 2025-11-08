@@ -1,8 +1,13 @@
 import { ToolList } from "@/components/toolList";
+import { canonicalUrl } from "@/utils/canonicalUrl";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
     title: 'The handy tools for every tasks',
     description: 'A collection of online tools for fast, free, and built for everyone.',
+    alternates: {
+        canonical: canonicalUrl('/tools'),
+    },
 };
 
 export default function Home() {

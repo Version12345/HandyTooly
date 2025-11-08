@@ -71,7 +71,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio and get lending guidance in different currencies.",
     [ToolNameLists.InflationCalculator]: "Calculate the impact of inflation on purchasing power, analyze future value, and understand real-world cost changes over time.",
     [ToolNameLists.ResumeCoverLetterConverter]: "Convert job descriptions into tailored resumes and cover letters using our AI tools.",
-    [ToolNameLists.RomanNumeralsConverter]: "Convert between regular numbers and Roman numerals with detailed explanations. Support traditional notation and vinculum (overline) for large numbers.",
+    [ToolNameLists.RomanNumeralsConverter]: "Convert between regular numbers and Roman numerals with explanations. Support traditional notation and vinculum (overline) for large numbers.",
     [ToolNameLists.SalaryCalculator]: "Calculate take-home pay, tax breakdowns, and detailed salary analysis in different currencies.",
     [ToolNameLists.StepsToDistanceCalculator]: "Convert daily steps to distance (miles or kilometers), calculate calories burned, and track your walking distance with personalized metrics.",
     [ToolNameLists.TimeUnitConverter]: "Convert between different time units like seconds, minutes, hours, days, and more.",
@@ -79,73 +79,88 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, and get personalized insights.",
 }
 
+export const ToolUrls: Record<string, string> = {
+    [ToolNameLists.BMICalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/bmi-calculator`,
+    [ToolNameLists.CompoundInterestCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/compound-interest-calculator`,
+    [ToolNameLists.DayConverterDateCalculator]: `${URL_BASE}/${ToolCategorySlug.Conversions}/day-converter`,
+    [ToolNameLists.IncomeToDebtRatioCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/income-to-debt-ratio-calculator`,
+    [ToolNameLists.InflationCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/inflation-calculator`,
+    [ToolNameLists.ResumeCoverLetterConverter]: `${URL_BASE}/${ToolCategorySlug.Jobs}/resume-cover-letter-converter`,
+    [ToolNameLists.RomanNumeralsConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/roman-numerals-converter`,
+    [ToolNameLists.SalaryCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/salary-calculator`,
+    [ToolNameLists.StepsToDistanceCalculator]: `${URL_BASE}/${ToolCategorySlug.Conversions}/steps-to-distance-calculator`,
+    [ToolNameLists.TimeUnitConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/time-unit-converter`,
+    [ToolNameLists.UTCTimeZoneConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/utc-time-zone-converter`,
+    [ToolNameLists.WeightLossCalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/weight-loss-calculator`,
+}
+
 export const Tools: Record<string, Tool[]> = {
     [ToolCategory.Jobs]: [
         {
             name: ToolNameLists.ResumeCoverLetterConverter,
             description: ToolDescription[ToolNameLists.ResumeCoverLetterConverter],
-            link: `${URL_BASE}/${ToolCategorySlug.Jobs}/resume-cover-letter-converter`
+            link: ToolUrls[ToolNameLists.ResumeCoverLetterConverter]
         }
     ],
     [ToolCategory.Health]: [
         {
             name: ToolNameLists.BMICalculator,
             description: ToolDescription[ToolNameLists.BMICalculator],
-            link: `${URL_BASE}/${ToolCategorySlug.Health}/bmi-calculator`
+            link: ToolUrls[ToolNameLists.BMICalculator]
         },
         {
             name: ToolNameLists.WeightLossCalculator,
             description: ToolDescription[ToolNameLists.WeightLossCalculator],
-            link: `${URL_BASE}/${ToolCategorySlug.Health}/weight-loss-calculator`
+            link: ToolUrls[ToolNameLists.WeightLossCalculator]
         }
     ],
     [ToolCategory.Finance]: [
         {
             name: ToolNameLists.CompoundInterestCalculator,
             description: ToolDescription[ToolNameLists.CompoundInterestCalculator],
-            link: `${URL_BASE}/${ToolCategorySlug.Finance}/compound-interest-calculator`
+            link: ToolUrls[ToolNameLists.CompoundInterestCalculator]
         },
         {
             name: ToolNameLists.IncomeToDebtRatioCalculator,
             description: ToolDescription[ToolNameLists.IncomeToDebtRatioCalculator],
-            link: `${URL_BASE}/${ToolCategorySlug.Finance}/income-to-debt-ratio-calculator`
+            link: ToolUrls[ToolNameLists.IncomeToDebtRatioCalculator]
         },
         {
             name: ToolNameLists.InflationCalculator,
             description: ToolDescription[ToolNameLists.InflationCalculator],
-            link: `${URL_BASE}/${ToolCategorySlug.Finance}/inflation-calculator`
+            link: ToolUrls[ToolNameLists.InflationCalculator]
         },
         {
             name: ToolNameLists.SalaryCalculator,
             description: ToolDescription[ToolNameLists.SalaryCalculator],
-            link: `${URL_BASE}/${ToolCategorySlug.Finance}/salary-calculator`
+            link: ToolUrls[ToolNameLists.SalaryCalculator]
         }
     ],
     [ToolCategory.Conversions]: [
         {
             name: ToolNameLists.DayConverterDateCalculator,
             description: ToolDescription[ToolNameLists.DayConverterDateCalculator],
-            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/day-converter`
+            link: ToolUrls[ToolNameLists.DayConverterDateCalculator]
         },
         {
             name: ToolNameLists.RomanNumeralsConverter,
             description: ToolDescription[ToolNameLists.RomanNumeralsConverter],
-            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/roman-numerals-converter`
+            link: ToolUrls[ToolNameLists.RomanNumeralsConverter]
         },
         {
             name: ToolNameLists.StepsToDistanceCalculator,
             description: ToolDescription[ToolNameLists.StepsToDistanceCalculator],
-            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/steps-to-distance-calculator`
+            link: ToolUrls[ToolNameLists.StepsToDistanceCalculator]
         },
         {
             name: ToolNameLists.TimeUnitConverter,
             description: ToolDescription[ToolNameLists.TimeUnitConverter],
-            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/time-unit-converter`
+            link: ToolUrls[ToolNameLists.TimeUnitConverter]
         },
         {
             name: ToolNameLists.UTCTimeZoneConverter,
             description: ToolDescription[ToolNameLists.UTCTimeZoneConverter],
-            link: `${URL_BASE}/${ToolCategorySlug.Conversions}/utc-time-zone-converter`
+            link: ToolUrls[ToolNameLists.UTCTimeZoneConverter]
         },
     ]
 };

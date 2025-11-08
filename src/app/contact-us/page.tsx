@@ -1,8 +1,12 @@
 import { Metadata } from "next";
+import { canonicalUrl } from "@/utils/canonicalUrl";
 
 export const metadata: Metadata = {
   title: 'Contact Us',
   description: "Our platform helps job seekers create better resumes and cover letters. Your donations help us keep this service free and continuously improve our AI-powered tools.",
+  alternates: {
+    canonical: canonicalUrl('/contact-us'),
+  },
 };
 
 export default function ContactUs() {

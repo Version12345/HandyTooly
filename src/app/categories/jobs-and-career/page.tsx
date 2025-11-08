@@ -1,11 +1,15 @@
-import { ToolCategory, Tools } from '@/constants/tools';
+import { ToolCategory, ToolCategorySlug, Tools } from '@/constants/tools';
 import { Metadata } from 'next';
+import { canonicalUrl } from '@/utils/canonicalUrl';
 import CategoryLayout from '../categoryLayout';
 import ToolCard from '@/components/toolCard';
 
 export const metadata: Metadata = {
   title: 'Jobs Tools - Resume & Career Tools',
   description: 'Professional job search and career development tools including resume builders, cover letter generators, and career planning resources.',
+  alternates: {
+    canonical: canonicalUrl(`/${ToolCategorySlug.Health}/jobs-and-career`),
+  },
 };
 
 export default function JobsCategory() {

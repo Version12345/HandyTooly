@@ -1,9 +1,12 @@
-import { ToolDescription, ToolNameLists } from '@/constants/tools';
+import { ToolDescription, ToolNameLists, ToolUrls } from '@/constants/tools';
 import { UTCTimeZoneConverter } from './utc-time-zone-converter';
 
 export const metadata = {
     title: ToolNameLists.UTCTimeZoneConverter,
     description: ToolDescription[ToolNameLists.UTCTimeZoneConverter],
+    alternates: {
+        canonical: ToolUrls[ToolNameLists.UTCTimeZoneConverter],
+    },
 };
 
 export default function UTCTimeZoneConverterPage() {

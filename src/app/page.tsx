@@ -1,4 +1,10 @@
 import { ToolList } from '@/components/toolList';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'The handy tools for every tasks',
+  description: 'A collection of online tools for fast, free, and built for everyone.'
+};
 
 export default function Home() {
   return (

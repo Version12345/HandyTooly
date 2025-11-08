@@ -3,6 +3,7 @@
 import React, { useState, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
+import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
 
 interface InflationData {
   initialAmount: number;
@@ -228,12 +229,12 @@ export default function InflationCalculator() {
   };
 
   return (
-    <ToolLayout toolCategory={ToolNameLists.InflationCalculator}>
+    <ToolLayout 
+      toolCategory={ToolNameLists.InflationCalculator}
+      disclaimer={<FinancialDisclaimer />}
+      secondaryToolDescription='Understand how inflation impacts your savings and purchasing power over time.'
+    >
       <div className="space-y-6">
-        <p className="text-gray-600 text-center max-w-3xl mx-auto">
-          Calculate the impact of inflation on your money&apos;s purchasing power over time. 
-          Understand how inflation affects real-world costs and plan your financial future accordingly.
-        </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Column 1: Input Section */}
@@ -499,6 +500,27 @@ export default function InflationCalculator() {
                     Over {result.yearsDifference} years
                   </div>
                 </div>
+                  
+                {/* Summary Section */}
+                <div className="bg-amber-100 rounded-lg p-6">
+                  <div className="text-sm font-bold text-amber-900 mb-1">What This Means</div>
+                  <p className="text-amber-700 text-sm">
+                    {inflationData.calculationMode === 'future' ? (
+                      <>
+                        Due to {formatPercentage(inflationData.annualInflationRate)} annual inflation over {result.yearsDifference} years, you 
+                        would need {formatCurrency(result.futureValue)} in {inflationData.endingYear} to have the same 
+                        purchasing power as {formatCurrency(inflationData.initialAmount)} today. This 
+                        represents a {formatPercentage(result.purchasingPowerLoss)} reduction in buying power.
+                      </>
+                    ) : (
+                      <>
+                        {formatCurrency(inflationData.initialAmount)} today had the purchasing power equivalent of {formatCurrency(result.futureValue)} 
+                        in {inflationData.startingYear}. This shows how inflation of {formatPercentage(inflationData.annualInflationRate)} 
+                        annually over {result.yearsDifference} years has affected the value of money.
+                      </>
+                    )}
+                  </p>
+                </div>
               </div>
             )}
           </div>
@@ -573,27 +595,6 @@ export default function InflationCalculator() {
                         </div>
                       ))}
                     </div>
-                  </div>
-                  
-                  {/* Summary Section */}
-                  <div className="bg-amber-100 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-amber-800 mb-2">What This Means</h3>
-                    <p className="text-amber-700 text-sm">
-                      {inflationData.calculationMode === 'future' ? (
-                        <>
-                          Due to {formatPercentage(inflationData.annualInflationRate)} annual inflation over {result.yearsDifference} years, you 
-                          would need {formatCurrency(result.futureValue)} in {inflationData.endingYear} to have the same 
-                          purchasing power as {formatCurrency(inflationData.initialAmount)} today. This 
-                          represents a {formatPercentage(result.purchasingPowerLoss)} reduction in buying power.
-                        </>
-                      ) : (
-                        <>
-                          {formatCurrency(inflationData.initialAmount)} today had the purchasing power equivalent of {formatCurrency(result.futureValue)} 
-                          in {inflationData.startingYear}. This shows how inflation of {formatPercentage(inflationData.annualInflationRate)} 
-                          annually over {result.yearsDifference} years has affected the value of money.
-                        </>
-                      )}
-                    </p>
                   </div>
                 </>
               )}

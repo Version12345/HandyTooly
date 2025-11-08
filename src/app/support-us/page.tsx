@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import Image from 'next/image';
 import Link from "next/link";
+import { Metadata } from "next";
+import { canonicalUrl } from "@/utils/canonicalUrl";
 
 export default function SupportUs({ searchParams }: { searchParams: Promise<{ isreturning: string }> }) {
   const [isReturning, setIsReturning] = useState(false);

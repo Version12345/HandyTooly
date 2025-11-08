@@ -1,12 +1,16 @@
 import { Metadata } from 'next';
+import { canonicalUrl } from '@/utils/canonicalUrl';
 
 import ToolCard from '../../../components/toolCard';
-import { Categories, Tools, ToolCategory } from '../../../constants/tools';
+import { Categories, Tools, ToolCategory, ToolCategorySlug } from '../../../constants/tools';
 import CategoryLayout from '../categoryLayout';
 
 export const metadata: Metadata = {
   title: 'Conversions and Units - Measurement Conversion Tools',
   description: 'A collection of tools for converting and working with various units of measurement.',
+  alternates: {
+    canonical: canonicalUrl(`/${ToolCategorySlug.Conversions}/conversions-and-units`),
+  },
 };
 
 export default function ConversionsAndUnitsPage() {
