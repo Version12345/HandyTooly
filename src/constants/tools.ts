@@ -63,6 +63,7 @@ export enum ToolNameLists {
     UTCTimeZoneConverter = "UTC Time Zone Converter",
     WeightConverter = "Weight Converter",
     WeightLossCalculator = "Weight Loss Percentage Calculator",
+    LengthConverter = "Length Converter",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -79,6 +80,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.UTCTimeZoneConverter]: "Convert between UTC and local time zones with real-time conversion and multiple time zone support.",
     [ToolNameLists.WeightConverter]: "Convert pounds, kilograms, ounces, grams, stones, and more with our precise weight converter. Perfect for cooking, shipping, fitness tracking, and scientific measurements.",
     [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, and get personalized insights.",
+    [ToolNameLists.LengthConverter]: "Convert meters, feet, inches, kilometers, miles, and more with our comprehensive length converter. Perfect for construction, travel, sports, and scientific measurements.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -95,6 +97,7 @@ export const ToolUrls: Record<string, string> = {
     [ToolNameLists.UTCTimeZoneConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/utc-time-zone-converter`,
     [ToolNameLists.WeightConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/weight-converter`,
     [ToolNameLists.WeightLossCalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/weight-loss-calculator`,
+    [ToolNameLists.LengthConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/length-converter`,
 }
 
 export const Tools: Record<string, Tool[]> = {
@@ -169,6 +172,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.WeightConverter,
             description: ToolDescription[ToolNameLists.WeightConverter],
             link: ToolUrls[ToolNameLists.WeightConverter]
+        },
+        {
+            name: ToolNameLists.LengthConverter,
+            description: ToolDescription[ToolNameLists.LengthConverter],
+            link: ToolUrls[ToolNameLists.LengthConverter]
         },
     ]
 };
