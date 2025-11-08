@@ -2,14 +2,21 @@ import { Metadata } from 'next';
 import { canonicalUrl } from '@/utils/canonicalUrl';
 
 import ToolCard from '../../../components/toolCard';
-import { Categories, Tools, ToolCategory, ToolCategorySlug } from '../../../constants/tools';
+import { Categories, Tools, ToolCategory } from '../../../constants/tools';
 import CategoryLayout from '../categoryLayout';
 
 export const metadata: Metadata = {
   title: 'Conversions and Units - Measurement Conversion Tools',
   description: 'A collection of tools for converting and working with various units of measurement.',
+  keywords: 'unit converter, measurement conversion, length converter, weight converter, volume converter, time converter, conversion tools, metric conversion',
+  openGraph: {
+    title: 'Conversions and Units - Measurement Conversion Tools',
+    description: 'A collection of tools for converting and working with various units of measurement.',
+    type: 'website',
+    url: canonicalUrl(`/categories/conversions-and-units`, true),
+  },
   alternates: {
-    canonical: canonicalUrl(`/${ToolCategorySlug.Conversions}/conversions-and-units`),
+    canonical: canonicalUrl(`/categories/conversions-and-units`),
   },
 };
 

@@ -1,4 +1,4 @@
-import { ToolCategory, ToolCategorySlug, Tools } from '@/constants/tools';
+import { ToolCategory, Tools } from '@/constants/tools';
 import { Metadata } from 'next';
 import { canonicalUrl } from '@/utils/canonicalUrl';
 
@@ -9,8 +9,15 @@ import ToolCard from '@/components/toolCard';
 export const metadata: Metadata = {
   title: 'Health Tools - BMI Calculator & Wellness Tools',
   description: 'Health and wellness calculators including BMI calculator, body fat estimation, and other health assessment tools.',
+  keywords: 'BMI calculator, health calculator, wellness tools, weight loss calculator, fitness calculator, body mass index, health assessment tools',
+  openGraph: {
+    title: 'Health Tools - BMI Calculator & Wellness Tools',
+    description: 'Health and wellness calculators including BMI calculator, body fat estimation, and other health assessment tools.',
+    type: 'website',
+    url: canonicalUrl(`/categories/health-and-wellness`, true),
+  },
   alternates: {
-    canonical: canonicalUrl(`/${ToolCategorySlug.Health}/health-and-wellness`),
+    canonical: canonicalUrl(`/categories/health-and-wellness`),
   },
 };
 

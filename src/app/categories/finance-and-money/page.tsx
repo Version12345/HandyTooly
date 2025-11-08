@@ -1,4 +1,4 @@
-import { ToolCategory, ToolCategorySlug, Tools } from '@/constants/tools';
+import { ToolCategory, Tools } from '@/constants/tools';
 import { Metadata } from 'next';
 import { canonicalUrl } from '@/utils/canonicalUrl';
 import CategoryLayout from '../categoryLayout';
@@ -8,8 +8,15 @@ import ToolCard from '@/components/toolCard';
 export const metadata: Metadata = {
   title: 'Finance Tools - Financial Calculators & Planning Tools',
   description: 'Financial planning and assessment tools including income-to-debt calculator, budget planners, and other financial health tools.',
+  keywords: 'financial calculator, debt to income calculator, salary calculator, compound interest calculator, inflation calculator, budget planner, financial planning tools',
+  openGraph: {
+    title: 'Finance Tools - Financial Calculators & Planning Tools',
+    description: 'Financial planning and assessment tools including income-to-debt calculator, budget planners, and other financial health tools.',
+    type: 'website',
+    url: canonicalUrl(`/categories/finance-and-money`, true),
+  },
   alternates: {
-    canonical: canonicalUrl(`/${ToolCategorySlug.Finance}/finance-and-money`),
+    canonical: canonicalUrl(`/categories/finance-and-money`),
   },
 };
 

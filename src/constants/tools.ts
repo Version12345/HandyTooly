@@ -77,12 +77,12 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.RomanNumeralsConverter]: "Convert between regular numbers and Roman numerals with explanations. Support traditional notation and vinculum (overline) for large numbers.",
     [ToolNameLists.SalaryCalculator]: "Calculate take-home pay, tax breakdowns, and detailed salary analysis in different currencies.",
     [ToolNameLists.StepsToDistanceCalculator]: "Convert daily steps to distance (miles or kilometers), calculate calories burned, and track your walking distance with personalized metrics.",
-    [ToolNameLists.TimeUnitConverter]: "Convert between different time units like seconds, minutes, hours, days, and more.",
+    [ToolNameLists.TimeUnitConverter]: "Convert between different time units like seconds, minutes, hours, days, etc.",
     [ToolNameLists.UTCTimeZoneConverter]: "Convert between UTC and local time zones with real-time conversion and multiple time zone support.",
-    [ToolNameLists.WeightConverter]: "Convert pounds, kilograms, ounces, grams, stones, and more with our precise weight converter. Perfect for cooking, shipping, fitness tracking, and scientific measurements.",
+    [ToolNameLists.WeightConverter]: "Convert pounds, kilograms, ounces, grams, stones, etc with our weight converter. Perfect for cooking, fitness tracking, and scientific measurements.",
     [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, and get personalized insights.",
-    [ToolNameLists.LengthConverter]: "Convert meters, feet, inches, kilometers, miles, and more with our comprehensive length converter. Perfect for construction, travel, sports, and scientific measurements.",
-    [ToolNameLists.VolumeConverter]: "Convert liters, gallons, cups, milliliters, and more with our comprehensive volume converter. Perfect for cooking, chemistry, engineering, and everyday measurements.",
+    [ToolNameLists.LengthConverter]: "Convert meters, feet, inches, kilometers, miles, etc with our length converter. Perfect for construction, travel, and scientific measurements.",
+    [ToolNameLists.VolumeConverter]: "Convert liters, gallons, cups, milliliters, etc with our volume converter. Perfect for cooking, engineering, and everyday measurements.",
 }
 
 export const ToolUrls: Record<string, string> = {
