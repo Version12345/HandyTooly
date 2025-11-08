@@ -54,6 +54,7 @@ export enum ToolNameLists {
     CompoundInterestCalculator = "Compound Interest Calculator",
     DayConverterDateCalculator = "Day Converter & Date Calculator",
     IncomeToDebtRatioCalculator = "Income-to-Debt Ratio Calculator",
+    InflationCalculator = "Inflation Calculator",
     ResumeCoverLetterConverter = "Resume/Cover Letter Converter",
     RomanNumeralsConverter = "Roman Numerals Converter",
     SalaryCalculator = "Salary Calculator",
@@ -68,6 +69,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest and track contributions in different currencies.",
     [ToolNameLists.DayConverterDateCalculator]: "Calculate dates, find weekdays, date differences, and perform various date-related calculations.",
     [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio and get lending guidance in different currencies.",
+    [ToolNameLists.InflationCalculator]: "Calculate the impact of inflation on purchasing power, analyze future value, and understand real-world cost changes over time.",
     [ToolNameLists.ResumeCoverLetterConverter]: "Convert job descriptions into tailored resumes and cover letters using our AI tools.",
     [ToolNameLists.RomanNumeralsConverter]: "Convert between regular numbers and Roman numerals with detailed explanations. Support traditional notation and vinculum (overline) for large numbers.",
     [ToolNameLists.SalaryCalculator]: "Calculate take-home pay, tax breakdowns, and detailed salary analysis in different currencies.",
@@ -107,6 +109,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.IncomeToDebtRatioCalculator,
             description: ToolDescription[ToolNameLists.IncomeToDebtRatioCalculator],
             link: `${URL_BASE}/${ToolCategorySlug.Finance}/income-to-debt-ratio-calculator`
+        },
+        {
+            name: ToolNameLists.InflationCalculator,
+            description: ToolDescription[ToolNameLists.InflationCalculator],
+            link: `${URL_BASE}/${ToolCategorySlug.Finance}/inflation-calculator`
         },
         {
             name: ToolNameLists.SalaryCalculator,
