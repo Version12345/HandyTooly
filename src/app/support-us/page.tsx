@@ -18,7 +18,6 @@ export const metadata: Metadata = {
 };
 
 export default function SupportUsLayout({
-  children,
   searchParams,
 }: {
   children: React.ReactNode;
