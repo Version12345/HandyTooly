@@ -2,11 +2,11 @@ import { canonicalUrl } from "@/utils/canonicalUrl";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'About Us - Learn About HandyTooly\'s Mission | HandyTooly',
+  title: 'About Us - Learn About Our Mission',
   description: "HandyTooly is a free online platform offering reliable calculators, converters, and practical tools. Built by experienced developers in the United States.",
   keywords: 'about handytooly, free tools, online calculators, web tools, developer team, mission, privacy-focused, no tracking',
   openGraph: {
-    title: 'About Us - Learn About HandyTooly\'s Mission',
+    title: 'About Us - Learn About Our Mission',
     description: "HandyTooly is a free online platform offering reliable calculators, converters, and practical tools. Built by experienced developers in the United States.",
     type: 'website',
     url: canonicalUrl('/about-us', true),

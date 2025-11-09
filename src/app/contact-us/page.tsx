@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { canonicalUrl } from "@/utils/canonicalUrl";
 
 export const metadata: Metadata = {
-  title: 'Contact Us - Get in Touch with HandyTooly | HandyTooly',
+  title: 'Contact Us - Get in Touch with Us',
   description: "Have questions about our calculators, found a bug, or want to suggest a new tool? Contact HandyTooly team - we respond within 24 hours.",
   keywords: 'contact handytooly, support, help, feedback, bug report, feature request, calculator help, customer service',
   openGraph: {
