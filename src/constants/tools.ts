@@ -66,6 +66,7 @@ export enum ToolNameLists {
     LengthConverter = "Length Converter",
     VolumeConverter = "Volume Converter",
     AreaConverter = "Area Converter",
+    TemperatureConverter = "Temperature Converter",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -85,6 +86,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.LengthConverter]: "Convert meters (m), feet (ft), inches (in), kilometers (km), miles (mil), etc with our length converter. Perfect for construction, & scientific measurements.",
     [ToolNameLists.VolumeConverter]: "Convert liters (L), gallons (gal), cups (c), milliliters (mL), etc with our volume converter. Perfect for cooking, engineering, & everyday measurements.",
     [ToolNameLists.AreaConverter]: "Convert square meters (m²), square feet (ft²), acres, hectares, etc with our area converter. Perfect for real estate, gardening, & land measurements.",
+    [ToolNameLists.TemperatureConverter]: "Convert Celsius (°C), Fahrenheit (°F), Kelvin (K), Rankine (°R), etc with our temperature converter. Perfect for cooking, science, & weather measurements.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -104,6 +106,7 @@ export const ToolUrls: Record<string, string> = {
     [ToolNameLists.LengthConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/length-converter`,
     [ToolNameLists.VolumeConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/volume-converter`,
     [ToolNameLists.AreaConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/area-converter`,
+    [ToolNameLists.TemperatureConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/temperature-converter`,
 }
 
 export const Tools: Record<string, Tool[]> = {
@@ -193,6 +196,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.VolumeConverter,
             description: ToolDescription[ToolNameLists.VolumeConverter],
             link: ToolUrls[ToolNameLists.VolumeConverter]
+        },
+        {
+            name: ToolNameLists.TemperatureConverter,
+            description: ToolDescription[ToolNameLists.TemperatureConverter],
+            link: ToolUrls[ToolNameLists.TemperatureConverter]
         },
     ]
 };
