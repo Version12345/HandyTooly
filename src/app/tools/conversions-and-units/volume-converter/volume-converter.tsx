@@ -329,12 +329,11 @@ export function VolumeConverter() {
   };
 
   return (
-    <ToolLayout toolCategory={ToolNameLists.VolumeConverter}>
+    <ToolLayout 
+      toolCategory={ToolNameLists.VolumeConverter}
+      secondaryToolDescription="Perfect for cooking, chemistry, engineering, and everyday measurements. Get instant conversions with high precision calculations."
+    >
       <div className="space-y-6">
-        <p className="text-sm text-gray-600">
-          Convert liters, gallons, cups, milliliters, and more with our comprehensive volume converter. Perfect for cooking, chemistry, engineering, and everyday measurements. Get instant conversions with high precision calculations.
-        </p>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Input Section */}
           <div className="bg-white rounded-lg shadow-md p-6">

@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
-import { ToolDescription, ToolNameLists } from '@/constants/tools';
+import { ToolNameLists } from '@/constants/tools';
 
 interface EquivalentExample {
   icon: string;

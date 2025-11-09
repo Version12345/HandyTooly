@@ -312,12 +312,11 @@ export function WeightConverter() {
   };
 
   return (
-    <ToolLayout toolCategory={ToolNameLists.WeightConverter}>
+    <ToolLayout 
+      toolCategory={ToolNameLists.WeightConverter}
+      secondaryToolDescription="Perfect for cooking, shipping, fitness tracking, and scientific measurements."
+    >
       <div className="space-y-6">
-        <p className="text-sm text-gray-600">
-          Convert pounds, kilograms, ounces, grams, stones, and more with our precise weight converter. Perfect for cooking, shipping, fitness tracking, and scientific measurements. Get instant conversions with high precision calculations.
-        </p>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Input Section */}
           <div className="bg-white rounded-lg shadow-md p-6">

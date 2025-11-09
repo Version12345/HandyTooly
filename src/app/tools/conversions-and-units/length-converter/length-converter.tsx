@@ -317,12 +317,11 @@ export function LengthConverter() {
   };
 
   return (
-    <ToolLayout toolCategory={ToolNameLists.LengthConverter}>
+    <ToolLayout 
+      toolCategory={ToolNameLists.LengthConverter}
+      secondaryToolDescription="Perfect for construction, travel, sports, and scientific measurements. Get instant conversions with high precision calculations."
+    >
       <div className="space-y-6">
-        <p className="text-sm text-gray-600">
-          Convert meters, feet, inches, kilometers, miles, and more with our comprehensive length converter. Perfect for construction, travel, sports, and scientific measurements. Get instant conversions with high precision calculations.
-        </p>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Input Section */}
           <div className="bg-white rounded-lg shadow-md p-6">
