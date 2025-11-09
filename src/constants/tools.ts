@@ -65,6 +65,7 @@ export enum ToolNameLists {
     WeightLossCalculator = "Weight Loss Percentage Calculator",
     LengthConverter = "Length Converter",
     VolumeConverter = "Volume Converter",
+    AreaConverter = "Area Converter",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -83,6 +84,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, & get personalized insights.",
     [ToolNameLists.LengthConverter]: "Convert meters (m), feet (ft), inches (in), kilometers (km), miles (mil), etc with our length converter. Perfect for construction, & scientific measurements.",
     [ToolNameLists.VolumeConverter]: "Convert liters (L), gallons (gal), cups (c), milliliters (mL), etc with our volume converter. Perfect for cooking, engineering, & everyday measurements.",
+    [ToolNameLists.AreaConverter]: "Convert square meters (m²), square feet (ft²), acres, hectares, etc with our area converter. Perfect for real estate, gardening, & land measurements.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -101,6 +103,7 @@ export const ToolUrls: Record<string, string> = {
     [ToolNameLists.WeightLossCalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/weight-loss-calculator`,
     [ToolNameLists.LengthConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/length-converter`,
     [ToolNameLists.VolumeConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/volume-converter`,
+    [ToolNameLists.AreaConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/area-converter`,
 }
 
 export const Tools: Record<string, Tool[]> = {
@@ -147,9 +150,19 @@ export const Tools: Record<string, Tool[]> = {
     ],
     [ToolCategory.Conversions]: [
         {
+            name: ToolNameLists.AreaConverter,
+            description: ToolDescription[ToolNameLists.AreaConverter],
+            link: ToolUrls[ToolNameLists.AreaConverter]
+        },
+        {
             name: ToolNameLists.DayConverterDateCalculator,
             description: ToolDescription[ToolNameLists.DayConverterDateCalculator],
             link: ToolUrls[ToolNameLists.DayConverterDateCalculator]
+        },
+        {
+            name: ToolNameLists.LengthConverter,
+            description: ToolDescription[ToolNameLists.LengthConverter],
+            link: ToolUrls[ToolNameLists.LengthConverter]
         },
         {
             name: ToolNameLists.RomanNumeralsConverter,
@@ -175,11 +188,6 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.WeightConverter,
             description: ToolDescription[ToolNameLists.WeightConverter],
             link: ToolUrls[ToolNameLists.WeightConverter]
-        },
-        {
-            name: ToolNameLists.LengthConverter,
-            description: ToolDescription[ToolNameLists.LengthConverter],
-            link: ToolUrls[ToolNameLists.LengthConverter]
         },
         {
             name: ToolNameLists.VolumeConverter,
