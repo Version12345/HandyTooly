@@ -29,22 +29,22 @@ export enum ToolCategorySlug {
 export const Categories: Record<string, Category> = {
     [ToolCategory.Jobs]: {
         name: "Jobs & Career Tools",
-        description: "Professional job search and career development tools",
+        description: "Professional job search & career development tools",
         slug: "jobs-and-career"
     },
     [ToolCategory.Health]: {
         name: "Health & Wellness Tools", 
-        description: "Health calculators and wellness tracking tools",
+        description: "Health calculators & wellness tracking tools",
         slug: "health-and-wellness"
     },
     [ToolCategory.Finance]: {
         name: "Finance & Money Tools",
-        description: "Financial planning and assessment calculators", 
+        description: "Financial planning & assessment calculators", 
         slug: "finance-and-money"
     },
     [ToolCategory.Conversions]: {
         name: "Conversions & Units Tools",
-        description: "Convert between different units and measurements", 
+        description: "Convert between different units & measurements", 
         slug: "conversions-and-units"
     }
 };
@@ -68,21 +68,21 @@ export enum ToolNameLists {
 }
 
 export const ToolDescription: Record<string, string> = {
-    [ToolNameLists.BMICalculator]: "Calculate your Body Mass Index (BMI). You can use kg and cm or lbs and inches conversions.",
-    [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest and track continuous contributions in different currencies.",
-    [ToolNameLists.DayConverterDateCalculator]: "Calculate dates, find weekdays, date differences, and perform various date-related calculations.",
-    [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio and get lending guidance in different currencies.",
-    [ToolNameLists.InflationCalculator]: "Calculate the impact of inflation on purchasing power, analyze future value, and understand real-world cost changes over time.",
-    [ToolNameLists.ResumeCoverLetterConverter]: "Convert job descriptions into tailored resumes and cover letters using our AI tools.",
-    [ToolNameLists.RomanNumeralsConverter]: "Convert between regular numbers and Roman numerals with explanations. Support traditional notation and vinculum (overline) for large numbers.",
-    [ToolNameLists.SalaryCalculator]: "Calculate take-home pay, tax breakdowns, and detailed salary analysis in different currencies.",
-    [ToolNameLists.StepsToDistanceCalculator]: "Convert daily steps to distance (miles or kilometers), calculate calories burned, and track your walking distance with personalized metrics.",
+    [ToolNameLists.BMICalculator]: "Calculate your Body Mass Index (BMI). You can use kg & cm or lbs & inches conversions.",
+    [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest & track continuous contributions in different currencies.",
+    [ToolNameLists.DayConverterDateCalculator]: "Calculate dates, find weekdays, date differences, & perform various date-related calculations.",
+    [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio & get lending guidance in different currencies.",
+    [ToolNameLists.InflationCalculator]: "Calculate the impact of inflation on purchasing power, analyze future value, & understand real-world cost changes over time.",
+    [ToolNameLists.ResumeCoverLetterConverter]: "Convert job descriptions into tailored resumes & cover letters using our AI tools.",
+    [ToolNameLists.RomanNumeralsConverter]: "Convert between regular numbers & Roman numerals with explanations. Support traditional notation & vinculum (overline) for large numbers.",
+    [ToolNameLists.SalaryCalculator]: "Calculate take-home pay, tax breakdowns, & detailed salary analysis in different currencies.",
+    [ToolNameLists.StepsToDistanceCalculator]: "Convert daily steps to distance (miles or kilometers), calculate calories burned, & track your walking distance with personalized metrics.",
     [ToolNameLists.TimeUnitConverter]: "Convert between different time units like seconds, minutes, hours, days, etc.",
-    [ToolNameLists.UTCTimeZoneConverter]: "Convert between UTC and local time zones with real-time conversion and multiple time zone support.",
-    [ToolNameLists.WeightConverter]: "Convert pounds, kilograms, ounces, grams, stones, etc with our weight converter. Perfect for cooking, fitness tracking, and scientific measurements.",
-    [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, and get personalized insights.",
-    [ToolNameLists.LengthConverter]: "Convert meters, feet, inches, kilometers, miles, etc with our length converter. Perfect for construction, travel, and scientific measurements.",
-    [ToolNameLists.VolumeConverter]: "Convert liters, gallons, cups, milliliters, etc with our volume converter. Perfect for cooking, engineering, and everyday measurements.",
+    [ToolNameLists.UTCTimeZoneConverter]: "Convert between UTC & local time zones with real-time conversion & multiple time zone support.",
+    [ToolNameLists.WeightConverter]: "Convert pounds, kilograms (kg), ounces (oz), grams (g), etc with our weight converter. Perfect for cooking, fitness tracking, & scientific measurements.",
+    [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, & get personalized insights.",
+    [ToolNameLists.LengthConverter]: "Convert meters (m), feet (ft), inches (in), kilometers (km), miles (mil), etc with our length converter. Perfect for construction, & scientific measurements.",
+    [ToolNameLists.VolumeConverter]: "Convert liters (L), gallons (gal), cups (c), milliliters (mL), etc with our volume converter. Perfect for cooking, engineering, & everyday measurements.",
 }
 
 export const ToolUrls: Record<string, string> = {
