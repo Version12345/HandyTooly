@@ -68,10 +68,12 @@ export enum ToolNameLists {
     AreaConverter = "Area Converter",
     TemperatureConverter = "Temperature Converter",
     CreditCardPaymentCalculator = "Credit Card Payment Calculator",
+    BMRCalculator = "BMR Calculator",
 }
 
 export const ToolDescription: Record<string, string> = {
-    [ToolNameLists.BMICalculator]: "Calculate your Body Mass Index (BMI). You can use kg & cm or lbs & inches conversions.",
+    [ToolNameLists.BMICalculator]: "Calculate your Body Mass Index (BMI) for weight loss, maintenance, or gain. You can use kg & cm or lbs & inches conversions.",
+    [ToolNameLists.BMRCalculator]: "Calculate your Basal Metabolic Rate (BMR) for weight loss, maintenance, or gain. You can use kg & cm or lbs & inches conversions.",
     [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest & track continuous contributions in different currencies.",
     [ToolNameLists.DayConverterDateCalculator]: "Calculate dates, find weekdays, date differences, & perform various date-related calculations.",
     [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio & get lending guidance in different currencies.",
@@ -110,6 +112,7 @@ export const ToolUrls: Record<string, string> = {
     [ToolNameLists.AreaConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/area-converter`,
     [ToolNameLists.TemperatureConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/temperature-converter`,
     [ToolNameLists.CreditCardPaymentCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/credit-card-payment-calculator`,
+    [ToolNameLists.BMRCalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/bmr-calculator`,
 }
 
 export const Tools: Record<string, Tool[]> = {
@@ -127,16 +130,26 @@ export const Tools: Record<string, Tool[]> = {
             link: ToolUrls[ToolNameLists.BMICalculator]
         },
         {
+            name: ToolNameLists.BMRCalculator,
+            description: ToolDescription[ToolNameLists.BMRCalculator],
+            link: ToolUrls[ToolNameLists.BMRCalculator]
+        },
+        {
             name: ToolNameLists.WeightLossCalculator,
             description: ToolDescription[ToolNameLists.WeightLossCalculator],
             link: ToolUrls[ToolNameLists.WeightLossCalculator]
-        }
+        },
     ],
     [ToolCategory.Finance]: [
         {
             name: ToolNameLists.CompoundInterestCalculator,
             description: ToolDescription[ToolNameLists.CompoundInterestCalculator],
             link: ToolUrls[ToolNameLists.CompoundInterestCalculator]
+        },
+        {
+            name: ToolNameLists.CreditCardPaymentCalculator,
+            description: ToolDescription[ToolNameLists.CreditCardPaymentCalculator],
+            link: ToolUrls[ToolNameLists.CreditCardPaymentCalculator]
         },
         {
             name: ToolNameLists.IncomeToDebtRatioCalculator,
@@ -153,11 +166,6 @@ export const Tools: Record<string, Tool[]> = {
             description: ToolDescription[ToolNameLists.SalaryCalculator],
             link: ToolUrls[ToolNameLists.SalaryCalculator]
         },
-        {
-            name: ToolNameLists.CreditCardPaymentCalculator,
-            description: ToolDescription[ToolNameLists.CreditCardPaymentCalculator],
-            link: ToolUrls[ToolNameLists.CreditCardPaymentCalculator]
-        }
     ],
     [ToolCategory.Conversions]: [
         {
@@ -186,6 +194,11 @@ export const Tools: Record<string, Tool[]> = {
             link: ToolUrls[ToolNameLists.StepsToDistanceCalculator]
         },
         {
+            name: ToolNameLists.TemperatureConverter,
+            description: ToolDescription[ToolNameLists.TemperatureConverter],
+            link: ToolUrls[ToolNameLists.TemperatureConverter]
+        },
+        {
             name: ToolNameLists.TimeUnitConverter,
             description: ToolDescription[ToolNameLists.TimeUnitConverter],
             link: ToolUrls[ToolNameLists.TimeUnitConverter]
@@ -204,11 +217,6 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.VolumeConverter,
             description: ToolDescription[ToolNameLists.VolumeConverter],
             link: ToolUrls[ToolNameLists.VolumeConverter]
-        },
-        {
-            name: ToolNameLists.TemperatureConverter,
-            description: ToolDescription[ToolNameLists.TemperatureConverter],
-            link: ToolUrls[ToolNameLists.TemperatureConverter]
         },
     ]
 };
