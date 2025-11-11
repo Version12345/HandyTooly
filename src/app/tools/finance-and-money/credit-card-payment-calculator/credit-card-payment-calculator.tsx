@@ -1,8 +1,13 @@
 'use client';
 import React, { useState, useEffect, useCallback } from 'react';
+import Highcharts from 'highcharts'
+import HighchartsReact from 'highcharts-react-official'
+
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 import { copyToClipboard } from '@/utils/copyToClipboard';
+import { get } from 'http';
+import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
 
 enum CURRENCY {
     USD = '$',
@@ -74,6 +79,7 @@ export function CreditCardPaymentCalculator() {
     const [targetMonths, setTargetMonths] = useState('12');
     const [results, setResults] = useState<PayoffResults | null>(null);
     const [payoffStrategies, setPayoffStrategies] = useState<PayoffStrategy[]>([]);
+    const [options, setOptions] = useState<Highcharts.Options>({});
 
     const formatCurrency = useCallback((amount: number): string => {
         const selectedCurrency = CURRENCIES.find(c => c.value === currency);
@@ -208,66 +214,6 @@ export function CreditCardPaymentCalculator() {
         return strategies.slice(0, 3);
     }, [calculatePayoffTime]);
 
-    const getDebtTips = useCallback((
-        principal: number,
-        annualRate: number,
-        monthsToPayoff: number
-    ): DebtTip[] => {
-        const tips: DebtTip[] = [
-            {
-                category: 'Payment Strategy',
-                tip: 'Pay more than the minimum to reduce total interest paid',
-                icon: '💰'
-            },
-            {
-                category: 'Interest Reduction',
-                tip: 'Consider balance transfer cards with lower interest rates',
-                icon: '📊'
-            },
-            {
-                category: 'Budget Planning',
-                tip: 'Create a strict budget to find extra money for payments',
-                icon: '📝'
-            },
-            {
-                category: 'Debt Snowball',
-                tip: 'Focus on paying off highest interest rate cards first',
-                icon: '⛄'
-            },
-            {
-                category: 'Emergency Fund',
-                tip: 'Build a small emergency fund to avoid new debt',
-                icon: '🛡️'
-            },
-            {
-                category: 'Professional Help',
-                tip: 'Consider credit counseling if debt feels overwhelming',
-                icon: '🤝'
-            }
-        ];
-
-        // Add specific tips based on situation
-        if (annualRate > 25) {
-            tips.unshift({
-                category: 'High Interest Alert',
-                tip: 'Your interest rate is very high - prioritize this debt',
-                icon: '🚨'
-            });
-        }
-
-        if (monthsToPayoff > 60) {
-            tips.unshift({
-                category: 'Long Payoff Warning',
-                tip: 'Consider increasing payments to reduce payoff time',
-                icon: '⏰'
-            });
-        }
-
-        // Randomly shuffle and return 4 tips
-        const shuffled = [...tips].sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, 4);
-    }, []);
-
     const performCalculation = useCallback(() => {
         const balanceNum = parseFloat(balance);
         const rateNum = parseFloat(interestRate);
@@ -330,18 +276,159 @@ export function CreditCardPaymentCalculator() {
         }
     };
 
-    const getSelectedCurrencySymbol = (): string => {
+    const getSelectedCurrencySymbol = useCallback((): string => {
         const selectedCurrency = CURRENCIES.find(c => c.value === currency);
         return selectedCurrency?.symbol || '$';
-    };
+    }, [currency]);
+
+    const updateChartOptions = useCallback((): Highcharts.Options => {
+        if (!results || results.monthsToPayoff === Infinity || results.monthlyBreakdown.length === 0) {
+            return {
+                credits: { enabled: false },
+                chart: { 
+                    height: 300,
+                    backgroundColor: '#f9fafb'
+                },
+                title: { 
+                    text: 'Enter payment details to see chart',
+                    style: { color: '#6b7280', fontSize: '14px' }
+                },
+                series: []
+            };
+        }
+
+        // Limit to first 24 months for readability, or all months if less
+        const monthsToShow = Math.min(24, results.monthsToPayoff);
+        const monthlyData = results.monthlyBreakdown.slice(0, monthsToShow);
+        
+        const interestData = monthlyData.map(month => parseFloat(month.interest.toFixed(2)));
+        const principalData = monthlyData.map(month => parseFloat(month.principal.toFixed(2)));
+        const balanceData = monthlyData.map(month => parseFloat(month.balance.toFixed(2)));
+        const categories = monthlyData.map((_, index) => `${index + 1}`);
+
+        return {
+            credits: { enabled: false },
+            chart: {
+                height: 400,
+                zooming: { type: 'x' }
+            },
+            title: {
+                text: 'Payment Breakdown Over Time',
+                style: { fontSize: '16px', fontWeight: 'bold', color: '#1f2937' }
+            },
+            xAxis: {
+                title: { 
+                    text: 'Month',
+                    style: { color: '#6b7280' }
+                },
+                categories: categories,
+                labels: {
+                    style: { color: '#6b7280' }
+                }
+            },
+            yAxis: [{
+                title: { 
+                    text: `Payment Amount (${getSelectedCurrencySymbol()})`,
+                    style: { color: '#6b7280' }
+                },
+                min: 0,
+                labels: {
+                    style: { color: '#6b7280' }
+                },
+                gridLineColor: '#e5e7eb'
+            }, {
+                title: { 
+                    text: `Remaining Balance (${getSelectedCurrencySymbol()})`,
+                    style: { color: '#f59e0b' }
+                },
+                opposite: true,
+                min: 0,
+                labels: {
+                    style: { color: '#6b7280' }
+                },
+                gridLineColor: 'transparent'
+            }],
+            tooltip: {
+                shared: true,
+                headerFormat: '<b>Month {point.key}</b><br>',
+                pointFormat: `<span style="color:{series.color}">{series.name}</span>: <b>${getSelectedCurrencySymbol()}{point.y:,.2f}</b><br>`,
+                backgroundColor: 'white',
+                borderColor: '#d1d5db',
+                borderRadius: 8,
+                shadow: true
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: { enabled: false },
+                    borderWidth: 0
+                },
+                line: {
+                    marker: { 
+                        enabled: true,
+                        radius: 3,
+                        symbol: 'circle'
+                    },
+                    lineWidth: 2
+                }
+            },
+            legend: {
+                align: 'center',
+                verticalAlign: 'bottom',
+                layout: 'horizontal',
+                itemStyle: { color: '#374151' }
+            },
+            series: [{
+                name: 'Principal Payment',
+                type: 'column',
+                data: principalData,
+                color: '#10b981',
+                yAxis: 0,
+                tooltip: {
+                    pointFormat: `<span style="color:#10b981">●</span> Principal Payment: <b>${getSelectedCurrencySymbol()}{point.y:,.2f}</b><br>`
+                }
+            }, {
+                name: 'Interest Payment',
+                type: 'column',
+                data: interestData,
+                color: '#ef4444',
+                yAxis: 0,
+                tooltip: {
+                    pointFormat: `<span style="color:#ef4444">●</span> Interest Payment: <b>${getSelectedCurrencySymbol()}{point.y:,.2f}</b><br>`
+                }
+            }, {
+                name: 'Remaining Balance',
+                type: 'line',
+                data: balanceData,
+                color: '#f59e0b',
+                yAxis: 1,
+                lineWidth: 3,
+                marker: {
+                    enabled: true,
+                    radius: 4,
+                    fillColor: '#f59e0b',
+                    lineWidth: 2,
+                    lineColor: '#ffffff'
+                },
+                tooltip: {
+                    pointFormat: `<span style="color:#f59e0b">●</span> Remaining Balance: <b>${getSelectedCurrencySymbol()}{point.y:,.2f}</b><br>`
+                }
+            }] as Highcharts.SeriesOptionsType[]
+        };
+    }, [results, getSelectedCurrencySymbol]);
+
+    // Update chart options when results change
+    useEffect(() => {
+        setOptions(updateChartOptions());
+    }, [results, updateChartOptions]);
 
     return (
-        <ToolLayout toolCategory={ToolNameLists.CreditCardPaymentCalculator}>
+        <ToolLayout 
+            toolCategory={ToolNameLists.CreditCardPaymentCalculator}
+            disclaimer={<FinancialDisclaimer />}
+            secondaryToolDescription="Plan your payment strategy, compare different approaches, and get debt-free faster with our comprehensive credit card calculator."
+        >
             <div className="space-y-6">
-                <p className="text-sm text-gray-600">
-                    Calculate how long it takes to pay off credit card debt and total interest costs. Plan your payment strategy, compare different approaches, and get debt-free faster with our comprehensive credit card calculator.
-                </p>
-
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Input Section */}
                     <div className="bg-white rounded-lg shadow-md p-6">
@@ -573,7 +660,7 @@ export function CreditCardPaymentCalculator() {
                         <h2 className="text-xl font-semibold text-gray-900 mb-4">Payoff Strategies</h2>
                         
                         {/* Payoff Strategies */}
-                        {payoffStrategies.length > 0 && (
+                        {payoffStrategies.length > 0 ? (
                             <div className="mb-6">
                                 <h3 className="text-lg font-medium text-gray-900 mb-3">Alternative Payment Strategies</h3>
                                 {payoffStrategies.map((strategy, index) => (
@@ -596,6 +683,21 @@ export function CreditCardPaymentCalculator() {
                                         </div>
                                     </div>
                                 ))}
+                            </div>
+                        ) : (
+                            <p className="text-sm text-gray-500 mb-6">No alternative strategies available. Adjust your payment to see different options.</p>
+                        )}
+
+                        {/* Chart Section */}
+                        <h3>Payment Breakdown Chart</h3>
+                        {options.series && options.series.length === 0 ? (
+                            <p className="text-sm text-gray-500 mb-4">Chart will display once valid payment details are entered.</p>
+                        ) : (
+                            <div>
+                                <HighchartsReact
+                                    highcharts={Highcharts}
+                                    options={options}
+                                />
                             </div>
                         )}
                     </div>
