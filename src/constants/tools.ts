@@ -67,6 +67,7 @@ export enum ToolNameLists {
     VolumeConverter = "Volume Converter",
     AreaConverter = "Area Converter",
     TemperatureConverter = "Temperature Converter",
+    CreditCardPaymentCalculator = "Credit Card Payment Calculator",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -87,6 +88,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.VolumeConverter]: "Convert liters (L), gallons (gal), cups (c), milliliters (mL), etc with our volume converter. Perfect for cooking, engineering, & everyday measurements.",
     [ToolNameLists.AreaConverter]: "Convert square meters (m²), square feet (ft²), acres, hectares, etc with our area converter. Perfect for real estate, gardening, & land measurements.",
     [ToolNameLists.TemperatureConverter]: "Convert Celsius (°C), Fahrenheit (°F), Kelvin (K), Rankine (°R), etc with our temperature converter. Perfect for cooking, science, & weather measurements.",
+    [ToolNameLists.CreditCardPaymentCalculator]: "Calculate how long it takes to pay off credit card debt & total interest. Plan payments, compare strategies & get debt-free faster with multiple currencies.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -107,6 +109,7 @@ export const ToolUrls: Record<string, string> = {
     [ToolNameLists.VolumeConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/volume-converter`,
     [ToolNameLists.AreaConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/area-converter`,
     [ToolNameLists.TemperatureConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/temperature-converter`,
+    [ToolNameLists.CreditCardPaymentCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/credit-card-payment-calculator`,
 }
 
 export const Tools: Record<string, Tool[]> = {
@@ -149,6 +152,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.SalaryCalculator,
             description: ToolDescription[ToolNameLists.SalaryCalculator],
             link: ToolUrls[ToolNameLists.SalaryCalculator]
+        },
+        {
+            name: ToolNameLists.CreditCardPaymentCalculator,
+            description: ToolDescription[ToolNameLists.CreditCardPaymentCalculator],
+            link: ToolUrls[ToolNameLists.CreditCardPaymentCalculator]
         }
     ],
     [ToolCategory.Conversions]: [
