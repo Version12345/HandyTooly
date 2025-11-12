@@ -1,4 +1,4 @@
-export const canonicalUrl = (path: string, fullPath: boolean = false): string => {
-  const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+export const canonicalUrl = (path: string, fullPath: boolean = true): string => {
+  const baseUrl = process.env.BASE_URL;
   return fullPath ? `${baseUrl}${path}` : `${path}`;
 }

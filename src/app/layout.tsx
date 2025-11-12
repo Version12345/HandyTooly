@@ -46,7 +46,6 @@ export default async function RootLayout({
         <link rel="icon" type="image/png" href="/favicon-32x96.png" sizes="32x96"></link>
         <link rel="shortcut icon" href="/favicon.ico"></link>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"></link>
-        <link rel="canonical" href={SITE_URL} ></link>
       </head>
       <body
         className={`${roboto.variable} antialiased`}
