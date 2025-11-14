@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import { HexToDecimalConverter } from './hex-to-decimal-converter';
 import { canonicalUrl } from '@/utils/canonicalUrl';
+import { ToolDescription, ToolNameLists, ToolUrls } from '@/constants/tools';
 
 export const metadata: Metadata = {
-  title: 'Hex to Decimal Converter - Convert Hexadecimal to Decimal & More | HandyTooly',
-  description: 'Convert hexadecimal (hex) numbers to decimal, binary, octal & more. Perfect for programming, web development & computer science calculations. Free online tool.',
+  title: ToolNameLists.HexToDecimalConverter,
+  description: ToolDescription[ToolNameLists.HexToDecimalConverter],
   keywords: [
     'hex to decimal converter',
     'hexadecimal converter',
@@ -22,13 +23,13 @@ export const metadata: Metadata = {
     'programmer calculator'
   ],
   openGraph: {
-    title: 'Hex to Decimal Converter - Convert Hexadecimal Numbers | HandyTooly',
-    description: 'Convert hexadecimal (hex) numbers to decimal, binary, octal & more. Perfect for programming, web development & computer science calculations.',
+    title: ToolNameLists.HexToDecimalConverter,
+    description: ToolDescription[ToolNameLists.HexToDecimalConverter],
     type: 'website',
-    url: canonicalUrl('/tools/conversions-and-units/hex-to-decimal-converter'),
+    url: canonicalUrl(ToolUrls[ToolNameLists.HexToDecimalConverter]),
   },
   alternates: {
-    canonical: canonicalUrl('/tools/conversions-and-units/hex-to-decimal-converter'),
+    canonical: canonicalUrl(ToolUrls[ToolNameLists.HexToDecimalConverter]),
   },
 };
 
