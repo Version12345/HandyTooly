@@ -16,14 +16,16 @@ export enum ToolCategory {
     Jobs = "Jobs & Career",
     Health = "Health & Wellness",
     Finance = "Finance & Money",
-    Conversions = "Conversions & Units"
+    Conversions = "Conversions & Units",
+    Mathematics = "Mathematics"
 }
 
 export enum ToolCategorySlug {
     Jobs = "jobs-and-career",
     Health = "health-and-wellness",
     Finance = "finance-and-money",
-    Conversions = "conversions-and-units"
+    Conversions = "conversions-and-units",
+    Mathematics = "mathematics"
 }
 
 export const Categories: Record<string, Category> = {
@@ -46,6 +48,11 @@ export const Categories: Record<string, Category> = {
         name: "Conversions & Units Tools",
         description: "Convert between different units & measurements", 
         slug: "conversions-and-units"
+    },
+    [ToolCategory.Mathematics]: {
+        name: "Mathematics Tools",
+        description: "Mathematical calculators & statistical analysis tools", 
+        slug: "mathematics"
     }
 };
 
@@ -70,6 +77,7 @@ export enum ToolNameLists {
     TemperatureConverter = "Temperature Converter",
     CreditCardPaymentCalculator = "Credit Card Payment Calculator",
     BMRCalculator = "BMR Calculator",
+    MeanMedianModeCalculator = "Mean Median Mode Calculator",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -93,6 +101,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.AreaConverter]: "Convert square meters (m²), square feet (ft²), acres, hectares, etc with our area converter. Perfect for real estate, gardening, & land measurements.",
     [ToolNameLists.TemperatureConverter]: "Convert Celsius (°C), Fahrenheit (°F), Kelvin (K), Rankine (°R), etc with our temperature converter. Perfect for cooking, science, & weather measurements.",
     [ToolNameLists.CreditCardPaymentCalculator]: "Calculate how long it takes to pay off credit card debt & total interest. Plan payments, compare strategies & get debt-free faster with multiple currencies.",
+    [ToolNameLists.MeanMedianModeCalculator]: "Calculate mean, median, mode along with minimum, maximum, range, quartiles, and sum for a set of data. Perfect for statistics, data analysis, & mathematical calculations.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -116,6 +125,7 @@ export const ToolUrls: Record<string, string> = {
     [ToolNameLists.TemperatureConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/temperature-converter`,
     [ToolNameLists.CreditCardPaymentCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/credit-card-payment-calculator`,
     [ToolNameLists.BMRCalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/bmr-calculator`,
+    [ToolNameLists.MeanMedianModeCalculator]: `${URL_BASE}/${ToolCategorySlug.Mathematics}/mean-median-mode-calculator`,
 }
 
 export const Tools: Record<string, Tool[]> = {
@@ -136,6 +146,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.BMRCalculator,
             description: ToolDescription[ToolNameLists.BMRCalculator],
             link: ToolUrls[ToolNameLists.BMRCalculator]
+        },
+        {
+            name: ToolNameLists.StepsToDistanceCalculator,
+            description: ToolDescription[ToolNameLists.StepsToDistanceCalculator],
+            link: ToolUrls[ToolNameLists.StepsToDistanceCalculator]
         },
         {
             name: ToolNameLists.WeightLossCalculator,
@@ -226,5 +241,12 @@ export const Tools: Record<string, Tool[]> = {
             description: ToolDescription[ToolNameLists.VolumeConverter],
             link: ToolUrls[ToolNameLists.VolumeConverter]
         },
+    ],
+    [ToolCategory.Mathematics]: [
+        {
+            name: ToolNameLists.MeanMedianModeCalculator,
+            description: ToolDescription[ToolNameLists.MeanMedianModeCalculator],
+            link: ToolUrls[ToolNameLists.MeanMedianModeCalculator]
+        }
     ]
 };
