@@ -53,6 +53,7 @@ export enum ToolNameLists {
     BMICalculator = "BMI Calculator",
     CompoundInterestCalculator = "Compound Interest Calculator",
     DayConverterDateCalculator = "Day Converter & Date Calculator",
+    HexToDecimalConverter = "Hex to Decimal Converter",
     IncomeToDebtRatioCalculator = "Income-to-Debt Ratio Calculator",
     InflationCalculator = "Inflation Calculator",
     ResumeCoverLetterConverter = "Resume/Cover Letter Converter",
@@ -76,6 +77,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.BMRCalculator]: "Calculate your Basal Metabolic Rate (BMR) for weight loss, maintenance, or gain. You can use kg & cm or lbs & inches conversions.",
     [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest & track continuous contributions in different currencies.",
     [ToolNameLists.DayConverterDateCalculator]: "Calculate dates, find weekdays, date differences, & perform various date-related calculations.",
+    [ToolNameLists.HexToDecimalConverter]: "Convert hexadecimal (hex) numbers to decimal, binary, octal & more. Perfect for programming, web development & computer science calculations.",
     [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio & get lending guidance in different currencies.",
     [ToolNameLists.InflationCalculator]: "Calculate the impact of inflation on purchasing power, analyze future value, & understand real-world cost changes over time.",
     [ToolNameLists.ResumeCoverLetterConverter]: "Convert job descriptions into tailored resumes & cover letters using our AI tools.",
@@ -97,6 +99,7 @@ export const ToolUrls: Record<string, string> = {
     [ToolNameLists.BMICalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/bmi-calculator`,
     [ToolNameLists.CompoundInterestCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/compound-interest-calculator`,
     [ToolNameLists.DayConverterDateCalculator]: `${URL_BASE}/${ToolCategorySlug.Conversions}/day-converter`,
+    [ToolNameLists.HexToDecimalConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/hex-to-decimal-converter`,
     [ToolNameLists.IncomeToDebtRatioCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/income-to-debt-ratio-calculator`,
     [ToolNameLists.InflationCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/inflation-calculator`,
     [ToolNameLists.ResumeCoverLetterConverter]: `${URL_BASE}/${ToolCategorySlug.Jobs}/resume-cover-letter-converter`,
@@ -177,6 +180,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.DayConverterDateCalculator,
             description: ToolDescription[ToolNameLists.DayConverterDateCalculator],
             link: ToolUrls[ToolNameLists.DayConverterDateCalculator]
+        },
+        {
+            name: ToolNameLists.HexToDecimalConverter,
+            description: ToolDescription[ToolNameLists.HexToDecimalConverter],
+            link: ToolUrls[ToolNameLists.HexToDecimalConverter]
         },
         {
             name: ToolNameLists.LengthConverter,
