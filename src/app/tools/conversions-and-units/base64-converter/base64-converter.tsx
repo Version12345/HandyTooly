@@ -208,8 +208,8 @@ export function Base64Converter() {
       <div className="space-y-6">
         {/* Mode Selection */}
         <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Conversion Mode</h2>
-          <div className="inline-flex rounded-lg bg-gray-100 p-1">
+          <h2>Conversion Mode</h2>
+          <div className="inline-flex rounded-lg bg-gray-100 p-1 text-sm">
             <button
               onClick={() => setMode('text')}
               className={`px-6 py-2 rounded-md font-medium transition-colors ${
