@@ -30,7 +30,7 @@ export default function Header() {
   };
 
   return (
-    <header className="p-4 bg-white border-b border-gray-200 class-main-header">
+    <header className="p-2 bg-white border-b border-gray-200 class-main-header">
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center">
           <Link 
@@ -41,13 +41,13 @@ export default function Header() {
               src="/images/handy-tooly-logo.svg" 
               alt="HandyTooly Logo" 
               className="h-8 w-auto"
-              width={300}
+              width={200}
               height={100}
             />
           </Link>
           
           {/* Desktop Navigation Menu */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-6 text-sm">
             {HEADER_LINKS.map((link) => (
               <Link
                 key={link.href}
