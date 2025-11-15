@@ -285,7 +285,7 @@ export function BMRCalculator() {
                         {/* Units */}
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700 mb-2">Units</label>
-                            <div className="inline-flex rounded-lg bg-gray-100 p-1 w-full">
+                            <div className="inline-flex rounded-lg bg-gray-100 p-1 w-full text-sm">
                                 {UNIT_SYSTEMS.map((system) => (
                                     <button
                                         key={system.value}
@@ -305,7 +305,7 @@ export function BMRCalculator() {
                         {/* Gender */}
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700 mb-2">Gender</label>
-                            <div className="inline-flex rounded-lg bg-gray-100 p-1 w-full">
+                            <div className="inline-flex rounded-lg bg-gray-100 p-1 w-full text-sm">
                                 {GENDERS.map((genderOption) => (
                                     <button
                                         key={genderOption.value}
