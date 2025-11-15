@@ -240,14 +240,14 @@ export const Tools: Record<string, Tool[]> = {
             link: ToolUrls[ToolNameLists.WeightConverter]
         },
         {
-            name: ToolNameLists.VolumeConverter,
-            description: ToolDescription[ToolNameLists.VolumeConverter],
-            link: ToolUrls[ToolNameLists.VolumeConverter]
-        },
-        {
             name: ToolNameLists.WordCharacterCounter,
             description: ToolDescription[ToolNameLists.WordCharacterCounter],
             link: ToolUrls[ToolNameLists.WordCharacterCounter]
+        },
+        {
+            name: ToolNameLists.VolumeConverter,
+            description: ToolDescription[ToolNameLists.VolumeConverter],
+            link: ToolUrls[ToolNameLists.VolumeConverter]
         },
     ],
     [ToolCategory.Mathematics]: [

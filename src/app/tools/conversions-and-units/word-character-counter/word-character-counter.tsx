@@ -2,16 +2,17 @@
 import React, { useState, useMemo } from 'react';
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
-import { copyToClipboard } from '@/utils/copyToClipboard';
-import { FacebookIcon, XIcon, InstagramIcon, LinkedInIcon } from '@/components/social-icon';
+import { BookIcon, FacebookIcon, XIcon, InstagramIcon, LinkedInIcon } from '@/components/social-icon';
 
+const CHARACTER_LIMIT = 500;
 const SOCIAL_ICON_SIZE = .75;
 
 const socialIcons = [
   { platform: 'Instagram', limit: 150, icon: <InstagramIcon scale={SOCIAL_ICON_SIZE} /> },
   { platform: 'Facebook', limit: 250, icon: <FacebookIcon scale={SOCIAL_ICON_SIZE} /> },
   { platform: 'X', limit: 280, icon: <XIcon scale={SOCIAL_ICON_SIZE} /> },
-  { platform: 'LinkedIn', limit: 300, icon: <LinkedInIcon scale={SOCIAL_ICON_SIZE} /> }
+  { platform: 'LinkedIn', limit: 300, icon: <LinkedInIcon scale={SOCIAL_ICON_SIZE} /> },
+  { platform: 'Average Post', limit: 1500, icon: <BookIcon scale={SOCIAL_ICON_SIZE} /> }
 ];
 
 interface TextStats {
@@ -144,26 +145,95 @@ export function WordCharacterCounter() {
             <div className="flex gap-2 mb-4">
               <button
                 onClick={clearText}
-                className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded transition-colors"
+                className="px-4 py-2 bg-orange-500 hover:bg-orange-00 text-white rounded transition-colors"
               >
                 Clear
               </button>
             </div>
 
-            {/* Sample Texts */}
-            <div>
-              <h3 className="text-sm font-medium text-gray-700 mb-2">Sample Texts</h3>
-              <div className="space-y-2">
-                {sampleTexts.map((sample, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setText(sample.content)}
-                    className="w-full text-left px-3 py-2 text-sm bg-gray-100 hover:bg-orange-100 rounded transition-colors"
-                  >
-                    <span className="font-semibold text-gray-900">{sample.name}</span>
-                    <div className="text-xs text-gray-600 mt-1 truncate">{sample.content.substring(0, 100)}...</div>
-                  </button>
-                ))}
+            {/* Social Media Limits */}
+            <div className="bg-gray-100 rounded-lg p-6 ">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">Social Media Character Limits</h2>
+              
+              <div className="w-[90%] m-auto">
+                {/* Social Icons in One Line */}
+                <div className="flex items-center justify-center space-x-8 mb-10">
+                  {socialIcons.map(({ platform, limit, icon }) => {
+                    const percentage = Math.min((stats.characters / limit) * 100, 100);
+                    const isOverLimit = stats.characters > limit;
+                    
+                    return (
+                      <div key={platform} className="flex flex-col items-center">
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl mb-2 border border-white ${
+                          isOverLimit ? 'bg-red-100' : 
+                          percentage > 80 ? 'bg-yellow-100' : 'bg-green-100'
+                        }`}>
+                          {icon}
+                        </div>
+                        <div className="text-xs text-center">
+                          <div className="font-medium text-gray-900">{platform}</div>
+                          <div className={`${isOverLimit ? 'text-red-600' : 'text-gray-600'}`}>
+                            {stats.characters}/{limit}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                
+                {/* Progress Bar */}
+                <div className="relative">
+                  <div className="text-gray-500 mb-2 text-xs">
+                    {/* Markers for different platforms */}
+                    {
+                      socialIcons.map(({ platform, limit }) => {
+                        const adjustedLimit = limit > CHARACTER_LIMIT ? CHARACTER_LIMIT : limit;
+                        const leftPercent = ((adjustedLimit / CHARACTER_LIMIT) * 100) - 1;
+                        return (
+                          <div 
+                            key={`marker-${platform}`}
+                            style={{ 
+                              left: `${leftPercent}%`,
+                              position: 'absolute',
+                              top: '-1.5rem',
+                            }}
+                          >
+                            <span>{limit}</span>
+                          </div>
+                        );
+                      })
+                    }
+                  </div>
+                  <div className="bg-white rounded-full h-3 relative overflow-hidden">
+                    <div 
+                      className="h-3 bg-orange-500 rounded-full transition-all duration-300 absolute left-0 top-0"
+                      style={{ 
+                        width: `${Math.min((stats.characters / CHARACTER_LIMIT) * 100, 100)}%`
+                      }}
+                    ></div>
+                    {/* Markers for different platforms */}
+                    {
+                      socialIcons.map(({ platform, limit }) => {
+                        const adjustedLimit = limit > CHARACTER_LIMIT ? CHARACTER_LIMIT : limit;
+                        const leftPercent = (adjustedLimit / CHARACTER_LIMIT) * 100;
+                        return (
+                          <div 
+                            key={platform}
+                            className="absolute top-0 h-3 border-l-2 border-white"
+                            style={{ left: `${leftPercent}%` }}
+                          >
+                            <div className="absolute -top-4 -left-1 text-xs text-gray-600">
+                              {platform}
+                            </div>
+                          </div>
+                        );
+                      })
+                    }
+                  </div>
+                  <div className="text-center mt-2 text-sm text-gray-600">
+                    {stats.characters} characters
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -172,20 +242,22 @@ export function WordCharacterCounter() {
           <div className="bg-white rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Text Statistics</h2>
             
-            <div className="space-y-4">
+            <div className="space-y-4 mb-6">
               {/* Words */}
-              <div className="bg-blue-50 rounded-lg p-4 relative">
+              <div className="bg-blue-50 rounded-lg p-4 relative flex justify-between items-start">
                 <div className="text-sm text-gray-600">Words</div>
-                <div className="text-3xl font-bold text-gray-900 pr-12">{stats.words.toLocaleString()}</div>
+                <div className="text-xl font-bold text-gray-900">{stats.words.toLocaleString()}</div>
               </div>
 
               {/* Characters */}
               <div className="bg-green-50 rounded-lg p-4 relative">
-                <div className="text-sm text-gray-600">Characters</div>
-                <div className="text-3xl font-bold text-gray-900 pr-12">
-                  {(includeSpaces ? stats.characters : stats.charactersNoSpaces).toLocaleString()}
+                <div className="flex justify-between items-start mb-2">
+                  <div className="text-sm text-gray-600">Characters</div>
+                  <div className="text-xl font-bold text-gray-900">
+                    {(includeSpaces ? stats.characters : stats.charactersNoSpaces).toLocaleString()}
+                  </div>
                 </div>
-                <div className="mt-2">
+                <div>
                   <label className="flex items-center text-xs text-gray-600">
                     <input
                       type="checkbox"
@@ -199,32 +271,28 @@ export function WordCharacterCounter() {
               </div>
 
               {/* Sentences */}
-              <div className="bg-purple-50 rounded-lg p-4 relative">
+              <div className="bg-purple-50 rounded-lg p-4 relative flex justify-between items-start">
                 <div className="text-sm text-gray-600">Sentences</div>
-                <div className="text-3xl font-bold text-gray-900 pr-12">{stats.sentences.toLocaleString()}</div>
+                <div className="text-xl font-bold text-gray-900">{stats.sentences.toLocaleString()}</div>
               </div>
 
               {/* Paragraphs */}
-              <div className="bg-orange-50 rounded-lg p-4 relative">
+              <div className="bg-orange-50 rounded-lg p-4 relative flex justify-between items-start">
                 <div className="text-sm text-gray-600">Paragraphs</div>
-                <div className="text-3xl font-bold text-gray-900 pr-12">{stats.paragraphs.toLocaleString()}</div>
+                <div className="text-xl font-bold text-gray-900">{stats.paragraphs.toLocaleString()}</div>
               </div>
 
               {/* Additional Stats */}
-              <div className="bg-pink-50 rounded-lg p-3">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm text-gray-600">Reading time</span>
-                </div>
-                <div className="text-2xl font-semibold">
+              <div className="bg-pink-50 rounded-lg p-3 flex justify-between items-start">
+                <div className="text-sm text-gray-600">Reading time</div>
+                <div className="text-xl font-semibold text-gray-900">
                   &lt;{stats.readingTime} min
                 </div>
               </div>
 
-              <div className="bg-gray-100 rounded-lg p-3">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm text-gray-600">Readability</span>
-                </div>
-                <div className={`text-2xl font-semibold ${
+              <div className="bg-gray-100 rounded-lg p-3 flex justify-between items-start">
+                <div className="text-sm text-gray-600">Readability</div>
+                <div className={`text-xl font-semibold ${
                   readability.color === 'green' ? 'text-green-600' :
                   readability.color === 'blue' ? 'text-blue-600' :
                   readability.color === 'yellow' ? 'text-yellow-600' :
@@ -236,104 +304,78 @@ export function WordCharacterCounter() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Advanced Statistics */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Detailed Analysis</h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center p-4 bg-gray-50 rounded-lg">
-              <div className="text-2xl font-bold text-gray-900">{stats.averageWordsPerSentence}</div>
-              <div className="text-xs text-gray-600">Avg Words/Sentence</div>
-            </div>
-            <div className="text-center p-4 bg-gray-50 rounded-lg">
-              <div className="text-2xl font-bold text-gray-900">{stats.averageSentencesPerParagraph}</div>
-              <div className="text-xs text-gray-600">Avg Sentences/Paragraph</div>
-            </div>
-            <div className="text-center p-4 bg-gray-50 rounded-lg">
-              <div className="text-2xl font-bold text-gray-900">{stats.charactersNoSpaces}</div>
-              <div className="text-xs text-gray-600">Characters (no spaces)</div>
-            </div>
-            <div className="text-center p-4 bg-gray-50 rounded-lg">
-              <div className="text-2xl font-bold text-gray-900">{stats.words > 0 ? Math.round(stats.characters / stats.words * 100) / 100 : 0}</div>
-              <div className="text-xs text-gray-600">Avg Characters/Word</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Social Media Limits */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Social Media Character Limits</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {socialIcons.map(({ platform, limit, icon }) => {
-              const percentage = Math.min((stats.characters / limit) * 100, 100);
-              const isOverLimit = stats.characters > limit;
-              
-              return (
-                <div key={platform} className="bg-gray-50 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span>
-                      {icon}
-                    </span>
-                    <span className="text-sm font-medium text-gray-900">
-                      {platform}
-                    </span>
-                    <span className={`text-xs ${isOverLimit ? 'text-red-600' : 'text-gray-600'}`}>
-                      {stats.characters}/{limit}
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div 
-                      className={`h-2 rounded-full transition-all ${
-                        isOverLimit ? 'bg-red-500' : 
-                        percentage > 80 ? 'bg-yellow-500' : 'bg-green-500'
-                      }`}
-                      style={{ width: `${Math.min(percentage, 100)}%` }}
-                    ></div>
-                  </div>
-                  {isOverLimit && (
-                    <div className="text-xs text-red-600 mt-1">
-                      {stats.characters - limit} over limit
-                    </div>
-                  )}
+            {/* Detailed Analysis */}
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-3">Detailed Analysis</h3>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                  <div className="text-xl font-bold text-gray-900">{stats.averageWordsPerSentence}</div>
+                  <div className="text-xs text-gray-600">Avg Words/Sentence</div>
                 </div>
-              );
-            })}
+                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                  <div className="text-xl font-bold text-gray-900">{stats.averageSentencesPerParagraph}</div>
+                  <div className="text-xs text-gray-600">Avg Sentences/Paragraph</div>
+                </div>
+                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                  <div className="text-xl font-bold text-gray-900">{stats.charactersNoSpaces}</div>
+                  <div className="text-xs text-gray-600">Characters (no spaces)</div>
+                </div>
+                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                  <div className="text-xl font-bold text-gray-900">{stats.words > 0 ? Math.round(stats.characters / stats.words * 100) / 100 : 0}</div>
+                  <div className="text-xs text-gray-600">Avg Characters/Word</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Sample Texts */}
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h3 className="text-sm font-medium text-gray-700 mb-2">Sample Texts</h3>
+          <div className="space-y-2">
+            {sampleTexts.map((sample, index) => (
+              <button
+                key={index}
+                onClick={() => setText(sample.content)}
+                className="w-full text-left px-3 py-2 text-sm bg-gray-100 hover:bg-orange-100 rounded transition-colors"
+              >
+                <span className="font-semibold text-gray-900">{sample.name}</span>
+                <div className="text-xs text-gray-600 mt-1 truncate">{sample.content.substring(0, 100)}...</div>
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Educational Content */}
         <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">How to Use This Word Character Counter</h3>
+          <h3>How to Use This Word Character Counter</h3>
           <p className="text-gray-700 mb-4">
             Our text analysis tool provides comprehensive statistics about your content including word count, character count, readability analysis, and social media compatibility. Simply paste or type your text to get instant analysis and insights.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div className="bg-blue-50 rounded-lg p-4">
-              <h4 className="text-lg font-semibold text-blue-900 mb-2">Content Writing</h4>
-              <p className="text-sm text-blue-800">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 bg-gray-300 p-4 rounded-lg">
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="text-lg font-semibold mb-2">Content Writing</h4>
+              <p className="text-sm">
                 Perfect for bloggers, copywriters, and content creators who need to meet specific word count requirements and optimize readability for their audience.
               </p>
             </div>
-            <div className="bg-green-50 rounded-lg p-4">
-              <h4 className="text-lg font-semibold text-green-900 mb-2">Academic Writing</h4>
-              <p className="text-sm text-green-800">
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="text-lg font-semibold mb-2">Academic Writing</h4>
+              <p className="text-sm">
                 Essential for students and researchers working on essays, papers, and dissertations with strict word and character limits.
               </p>
             </div>
-            <div className="bg-purple-50 rounded-lg p-4">
-              <h4 className="text-lg font-semibold text-purple-900 mb-2">Social Media</h4>
-              <p className="text-sm text-purple-800">
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="text-lg font-semibold mb-2">Social Media</h4>
+              <p className="text-sm">
                 Optimize your posts for different platforms with real-time character limit tracking for Twitter, Facebook, Instagram, and LinkedIn.
               </p>
             </div>
-            <div className="bg-orange-50 rounded-lg p-4">
-              <h4 className="text-lg font-semibold text-orange-900 mb-2">SEO Optimization</h4>
-              <p className="text-sm text-orange-800">
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="text-lg font-semibold mb-2">SEO Optimization</h4>
+              <p className="text-sm">
                 Ensure your content meets SEO best practices with appropriate word counts, readability scores, and content structure analysis.
               </p>
             </div>
