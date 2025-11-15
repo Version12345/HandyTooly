@@ -78,6 +78,7 @@ export enum ToolNameLists {
     CreditCardPaymentCalculator = "Credit Card Payment Calculator",
     BMRCalculator = "BMR Calculator",
     MeanMedianModeCalculator = "Mean Median Mode Calculator",
+    WordCharacterCounter = "Word Character Counter",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -102,6 +103,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.TemperatureConverter]: "Convert Celsius (°C), Fahrenheit (°F), Kelvin (K), Rankine (°R), etc with our temperature converter. Perfect for cooking, science, & weather measurements.",
     [ToolNameLists.CreditCardPaymentCalculator]: "Calculate how long it takes to pay off credit card debt & total interest. Plan payments, compare strategies & get debt-free faster with multiple currencies.",
     [ToolNameLists.MeanMedianModeCalculator]: "Calculate mean, median, mode along with minimum, maximum, range, quartiles, and sum for a set of data. Perfect for statistics, data analysis, & mathematical calculations.",
+    [ToolNameLists.WordCharacterCounter]: "Count words, characters, sentences, and paragraphs in your text. Analyze readability, reading time, and tone of voice. Perfect for writing, content creation, and text analysis.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -126,6 +128,7 @@ export const ToolUrls: Record<string, string> = {
     [ToolNameLists.CreditCardPaymentCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/credit-card-payment-calculator`,
     [ToolNameLists.BMRCalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/bmr-calculator`,
     [ToolNameLists.MeanMedianModeCalculator]: `${URL_BASE}/${ToolCategorySlug.Mathematics}/mean-median-mode-calculator`,
+    [ToolNameLists.WordCharacterCounter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/word-character-counter`,
 }
 
 export const Tools: Record<string, Tool[]> = {
@@ -240,6 +243,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.VolumeConverter,
             description: ToolDescription[ToolNameLists.VolumeConverter],
             link: ToolUrls[ToolNameLists.VolumeConverter]
+        },
+        {
+            name: ToolNameLists.WordCharacterCounter,
+            description: ToolDescription[ToolNameLists.WordCharacterCounter],
+            link: ToolUrls[ToolNameLists.WordCharacterCounter]
         },
     ],
     [ToolCategory.Mathematics]: [
