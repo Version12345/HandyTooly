@@ -239,22 +239,22 @@ export function WeightLossCalculator() {
             {/* Units Toggle */}
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">Units</label>
-              <div className="flex gap-2">
+              <div className="inline-flex rounded-lg bg-gray-100 p-1 w-full text-sm">
                 <button
-                  onClick={handleUnitToggle}
-                  className={`px-4 py-2 rounded-md text-sm ${!weightData.isMetric 
-                    ? 'bg-orange-500 text-white' 
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                  onClick={() => !weightData.isMetric || handleUnitToggle()}
+                  className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${!weightData.isMetric 
+                    ? 'bg-orange-500 text-white shadow-sm' 
+                    : 'text-gray-700 hover:text-gray-900'}`}
                 >
-                  Imperial (ft/in, lbs)
+                  Imperial
                 </button>
                 <button
-                  onClick={handleUnitToggle}
-                  className={`px-4 py-2 rounded-md text-sm ${weightData.isMetric 
-                    ? 'bg-orange-500 text-white' 
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                  onClick={() => weightData.isMetric || handleUnitToggle()}
+                  className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${weightData.isMetric 
+                    ? 'bg-orange-500 text-white shadow-sm' 
+                    : 'text-gray-700 hover:text-gray-900'}`}
                 >
-                  Metric (cm, kg)
+                  Metric
                 </button>
               </div>
             </div>
@@ -262,20 +262,20 @@ export function WeightLossCalculator() {
             {/* Gender */}
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">Gender</label>
-              <div className="flex gap-2">
+              <div className="inline-flex rounded-lg bg-gray-100 p-1 w-full text-sm">
                 <button
                   onClick={() => handleInputChange('gender', 'male')}
-                  className={`px-4 py-2 rounded-md text-sm ${weightData.gender === 'male' 
-                    ? 'bg-orange-500 text-white' 
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                  className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${weightData.gender === 'male' 
+                    ? 'bg-orange-500 text-white shadow-sm' 
+                    : 'text-gray-700 hover:text-gray-900'}`}
                 >
                   Male
                 </button>
                 <button
                   onClick={() => handleInputChange('gender', 'female')}
-                  className={`px-4 py-2 rounded-md text-sm ${weightData.gender === 'female' 
-                    ? 'bg-orange-500 text-white' 
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                  className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${weightData.gender === 'female' 
+                    ? 'bg-orange-500 text-white shadow-sm' 
+                    : 'text-gray-700 hover:text-gray-900'}`}
                 >
                   Female
                 </button>

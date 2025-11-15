@@ -212,18 +212,18 @@ export function MeanMedianModeCalculator() {
                         </div>
 
                         {/* Control Buttons */}
-                        <div className="flex gap-2 mb-4">
-                            <button
-                                onClick={clearInput}
-                                className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded transition-colors"
-                            >
-                                Clear
-                            </button>
+                        <div className="flex gap-2 mb-4 text-sm">
                             <button
                                 onClick={performCalculation}
                                 className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded transition-colors"
                             >
                                 Calculate
+                            </button>
+                            <button
+                                onClick={clearInput}
+                                className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded transition-colors"
+                            >
+                                Clear
                             </button>
                         </div>
 
@@ -391,8 +391,14 @@ export function MeanMedianModeCalculator() {
                                 </div>
 
                                 {/* Sorted Data Preview */}
-                                <div className="bg-gray-50 rounded-lg p-4">
-                                    <h4 className="text-sm font-medium text-gray-900 mb-2">Sorted Data</h4>
+                                <div className="bg-gray-50 rounded-lg p-4 relative">
+                                    <button
+                                        onClick={() => handleCopy(results.sortedData.map(formatNumber).join(', '))}
+                                        className="absolute top-3 right-3 px-3 py-1 text-xs bg-gray-500 hover:bg-gray-600 text-white rounded transition-colors"
+                                    >
+                                        Copy
+                                    </button>
+                                    <h4 className="text-sm font-medium text-gray-900 mb-2 pr-16">Sorted Data</h4>
                                     <div className="text-xs font-mono text-gray-700 max-h-20 overflow-y-auto">
                                         {results.sortedData.map(formatNumber).join(', ')}
                                     </div>
@@ -420,22 +426,22 @@ export function MeanMedianModeCalculator() {
                         Mean, median, and mode are all measures of central tendency in statistics. In different ways they each tell us what value in a data set is typical or representative of the data set.
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                        <div className="bg-orange-50 rounded-lg p-4">
-                            <h4 className="text-lg font-semibold text-orange-900 mb-2">Mean (Average)</h4>
-                            <p className="text-sm text-orange-800">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 bg-gray-200 p-4 rounded-lg">
+                        <div className="bg-white rounded-lg p-4">
+                            <h4 className="text-lg font-semibold mb-2">Mean (Average)</h4>
+                            <p className="text-sm">
                                 The mean is the same as the average value of a data set and is found using a calculation. Add up all of the numbers and divide by the number of numbers in the data set.
                             </p>
                         </div>
-                        <div className="bg-green-50 rounded-lg p-4">
-                            <h4 className="text-lg font-semibold text-green-900 mb-2">Median</h4>
-                            <p className="text-sm text-green-800">
+                        <div className="bg-white rounded-lg p-4">
+                            <h4 className="text-lg font-semibold mb-2">Median</h4>
+                            <p className="text-sm">
                                 The median is the central number of a data set. Arrange data points from smallest to largest and locate the central number. If there are 2 numbers in the middle, the median is the average of those 2 numbers.
                             </p>
                         </div>
-                        <div className="bg-blue-50 rounded-lg p-4">
-                            <h4 className="text-lg font-semibold text-blue-900 mb-2">Mode</h4>
-                            <p className="text-sm text-blue-800">
+                        <div className="bg-white rounded-lg p-4">
+                            <h4 className="text-lg font-semibold mb-2">Mode</h4>
+                            <p className="text-sm">
                                 The mode is the number in a data set that occurs most frequently. Count how many times each number occurs in the data set. The mode is the number with the highest tally.
                             </p>
                         </div>

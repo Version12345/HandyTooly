@@ -285,18 +285,18 @@ export function BMRCalculator() {
                         {/* Units */}
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700 mb-2">Units</label>
-                            <div className="flex gap-2">
+                            <div className="inline-flex rounded-lg bg-gray-100 p-1 w-full">
                                 {UNIT_SYSTEMS.map((system) => (
                                     <button
                                         key={system.value}
                                         onClick={() => setUnitSystem(system.value)}
-                                        className={`flex-1 px-3 py-2 text-sm rounded-md transition-colors ${
+                                        className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${
                                             unitSystem === system.value
-                                                ? 'bg-orange-500 text-white'
-                                                : 'bg-gray-100 text-gray-700 hover:bg-orange-100'
+                                                ? 'bg-orange-500 text-white shadow-sm'
+                                                : 'text-gray-700 hover:text-gray-900'
                                         }`}
                                     >
-                                        {system.value === UNIT_SYSTEM.METRIC ? 'Metric (cm, kg)' : 'Imperial (ft/in, lbs)'}
+                                        {system.value === UNIT_SYSTEM.METRIC ? 'Metric' : 'Imperial'}
                                     </button>
                                 ))}
                             </div>
@@ -305,15 +305,15 @@ export function BMRCalculator() {
                         {/* Gender */}
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700 mb-2">Gender</label>
-                            <div className="flex gap-2">
+                            <div className="inline-flex rounded-lg bg-gray-100 p-1 w-full">
                                 {GENDERS.map((genderOption) => (
                                     <button
                                         key={genderOption.value}
                                         onClick={() => setGender(genderOption.value)}
-                                        className={`flex-1 px-4 py-2 rounded-md transition-colors ${
+                                        className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${
                                             gender === genderOption.value
-                                                ? 'bg-orange-500 text-white'
-                                                : 'bg-gray-200 text-gray-700 hover:bg-orange-100'
+                                                ? 'bg-orange-500 text-white shadow-sm'
+                                                : 'text-gray-700 hover:text-gray-900'
                                         }`}
                                     >
                                         {genderOption.label}

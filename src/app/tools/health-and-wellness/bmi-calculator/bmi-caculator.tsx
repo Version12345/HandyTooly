@@ -330,14 +330,14 @@ export default function BMICalculator() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Unit System
               </label>
-              <div className="flex space-x-2">
+              <div className="inline-flex rounded-lg bg-gray-100 p-1 w-full text-sm">
                 <button
                   type="button"
                   onClick={() => handleUnitChange('metric')}
-                  className={`flex-1 px-3 py-2 text-sm rounded-md border font-medium transition-colors ${
+                  className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${
                     unit === 'metric'
-                      ? 'bg-orange-500 text-white border-orange-500 hover:bg-orange-600'
-                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-200'
+                      ? 'bg-orange-500 text-white shadow-sm'
+                      : 'text-gray-700 hover:text-gray-900'
                   }`}
                 >
                   Metric
@@ -345,10 +345,10 @@ export default function BMICalculator() {
                 <button
                   type="button"
                   onClick={() => handleUnitChange('imperial')}
-                  className={`flex-1 px-3 py-2 text-sm rounded-md border font-medium transition-colors ${
+                  className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${
                     unit === 'imperial'
-                      ? 'bg-orange-500 text-white border-orange-500 hover:bg-orange-600'
-                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-200'
+                      ? 'bg-orange-500 text-white shadow-sm'
+                      : 'text-gray-700 hover:text-gray-900'
                   }`}
                 >
                   Imperial
@@ -457,14 +457,14 @@ export default function BMICalculator() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Gender (optional)
               </label>
-              <div className="flex space-x-2">
+              <div className="inline-flex rounded-lg bg-gray-100 p-1 w-full text-sm">
                 <button
                   type="button"
                   onClick={() => setGender('male')}
-                  className={`flex-1 px-3 py-2 text-sm rounded-md border font-medium transition-colors ${
+                  className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${
                     gender === 'male'
-                      ? 'bg-orange-500 text-white border-orange-500 hover:bg-orange-600'
-                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-200'
+                      ? 'bg-orange-500 text-white shadow-sm'
+                      : 'text-gray-700 hover:text-gray-900'
                   }`}
                 >
                   Male
@@ -472,10 +472,10 @@ export default function BMICalculator() {
                 <button
                   type="button"
                   onClick={() => setGender('female')}
-                  className={`flex-1 px-3 py-2 text-sm rounded-md border font-medium transition-colors ${
+                  className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${
                     gender === 'female'
-                      ? 'bg-orange-500 text-white border-orange-500 hover:bg-orange-600'
-                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-200'
+                      ? 'bg-orange-500 text-white shadow-sm'
+                      : 'text-gray-700 hover:text-gray-900'
                   }`}
                 >
                   Female

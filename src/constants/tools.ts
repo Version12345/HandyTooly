@@ -201,6 +201,11 @@ export const Tools: Record<string, Tool[]> = {
             link: ToolUrls[ToolNameLists.AreaConverter]
         },
         {
+            name: ToolNameLists.Base64Converter,
+            description: ToolDescription[ToolNameLists.Base64Converter],
+            link: ToolUrls[ToolNameLists.Base64Converter]
+        },
+        {
             name: ToolNameLists.DayConverterDateCalculator,
             description: ToolDescription[ToolNameLists.DayConverterDateCalculator],
             link: ToolUrls[ToolNameLists.DayConverterDateCalculator]
@@ -209,6 +214,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.HexToDecimalConverter,
             description: ToolDescription[ToolNameLists.HexToDecimalConverter],
             link: ToolUrls[ToolNameLists.HexToDecimalConverter]
+        },
+        {
+            name: ToolNameLists.HtmlEncoder,
+            description: ToolDescription[ToolNameLists.HtmlEncoder],
+            link: ToolUrls[ToolNameLists.HtmlEncoder]
         },
         {
             name: ToolNameLists.LengthConverter,
@@ -254,16 +264,6 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.VolumeConverter,
             description: ToolDescription[ToolNameLists.VolumeConverter],
             link: ToolUrls[ToolNameLists.VolumeConverter]
-        },
-        {
-            name: ToolNameLists.Base64Converter,
-            description: ToolDescription[ToolNameLists.Base64Converter],
-            link: ToolUrls[ToolNameLists.Base64Converter]
-        },
-        {
-            name: ToolNameLists.HtmlEncoder,
-            description: ToolDescription[ToolNameLists.HtmlEncoder],
-            link: ToolUrls[ToolNameLists.HtmlEncoder]
         },
     ],
     [ToolCategory.Mathematics]: [
