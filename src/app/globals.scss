@@ -4,6 +4,7 @@
   --background: #ffffff;
   --foreground: #171717;
   --dark-gray: #575757;
+  --opacity-70: 0.7;
 }
 
 @theme inline {
@@ -63,6 +64,8 @@ h6 {
 button {
   &:hover {
     cursor: pointer;
+    opacity: var(--opacity-70);
+    transition: opacity 0.2s;
   }
 }
 
@@ -91,13 +94,13 @@ input, textarea, select {
 }
 
 .tool-list-item {
+  &:hover {
+    opacity: var(--opacity-70);
+    transition: opacity 0.2s;
+  }
+
   h3 {
     color: var(--color-orange-600);
-    transition: color 0.2s;
-
-    &:hover {
-      color: var(--color-orange-400);
-    }
   }
 }
 
