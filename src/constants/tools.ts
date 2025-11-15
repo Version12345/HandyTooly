@@ -80,6 +80,7 @@ export enum ToolNameLists {
     MeanMedianModeCalculator = "Mean Median Mode Calculator",
     WordCharacterCounter = "Word Character Counter",
     Base64Converter = "Base64 Converter",
+    HtmlEncoder = "HTML Encoder/Decoder",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -106,6 +107,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.MeanMedianModeCalculator]: "Calculate mean, median, mode along with minimum, maximum, range, quartiles, and sum for a set of data. Perfect for statistics, data analysis, & mathematical calculations.",
     [ToolNameLists.WordCharacterCounter]: "Count words, characters, sentences, and paragraphs in your text. Analyze readability, reading time, and tone of voice. Perfect for writing, content creation, and text analysis.",
     [ToolNameLists.Base64Converter]: "Encode text to Base64 or decode Base64 to text. Convert images to Base64 format for web development, data storage, & API integration. Perfect for developers & data encoding needs.",
+    [ToolNameLists.HtmlEncoder]: "Encode HTML to entities or decode HTML entities to text. Convert special characters like <, >, &, quotes for safe HTML display. Perfect for web development & content management.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -132,6 +134,7 @@ export const ToolUrls: Record<string, string> = {
     [ToolNameLists.MeanMedianModeCalculator]: `${URL_BASE}/${ToolCategorySlug.Mathematics}/mean-median-mode-calculator`,
     [ToolNameLists.WordCharacterCounter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/word-character-counter`,
     [ToolNameLists.Base64Converter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/base64-converter`,
+    [ToolNameLists.HtmlEncoder]: `${URL_BASE}/${ToolCategorySlug.Conversions}/html-encoder`,
 }
 
 export const Tools: Record<string, Tool[]> = {
@@ -256,6 +259,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.Base64Converter,
             description: ToolDescription[ToolNameLists.Base64Converter],
             link: ToolUrls[ToolNameLists.Base64Converter]
+        },
+        {
+            name: ToolNameLists.HtmlEncoder,
+            description: ToolDescription[ToolNameLists.HtmlEncoder],
+            link: ToolUrls[ToolNameLists.HtmlEncoder]
         },
     ],
     [ToolCategory.Mathematics]: [
