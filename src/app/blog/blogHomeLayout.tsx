@@ -6,6 +6,7 @@ import BlogCategories from '@/components/blog/blogCategories';
 import RandomPosts from '@/components/blog/randomPosts';
 import BlogNameCard from '@/components/blog/blogNameCard';
 import Link from 'next/link';
+import Breadcrumb from '@/components/breadcrumb';
 
 const POSTS_PER_PAGE = 6; // Increased for better two-column layout
 
@@ -37,6 +38,9 @@ export default function BlogHomeLayout() {
 
   return (
     <div className="max-w-6xl mx-auto">
+      {/* Breadcrumb */}
+      <Breadcrumb />
+      
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">{pageTitle}</h1>
         <p className="text-lg text-gray-600">
