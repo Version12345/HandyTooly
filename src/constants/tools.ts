@@ -81,6 +81,7 @@ export enum ToolNameLists {
     WordCharacterCounter = "Word Character Counter",
     Base64Converter = "Base64 Converter",
     HtmlEncoder = "HTML Encoder/Decoder",
+    AnnualizedReturnCalculator = "Annualized Return Calculator",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -94,7 +95,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.ResumeCoverLetterConverter]: "Convert job descriptions into tailored resumes & cover letters using our AI tools.",
     [ToolNameLists.RomanNumeralsConverter]: "Convert between regular numbers & Roman numerals with explanations. Support traditional notation & vinculum (overline) for large numbers.",
     [ToolNameLists.SalaryCalculator]: "Calculate take-home pay, tax breakdowns, & detailed salary analysis in different currencies.",
-    [ToolNameLists.StepsToDistanceCalculator]: "Convert daily steps to distance (miles or kilometers), calculate calories burned, & track your walking distance with personalized metrics.",
+    [ToolNameLists.StepsToDistanceCalculator]: "Convert your daily steps into miles or kilometers, see calories burned, and track your walking distance with simple, personalized stats.",
     [ToolNameLists.TimeUnitConverter]: "Convert between different time units like seconds, minutes, hours, days, etc.",
     [ToolNameLists.UTCTimeZoneConverter]: "Convert between UTC & local time zones with real-time conversion & multiple time zone support.",
     [ToolNameLists.WeightConverter]: "Convert pounds, kilograms (kg), ounces (oz), grams (g), etc with our weight converter. Perfect for cooking, fitness tracking, & scientific measurements.",
@@ -104,6 +105,7 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.AreaConverter]: "Convert square meters (m²), square feet (ft²), acres, hectares, etc with our area converter. Perfect for real estate, gardening, & land measurements.",
     [ToolNameLists.TemperatureConverter]: "Convert Celsius (°C), Fahrenheit (°F), Kelvin (K), Rankine (°R), etc with our temperature converter. Perfect for cooking, science, & weather measurements.",
     [ToolNameLists.CreditCardPaymentCalculator]: "Calculate how long it takes to pay off credit card debt & total interest. Plan payments, compare strategies & get debt-free faster with multiple currencies.",
+    [ToolNameLists.AnnualizedReturnCalculator]: "Calculate annualized returns, CAGR, and analyze investment performance with comprehensive metrics and benchmarking.",
     [ToolNameLists.MeanMedianModeCalculator]: "Calculate mean, median, mode along with minimum, maximum, range, quartiles, and sum for a set of data. Perfect for statistics, data analysis, & mathematical calculations.",
     [ToolNameLists.WordCharacterCounter]: "Count words, characters, sentences, and paragraphs in your text. Analyze readability, reading time, and tone of voice. Perfect for writing, content creation, and text analysis.",
     [ToolNameLists.Base64Converter]: "Encode text to Base64 or decode Base64 to text. Convert images to Base64 format for web development, data storage, & API integration. Perfect for developers & data encoding needs.",
@@ -111,6 +113,7 @@ export const ToolDescription: Record<string, string> = {
 }
 
 export const ToolUrls: Record<string, string> = {
+    [ToolNameLists.AnnualizedReturnCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/annualized-return-calculator`,
     [ToolNameLists.BMICalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/bmi-calculator`,
     [ToolNameLists.CompoundInterestCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/compound-interest-calculator`,
     [ToolNameLists.DayConverterDateCalculator]: `${URL_BASE}/${ToolCategorySlug.Conversions}/day-converter`,
@@ -168,6 +171,11 @@ export const Tools: Record<string, Tool[]> = {
         },
     ],
     [ToolCategory.Finance]: [
+        {
+            name: ToolNameLists.AnnualizedReturnCalculator,
+            description: ToolDescription[ToolNameLists.AnnualizedReturnCalculator],
+            link: ToolUrls[ToolNameLists.AnnualizedReturnCalculator]
+        },
         {
             name: ToolNameLists.CompoundInterestCalculator,
             description: ToolDescription[ToolNameLists.CompoundInterestCalculator],
