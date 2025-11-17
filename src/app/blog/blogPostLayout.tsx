@@ -35,7 +35,7 @@ export default function BlogPostLayout({ post, children }: LayoutProps) {
                 <BlogNameCard post={post} />
               </div>
               {children}
-              <hr className="mb-8" />
+              <hr className="my-8" />
               <BlogCategories currentTags={post.tags} showTitle={false} className="mt-4" />
             </div>
           </div>

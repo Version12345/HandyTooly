@@ -1,8 +1,9 @@
 import { canonicalUrl } from "@/utils/canonicalUrl";
 import BlogPostLayout from "../blogPostLayout";
 import { POSTS } from "@/constants/posts";
+import { SITE_EMAIL } from "@/constants/site-info";
 
-const currentPost = POSTS['Welcome'];
+const currentPost = POSTS['welcome'];
 
 export const metadata = {
   title: currentPost.title,
@@ -12,10 +13,10 @@ export const metadata = {
     title: currentPost.title,
     description: currentPost.description,
     type: "website",
-    url: canonicalUrl(`/blog/welcome`, true),
+    url: canonicalUrl(`/blog/${currentPost.slug}`, true),
   },
   alternates: {
-    canonical: canonicalUrl(`/blog/welcome`),
+    canonical: canonicalUrl(`/blog/${currentPost.slug}`),
   },
 };
 
@@ -38,7 +39,7 @@ export default function WelcomePost() {
         </p>
         <h3>Stay Connected</h3>
         <p>
-          We invite you to follow our updates and enjoy each new post. You can send ideas or feedback to <a href="mailto:handytooly@gmail.com">handytooly@gmail.com</a>. We love hearing from our users because your ideas help the tools grow.
+          We invite you to follow our updates and enjoy each new post. You can send ideas or feedback to <a href={`mailto:${SITE_EMAIL}`} className="text-orange-500">{SITE_EMAIL}</a>. We love hearing from our users because your ideas help the tools grow.
         </p>
         <h3>Thank you</h3>
         <p>

@@ -1,3 +1,4 @@
+import { SITE_EMAIL } from "@/constants/site-info";
 import { canonicalUrl } from "@/utils/canonicalUrl";
 import { Metadata } from "next";
 
@@ -23,7 +24,7 @@ export default function ContactUs() {
         <h1>
           About HandyTooly
         </h1>
-        <p>HandyTooly is a free online platform that offers fast, reliable calculators, converters, and practical web tools. It is built by a small team of experienced developers based in the United States. We believe in clean and functional design. Whether you are solving a quick math problem, calculating a mortgage, or formatting text for work, HandyTooly helps you get it done without distractions. Every tool runs smoothly in your browser, with no downloads or sign ups required. if you appreciate our work, please consider supporting us. If you have any feedback or suggestions, feel free to reach out by email at <a href="mailto:handytooly@gmail.com" className="text-orange-500">handytooly@gmail.com</a>!</p>
+        <p>HandyTooly is a free online platform that offers fast, reliable calculators, converters, and practical web tools. It is built by a small team of experienced developers based in the United States. We believe in clean and functional design. Whether you are solving a quick math problem, calculating a mortgage, or formatting text for work, HandyTooly helps you get it done without distractions. Every tool runs smoothly in your browser, with no downloads or sign ups required. if you appreciate our work, please consider supporting us. If you have any feedback or suggestions, feel free to reach out by email at <a href={`mailto:${SITE_EMAIL}`} className="text-orange-500">{SITE_EMAIL}</a>!</p>
 
         <h1>
           Our Mission
