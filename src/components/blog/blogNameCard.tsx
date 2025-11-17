@@ -1,7 +1,11 @@
 import { IPost } from "@/constants/posts"
 import { formatDate } from "@/utils/dateUtils";
 
-export default function BlogNameCard({ post }: { post: IPost }) {
+interface BlogNameCardProps {
+  post: IPost;
+}
+
+export default function BlogNameCard({ post }: BlogNameCardProps) {
   return (
     <div>
       {/* Author and Date */}

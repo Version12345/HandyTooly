@@ -1,5 +1,5 @@
 import { canonicalUrl } from "@/utils/canonicalUrl";
-import BlogLayout from "../blogLayout";
+import BlogPostLayout from "../blogPostLayout";
 import { POSTS } from "@/constants/posts";
 
 const currentPost = POSTS['Welcome'];
@@ -21,31 +21,30 @@ export const metadata = {
 
 export default function WelcomePost() {
   return (
-    <BlogLayout 
+    <BlogPostLayout 
       post={currentPost}
     >
       <article className="prose lg:prose-xl max-w-4xl mx-auto">
         <p>
-          We&apos;re excited to launch our blog, where we&apos;ll be sharing the latest updates, tips, and insights about HandyTooly and our suite of free online tools. Whether you&apos;re a regular user or just discovering us, our blog is the perfect place to stay informed about new features, tool updates, and helpful guides.
+          We are excited to open our new blog and share fresh updates of our <a href="/tools">free online tools</a> with you. The space will hold simple tips, helpful guides, and fun notes about HandyTooly and our free online tools. New visitors can learn the basics. Long-time users can explore deeper features. Each post aims to teach something useful and save you time on daily tasks.
         </p>
-        <h3>What to Expect</h3>
+        <h3>What You Will Find</h3>
         <p>
-          In our blog, you&apos;ll find a variety of content including:
+          Our blog will cover a wide mix of topics. You will see clear announcements on new tools and important upgrades. Read tips that help you get better results with tools you already use. Some posts will share real examples, short steps, and notes from our team. We will also show early ideas, test results, and small wins from our workroom. We want the space to feel open, friendly, and easy to explore.
         </p>
-        <ul>
-          <li>Announcements about new tools and features</li>
-          <li>Tips and tricks for getting the most out of HandyTooly</li>
-          <li>Insights into how our tools can help with everyday tasks</li>
-          <li>Behind-the-scenes looks at our development process</li>
-        </ul>
+        <h3>How Our Tools Help</h3>
+        <p>
+          Many posts will explain how simple tools solve real problems. You may see short stories about people who use HandyTooly for school, work, or home tasks. One post may show how a time converter saves a meeting. Another post may explain how a date calculator speeds up a project plan. Each guide will offer clear value in a few steps.
+        </p>
         <h3>Stay Connected</h3>
         <p>
-          We encourage you to subscribe to our newsletter and follow us on social media to stay updated on the latest blog posts and HandyTooly news. Your feedback and suggestions are always welcome!
+          We invite you to follow our updates and enjoy each new post. You can send ideas or feedback to <a href="mailto:handytooly@gmail.com">handytooly@gmail.com</a>. We love hearing from our users because your ideas help the tools grow.
         </p>
+        <h3>Thank you</h3>
         <p>
-          Thank you for being a part of the HandyTooly community. We look forward to sharing our journey with you through this blog!
+          Thank you for being part of the HandyTooly community. We look forward to sharing this journey with you and building a friendly space that helps you each day.
         </p>
       </article>
-    </BlogLayout>
+    </BlogPostLayout>
   );
 };

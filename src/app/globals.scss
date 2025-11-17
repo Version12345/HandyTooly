@@ -26,7 +26,12 @@ body {
   color: var(--dark-gray);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
   color: var(--color-black);
 }
@@ -61,6 +66,7 @@ h6 {
   margin-bottom: 0.5rem;
 }
 
+a,
 button {
   &:hover {
     cursor: pointer;
@@ -83,13 +89,16 @@ li {
   margin-left: 1rem;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   background-color: var(--color-white);
 }
 
 .main-layout {
   header {
-      border-bottom: 1px solid #e5e7eb; /* Tailwind gray-200 */
+    border-bottom: 1px solid #e5e7eb;
+    /* Tailwind gray-200 */
   }
 }
 
@@ -104,18 +113,28 @@ input, textarea, select {
   }
 }
 
-.pp-STE5LVWF8XS46{
-  text-align:center;
-  border:none;
-  border-radius:0.25rem;
-  min-width:11.625rem;
-  padding:0 2rem;
-  height:2.625rem;
-  font-weight:bold;
-  background-color:#FFD140;
-  color:#000000;
-  font-family:"Helvetica Neue",Arial,sans-serif;
-  font-size:1rem;
-  line-height:1.25rem;
-  cursor:pointer;
+.pp-STE5LVWF8XS46 {
+  text-align: center;
+  border: none;
+  border-radius: 0.25rem;
+  min-width: 11.625rem;
+  padding: 0 2rem;
+  height: 2.625rem;
+  font-weight: bold;
+  background-color: #FFD140;
+  color: #000000;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  cursor: pointer;
+}
+
+.blog-post-layout {
+  a {
+    color: var(--color-orange-500);
+
+    &:hover {
+      color: var(--color-orange-700);
+    }
+  }
 }

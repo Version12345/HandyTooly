@@ -1,4 +1,4 @@
-import { tags } from '@/constants/posts';
+import { TAGS } from '@/constants/posts';
 
 interface BlogCategoriesProps {
   currentTags?: string[];
@@ -7,7 +7,7 @@ interface BlogCategoriesProps {
 }
 
 export default function BlogCategories({ currentTags: categories, showTitle = true, className }: BlogCategoriesProps) {
-  const currentCategories = categories && categories.length > 0 ? categories : tags;
+  const currentCategories = categories && categories.length > 0 ? categories : TAGS;
 
   const handleClick = (tag: string) => {
     window.location.href = `/blog/tags/${encodeURIComponent(tag.toLowerCase())}`;

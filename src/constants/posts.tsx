@@ -1,10 +1,7 @@
-import WelcomePost from "@/app/blog/page";
-
-export const tags = [
+export const TAGS = [
   "Updates",
   "Tips",
-  "Insights",
-  "HandyTooly",
+  "Insights"
 ];
 
 export interface IPost {
@@ -12,34 +9,21 @@ export interface IPost {
   description: string;
   slug: string;
   date: string;
-  content: React.ReactNode;
-  tags: string[];
+  tags: typeof TAGS[number][];
   author: string;
   readTime: number;
   featuredImage: string;
 };
 
-export const POSTS: Record<string, IPost> = {
+export const POSTS: Record<typeof TAGS[number], IPost> = {
   'Welcome': {
-    title: "Welcome to the HandyTooly Blog",
-    description: "Discover the latest updates, tips, and insights from HandyTooly.",
+    title: "Welcome to the HandyTooly",
+    description: "Get updates, tips, and guides for HandyTooly’s free online tools. Learn new features and smart ways to save time.",
     slug: "welcome",
-    date: "2024-06-15",
-    content: <WelcomePost />,
+    date: "2025-11-16",
     tags: ["Updates"],
     author: "HandyTooly Team",
-    readTime: 5,
-    featuredImage: "https://v1.tailwindcss.com/img/card-left.jpg",
-  },
-  'Welcome2': {
-    title: "Welcome to the HandyTooly Blog",
-    description: "Discover the latest updates, tips, and insights from HandyTooly.",
-    slug: "welcome",
-    date: "2024-06-15",
-    content: <WelcomePost />,
-    tags: ["Insights"],
-    author: "HandyTooly Team",
-    readTime: 5,
-    featuredImage: "https://v1.tailwindcss.com/img/card-left.jpg",
-  },
+    readTime: 2,
+    featuredImage: "/images/blogs/welcome-to-HandyTooly.jpg",
+  }
 };

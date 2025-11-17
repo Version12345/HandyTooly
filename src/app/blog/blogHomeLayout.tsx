@@ -5,6 +5,7 @@ import { POSTS } from '@/constants/posts';
 import BlogCategories from '@/components/blog/blogCategories';
 import RandomPosts from '@/components/blog/randomPosts';
 import BlogNameCard from '@/components/blog/blogNameCard';
+import Link from 'next/link';
 
 const POSTS_PER_PAGE = 6; // Increased for better two-column layout
 
@@ -51,7 +52,7 @@ export default function BlogHomeLayout() {
           <div className="grid grid-cols-1 gap-6">
             {paginatedPosts.length ? (
               paginatedPosts.map((post, i) => (
-                <a href={`/blog/${post.slug}`} key={`${post.slug}-${i}`}>
+                <Link href={`/blog/${post.slug}`} key={`${post.slug}-${i}`}>
                   <article 
                     key={`${post.slug}-${i}`} 
                     className="w-full lg:max-w-full lg:flex shadow-md rounded"
@@ -78,7 +79,7 @@ export default function BlogHomeLayout() {
                       </div>
                     </div>
                   </article>
-                </a>
+                </Link>
               ))
             ) : (
               <div className="col-span-2 text-center py-12">

@@ -12,9 +12,9 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-export default function BlogLayout({ post, children }: LayoutProps) {
+export default function BlogPostLayout({ post, children }: LayoutProps) {
   return (
-    <main className="p-8 pt-4 blog-layout"> 
+    <main className="p-8 pt-4 blog-post-layout"> 
       <div className="max-w-6xl mx-auto">
         {/* Breadcrumb */}
         <Breadcrumb />

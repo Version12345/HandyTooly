@@ -55,7 +55,7 @@ export default function SupportUs({ searchParams }: { searchParams: Promise<{ is
                   <h2>Support via PayPal</h2>
                   <p className="text-sm text-gray-500">Your payment will be securely processed through PayPal. You’ll be redirected to PayPal to complete your transaction.</p>
 
-                    <a href="https://www.paypal.com/ncp/payment/STE5LVWF8XS46" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://www.paypal.com/ncp/payment/STE5LVWF8XS46" target="_blank" rel="noopener noreferrer">
                       <div className="border border-gray-300 rounded-md p-4 mt-4 hover:border-orange-300 hover:cursor-pointer transition-colors">
                         <form 
                           action="https://www.paypal.com/ncp/payment/STE5LVWF8XS46" 
@@ -88,7 +88,7 @@ export default function SupportUs({ searchParams }: { searchParams: Promise<{ is
                           </section>
                         </form>
                       </div>
-                    </a>
+                    </Link>
 
                     <h2 className="text-sm text-gray-500 space-y-2 text-center mx-auto my-4">
                       &mdash; OR &mdash;

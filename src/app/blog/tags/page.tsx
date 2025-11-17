@@ -3,6 +3,7 @@ import { canonicalUrl } from '@/utils/canonicalUrl';
 import { IPost, POSTS } from '@/constants/posts';
 import { RightCol } from '@/components/rightCol';
 import Breadcrumb from '@/components/breadcrumb';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Blog Tags',
@@ -76,19 +77,20 @@ export default function BlogTagsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {allTags.length > 0 ? (
                 allTags.map((tag, index) => (
-                  <div
-                    key={tag.name}
-                    className="p-6 border border-gray-200 rounded-lg bg-white hover:shadow-md transition-shadow duration-200"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className={`px-3 py-1 text-sm font-medium rounded-full ${getTagColor(index)}`}>
-                        #{tag.name}
-                      </span>
-                      <span className="text-sm text-gray-500 font-semibold">
-                        {tag.count} post{tag.count !== 1 ? 's' : ''}
-                      </span>
+                  <Link key={tag.name} href={`/blog/tags/${encodeURIComponent(tag.name.toLowerCase())}`}>
+                    <div
+                      className="p-6 border border-gray-200 rounded-lg bg-white hover:shadow-md transition-shadow duration-200"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className={`px-3 py-1 text-sm font-medium rounded-full ${getTagColor(index)}`}>
+                          #{tag.name}
+                        </span>
+                        <span className="text-sm text-gray-500 font-semibold">
+                          {tag.count} post{tag.count !== 1 ? 's' : ''}
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 ))
               ) : (
                 <div className="col-span-2 text-center py-12">
