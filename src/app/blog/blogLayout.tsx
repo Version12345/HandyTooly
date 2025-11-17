@@ -1,15 +1,18 @@
 'use client';
 
+import BlogCategories from '@/components/blog/blogCategories';
+import BlogNameCard from '@/components/blog/blogNameCard';
 import Breadcrumb from '@/components/breadcrumb';
+import { RightCol } from '@/components/rightCol';
+import { IPost } from '@/constants/posts';
 import React from 'react';
 
 interface LayoutProps {
-  pageTitle: string;
-  featuredImageUrl?: string;
+  post: IPost;
   children: React.ReactNode;
 }
 
-export default function BlogLayout({ pageTitle, featuredImageUrl, children }: LayoutProps) {
+export default function BlogLayout({ post, children }: LayoutProps) {
   return (
     <main className="p-8 pt-4 blog-layout"> 
       <div className="max-w-6xl mx-auto">
@@ -19,26 +22,28 @@ export default function BlogLayout({ pageTitle, featuredImageUrl, children }: La
           {/* Left Column */}
           <div className="rounded overflow-hidden shadow-lg bg-white">
             <div 
-              className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" 
-              style={{ backgroundImage: `url(${featuredImageUrl})` }} 
-              title={pageTitle}
+              className="h-48 w-full flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden background-contain" 
+              style={{ backgroundImage: `url(${post.featuredImage})` }} 
+              title={post.title}
             >
             </div>
             <div className="px-6 py-4">
-              <h1 className="mb-0">
-                {pageTitle}
+              <h1>
+                {post.title}
               </h1>
+              <div className="mb-4">
+                <BlogNameCard post={post} />
+              </div>
               {children}
-            </div>
-            <div className="px-6 pt-4 pb-2">
-              <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-              <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-              <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+              <hr className="mb-8" />
+              <BlogCategories currentTags={post.tags} showTitle={false} className="mt-4" />
             </div>
           </div>
-          <div className="rounded overflow-hidden shadow-lg bg-white p-6">
+          <div>
             {/* Right Column */}
-            {children}
+            <RightCol title={post.title} />
+
+            <BlogCategories />
           </div>
         </div>
       </div>

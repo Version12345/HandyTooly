@@ -37,7 +37,7 @@ export const POSTS: Record<string, IPost> = {
     slug: "welcome",
     date: "2024-06-15",
     content: <WelcomePost />,
-    tags: ["Updates"],
+    tags: ["Insights"],
     author: "HandyTooly Team",
     readTime: 5,
     featuredImage: "https://v1.tailwindcss.com/img/card-left.jpg",

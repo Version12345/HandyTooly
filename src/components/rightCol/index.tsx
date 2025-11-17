@@ -22,8 +22,8 @@ export const RightCol = ({ title }: RightColProps) => {
     const shareUrl = `${process.env.BASE_URL}${pathname}`;
     
     return (
-        <div className="min-h-auto md:min-h-[400px]">
-            <div className="bg-gray-50 border-1 border border-gray-300 rounded-lg p-4 mb-4">
+        <div className="min-h-auto">
+            <div className="bg-gray-50 shadow-md rounded-lg p-4 mb-4">
                 <h4>Share</h4>
                 <div className="flex">
                     <FacebookShareButton url={shareUrl} className="mr-2">

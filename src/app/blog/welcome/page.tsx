@@ -22,8 +22,7 @@ export const metadata = {
 export default function WelcomePost() {
   return (
     <BlogLayout 
-      pageTitle={currentPost.title}
-      featuredImageUrl={currentPost.featuredImage}
+      post={currentPost}
     >
       <article className="prose lg:prose-xl max-w-4xl mx-auto">
         <p>

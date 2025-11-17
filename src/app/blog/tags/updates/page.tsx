@@ -1,25 +1,25 @@
 import { canonicalUrl } from '@/utils/canonicalUrl';
-import BlogHomeLayout from './blogHomeLayout';
+import TagLayout from '../tagLayout';
 
 export const metadata = {
-  title: 'Welcome to the HandyTooly Blog',
+  title: 'Showing posts tagged "updates"',
   description: 'Discover the latest updates, tips, and insights from HandyTooly.',
   keywords: 'HandyTooly blog, tool updates, tips, insights',
   openGraph: {
-    title: 'Welcome to the HandyTooly Blog',
+    title: 'Showing posts tagged "updates" - HandyTooly Blog',
     description: 'Discover the latest updates, tips, and insights from HandyTooly.',
     type: 'website',
-    url: canonicalUrl('/blog', true),
+    url: canonicalUrl('/blog/tags/updates', true),
   },
   alternates: {
-    canonical: canonicalUrl('/blog'),
+    canonical: canonicalUrl('/blog/tags/updates'),
   },
 };
 
-export default function BlogHome() {
+export default function UpdatesTag() {
   return (
-    <div className="p-8 pt-4 blog-layout"> 
-      <BlogHomeLayout />
-    </div>
-  )
+    <TagLayout 
+      tag="updates"
+    />
+  );
 }
