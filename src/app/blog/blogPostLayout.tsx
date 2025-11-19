@@ -20,9 +20,9 @@ export default function BlogPostLayout({ post, children }: LayoutProps) {
       <div className="max-w-6xl mx-auto">
         {/* Breadcrumb */}
         <Breadcrumb />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {/* Left - Posts in Two Columns */}
-        <div className="lg:col-span-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Left - Posts in Two Columns */}
+          <div className="lg:col-span-3">
             <div className="rounded overflow-hidden shadow-lg bg-white">
               <div 
                 className="h-48 w-full flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden background-contain" 

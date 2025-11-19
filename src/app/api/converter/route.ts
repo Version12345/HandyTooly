@@ -49,6 +49,7 @@ const formatter = [
         - Italicize dates and locations.
         - Ensure the resume is one page if possible.
         - Use a professional tone and style.
+        - Try to keep the format similar to the original resume and cover letter.
         
         DON'T:
         - No double spaces.
@@ -56,6 +57,7 @@ const formatter = [
         - No excessive bolding or italics.
         - No large blocks of text without breaks.
         - No new lines after headings.
+        - No slashes or unnecessary symbols.
 
         Return the final resume and cover letter in markdown format with escaped special characters, then put them in a JSON object with keys "finalResume" and "finalCoverLetter". Make sure the JSON is properly formatted and can be parsed by JSON.parse().
     `
@@ -92,8 +94,8 @@ export async function POST(request: Request) {
         ]);
 
         const llm = new ChatOpenAI({ 
-            model: process.env.OPENAI_MODEL || 'gpt-5-mini',
-            openAIApiKey: process.env.OPENAI_API_KEY 
+            model: process.env.OPENAI_MODEL || 'gpt-5.1',
+            openAIApiKey: process.env.OPENAI_API_KEY
         });
         const chain = prompt.pipe(llm);
 
