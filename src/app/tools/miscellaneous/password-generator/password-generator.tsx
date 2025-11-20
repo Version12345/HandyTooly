@@ -86,12 +86,12 @@ const generatePasswords = (
 
 export function PasswordGenerator() {
   const [options, setOptions] = useState<PasswordOptions>({
-    count: 5,
+    count: 8,
     length: 12,
     includeUppercase: true,
     includeLowercase: true,
     includeNumbers: true,
-    includeSymbols: false,
+    includeSymbols: true,
     excludeSimilar: false,
     excludeAmbiguous: false,
   });
@@ -138,7 +138,7 @@ export function PasswordGenerator() {
     if (options.includeSymbols) score += 2;
 
     if (score >= 7) return { label: 'Very Strong', color: 'text-green-600', bgColor: 'bg-green-100' };
-    if (score >= 5) return { label: 'Strong', color: 'text-blue-600', bgColor: 'bg-blue-100' };
+    if (score >= 5) return { label: 'Strong', color: 'text-lime-600', bgColor: 'bg-lime-100' };
     if (score >= 3) return { label: 'Medium', color: 'text-yellow-600', bgColor: 'bg-yellow-100' };
     return { label: 'Weak', color: 'text-red-600', bgColor: 'bg-red-100' };
   };
@@ -161,30 +161,32 @@ export function PasswordGenerator() {
               </label>
               <input
                 type="number"
-                min="1"
+                min="6"
                 max="100"
                 value={options.count}
                 onChange={(e) => setOptions({...options, count: parseInt(e.target.value) || 1})}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
+              <small>(Maximum 100)</small>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Password Length
+                Password Length 
               </label>
               <input
                 type="number"
-                min="4"
+                min="6"
                 max="128"
                 value={options.length}
                 onChange={(e) => setOptions({...options, length: parseInt(e.target.value) || 12})}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
+              <small>(Minimum 6 Characters)</small>
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-sm font-medium text-gray-700">Character Types</h3>
+              <h3>Character Types</h3>
               
               <div className="space-y-2">
                 <div className="flex items-center">
@@ -280,7 +282,7 @@ export function PasswordGenerator() {
           <div className="bg-white rounded-lg shadow-md p-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Generated Passwords:
+                Generated Passwords
               </label>
               {generatedPasswords ? (
                 <div className="space-y-2">
@@ -324,7 +326,7 @@ export function PasswordGenerator() {
             )}
           </div>
         </div>
-        
+
         <hr className="my-5" />
 
         {/* Educational Content */}
