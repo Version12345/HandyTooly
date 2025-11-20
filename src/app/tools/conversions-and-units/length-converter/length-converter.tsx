@@ -535,6 +535,8 @@ export function LengthConverter() {
           </div>
         </div>
 
+        <hr className="my-5" />
+
         {/* Usage Information */}
         <div>
           <h3 className="text-xl font-semibold text-gray-900 mb-4">How to Use This Tool</h3>

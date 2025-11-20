@@ -444,6 +444,8 @@ export function DayConverter() {
           </div>
         </div>
 
+        <hr className="my-5" />
+
         {/* Usage Information */}
         <div className="mt-5">
             <h2>How to Use</h2>

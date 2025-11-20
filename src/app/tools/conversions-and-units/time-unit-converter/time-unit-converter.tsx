@@ -619,6 +619,8 @@ export function TimeUnitConverter() {
           </div>
         )}
 
+        <hr className="my-5" />
+
         {/* Usage Information */}
         <h3>How to Use This Tool</h3>
         <p>

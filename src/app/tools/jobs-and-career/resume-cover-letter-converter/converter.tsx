@@ -99,6 +99,9 @@ export default function ResumeCoverLetterConverter() {
             />
           )}
       </div>
+
+      <hr className="my-5" />
+      
       <div className="mt-8">
         <h2>Why Use Our Tool?</h2>
         <p>

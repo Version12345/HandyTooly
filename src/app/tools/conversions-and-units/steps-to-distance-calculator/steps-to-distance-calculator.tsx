@@ -883,6 +883,8 @@ export function StepsToMilesCalculator() {
           </div>
         </div>
 
+        <hr className="my-5" />
+
         {/* Information Section */}
         <div>
           <h3>How Steps to Miles Conversion Works</h3>

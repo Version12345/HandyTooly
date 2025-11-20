@@ -607,6 +607,8 @@ export default function BMICalculator() {
           </div>
         </div>
 
+        <hr className="my-5" />
+
         <div>
           <h3>
             What is BMI?

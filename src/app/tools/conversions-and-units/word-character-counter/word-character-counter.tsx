@@ -347,6 +347,8 @@ export function WordCharacterCounter() {
           </div>
         </div>
 
+        <hr className="my-5" />
+
         {/* Educational Content */}
         <div>
           <h3>How to Use This Word Character Counter</h3>

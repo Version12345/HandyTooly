@@ -324,6 +324,8 @@ export function PasswordGenerator() {
             )}
           </div>
         </div>
+        
+        <hr className="my-5" />
 
         {/* Educational Content */}
         <div>

@@ -640,6 +640,8 @@ export function WeightLossCalculator() {
           </div>
         </div>
 
+        <hr className="my-5" />
+
         {/* Usage Information */}
         <div>
           <h3>How to Use This Calculator</h3>

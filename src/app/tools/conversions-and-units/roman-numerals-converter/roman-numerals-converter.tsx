@@ -351,6 +351,8 @@ export function RomanNumeralsConverter() {
           </div>
         </div>
 
+        <hr className="my-5" />
+
         <div>
           <h3>What is Roman Numerals?</h3>
           <p>Roman numerals began in ancient Rome over 2,000 years ago. They used letters from the Latin alphabet to show numbers. The main symbols are I for 1, V for 5, X for 10, L for 50, C for 100, D for 500, and M for 1,000. People used them in trade, stone carvings, and early clocks. The system is simple for small numbers but less practical for big calculations.</p>

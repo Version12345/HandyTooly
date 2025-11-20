@@ -477,6 +477,8 @@ export function Base64Converter() {
           </div>
         )}
 
+        <hr className="my-5" />
+
         {/* Information Section */}
         <div>
           <h3>How to Use This Base64 Converter</h3>

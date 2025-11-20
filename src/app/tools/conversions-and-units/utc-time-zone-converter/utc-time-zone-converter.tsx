@@ -706,6 +706,8 @@ export function UTCTimeZoneConverter() {
           </div>
         </div>
 
+        <hr className="my-5" />
+
         {/* Usage Tips */}
         <div>
           <h3>How to Use the UTC Time Zone Converter</h3>

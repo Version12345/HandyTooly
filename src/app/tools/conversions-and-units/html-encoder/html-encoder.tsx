@@ -388,6 +388,8 @@ export function HtmlEncoder() {
           </div>
         </div>
 
+        <hr className="my-5" />
+
         {/* Information Section */}
         <div>
           <h3>How to Use This HTML Encoder/Decoder</h3>
