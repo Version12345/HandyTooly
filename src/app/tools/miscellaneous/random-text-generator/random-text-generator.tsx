@@ -3,18 +3,14 @@ import React, { useState, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 import { copyToClipboard } from '@/utils/copyToClipboard';
+import TextDisclaimer from '@/components/disclaimers/textDisclaimer copy';
 
-type TextType = 'lorem-ipsum' | 'emails' | 'usernames' | 'passwords' | 'names' | 'addresses' | 'phone-numbers' | 'credit-cards' | 'urls' | 'sentences' | 'words';
+type TextType = 'lorem-ipsum' | 'emails' | 'usernames' | 'names' | 'addresses' | 'phone-numbers' | 'credit-cards' | 'urls' | 'sentences' | 'words';
 
 interface GeneratorOptions {
   textType: TextType;
   count: number;
   startWithLorem: boolean;
-  passwordLength: number;
-  includeUppercase: boolean;
-  includeLowercase: boolean;
-  includeNumbers: boolean;
-  includeSymbols: boolean;
 }
 
 // Lorem Ipsum words pool
@@ -119,32 +115,6 @@ const generateUsernames = (count: number): string => {
   }
   
   return usernames.join('\n');
-};
-
-const generatePasswords = (count: number, passwordLength: number, includeUppercase: boolean, includeLowercase: boolean, includeNumbers: boolean, includeSymbols: boolean): string => {
-  const passwords: string[] = [];
-  const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const lowercase = 'abcdefghijklmnopqrstuvwxyz';
-  const numbers = '0123456789';
-  const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
-  
-  for (let i = 0; i < count; i++) {
-    let charset = '';
-    if (includeUppercase) charset += uppercase;
-    if (includeLowercase) charset += lowercase;
-    if (includeNumbers) charset += numbers;
-    if (includeSymbols) charset += symbols;
-    
-    if (charset === '') charset = lowercase; // Fallback
-    
-    let password = '';
-    for (let j = 0; j < passwordLength; j++) {
-      password += charset.charAt(Math.floor(Math.random() * charset.length));
-    }
-    passwords.push(password);
-  }
-  
-  return passwords.join('\n');
 };
 
 const generateNames = (count: number): string => {
@@ -261,11 +231,6 @@ export function RandomTextGenerator() {
     textType: 'lorem-ipsum',
     count: 3,
     startWithLorem: false,
-    passwordLength: 12,
-    includeUppercase: true,
-    includeLowercase: true,
-    includeNumbers: true,
-    includeSymbols: false,
   });
   const [generatedText, setGeneratedText] = useState('');
 
@@ -283,9 +248,6 @@ export function RandomTextGenerator() {
         break;
       case 'usernames':
         text = generateUsernames(options.count);
-        break;
-      case 'passwords':
-        text = generatePasswords(options.count, options.passwordLength, options.includeUppercase, options.includeLowercase, options.includeNumbers, options.includeSymbols);
         break;
       case 'names':
         text = generateNames(options.count);
@@ -330,10 +292,9 @@ export function RandomTextGenerator() {
   };
 
   const textTypes = [
-    { value: 'lorem-ipsum', label: 'Lorem Ipsum' },
+    { value: 'lorem-ipsum', label: 'Placeholder Text (Lorem Ipsum)' },
     { value: 'emails', label: 'Email Addresses' },
     { value: 'usernames', label: 'Usernames' },
-    { value: 'passwords', label: 'Passwords' },
     { value: 'names', label: 'Full Names' },
     { value: 'addresses', label: 'Addresses' },
     { value: 'phone-numbers', label: 'Phone Numbers' },
@@ -346,223 +307,115 @@ export function RandomTextGenerator() {
   return (
     <ToolLayout 
       toolCategory={ToolNameLists.RandomTextGenerator}
-      secondaryToolDescription="Generate various types of random text instantly with this easy-to-use and free tool. Create lorem ipsum, passwords, usernames, sample data, and more. No sign-up, no tracking — simply select your options and generate text in seconds."
+      secondaryToolDescription="Simply select your options and generate text in seconds. For secure passwords, check out our dedicated Password Generator."
+      disclaimer={<TextDisclaimer />}
     >
-      <div className="space-y-6">
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Free Online Text Generator</h2>
-          <p className="text-gray-700 mb-6">
-            Generate various types of text content instantly with this easy-to-use and free tool. Create lorem ipsum, passwords, usernames, sample data, and more. No sign-up, no tracking — simply select your options and generate text in seconds.
-          </p>
-          
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Start Generating Text Now</h3>
-            <p className="text-gray-600 mb-4">
-              Choose your text type, customize your preferences, and click generate to create your content. Perfect for developers, designers, writers, and anyone needing placeholder or sample text.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Options Panel */}
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Text Type
-                </label>
-                <select
-                  value={options.textType}
-                  onChange={(e) => setOptions({...options, textType: e.target.value as TextType})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                >
-                  {textTypes.map(type => (
-                    <option key={type.value} value={type.value}>
-                      {type.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {options.textType === 'lorem-ipsum' ? 'Number of Paragraphs' : 
-                   options.textType === 'passwords' ? 'Number of Passwords' :
-                   `Number of ${textTypes.find(t => t.value === options.textType)?.label || 'Items'}`}
-                </label>
-                <input
-                  type="number"
-                  min="1"
-                  max="50"
-                  value={options.count}
-                  onChange={(e) => setOptions({...options, count: parseInt(e.target.value) || 1})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                />
-              </div>
-
-              {options.textType === 'lorem-ipsum' && (
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="startWithLorem"
-                    checked={options.startWithLorem}
-                    onChange={(e) => setOptions({...options, startWithLorem: e.target.checked})}
-                    className="mr-2"
-                  />
-                  <label htmlFor="startWithLorem" className="text-sm text-gray-700">
-                    Start with &ldquo;Lorem ipsum dolor...&rdquo;
-                  </label>
-                </div>
-              )}
-
-              {options.textType === 'passwords' && (
-                <div className="space-y-3">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Password Length
-                    </label>
-                    <input
-                      type="number"
-                      min="4"
-                      max="100"
-                      value={options.passwordLength}
-                      onChange={(e) => setOptions({...options, passwordLength: parseInt(e.target.value) || 12})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <div className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id="uppercase"
-                        checked={options.includeUppercase}
-                        onChange={(e) => setOptions({...options, includeUppercase: e.target.checked})}
-                        className="mr-2"
-                      />
-                      <label htmlFor="uppercase" className="text-sm text-gray-700">Include Uppercase (A-Z)</label>
-                    </div>
-                    
-                    <div className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id="lowercase"
-                        checked={options.includeLowercase}
-                        onChange={(e) => setOptions({...options, includeLowercase: e.target.checked})}
-                        className="mr-2"
-                      />
-                      <label htmlFor="lowercase" className="text-sm text-gray-700">Include Lowercase (a-z)</label>
-                    </div>
-                    
-                    <div className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id="numbers"
-                        checked={options.includeNumbers}
-                        onChange={(e) => setOptions({...options, includeNumbers: e.target.checked})}
-                        className="mr-2"
-                      />
-                      <label htmlFor="numbers" className="text-sm text-gray-700">Include Numbers (0-9)</label>
-                    </div>
-                    
-                    <div className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id="symbols"
-                        checked={options.includeSymbols}
-                        onChange={(e) => setOptions({...options, includeSymbols: e.target.checked})}
-                        className="mr-2"
-                      />
-                      <label htmlFor="symbols" className="text-sm text-gray-700">Include Symbols (!@#$%^&*)</label>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              <button
-                onClick={generateText}
-                className="w-full px-6 py-3 bg-black text-white font-medium rounded-md hover:bg-gray-800 transition-colors"
+      <div className="space-y-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Options Panel */}
+          <div className="space-y-4 bg-white p-4 shadow-md rounded-md">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Text Type
+              </label>
+              <select
+                value={options.textType}
+                onChange={(e) => setOptions({...options, textType: e.target.value as TextType})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               >
-                Generate Text
-              </button>
+                {textTypes.map(type => (
+                  <option key={type.value} value={type.value}>
+                    {type.label}
+                  </option>
+                ))}
+              </select>
             </div>
 
-            {/* Output Panel */}
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Generated Text:
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {options.textType === 'lorem-ipsum' ? 'Number of Paragraphs' : 
+                  `Number of ${textTypes.find(t => t.value === options.textType)?.label || 'Items'}`}
+              </label>
+              <input
+                type="number"
+                min="1"
+                max="50"
+                value={options.count}
+                onChange={(e) => setOptions({...options, count: parseInt(e.target.value) || 1})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              />
+            </div>
+
+            {options.textType === 'lorem-ipsum' && (
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="startWithLorem"
+                  checked={options.startWithLorem}
+                  onChange={(e) => setOptions({...options, startWithLorem: e.target.checked})}
+                  className="mr-2"
+                />
+                <label htmlFor="startWithLorem" className="text-sm text-gray-700">
+                  Start with &ldquo;Lorem ipsum dolor...&rdquo;
                 </label>
-                <pre
-                  className="whitespace-pre-wrap text-sm text-gray-800 font-mono bg-gray-50 p-4 border border-gray-300 rounded-md h-64 overflow-y-auto"
-                >
-                  {generatedText || 'Click "Generate Text" to create content...'}
-                </pre>
               </div>
+            )}
 
-              {generatedText && (
-                <div className="flex gap-2">
-                  <button
-                    onClick={handleCopy}
-                    className="px-4 py-2 bg-black text-white font-medium rounded-md hover:bg-gray-800 transition-colors"
-                  >
-                    Copy to Clipboard
-                  </button>
-                  <button
-                    onClick={downloadAsText}
-                    className="px-4 py-2 bg-gray-600 text-white font-medium rounded-md hover:bg-gray-700 transition-colors"
-                  >
-                    Download as TXT
-                  </button>
-                </div>
-              )}
+
+
+            <button
+              onClick={generateText}
+              className="w-full px-6 py-3 bg-orange-500 text-white font-medium rounded-md hover:bg-orange-700 transition-colors"
+            >
+              Generate Text
+            </button>
+          </div>
+
+          {/* Output Panel */}
+          <div className="space-y-4 bg-white p-4 shadow-md rounded-md">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Generated Text
+              </label>
+              <pre
+                className="whitespace-pre-wrap text-sm text-gray-800 font-mono bg-gray-50 p-4 border border-gray-300 rounded-md h-64 overflow-y-auto"
+              >
+                {generatedText || 'Click "Generate Text" to create content...'}
+              </pre>
             </div>
+
+            {generatedText && (
+              <div className="flex gap-2">
+                <button
+                  onClick={handleCopy}
+                  className="px-4 py-2 bg-orange-500 text-white font-medium rounded-md hover:bg-orange-700 transition-colors text-sm"
+                >
+                  Copy to Clipboard
+                </button>
+                <button
+                  onClick={downloadAsText}
+                  className="px-4 py-2 bg-gray-600 text-white font-medium rounded-md hover:bg-gray-700 transition-colors text-sm"
+                >
+                  Download as TXT
+                </button>
+              </div>
+            )}
           </div>
         </div>
+      </div>
 
-        {/* Educational Content */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">Random Text Generator Features</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-semibold text-gray-900 mb-2">Text Types Available</h4>
-              <ul className="text-gray-700 space-y-1 text-sm">
-                <li>• <strong>Lorem Ipsum:</strong> Classic placeholder text for design and development</li>
-                <li>• <strong>Email Addresses:</strong> Realistic fake email addresses for testing</li>
-                <li>• <strong>Usernames:</strong> Creative username combinations</li>
-                <li>• <strong>Passwords:</strong> Secure random passwords with custom options</li>
-                <li>• <strong>Names:</strong> Full names for sample user data</li>
-                <li>• <strong>Addresses:</strong> Realistic street addresses</li>
-                <li>• <strong>Phone Numbers:</strong> US format phone numbers</li>
-                <li>• <strong>Credit Cards:</strong> Fake card numbers for testing (not real)</li>
-                <li>• <strong>URLs:</strong> Sample website addresses</li>
-                <li>• <strong>Sentences & Words:</strong> Random text content</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold text-gray-900 mb-2">Use Cases</h4>
-              <ul className="text-gray-700 space-y-1 text-sm">
-                <li>• Website and app design mockups</li>
-                <li>• Database testing and development</li>
-                <li>• Content management system testing</li>
-                <li>• Form testing and validation</li>
-                <li>• Email template design</li>
-                <li>• Print design layouts</li>
-                <li>• API testing with sample data</li>
-                <li>• User interface prototyping</li>
-                <li>• Educational examples and tutorials</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <h4 className="font-semibold text-yellow-800 mb-2">⚠️ Important Notice</h4>
-            <p className="text-yellow-700 text-sm">
-              All generated data is for testing and placeholder purposes only. Credit card numbers are fake and cannot be used for real transactions. 
-              Do not use generated passwords for actual accounts without proper security considerations.
-            </p>
-          </div>
-        </div>
+      <hr className="my-5" />
+
+      {/* Educational Content */}
+      <div>
+        <h3>Random Text Generator Features</h3>
+        <p>The Random Text Generator is a versatile tool designed to create realistic placeholder and sample data for a wide range of projects. It simplifies testing, design, and development by producing accurate and varied text elements that mimic real-world data without compromising privacy or security.</p>
+        
+        <h3>Text Types Available</h3>
+        <p>This generator offers a diverse selection of text options to suit different needs. You can create Lorem Ipsum for traditional placeholder text, email addresses and usernames for testing login systems, or names, addresses, and phone numbers to populate sample databases. It also includes credit card numbers for testing (non-functional and safe), URLs for website examples, and sentences or words for content layout and readability checks.</p>
+        
+        <h3>Use Cases</h3>
+        <p>The Random Text Generator is ideal for website and app mockups, database testing, and form validation. It’s also useful for email template design, print layout previews, and API testing with sample data. Designers and developers can quickly generate realistic placeholder content for user interface prototypes, while educators can use it for teaching examples and tutorials.</p>
       </div>
     </ToolLayout>
   );

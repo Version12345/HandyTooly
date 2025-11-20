@@ -58,7 +58,7 @@ export const Categories: Record<string, Category> = {
     },
     [ToolCategory.Miscellaneous]: {
         name: "Miscellaneous Tools",
-        description: "Our utility tools cover essential digital tasks including data conversion, text processing, image manipulation, code formatting, and network diagnostics. Each tool is web-based, requiring no downloads or installations, and works seamlessly across all devices and browsers.", 
+        description: "Our utility tools cover essential digital tasks including data conversion, text processing, and code formatting.", 
         slug: "miscellaneous"
     }
 };
@@ -90,6 +90,7 @@ export enum ToolNameLists {
     HtmlEncoder = "HTML Encoder/Decoder",
     AnnualizedReturnCalculator = "Annualized Return Calculator",
     RandomTextGenerator = "Random Text Generator",
+    PasswordGenerator = "Password Generator",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -118,7 +119,8 @@ export const ToolDescription: Record<string, string> = {
     [ToolNameLists.WordCharacterCounter]: "Count words, characters, sentences, and paragraphs in your text. Analyze readability, reading time, and tone of voice. Perfect for writing, content creation, and text analysis.",
     [ToolNameLists.Base64Converter]: "Encode text to Base64 or decode Base64 to text. Convert images to Base64 format for web development, data storage, & API integration. Perfect for developers & data encoding needs.",
     [ToolNameLists.HtmlEncoder]: "Encode HTML to entities or decode HTML entities to text. Convert special characters like <, >, &, quotes for safe HTML display. Perfect for web development & content management.",
-    [ToolNameLists.RandomTextGenerator]: "Generate various types of random text instantly. Create lorem ipsum, passwords, usernames, email addresses, sample data & more. Perfect for testing, mockups & placeholder content.",
+    [ToolNameLists.RandomTextGenerator]: "Generate various types of random text instantly. Create placeholder text (lorem ipsum), usernames, email addresses, sample data & more. Perfect for testing, mockups & placeholder content.",
+    [ToolNameLists.PasswordGenerator]: "Generate secure, random passwords with customizable options. Create strong passwords with different character types, lengths, and security levels. All generation happens locally in your browser.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -148,6 +150,7 @@ export const ToolUrls: Record<string, string> = {
     [ToolNameLists.Base64Converter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/base64-converter`,
     [ToolNameLists.HtmlEncoder]: `${URL_BASE}/${ToolCategorySlug.Conversions}/html-encoder`,
     [ToolNameLists.RandomTextGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/random-text-generator`,
+    [ToolNameLists.PasswordGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/password-generator`,
 }
 
 export const Tools: Record<string, Tool[]> = {
@@ -296,6 +299,11 @@ export const Tools: Record<string, Tool[]> = {
             name: ToolNameLists.RandomTextGenerator,
             description: ToolDescription[ToolNameLists.RandomTextGenerator],
             link: ToolUrls[ToolNameLists.RandomTextGenerator]
+        },
+        {
+            name: ToolNameLists.PasswordGenerator,
+            description: ToolDescription[ToolNameLists.PasswordGenerator],
+            link: ToolUrls[ToolNameLists.PasswordGenerator]
         }
     ]
 };
