@@ -10,7 +10,6 @@ export function HtmlEncoder() {
   const [mode, setMode] = useState<ConversionMode>('encode');
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
-  const [isConverting, setIsConverting] = useState(false);
   const [lastEditedField, setLastEditedField] = useState<'input' | 'output'>('input');
 
   // HTML entity mappings
@@ -130,7 +129,6 @@ export function HtmlEncoder() {
       return;
     }
     
-    setIsConverting(true);
     try {
       if (mode === 'encode') {
         setOutputText(encodeHtml(inputText));
@@ -140,8 +138,6 @@ export function HtmlEncoder() {
     } catch (error) {
       setOutputText('Error: Unable to process text');
       console.error('Conversion error:', error);
-    } finally {
-      setTimeout(() => setIsConverting(false), 100); // Brief visual feedback
     }
   }, [decodeHtml, encodeHtml, inputText, mode, lastEditedField]);
 
@@ -287,10 +283,7 @@ export function HtmlEncoder() {
             {/* Clear All Button */}
             <div>
               <button
-                onClick={() => {
-                  setInputText('');
-                  setOutputText('');
-                }}
+                onClick={clearAll}
                 className="w-full px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded transition-colors text-sm"
               >
                 Clear All

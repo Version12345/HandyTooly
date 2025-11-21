@@ -2,7 +2,7 @@
 import React, { useState, useMemo } from 'react';
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
-import { BookIcon, FacebookIcon, XIcon, InstagramIcon, LinkedInIcon } from '@/components/social-icon';
+import { BookIcon, FacebookIcon, XIcon, InstagramIcon, LinkedInIcon } from '@/components/icons';
 
 const CHARACTER_LIMIT = 500;
 const SOCIAL_ICON_SIZE = .75;

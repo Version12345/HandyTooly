@@ -28,6 +28,7 @@ export function JWTDecoder() {
       const base64 = str.replace(/-/g, '+').replace(/_/g, '/') + padding;
       return atob(base64);
     } catch (e) {
+      console.log('Base64URL decode error:', e);
       throw new Error('Invalid base64url encoding');
     }
   };

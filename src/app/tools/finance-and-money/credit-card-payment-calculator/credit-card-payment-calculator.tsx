@@ -6,7 +6,6 @@ import HighchartsReact from 'highcharts-react-official'
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 import { copyToClipboard } from '@/utils/copyToClipboard';
-import { get } from 'http';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
 
 enum CURRENCY {
@@ -46,12 +45,6 @@ interface PayoffStrategy {
     monthsToPayoff: number;
     totalInterest: number;
     monthlySavings: number;
-}
-
-interface DebtTip {
-    category: string;
-    tip: string;
-    icon: string;
 }
 
 const CURRENCIES = [

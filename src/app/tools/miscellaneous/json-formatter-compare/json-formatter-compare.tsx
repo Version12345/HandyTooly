@@ -148,7 +148,7 @@ const JsonFormatterCompare: React.FC = () => {
     setFormatError('');
   };
 
-  const copyToClipboard = async (text: string, key: string) => {
+  const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
     } catch (error) {
@@ -172,7 +172,7 @@ const JsonFormatterCompare: React.FC = () => {
               Original JSON
             </label>
             <button
-              onClick={() => copyToClipboard(originalJson, 'original')}
+              onClick={() => copyToClipboard(originalJson)}
               className="flex items-center px-2 py-1 text-xs bg-orange-100 hover:bg-orange-400 rounded transition-colors"
               disabled={!originalJson.trim()}
             >
@@ -194,7 +194,7 @@ const JsonFormatterCompare: React.FC = () => {
               Modified JSON
             </label>
             <button
-              onClick={() => copyToClipboard(modifiedJson, 'modified')}
+              onClick={() => copyToClipboard(modifiedJson)}
               className="flex items-center px-2 py-1 text-xs bg-orange-100 hover:bg-orange-400 rounded transition-colors"
               disabled={!modifiedJson.trim()}
             >
