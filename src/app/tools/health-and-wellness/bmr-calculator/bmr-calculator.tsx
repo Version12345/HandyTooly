@@ -457,8 +457,6 @@ export function BMRCalculator() {
             )}
           </div>
 
-          <hr className="my-5" />
-
           {/* Body Composition & Goals Section */}
           <div className="bg-white rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Body Composition (Optional)</h2>
@@ -674,6 +672,8 @@ export function BMRCalculator() {
             )}
           </div>
         </div>
+
+        <hr className="my-5" />
 
         {/* Educational Content */}
         <div>

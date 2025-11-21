@@ -367,7 +367,7 @@ export default function BMICalculator() {
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
                   placeholder={unit === 'metric' ? 'e.g., 70' : 'e.g., 154'}
-                  className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
                 />
                 <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
                   {unit === 'metric' ? 'kg' : 'lbs'}
@@ -387,7 +387,7 @@ export default function BMICalculator() {
                     value={height}
                     onChange={(e) => setHeight(e.target.value)}
                     placeholder="e.g., 175"
-                    className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
                   />
                   <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
                     cm
@@ -402,7 +402,7 @@ export default function BMICalculator() {
                         value={heightFeet}
                         onChange={(e) => setHeightFeet(e.target.value)}
                         placeholder="5"
-                        className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
+                        className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
                       />
                       <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
                         ft
@@ -416,7 +416,7 @@ export default function BMICalculator() {
                         value={heightInches}
                         onChange={(e) => setHeightInches(e.target.value)}
                         placeholder="9"
-                        className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
+                        className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
                       />
                       <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
                         in
@@ -444,7 +444,7 @@ export default function BMICalculator() {
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
                   placeholder="e.g., 30"
-                  className="w-full px-3 py-2 pr-13 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 pr-13 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
                 />
                 <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
                   years
@@ -606,19 +606,19 @@ export default function BMICalculator() {
             )}
           </div>
         </div>
+      </div>
 
-        <hr className="my-5" />
+      <hr className="my-5" />
 
-        <div>
-          <h3>
-            What is BMI?
-          </h3>
-          <p className="text-md">
-            Body Mass Index (BMI) is a simple calculation using a person&apos;s height and weight. The formula is BMI = kg/m², where kg is a person&apos;s weight in kilograms and m² is their height in meters squared.
+      <div>
+        <h3>
+          What is BMI?
+        </h3>
+        <p className="text-md">
+          Body Mass Index (BMI) is a simple calculation using a person&apos;s height and weight. The formula is BMI = kg/m², where kg is a person&apos;s weight in kilograms and m² is their height in meters squared.
 
-            Body Mass Index (BMI) is a numerical value that helps estimate whether a person&apos;s weight is appropriate for their height. The formula is BMI = weight/height². BMI is commonly used as a quick screening tool to categorize individuals as underweight, normal weight, overweight, or obese. However, it does not measure body fat directly and may not accurately reflect health for everyone, especially athletes or people with higher muscle mass. It&apos;s best used alongside other health assessments and professional medical advice.
-          </p>
-        </div>
+          Body Mass Index (BMI) is a numerical value that helps estimate whether a person&apos;s weight is appropriate for their height. The formula is BMI = weight/height². BMI is commonly used as a quick screening tool to categorize individuals as underweight, normal weight, overweight, or obese. However, it does not measure body fat directly and may not accurately reflect health for everyone, especially athletes or people with higher muscle mass. It&apos;s best used alongside other health assessments and professional medical advice.
+        </p>
       </div>
     </ToolLayout>
   );

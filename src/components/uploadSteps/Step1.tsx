@@ -20,7 +20,7 @@ export const Step1: React.FC<Step1Props> = ({ jobDescription, setJobDescription,
                             value={jobDescription}
                             onChange={(e) => setJobDescription(e.target.value)}
                             rows={8}
-                            className="w-full shadow-sm p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 resize-none"
+                            className="w-full shadow-sm p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:outline-none resize-none"
                             placeholder="Paste the job description here..."
                             autoFocus
                         />

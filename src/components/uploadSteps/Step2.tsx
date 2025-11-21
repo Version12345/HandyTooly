@@ -20,7 +20,7 @@ export const Step2: React.FC<Step2Props> = ({ resume, setResume, onNext, onBack 
                     value={resume}
                     onChange={(e) => setResume(e.target.value)}
                     rows={15}
-                    className="w-full shadow-sm p-4 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 resize-none text-sm"
+                    className="w-full shadow-sm p-4 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:outline-none resize-none text-sm"
                     placeholder="Enter your resume content here..."
                     autoFocus
                 />
