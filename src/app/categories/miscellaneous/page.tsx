@@ -68,9 +68,7 @@ export default function MiscellaneousCategory() {
         {/* Page Header */}
         <div className="space-y-4">
           <p>
-            Our utility tools cover essential digital tasks including data conversion, text processing, image manipulation, 
-            code formatting, and network diagnostics. Each tool is web-based, requiring no downloads or installations, 
-            and works seamlessly across all devices and browsers.
+            Our utility tools cover essential digital tasks including data conversion, text processing, formatting, and network diagnostics. Each tool is web-based, requiring no downloads or installations, and works seamlessly across all devices and browsers.
           </p>
         </div>
 

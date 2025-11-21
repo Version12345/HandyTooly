@@ -1,6 +1,7 @@
-import { ToolDescription, ToolNameLists } from '@/constants/tools';
+import { ToolDescription, ToolNameLists, ToolUrls } from '@/constants/tools';
 import { PasswordGenerator } from './password-generator';
 import { Metadata } from 'next';
+import { canonicalUrl } from '@/utils/canonicalUrl';
 
 export const metadata: Metadata = {
   title: ToolNameLists.PasswordGenerator,
@@ -10,6 +11,10 @@ export const metadata: Metadata = {
     title: ToolNameLists.PasswordGenerator,
     description: ToolDescription[ToolNameLists.PasswordGenerator],
     type: 'website',
+    url: canonicalUrl(ToolUrls[ToolNameLists.PasswordGenerator], true),
+  },
+  alternates: {
+    canonical: canonicalUrl(ToolUrls[ToolNameLists.PasswordGenerator]),
   },
 };
 

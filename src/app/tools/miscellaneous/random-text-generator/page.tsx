@@ -1,6 +1,7 @@
-import { ToolDescription, ToolNameLists } from '@/constants/tools';
+import { ToolDescription, ToolNameLists, ToolUrls } from '@/constants/tools';
 import { RandomTextGenerator } from './random-text-generator';
 import { Metadata } from 'next';
+import { canonicalUrl } from '@/utils/canonicalUrl';
 
 export const metadata: Metadata = {
   title: ToolNameLists.RandomTextGenerator,
@@ -10,6 +11,10 @@ export const metadata: Metadata = {
     title: ToolNameLists.RandomTextGenerator,
     description: ToolDescription[ToolNameLists.RandomTextGenerator],
     type: 'website',
+    url: canonicalUrl(ToolUrls[ToolNameLists.RandomTextGenerator], true),
+  },
+  alternates: {
+    canonical: canonicalUrl(ToolUrls[ToolNameLists.RandomTextGenerator]),
   },
 };
 

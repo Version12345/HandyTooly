@@ -3,7 +3,7 @@ import React, { useState, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 import { copyToClipboard } from '@/utils/copyToClipboard';
-import TextDisclaimer from '@/components/disclaimers/textDisclaimer copy';
+import DataDisclaimer from '@/components/disclaimers/dataDisclaimer';
 
 type TextType = 'lorem-ipsum' | 'emails' | 'usernames' | 'names' | 'addresses' | 'phone-numbers' | 'credit-cards' | 'urls' | 'sentences' | 'words';
 
@@ -308,7 +308,7 @@ export function RandomTextGenerator() {
     <ToolLayout 
       toolCategory={ToolNameLists.RandomTextGenerator}
       secondaryToolDescription="Simply select your options and generate text in seconds. For secure passwords, check out our dedicated Password Generator."
-      disclaimer={<TextDisclaimer />}
+      disclaimer={<DataDisclaimer />}
     >
       <div className="space-y-6 mb-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
