@@ -92,6 +92,7 @@ export enum ToolNameLists {
     RandomTextGenerator = "Random Text Generator",
     PasswordGenerator = "Password Generator",
     JWTDecoder = "JWT Decoder",
+    JsonFormatterCompare = "JSON Formatter & Compare",
 }export const ToolDescription: Record<string, string> = {
   [ToolNameLists.BMICalculator]: "Calculate your Body Mass Index (BMI) for weight loss, maintenance, or gain. You can use kg & cm or lbs & inches conversions.",
   [ToolNameLists.BMRCalculator]: "Calculate your Basal Metabolic Rate (BMR) for weight loss, maintenance, or gain. You can use kg & cm or lbs & inches conversions.",
@@ -121,6 +122,7 @@ export enum ToolNameLists {
   [ToolNameLists.RandomTextGenerator]: "Generate placeholder text (lorem ipsum), usernames, email addresses, sample data & more. Perfect for testing, mockups & placeholder content.",
   [ToolNameLists.PasswordGenerator]: "Generate secure, random passwords with different character types, lengths, and security levels. All generation happens locally in your browser.",
   [ToolNameLists.JWTDecoder]: "Decode JWT (JSON Web Tokens) to view header, payload, and signature components. Analyze token structure, claims, and expiration dates with secure client-side processing.",
+  [ToolNameLists.JsonFormatterCompare]: "Format, validate, and compare JSON objects with instant difference highlighting. Perfect for API development, configuration management, and data analysis with client-side processing.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -152,6 +154,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.RandomTextGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/random-text-generator`,
   [ToolNameLists.PasswordGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/password-generator`,
   [ToolNameLists.JWTDecoder]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/jwt-decoder`,
+  [ToolNameLists.JsonFormatterCompare]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/json-formatter-compare`,
 };
 
 export const Tools: Record<string, Tool[]> = {
@@ -297,6 +300,16 @@ export const Tools: Record<string, Tool[]> = {
   ],
   [ToolCategory.Miscellaneous]: [
     {
+      name: ToolNameLists.JsonFormatterCompare,
+      description: ToolDescription[ToolNameLists.JsonFormatterCompare],
+      link: ToolUrls[ToolNameLists.JsonFormatterCompare]
+    },
+    {
+      name: ToolNameLists.JWTDecoder,
+      description: ToolDescription[ToolNameLists.JWTDecoder],
+      link: ToolUrls[ToolNameLists.JWTDecoder]
+    },
+    {
       name: ToolNameLists.PasswordGenerator,
       description: ToolDescription[ToolNameLists.PasswordGenerator],
       link: ToolUrls[ToolNameLists.PasswordGenerator]
@@ -306,10 +319,5 @@ export const Tools: Record<string, Tool[]> = {
       description: ToolDescription[ToolNameLists.RandomTextGenerator],
       link: ToolUrls[ToolNameLists.RandomTextGenerator]
     },
-    {
-      name: ToolNameLists.JWTDecoder,
-      description: ToolDescription[ToolNameLists.JWTDecoder],
-      link: ToolUrls[ToolNameLists.JWTDecoder]
-    }
   ]
 };
