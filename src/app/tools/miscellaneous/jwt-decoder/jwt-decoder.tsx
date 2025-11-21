@@ -92,7 +92,7 @@ export function JWTDecoder() {
     }
   };
 
-  const renderJsonWithHighlight = (obj: any, section: 'header' | 'payload'): JSX.Element => {
+  const renderJsonWithHighlight = (obj: any, section: 'header' | 'payload'): React.ReactElement => {
     const jsonString = JSON.stringify(obj, null, 2);
     
     return (
