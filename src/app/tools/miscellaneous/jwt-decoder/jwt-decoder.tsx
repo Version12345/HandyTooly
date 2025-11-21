@@ -114,6 +114,7 @@ export function JWTDecoder() {
     <ToolLayout 
       toolCategory={ToolNameLists.JWTDecoder}
       secondaryToolDescription="Decode JWT (JSON Web Tokens) instantly to view header, payload, and signature components. Analyze token structure, claims, and expiration dates with this secure, client-side JWT decoder tool."
+      educationContent={educationContent}
       disclaimer={<DataDisclaimer />}
     >
       <div className="space-y-6">
@@ -265,21 +266,20 @@ export function JWTDecoder() {
             </div>
           </div>
         )}
-
-        <hr className="my-6" />
-
-        {/* Educational Content */}
-        <div>
-          <h3>About JWT Tokens</h3>
-          <p>A JWT is a JSON Web Token used to send data in a secure way. It holds everything inside the token, so it works without a database check. Many apps use it for login and access control. It follows the RFC 7519 standard. You can send it between servers, browsers, and APIs.</p>
-          
-          <h3>How a JWT Is Built</h3>
-          <p>A JWT has three parts called the header, the payload, and the signature. The header shows the token type and the signing method. The payload holds claims and user data. The signature proves the token is real and keeps the contents safe. All three parts use Base64URL encoding and sit in one string separated by dots. Anyone can decode a JWT, but no one can change it without the secret key.</p>
-          
-          <h3>Where JWTs Are Used and How to Keep Them Safe</h3>
-          <p>JWTs help with user login, API access, Single Sign On, mobile app sessions, and service communication. These tokens carry sensitive information, so servers should always check the signature. You should also check the expiration time and the claims. Use HTTPS during every request. Store tokens in a safe place on the client.</p>
-        </div>
       </div>
     </ToolLayout>
   );
 }
+
+const educationContent = (
+  <div>
+    <h3>About JWT Tokens</h3>
+    <p>A JWT is a JSON Web Token used to send data in a secure way. It holds everything inside the token, so it works without a database check. Many apps use it for login and access control. It follows the RFC 7519 standard. You can send it between servers, browsers, and APIs.</p>
+    
+    <h3>How a JWT Is Built</h3>
+    <p>A JWT has three parts called the header, the payload, and the signature. The header shows the token type and the signing method. The payload holds claims and user data. The signature proves the token is real and keeps the contents safe. All three parts use Base64URL encoding and sit in one string separated by dots. Anyone can decode a JWT, but no one can change it without the secret key.</p>
+    
+    <h3>Where JWTs Are Used and How to Keep Them Safe</h3>
+    <p>JWTs help with user login, API access, Single Sign On, mobile app sessions, and service communication. These tokens carry sensitive information, so servers should always check the signature. You should also check the expiration time and the claims. Use HTTPS during every request. Store tokens in a safe place on the client.</p>
+  </div>
+);

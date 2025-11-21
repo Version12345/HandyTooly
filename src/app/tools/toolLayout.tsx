@@ -12,10 +12,11 @@ interface LayoutProps {
   toolCategory: ToolNameLists;
   secondaryToolDescription?: string;
   children: React.ReactNode;
+  educationContent?: React.ReactNode;
   disclaimer?: React.ReactNode;
 }
 
-export default function ToolLayout({ toolCategory, children, disclaimer, secondaryToolDescription }: LayoutProps) {
+export default function ToolLayout({ toolCategory, children, disclaimer, secondaryToolDescription, educationContent }: LayoutProps) {
   const [isRightColExpanded, setIsRightColExpanded] = useState(true);
 
   useEffect(() => {
@@ -72,6 +73,12 @@ export default function ToolLayout({ toolCategory, children, disclaimer, seconda
               </p>
             )}
             {children}
+            {educationContent ? (
+              <>
+                <hr className="my-6" />
+                {educationContent}
+              </>
+            ) : null}
             {disclaimer}
 
             {/* Related Tools Section */}

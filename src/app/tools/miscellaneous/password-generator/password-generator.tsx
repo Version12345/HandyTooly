@@ -149,6 +149,7 @@ export function PasswordGenerator() {
     <ToolLayout 
       toolCategory={ToolNameLists.PasswordGenerator}
       secondaryToolDescription="Generate secure, random passwords with customizable options. Create strong passwords for your accounts, applications, and security needs. Features include character type selection, length control, and bulk generation with no data tracking."
+      educationContent={educationContent}
       disclaimer={<PrivacyDisclaimer />}
     >
       <div className="space-y-6">
@@ -326,21 +327,20 @@ export function PasswordGenerator() {
             )}
           </div>
         </div>
-
-        <hr className="my-5" />
-
-        {/* Educational Content */}
-        <div>
-          <h3>Password Security Best Practices</h3>
-          <p>Protecting your online accounts begins with strong password security. Using secure and unique passwords helps safeguard your personal data, financial information, and digital identity. By following proven security practices, you can significantly reduce the risk of unauthorized access and cyberattacks.</p>
-          
-          <h3>Strong Password Characteristics</h3>
-          <p>A strong password should be at least 12&ndash;16 characters long and include a mix of uppercase and lowercase letters, numbers, and symbols. Each account should have a unique password, ensuring that one compromised credential doesn&apos;t endanger others. Avoid using dictionary words, personal information, or predictable patterns. For added protection, remember to update your passwords regularly.</p>
-          
-          <h3>Password Security Best Practices</h3>
-          <p>Consider using a password manager to securely store and manage your login details. Always enable two-factor authentication (2FA) for an extra layer of security. Never share passwords through email or messaging apps, and avoid entering them on public or shared computers. Finally, monitor your accounts regularly for any signs of suspicious activity to stay one step ahead of potential threats.</p>
-        </div>
       </div>
     </ToolLayout>
   );
 }
+
+const educationContent = (
+  <div>
+    <h3>Password Security Best Practices</h3>
+    <p>Protecting your online accounts begins with strong password security. Using secure and unique passwords helps safeguard your personal data, financial information, and digital identity. By following proven security practices, you can significantly reduce the risk of unauthorized access and cyberattacks.</p>
+    
+    <h3>Strong Password Characteristics</h3>
+    <p>A strong password should be at least 12&ndash;16 characters long and include a mix of uppercase and lowercase letters, numbers, and symbols. Each account should have a unique password, ensuring that one compromised credential doesn&apos;t endanger others. Avoid using dictionary words, personal information, or predictable patterns. For added protection, remember to update your passwords regularly.</p>
+    
+    <h3>Password Security Best Practices</h3>
+    <p>Consider using a password manager to securely store and manage your login details. Always enable two-factor authentication (2FA) for an extra layer of security. Never share passwords through email or messaging apps, and avoid entering them on public or shared computers. Finally, monitor your accounts regularly for any signs of suspicious activity to stay one step ahead of potential threats.</p>
+  </div>
+);

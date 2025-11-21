@@ -308,6 +308,7 @@ export function RandomTextGenerator() {
     <ToolLayout 
       toolCategory={ToolNameLists.RandomTextGenerator}
       secondaryToolDescription="Simply select your options and generate text in seconds. For secure passwords, check out our dedicated Password Generator."
+      educationContent={educationContent}
       disclaimer={<DataDisclaimer />}
     >
       <div className="space-y-6 mb-8">
@@ -403,20 +404,19 @@ export function RandomTextGenerator() {
           </div>
         </div>
       </div>
-
-      <hr className="my-5" />
-
-      {/* Educational Content */}
-      <div>
-        <h3>Random Text Generator Features</h3>
-        <p>The Random Text Generator is a versatile tool designed to create realistic placeholder and sample data for a wide range of projects. It simplifies testing, design, and development by producing accurate and varied text elements that mimic real-world data without compromising privacy or security.</p>
-        
-        <h3>Text Types Available</h3>
-        <p>This generator offers a diverse selection of text options to suit different needs. You can create Lorem Ipsum for traditional placeholder text, email addresses and usernames for testing login systems, or names, addresses, and phone numbers to populate sample databases. It also includes credit card numbers for testing (non-functional and safe), URLs for website examples, and sentences or words for content layout and readability checks.</p>
-        
-        <h3>Use Cases</h3>
-        <p>The Random Text Generator is ideal for website and app mockups, database testing, and form validation. It’s also useful for email template design, print layout previews, and API testing with sample data. Designers and developers can quickly generate realistic placeholder content for user interface prototypes, while educators can use it for teaching examples and tutorials.</p>
-      </div>
     </ToolLayout>
   );
 }
+
+const educationContent = (
+  <div>
+    <h3>Random Text Generator Features</h3>
+    <p>The Random Text Generator is a versatile tool designed to create realistic placeholder and sample data for a wide range of projects. It simplifies testing, design, and development by producing accurate and varied text elements that mimic real-world data without compromising privacy or security.</p>
+    
+    <h3>Text Types Available</h3>
+    <p>This generator offers a diverse selection of text options to suit different needs. You can create Lorem Ipsum for traditional placeholder text, email addresses and usernames for testing login systems, or names, addresses, and phone numbers to populate sample databases. It also includes credit card numbers for testing (non-functional and safe), URLs for website examples, and sentences or words for content layout and readability checks.</p>
+    
+    <h3>Use Cases</h3>
+    <p>The Random Text Generator is ideal for website and app mockups, database testing, and form validation. It’s also useful for email template design, print layout previews, and API testing with sample data. Designers and developers can quickly generate realistic placeholder content for user interface prototypes, while educators can use it for teaching examples and tutorials.</p>
+  </div>
+);

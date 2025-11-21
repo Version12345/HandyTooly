@@ -161,6 +161,7 @@ const JsonFormatterCompare: React.FC = () => {
       toolCategory={ToolNameLists.JsonFormatterCompare}
       secondaryToolDescription="Paste your JSON objects in the text areas below, click the compare button, and instantly see the differences highlighted. Perfect for developers, data analysts, and anyone working with JSON data structures."
       disclaimer={<DataDisclaimer />}
+      educationContent={educationContent}
     >
       {/* JSON Input Areas */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 bg-white p-4 rounded-lg shadow-sm">
@@ -332,25 +333,26 @@ const JsonFormatterCompare: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* Educational Content */}
-      <div>
-        <h3>What Is JSON?</h3>
-        <p>JSON stands for JavaScript Object Notation. It is a simple text format used to store and share data. It uses pairs of keys and values, which makes it easy for people to read and easy for machines to process. You will see JSON in APIs, web apps, mobile apps, and many modern tools. Its clean structure works well for both small and large datasets.</p>
-        
-        <h3>Why JSON Is Used</h3>
-        <p>JSON is popular because it is fast, light, and easy to understand. It works across many languages, so developers can send data between different systems without extra steps. It also keeps data organized in a clear way, which helps when debugging, building features, or storing settings. Its mix of simplicity and flexibility makes it the standard format for data exchange today.</p>
-        
-        <h3>Our Formatting And Comparison Features</h3>
-        <p>The JSON Formatter cleans and organizes JSON with clear indentation. It checks your syntax in real time and points out any errors with simple messages. You can fix issues fast and copy the formatted result with one click.</p>
-
-        <p>The compare tool looks deep into your JSON objects and spots every change. It shows edited values, new properties, and removed fields. It also supports nested objects, so you can review complex data with ease.</p>
-
-        <h3>Common Use Cases</h3>
-        <p>Developers use this tool to compare API responses, check data structures, and debug payload issues. It also helps track changes in JSON settings and configuration files. Data teams use it to study JSON datasets and see how values shift during transformations.</p>
-      </div>
     </ToolLayout>
   );
 };
 
 export default JsonFormatterCompare;
+
+const educationContent = (     
+  <div>
+    <h3>What Is JSON?</h3>
+    <p>JSON stands for JavaScript Object Notation. It is a simple text format used to store and share data. It uses pairs of keys and values, which makes it easy for people to read and easy for machines to process. You will see JSON in APIs, web apps, mobile apps, and many modern tools. Its clean structure works well for both small and large datasets.</p>
+    
+    <h3>Why JSON Is Used</h3>
+    <p>JSON is popular because it is fast, light, and easy to understand. It works across many languages, so developers can send data between different systems without extra steps. It also keeps data organized in a clear way, which helps when debugging, building features, or storing settings. Its mix of simplicity and flexibility makes it the standard format for data exchange today.</p>
+    
+    <h3>Our Formatting And Comparison Features</h3>
+    <p>The JSON Formatter cleans and organizes JSON with clear indentation. It checks your syntax in real time and points out any errors with simple messages. You can fix issues fast and copy the formatted result with one click.</p>
+
+    <p>The compare tool looks deep into your JSON objects and spots every change. It shows edited values, new properties, and removed fields. It also supports nested objects, so you can review complex data with ease.</p>
+
+    <h3>Common Use Cases</h3>
+    <p>Developers use this tool to compare API responses, check data structures, and debug payload issues. It also helps track changes in JSON settings and configuration files. Data teams use it to study JSON datasets and see how values shift during transformations.</p>
+  </div>
+);

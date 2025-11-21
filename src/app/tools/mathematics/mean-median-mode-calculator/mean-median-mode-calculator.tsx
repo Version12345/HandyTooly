@@ -183,6 +183,7 @@ export function MeanMedianModeCalculator() {
     <ToolLayout 
       toolCategory={ToolNameLists.MeanMedianModeCalculator}
       secondaryToolDescription="Perfect for statistics, data analysis, and mathematical calculations."
+      educationContent={educationContent}
     >
       <div className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -235,7 +236,7 @@ export function MeanMedianModeCalculator() {
                   <button
                     key={index}
                     onClick={() => setInputData(example.data)}
-                    className="w-full text-left px-3 py-2 text-sm bg-gray-50 hover:bg-orange-50 rounded border transition-colors"
+                    className="w-full text-left px-3 py-2 text-sm bg-gray-50 hover:bg-orange-50 rounded border border-gray-300 transition-colors"
                   >
                     <span className="font-semibold text-gray-900">{example.name}</span>
                     <div className="text-xs text-gray-600 mt-1 truncate">{example.data}</div>
@@ -336,7 +337,7 @@ export function MeanMedianModeCalculator() {
 
                 {/* Count/Sum */}
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="bg-gray-100 rounded-lg p-3">
                     <div className="text-xs text-gray-600">Count n</div>
                     <div className="text-lg font-bold text-gray-900 font-mono">{results.count}</div>
                   </div>
@@ -391,10 +392,10 @@ export function MeanMedianModeCalculator() {
                 </div>
 
                 {/* Sorted Data Preview */}
-                <div className="bg-gray-50 rounded-lg p-4 relative">
+                <div className="bg-gray-100 rounded-lg p-4 relative">
                   <button
                     onClick={() => handleCopy(results.sortedData.map(formatNumber).join(', '))}
-                    className="absolute top-3 right-3 px-3 py-1 text-xs bg-gray-500 hover:bg-gray-600 text-white rounded transition-colors"
+                    className="absolute top-3 right-3 px-3 py-1 text-xs bg-gray-400 hover:bg-gray-600 text-white rounded transition-colors"
                   >
                     Copy
                   </button>
@@ -413,72 +414,71 @@ export function MeanMedianModeCalculator() {
             )}
           </div>
         </div>
-
-        <hr className="my-5" />
-
-        {/* Educational Content */}
-        <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">How to Use This Mean Median Mode Calculator</h3>
-          <p className="text-gray-700 mb-4">
-            Our statistical calculator makes it easy to analyze data sets and understand central tendency measures. Simply enter your data values separated by commas or spaces, and instantly see comprehensive statistical analysis including mean, median, mode, quartiles, and outlier detection.
-          </p>
-
-          <h3>What are Mean, Median, and Mode?</h3>
-          <p className="text-gray-700 mb-4">
-            Mean, median, and mode are all measures of central tendency in statistics. In different ways they each tell us what value in a data set is typical or representative of the data set.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 bg-white p-4 rounded-lg">
-            <div className="bg-gray-100 rounded-lg p-4">
-              <h4 className="text-lg font-semibold mb-2">Mean (Average)</h4>
-              <p className="text-sm">
-                The mean is the same as the average value of a data set and is found using a calculation. Add up all of the numbers and divide by the number of numbers in the data set.
-              </p>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-4">
-              <h4 className="text-lg font-semibold mb-2">Median</h4>
-              <p className="text-sm">
-                The median is the central number of a data set. Arrange data points from smallest to largest and locate the central number. If there are 2 numbers in the middle, the median is the average of those 2 numbers.
-              </p>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-4">
-              <h4 className="text-lg font-semibold mb-2">Mode</h4>
-              <p className="text-sm">
-                The mode is the number in a data set that occurs most frequently. Count how many times each number occurs in the data set. The mode is the number with the highest tally.
-              </p>
-            </div>
-          </div>
-
-          <h3>How to Find the Mean</h3>
-          <ol className="list-decimal list-outside space-y-2 text-gray-700 mb-6 pl-5">
-            <li>Add up all data values to get the sum</li>
-            <li>Count the number of values in your data set</li>
-            <li>Divide the sum by the count</li>
-          </ol>
-
-          <h3>Understanding Quartiles and Outliers</h3>
-          <p className="text-gray-700 mb-4">
-            Quartiles divide your data into four equal parts. Q1 (first quartile) marks the 25th percentile, Q2 is the median (50th percentile), and Q3 (third quartile) marks the 75th percentile. The Interquartile Range (IQR) is Q3 - Q1 and helps identify outliers.
-          </p>
-
-          <p className="text-gray-700 mb-6">
-            Outliers are data points that fall significantly outside the typical range. Our calculator uses the standard IQR method: any value below Q1 - 1.5&times;IQR or above Q3 + 1.5&times;IQR is considered an outlier.
-          </p>
-
-          <h3>Common Applications</h3>
-          <p className="text-gray-700 mb-4">
-            <strong>Education:</strong> Analyzing test scores, grade distributions, and academic performance metrics.
-            <strong>Business:</strong> Sales data analysis, performance metrics, and quality control measurements.
-            <strong>Research:</strong> Scientific data analysis, survey results, and experimental measurements.
-            <strong>Sports:</strong> Performance statistics, scoring analysis, and player comparisons.
-          </p>
-
-          <h3>Tips for Data Analysis</h3>
-          <p className="text-gray-700 mb-6">
-            When analyzing data, consider all measures together. The mean can be affected by outliers, making the median a better measure of central tendency for skewed data. The mode is especially useful for categorical data or when you need to know the most common value. Always check for outliers as they may indicate data entry errors or unusual conditions that warrant investigation.
-          </p>
-        </div>
       </div>
     </ToolLayout>
   );
 }
+
+const educationContent = (
+  <div>
+    <h3 className="text-xl font-semibold text-gray-900 mb-4">How to Use This Mean Median Mode Calculator</h3>
+    <p className="text-gray-700 mb-4">
+      Our statistical calculator makes it easy to analyze data sets and understand central tendency measures. Simply enter your data values separated by commas or spaces, and instantly see comprehensive statistical analysis including mean, median, mode, quartiles, and outlier detection.
+    </p>
+
+    <h3>What are Mean, Median, and Mode?</h3>
+    <p className="text-gray-700 mb-4">
+      Mean, median, and mode are all measures of central tendency in statistics. In different ways they each tell us what value in a data set is typical or representative of the data set.
+    </p>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 bg-white p-4 rounded-lg">
+      <div className="bg-gray-100 rounded-lg p-4">
+        <h4 className="text-lg font-semibold mb-2">Mean (Average)</h4>
+        <p className="text-sm">
+          The mean is the same as the average value of a data set and is found using a calculation. Add up all of the numbers and divide by the number of numbers in the data set.
+        </p>
+      </div>
+      <div className="bg-gray-100 rounded-lg p-4">
+        <h4 className="text-lg font-semibold mb-2">Median</h4>
+        <p className="text-sm">
+          The median is the central number of a data set. Arrange data points from smallest to largest and locate the central number. If there are 2 numbers in the middle, the median is the average of those 2 numbers.
+        </p>
+      </div>
+      <div className="bg-gray-100 rounded-lg p-4">
+        <h4 className="text-lg font-semibold mb-2">Mode</h4>
+        <p className="text-sm">
+          The mode is the number in a data set that occurs most frequently. Count how many times each number occurs in the data set. The mode is the number with the highest tally.
+        </p>
+      </div>
+    </div>
+
+    <h3>How to Find the Mean</h3>
+    <ol className="list-decimal list-outside space-y-2 text-gray-700 mb-6 pl-5">
+      <li>Add up all data values to get the sum</li>
+      <li>Count the number of values in your data set</li>
+      <li>Divide the sum by the count</li>
+    </ol>
+
+    <h3>Understanding Quartiles and Outliers</h3>
+    <p className="text-gray-700 mb-4">
+      Quartiles divide your data into four equal parts. Q1 (first quartile) marks the 25th percentile, Q2 is the median (50th percentile), and Q3 (third quartile) marks the 75th percentile. The Interquartile Range (IQR) is Q3 - Q1 and helps identify outliers.
+    </p>
+
+    <p className="text-gray-700 mb-6">
+      Outliers are data points that fall significantly outside the typical range. Our calculator uses the standard IQR method: any value below Q1 - 1.5&times;IQR or above Q3 + 1.5&times;IQR is considered an outlier.
+    </p>
+
+    <h3>Common Applications</h3>
+    <p className="text-gray-700 mb-4">
+      <strong>Education:</strong> Analyzing test scores, grade distributions, and academic performance metrics.
+      <strong>Business:</strong> Sales data analysis, performance metrics, and quality control measurements.
+      <strong>Research:</strong> Scientific data analysis, survey results, and experimental measurements.
+      <strong>Sports:</strong> Performance statistics, scoring analysis, and player comparisons.
+    </p>
+
+    <h3>Tips for Data Analysis</h3>
+    <p className="text-gray-700 mb-6">
+      When analyzing data, consider all measures together. The mean can be affected by outliers, making the median a better measure of central tendency for skewed data. The mode is especially useful for categorical data or when you need to know the most common value. Always check for outliers as they may indicate data entry errors or unusual conditions that warrant investigation.
+    </p>
+  </div>
+);
