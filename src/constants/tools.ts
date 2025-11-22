@@ -89,11 +89,14 @@ export enum ToolNameLists {
   Base64Converter = "Base64 Converter",
   HtmlEncoder = "HTML Encoder/Decoder",
   AnnualizedReturnCalculator = "Annualized Return Calculator",
-    RandomTextGenerator = "Random Text Generator",
-    PasswordGenerator = "Password Generator",
-    JWTDecoder = "JWT Decoder",
-    JsonFormatterCompare = "JSON Formatter & Compare",
-}export const ToolDescription: Record<string, string> = {
+  RandomTextGenerator = "Random Text Generator",
+  PasswordGenerator = "Password Generator",
+  JWTDecoder = "JWT Decoder",
+  JsonFormatterCompare = "JSON Formatter & Compare",
+  IPChecker = "IP Address Checker",
+}
+
+export const ToolDescription: Record<string, string> = {
   [ToolNameLists.BMICalculator]: "Calculate your Body Mass Index (BMI) for weight loss, maintenance, or gain. You can use kg & cm or lbs & inches conversions.",
   [ToolNameLists.BMRCalculator]: "Calculate your Basal Metabolic Rate (BMR) for weight loss, maintenance, or gain. You can use kg & cm or lbs & inches conversions.",
   [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest & track continuous contributions in different currencies.",
@@ -123,6 +126,7 @@ export enum ToolNameLists {
   [ToolNameLists.PasswordGenerator]: "Generate secure, random passwords with different character types, lengths, and security levels. All generation happens locally in your browser.",
   [ToolNameLists.JWTDecoder]: "Decode JWT (JSON Web Tokens) to view header, payload, and signature components. Analyze token structure, claims, and expiration dates with secure client-side processing.",
   [ToolNameLists.JsonFormatterCompare]: "Format, validate, and compare JSON objects with instant difference highlighting. Perfect for API development, configuration management, and data analysis with client-side processing.",
+  [ToolNameLists.IPChecker]: "Instantly see your public IP address and get clear details about your connection, including IPv4, IPv6, location, ISP, and network information.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -155,6 +159,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.PasswordGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/password-generator`,
   [ToolNameLists.JWTDecoder]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/jwt-decoder`,
   [ToolNameLists.JsonFormatterCompare]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/json-formatter-compare`,
+  [ToolNameLists.IPChecker]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/ip-checker`,
 };
 
 export const Tools: Record<string, Tool[]> = {
@@ -300,6 +305,11 @@ export const Tools: Record<string, Tool[]> = {
   ],
   [ToolCategory.Miscellaneous]: [
     {
+      name: ToolNameLists.IPChecker,
+      description: ToolDescription[ToolNameLists.IPChecker],
+      link: ToolUrls[ToolNameLists.IPChecker]
+    },
+    {
       name: ToolNameLists.JsonFormatterCompare,
       description: ToolDescription[ToolNameLists.JsonFormatterCompare],
       link: ToolUrls[ToolNameLists.JsonFormatterCompare]
@@ -318,6 +328,6 @@ export const Tools: Record<string, Tool[]> = {
       name: ToolNameLists.RandomTextGenerator,
       description: ToolDescription[ToolNameLists.RandomTextGenerator],
       link: ToolUrls[ToolNameLists.RandomTextGenerator]
-    },
+    }
   ]
 };
