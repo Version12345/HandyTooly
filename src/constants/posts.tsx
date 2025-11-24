@@ -16,6 +16,16 @@ export interface IPost {
 };
 
 export const POSTS: Record<string, IPost> = {
+  'daily-steps-into-distance': {
+    title: "Turn Your Daily Steps Into Real Distance",
+    description: "Learn how a steps to distance calculator uses stride, pace, and weight to show miles, calories, and real progress you can trust.",
+    slug: "daily-steps-into-distance",
+    date: "2025-11-23",
+    tags: ["Updates"],
+    author: "HandyTooly Team",
+    readTime: 2,
+    featuredImage: "/images/blogs/daily-steps-into-distance.jpg",
+  }, 
   'time-zone-conversion': {
     title: "Time Zone Conversion Made Easy",
     description: "Easily convert time zones with between UTC and your local time. Get accurate time zone information and make scheduling a breeze.",
