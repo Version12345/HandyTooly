@@ -89,11 +89,12 @@ export enum ToolNameLists {
   Base64Converter = "Base64 Converter",
   HtmlEncoder = "HTML Encoder/Decoder",
   AnnualizedReturnCalculator = "Annualized Return Calculator",
-  RandomTextGenerator = "Random Text Generator",
-  PasswordGenerator = "Password Generator",
-  JWTDecoder = "JWT Decoder",
-  JsonFormatterCompare = "JSON Formatter & Compare",
-  IPChecker = "IP Address Checker",
+    RandomTextGenerator = "Random Text Generator",
+    PasswordGenerator = "Password Generator",
+    JWTDecoder = "JWT Decoder",
+    JsonFormatterCompare = "JSON Formatter & Compare",
+    IPChecker = "IP Address Checker",
+    HtmlFormatter = "HTML Formatter",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -127,6 +128,7 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.JWTDecoder]: "Decode JWT (JSON Web Tokens) to view header, payload, and signature components. Analyze token structure, claims, and expiration dates with secure client-side processing.",
   [ToolNameLists.JsonFormatterCompare]: "Format, validate, and compare JSON objects with instant difference highlighting. Perfect for API development, configuration management, and data analysis with client-side processing.",
   [ToolNameLists.IPChecker]: "Instantly see your public IP address and get clear details about your connection, including IPv4, IPv6, location, ISP, and network information.",
+  [ToolNameLists.HtmlFormatter]: "Format and beautify HTML code with customizable indentation levels. Clean up messy HTML, improve readability, and maintain proper code structure with client-side processing.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -160,6 +162,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.JWTDecoder]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/jwt-decoder`,
   [ToolNameLists.JsonFormatterCompare]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/json-formatter-compare`,
   [ToolNameLists.IPChecker]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/ip-checker`,
+  [ToolNameLists.HtmlFormatter]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/html-formatter`,
 };
 
 export const Tools: Record<string, Tool[]> = {
@@ -305,6 +308,11 @@ export const Tools: Record<string, Tool[]> = {
   ],
   [ToolCategory.Miscellaneous]: [
     {
+      name: ToolNameLists.HtmlFormatter,
+      description: ToolDescription[ToolNameLists.HtmlFormatter],
+      link: ToolUrls[ToolNameLists.HtmlFormatter]
+    },
+    {
       name: ToolNameLists.IPChecker,
       description: ToolDescription[ToolNameLists.IPChecker],
       link: ToolUrls[ToolNameLists.IPChecker]
@@ -328,6 +336,6 @@ export const Tools: Record<string, Tool[]> = {
       name: ToolNameLists.RandomTextGenerator,
       description: ToolDescription[ToolNameLists.RandomTextGenerator],
       link: ToolUrls[ToolNameLists.RandomTextGenerator]
-    }
+    },
   ]
 };
