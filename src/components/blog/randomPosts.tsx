@@ -10,7 +10,7 @@ export default function RandomPosts() {
   }, []);
   
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-4">
+    <div className="bg-white rounded-lg shadow-md p-6 my-4">
       <h3 className="text-lg font-semibold text-gray-900 mb-4">Random Posts</h3>
       <div className="space-y-4">
         {randomPosts.length ? (
