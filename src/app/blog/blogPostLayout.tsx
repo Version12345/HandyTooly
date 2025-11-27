@@ -1,5 +1,6 @@
 'use client';
 
+import AdBanner from '@/components/adsBanner/adBanner';
 import BlogCategories from '@/components/blog/blogCategories';
 import BlogNameCard from '@/components/blog/blogNameCard';
 import RandomPosts from '@/components/blog/randomPosts';
@@ -51,6 +52,12 @@ export default function BlogPostLayout({ post, children }: LayoutProps) {
           <div>
             {/* Right Column */}
             <RightCol title={post.title} />
+
+            <AdBanner
+              data-ad-slot="5786184730"
+              data-full-width-responsive="true"
+              data-ad-format="auto"
+            />
             
             <RandomPosts />
 

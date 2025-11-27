@@ -7,6 +7,7 @@ import RandomPosts from '@/components/blog/randomPosts';
 import BlogNameCard from '@/components/blog/blogNameCard';
 import Link from 'next/link';
 import Breadcrumb from '@/components/breadcrumb';
+import AdBanner from '@/components/adsBanner/adBanner';
 
 const POSTS_PER_PAGE = 6; // Increased for better two-column layout
 
@@ -160,6 +161,12 @@ export default function BlogHomeLayout() {
               </button>
             )}
           </div>
+
+          <AdBanner
+            data-ad-slot="5786184730"
+            data-full-width-responsive="true"
+            data-ad-format="auto"
+          />
 
           <RandomPosts />
 
