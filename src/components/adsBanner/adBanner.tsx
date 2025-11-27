@@ -7,10 +7,10 @@ adsbygoogle: unknown[];
 }
 
 interface AdsBannerProps {
-"data-ad-slot": string;
-"data-ad-format": string;
-"data-full-width-responsive": string;
-"data-ad-layout"?: string;
+  "data-ad-slot": string;
+  "data-ad-format": string;
+  "data-full-width-responsive": string;
+  "data-ad-layout"?: string;
 }
 
 const AdBanner = (props: AdsBannerProps) => {
@@ -55,7 +55,7 @@ const AdBanner = (props: AdsBannerProps) => {
           border: process.env.NODE_ENV === "development" ? "1px solid red" : "none",
         }}
         data-adtest="on"
-        data-ad-client={"ca-pub-6309653411409847"}
+        data-ad-client={process.env.GOOGLE_ADSENSE_CLIENT_ID}
         {...props}
       />
     </>

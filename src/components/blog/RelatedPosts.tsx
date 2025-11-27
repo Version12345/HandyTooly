@@ -92,26 +92,29 @@ export default function RelatedPosts({ currentPost, maxPosts = 3 }: RelatedPosts
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mt-8">
+    <div className="bg-white rounded-lg shadow-md p-6 mt-8 related-posts-container">
       <h3 className="text-xl font-semibold text-gray-900 mb-6">Related Posts</h3>
       
       <div className="space-y-6">
         {relatedPosts.map((post) => (
+          
           <article 
             key={post.slug}
             className="flex gap-4 p-4 border border-gray-100 rounded-lg hover:shadow-md transition-shadow duration-200"
           >
             {/* Featured Image */}
             {post.featuredImage && (
-              <div className="w-24 h-24 flex-shrink-0">
-                <Image
-                  src={post.featuredImage}
-                  alt={post.title}
-                  width={96}
-                  height={96}
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
+              <a href={`/blog/${post.slug}`}>
+                <div className="w-24 h-24 rounded-lg overflow-hidden">
+                  <Image
+                    src={post.featuredImage}
+                    alt={post.title}
+                    width={200}
+                    height={96}
+                    className="h-full w-auto"
+                  />
+                </div>
+              </a>
             )}
             
             {/* Content */}

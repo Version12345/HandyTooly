@@ -141,4 +141,10 @@ select {
       color: var(--color-orange-700);
     }
   }
+
+  .related-posts-container {
+    img {
+      max-width: unset;
+    }
+  }
 }

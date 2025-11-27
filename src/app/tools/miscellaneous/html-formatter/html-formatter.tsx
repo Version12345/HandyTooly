@@ -20,7 +20,7 @@ const HtmlFormatter: React.FC = () => {
   const [error, setError] = useState<string>('');
   const [copyStates, setCopyStates] = useState<CopyState>({});
 
-  const CHARACTER_LIMIT = 2500;
+  const CHARACTER_LIMIT = 300000;
 
   const indentationOptions = [
     { value: 2, label: '2 spaces per indent level' },
