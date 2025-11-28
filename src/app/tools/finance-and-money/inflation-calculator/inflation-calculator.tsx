@@ -4,7 +4,8 @@ import React, { useState, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
-import CurrencySelector, { CURRENCIES } from '@/components/currencySelector';
+import CurrencySelector from '@/components/currencySelector';
+import { formatCurrency, getCurrencySymbol } from '@/utils/currencyHelpers';
 
 interface InflationData {
   initialAmount: number;
@@ -36,8 +37,6 @@ interface ValidationErrors {
   endingYear?: string;
   annualInflationRate?: string;
 }
-
-
 
 // Real-world comparisons data (moved outside component to prevent recreations)
 const REAL_WORLD_ITEMS = [
@@ -209,15 +208,6 @@ export default function InflationCalculator() {
     calculateInflation();
   }, [calculateInflation]);
 
-  const formatCurrency = (amount: number): string => {
-    const currency = CURRENCIES.find(c => c.value === inflationData.currency);
-    const symbol = currency?.symbol || '$';
-    if (amount >= 1000000) {
-      return `${symbol}${(amount / 1000000).toFixed(1)}M`;
-    }
-    return `${symbol}${Math.round(amount).toLocaleString()}`;
-  };
-
   const formatPercentage = (percentage: number): string => {
     return `${percentage.toFixed(1)}%`;
   };
@@ -289,7 +279,7 @@ export default function InflationCalculator() {
                     placeholder="Enter amount (e.g. 1000)"
                   />
                   <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
-                    {CURRENCIES.find(c => c.value === inflationData.currency)?.symbol}
+                    {getCurrencySymbol(inflationData.currency)}
                   </span>
                 </div>
                 {validationErrors.initialAmount && (
@@ -448,7 +438,7 @@ export default function InflationCalculator() {
                     {inflationData.calculationMode === 'future' ? 'Future Value' : 'Historical Equivalent'}
                   </div>
                   <div className="text-2xl font-bold text-red-600">
-                    {formatCurrency(result.futureValue)}
+                    {formatCurrency(result.futureValue, inflationData.currency)}
                   </div>
                   <div className="text-sm text-red-600 mt-1">
                     {inflationData.calculationMode === 'future' 
@@ -492,13 +482,13 @@ export default function InflationCalculator() {
                     {inflationData.calculationMode === 'future' ? (
                       <>
                         Due to {formatPercentage(inflationData.annualInflationRate)} annual inflation over {result.yearsDifference} years, you 
-                        would need {formatCurrency(result.futureValue)} in {inflationData.endingYear} to have the same 
-                        purchasing power as {formatCurrency(inflationData.initialAmount)} today. This 
+                        would need {formatCurrency(result.futureValue, inflationData.currency)} in {inflationData.endingYear} to have the same 
+                        purchasing power as {formatCurrency(inflationData.initialAmount, inflationData.currency)} today. This 
                         represents a {formatPercentage(result.purchasingPowerLoss)} reduction in buying power.
                       </>
                     ) : (
                       <>
-                        {formatCurrency(inflationData.initialAmount)} today had the purchasing power equivalent of {formatCurrency(result.futureValue)} 
+                        {formatCurrency(inflationData.initialAmount, inflationData.currency)} today had the purchasing power equivalent of {formatCurrency(result.futureValue, inflationData.currency)} 
                         in {inflationData.startingYear}. This shows how inflation of {formatPercentage(inflationData.annualInflationRate)} 
                         annually over {result.yearsDifference} years has affected the value of money.
                       </>
@@ -526,24 +516,24 @@ export default function InflationCalculator() {
                   <div className="space-y-3 mb-6">
                     <div className="flex justify-between">
                       <span className="text-sm text-gray-600">Original ({inflationData.startingYear}):</span>
-                      <span className="font-medium">{formatCurrency(inflationData.initialAmount)}</span>
+                      <span className="font-medium">{formatCurrency(inflationData.initialAmount, inflationData.currency)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm text-gray-600">
                         {inflationData.calculationMode === 'future' ? 'Future' : 'Historical'} ({inflationData.endingYear}):
                       </span>
-                      <span className="font-medium">{formatCurrency(result.futureValue)}</span>
+                      <span className="font-medium">{formatCurrency(result.futureValue, inflationData.currency)}</span>
                     </div>
                     <div className="flex justify-between border-t pt-2">
                       <span className="text-sm text-gray-600">Difference:</span>
-                      <span className="font-medium text-red-600">{formatCurrency(Math.abs(result.futureValue - inflationData.initialAmount))}</span>
+                      <span className="font-medium text-red-600">{formatCurrency(Math.abs(result.futureValue - inflationData.initialAmount), inflationData.currency)}</span>
                     </div>
                   </div>
 
                   <div className="space-y-3 mb-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Real-World Impact</h3>
                     <div className="text-sm font-medium text-gray-700 mb-3">
-                      What {formatCurrency(inflationData.initialAmount)} Could Buy
+                      What {formatCurrency(inflationData.initialAmount, inflationData.currency)} Could Buy
                     </div>
                     
                     <div className="space-y-3">
@@ -556,7 +546,7 @@ export default function InflationCalculator() {
                             <span className="text-sm font-medium text-gray-900">{comparison.originalQuantity}  {comparison.item}</span>
                             <span className="text-sm text-gray-600">
                               <div className="text-xs text-blue-600">
-                                {formatCurrency(comparison.originalPrice)} each
+                                {formatCurrency(comparison.originalPrice, inflationData.currency)} each
                               </div>
                             </span>
                           </div>
@@ -572,7 +562,7 @@ export default function InflationCalculator() {
                             <span className="text-sm font-medium text-gray-900">{comparison.inflatedQuantity} {comparison.item}</span>
                             <span className="text-sm text-gray-600">
                               <div className="text-xs text-red-600">
-                                {formatCurrency(comparison.inflatedPrice)} each
+                                {formatCurrency(comparison.inflatedPrice, inflationData.currency)} each
                               </div>
                             </span>
                           </div>

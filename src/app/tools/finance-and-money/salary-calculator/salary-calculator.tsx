@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
 import { ToolNameLists } from '@/constants/tools';
+import { formatCurrency } from '@/utils/currencyHelpers';
 
 type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | 'JPY';
 
@@ -273,11 +274,6 @@ export function SalaryCalculator() {
     return () => clearTimeout(timeoutId);
   }, [salaryData, taxRates, calculateSalary]);
 
-  const formatCurrency = (amount: number): string => {
-    const symbol = CURRENCY_SYMBOLS[salaryData.currency];
-    return `${symbol}${Math.round(amount).toLocaleString()}`;
-  };
-
   const formatPercentage = (percentage: number): string => {
     return `${percentage.toFixed(2)}%`;
   };
@@ -428,7 +424,7 @@ export function SalaryCalculator() {
                 {salaryData.inputMethod !== 'annual' && salaryData.annualSalary > 0 && (
                   <div className="mt-2 p-2 bg-gray-50 rounded-md">
                     <span className="text-xs text-gray-500 font-medium">Equivalent annual salary:</span><br/>
-                    <span className="text-sm text-gray-700 font-semibold">{formatCurrency(salaryData.annualSalary)}</span>
+                    <span className="text-sm text-gray-700 font-semibold">{formatCurrency(salaryData.annualSalary, salaryData.currency)}</span>
                   </div>
                 )}
               </div>
@@ -638,7 +634,7 @@ export function SalaryCalculator() {
                   <div className="bg-lime-100 rounded-lg p-4 mb-3">
                     <div className="text-sm text-lime-700 mb-1">Annual Gross</div>
                     <div className="text-2xl font-bold text-lime-800">
-                      {formatCurrency(result.annualGross)}
+                      {formatCurrency(result.annualGross, salaryData.currency)}
                     </div>
                   </div>
 
@@ -646,7 +642,7 @@ export function SalaryCalculator() {
                   <div className="bg-blue-100 rounded-lg p-4 mb-3">
                     <div className="text-sm text-blue-700 mb-1">Monthly Gross</div>
                     <div className="text-xl font-bold text-blue-800">
-                      {formatCurrency(result.monthlyGross)}
+                      {formatCurrency(result.monthlyGross, salaryData.currency)}
                     </div>
                   </div>
 
@@ -654,7 +650,7 @@ export function SalaryCalculator() {
                   <div className="bg-amber-100 rounded-lg p-4">
                     <div className="text-sm text-amber-700 mb-1">Hourly Wage</div>
                     <div className="text-xl font-bold text-amber-800">
-                      {formatCurrency(result.hourlyWage)}
+                      {formatCurrency(result.hourlyWage, salaryData.currency)}
                     </div>
                   </div>
                 </div>
@@ -667,7 +663,7 @@ export function SalaryCalculator() {
                   <div className="bg-lime-100 rounded-lg p-4 mb-3">
                     <div className="text-sm text-lime-700 mb-1">Annual Net</div>
                     <div className="text-xl font-bold text-lime-800">
-                      {formatCurrency(result.annualNet)}
+                      {formatCurrency(result.annualNet, salaryData.currency)}
                     </div>
                   </div>
 
@@ -675,7 +671,7 @@ export function SalaryCalculator() {
                   <div className="bg-blue-100 rounded-lg p-4 mb-3">
                     <div className="text-sm text-blue-700 mb-1">Monthly Net</div>
                     <div className="text-xl font-bold text-blue-800">
-                      {formatCurrency(result.monthlyNet)}
+                      {formatCurrency(result.monthlyNet, salaryData.currency)}
                     </div>
                   </div>
 
@@ -683,7 +679,7 @@ export function SalaryCalculator() {
                   <div className="bg-amber-100 rounded-lg p-4 mb-3">
                     <div className="text-sm text-amber-700 mb-1">Weekly Net</div>
                     <div className="text-lg font-bold text-amber-800">
-                      {formatCurrency(result.weeklyNet)}
+                      {formatCurrency(result.weeklyNet, salaryData.currency)}
                     </div>
                   </div>
 
@@ -691,7 +687,7 @@ export function SalaryCalculator() {
                   <div className="bg-orange-100 rounded-lg p-4">
                     <div className="text-sm text-orange-700 mb-1">Daily Net</div>
                     <div className="text-lg font-bold text-orange-800">
-                      {formatCurrency(result.dailyNet)}
+                      {formatCurrency(result.dailyNet, salaryData.currency)}
                     </div>
                   </div>
                 </div>
@@ -712,24 +708,24 @@ export function SalaryCalculator() {
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span>Federal Taxes:</span>
-                        <span>{formatCurrency(result.federalTaxes)}</span>
+                        <span>{formatCurrency(result.federalTaxes, salaryData.currency)}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>State/Provincial Taxes:</span>
-                        <span>{formatCurrency(result.stateTaxes)}</span>
+                        <span>{formatCurrency(result.stateTaxes, salaryData.currency)}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Social Security/Pension:</span>
-                        <span>{formatCurrency(result.socialSecurityTaxes)}</span>
+                        <span>{formatCurrency(result.socialSecurityTaxes, salaryData.currency)}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Medicare/Healthcare:</span>
-                        <span>{formatCurrency(result.medicareTaxes)}</span>
+                        <span>{formatCurrency(result.medicareTaxes, salaryData.currency)}</span>
                       </div>
                       {result.otherDeductions > 0 && (
                         <div className="flex justify-between">
                           <span>Other Deductions:</span>
-                          <span>{formatCurrency(result.otherDeductions)}</span>
+                          <span>{formatCurrency(result.otherDeductions, salaryData.currency)}</span>
                         </div>
                       )}
                     </div>
@@ -740,7 +736,7 @@ export function SalaryCalculator() {
                   <div className="mb-6 p-4 bg-gray-100 rounded-lg text-gray-900 text-sm space-y-2">
                     <div className="flex justify-between">
                       <span>Annual Taxes:</span>
-                      <span>{formatCurrency(result.totalTaxBurden)}</span>
+                      <span>{formatCurrency(result.totalTaxBurden, salaryData.currency)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Effective Tax Rate:</span>
@@ -802,7 +798,7 @@ export function SalaryCalculator() {
                     <div className="bg-lime-100 rounded-lg p-4">
                       <div className="text-sm text-lime-700 mb-1">Hourly Rate after Taxes</div>
                       <div className="text-xl font-bold text-lime-800">
-                        {formatCurrency(result.annualNet / result.totalHours)}
+                        {formatCurrency(result.annualNet / result.totalHours, salaryData.currency)}
                       </div>
                     </div>
                   </div>
@@ -815,19 +811,19 @@ export function SalaryCalculator() {
                   <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-sm">Bi-weekly Gross:</span>
-                      <span className="font-medium">{formatCurrency(result.biWeeklyGross)}</span>
+                      <span className="font-medium">{formatCurrency(result.biWeeklyGross, salaryData.currency)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm">Bi-weekly Net:</span>
-                      <span className="font-medium">{formatCurrency(result.biWeeklyNet)}</span>
+                      <span className="font-medium">{formatCurrency(result.biWeeklyNet, salaryData.currency)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm">Quarterly Gross:</span>
-                      <span className="font-medium">{formatCurrency(result.quarterlyGross)}</span>
+                      <span className="font-medium">{formatCurrency(result.quarterlyGross, salaryData.currency)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm">Quarterly Net:</span>
-                      <span className="font-medium">{formatCurrency(result.quarterlyNet)}</span>
+                      <span className="font-medium">{formatCurrency(result.quarterlyNet, salaryData.currency)}</span>
                     </div>
                   </div>
                 </div>

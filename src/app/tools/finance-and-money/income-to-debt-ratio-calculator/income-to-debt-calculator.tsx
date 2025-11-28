@@ -3,8 +3,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
-import CurrencySelector, { CURRENCIES } from '@/components/currencySelector';
+import CurrencySelector from '@/components/currencySelector';
 import { ToolNameLists } from '@/constants/tools';
+import { formatCurrency, getCurrencySymbol } from '@/utils/currencyHelpers';
 
 type riskLevel = 'low' | 'moderate' | 'high';
 type Status = 'good' | 'challenging' | 'difficult' | 'limited';
@@ -164,13 +165,7 @@ export function IncomeToDebtCalculator() {
     }
   }, [income, debts, calculateDTI]);
 
-  const formatCurrency = (amount: number) => {
-    const selectedCurrency = CURRENCIES.find(c => c.value === currency);
-    const symbol = selectedCurrency?.symbol || '$';
-    return `${symbol}${amount.toLocaleString()}`;
-  };
-
-  const currencySymbol = CURRENCIES.find(c => c.value === currency)?.symbol || '$';
+  const currencySymbol = getCurrencySymbol(currency);
 
   return (
     <ToolLayout
@@ -235,15 +230,15 @@ export function IncomeToDebtCalculator() {
               <div className="space-y-1 text-sm">
                 <div className="flex justify-between">
                   <span>Primary Income:</span>
-                  <span>{formatCurrency(income.primaryIncome)}</span>
+                  <span>{formatCurrency(income.primaryIncome, currency)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Additional Income:</span>
-                  <span>{formatCurrency(income.additionalIncome)}</span>
+                  <span>{formatCurrency(income.additionalIncome, currency)}</span>
                 </div>
                 <div className="flex justify-between font-medium pt-1 border-t">
                   <span>Total Monthly Income:</span>
-                  <span>{formatCurrency(income.primaryIncome + income.additionalIncome)}</span>
+                  <span>{formatCurrency(income.primaryIncome + income.additionalIncome, currency)}</span>
                 </div>
               </div>
             </div>
@@ -338,7 +333,7 @@ export function IncomeToDebtCalculator() {
                       debts.mortgage + debts.carLoan + debts.creditCards + 
                       debts.studentLoans + debts.personalLoans + debts.otherDebts +
                       debts.customDebts.reduce((sum, debt) => sum + debt.monthlyPayment, 0)
-                    )}
+                    , currency)}
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -386,15 +381,15 @@ export function IncomeToDebtCalculator() {
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span>Monthly Income:</span>
-                      <span>{formatCurrency(result.monthlyIncome)}</span>
+                      <span>{formatCurrency(result.monthlyIncome, currency)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Monthly Debt Payments:</span>
-                      <span>{formatCurrency(result.monthlyDebtPayments)}</span>
+                      <span>{formatCurrency(result.monthlyDebtPayments, currency)}</span>
                     </div>
                     <div className="flex justify-between border-t pt-2">
                       <span>Available for Other Expenses:</span>
-                      <span className="font-medium">{formatCurrency(result.availableForOtherExpenses)}</span>
+                      <span className="font-medium">{formatCurrency(result.availableForOtherExpenses, currency)}</span>
                     </div>
                   </div>
                 </div>

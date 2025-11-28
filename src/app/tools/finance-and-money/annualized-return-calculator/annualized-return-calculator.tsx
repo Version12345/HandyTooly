@@ -3,6 +3,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 import { copyToClipboard } from '@/utils/copyToClipboard';
+import CurrencySelector from '@/components/currencySelector';
+import { formatCurrency, getCurrencySymbol } from '@/utils/currencyHelpers';
 
 interface InvestmentResults {
   totalReturn: number;
@@ -32,6 +34,7 @@ export function AnnualizedReturnCalculator() {
   const [days, setDays] = useState('0');
   const [startDate, setStartDate] = useState('2020-11-16');
   const [endDate, setEndDate] = useState('2025-11-17');
+  const [currency, setCurrency] = useState('USD');
   const [results, setResults] = useState<InvestmentResults | null>(null);
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -142,13 +145,6 @@ export function AnnualizedReturnCalculator() {
     await copyToClipboard(text);
   };
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(amount);
-  };
-
   const formatPercent = (percent: number) => {
     return `${percent.toFixed(2)}%`;
   };
@@ -177,12 +173,18 @@ export function AnnualizedReturnCalculator() {
             <h2>Investment Details</h2>
             
             <div className="space-y-4">
+              <CurrencySelector
+                value={currency}
+                onChange={setCurrency}
+                className="mb-4"
+              />
+              
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Initial Investment (Principal)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">{getCurrencySymbol(currency)}</span>
                   <input
                     type="number"
                     value={initialInvestment}
@@ -198,7 +200,7 @@ export function AnnualizedReturnCalculator() {
                   Final Value
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">{getCurrencySymbol(currency)}</span>
                   <input
                     type="number"
                     value={finalValue}
@@ -317,14 +319,14 @@ export function AnnualizedReturnCalculator() {
 
                 <div className="bg-green-50 rounded-lg p-4 relative">
                   <button
-                    onClick={() => handleCopy(formatCurrency(results.absoluteGainLoss))}
+                    onClick={() => handleCopy(formatCurrency(results.absoluteGainLoss, currency))}
                     className="absolute top-3 right-3 px-3 py-1 text-xs bg-green-500 hover:bg-green-600 text-white rounded transition-colors"
                   >
                     Copy
                   </button>
                   <div className="text-sm text-gray-600">Absolute Gain/Loss</div>
                   <div className={`text-xl font-bold ${getPerformanceColor(results.absoluteGainLoss)} pr-16`}>
-                    {formatCurrency(results.absoluteGainLoss)}
+                    {formatCurrency(results.absoluteGainLoss, currency)}
                   </div>
                 </div>
 
@@ -429,20 +431,20 @@ export function AnnualizedReturnCalculator() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-3">If you invested ${initialInvestment}</h4>
+                  <h4 className="font-semibold text-gray-900 mb-3">If you invested {formatCurrency(parseFloat(initialInvestment) || 0, currency)}</h4>
                   <div className="text-sm space-y-1">
                     <div className="space-y-4">
                       <div className="flex justify-between bg-gray-100 p-4 rounded">
                         <span>At 5% for 10 years:</span>
-                        <span className="font-semibold">${(parseFloat(initialInvestment) * Math.pow(1.05, 10)).toFixed(0)}</span>
+                        <span className="font-semibold">{formatCurrency(parseFloat(initialInvestment) * Math.pow(1.05, 10), currency)}</span>
                       </div>
                       <div className="flex justify-between bg-gray-100 p-4 rounded">
                         <span>At 8% for 10 years:</span>
-                        <span className="font-semibold">${(parseFloat(initialInvestment) * Math.pow(1.08, 10)).toFixed(0)}</span>
+                        <span className="font-semibold">{formatCurrency(parseFloat(initialInvestment) * Math.pow(1.08, 10), currency)}</span>
                       </div>
                       <div className="flex justify-between bg-gray-100 p-4 rounded">
                         <span>At 12% for 10 years:</span>
-                        <span className="font-semibold">${(parseFloat(initialInvestment) * Math.pow(1.12, 10)).toFixed(0)}</span>
+                        <span className="font-semibold">{formatCurrency(parseFloat(initialInvestment) * Math.pow(1.12, 10), currency)}</span>
                       </div>
                     </div>
                   </div>
@@ -492,17 +494,17 @@ export function AnnualizedReturnCalculator() {
               <div className="space-y-4 text-sm">
                 <div className="flex justify-between items-center py-3 bg-gray-100 rounded-t-lg rounded-lg p-4">
                   <span className="text-gray-600">Value in 1 year:</span>
-                  <span className="font-semibold">{formatCurrency(results.futureValueProjections.oneYear)}</span>
+                  <span className="font-semibold">{formatCurrency(results.futureValueProjections.oneYear, currency)}</span>
                 </div>
                 
                 <div className="flex justify-between items-center py-3 bg-gray-100 rounded-t-lg rounded-lg p-4">
                   <span className="text-gray-600">Value in 5 years:</span>
-                  <span className="font-semibold text-lg">{formatCurrency(results.futureValueProjections.fiveYears)}</span>
+                  <span className="font-semibold text-lg">{formatCurrency(results.futureValueProjections.fiveYears, currency)}</span>
                 </div>
                 
                 <div className="flex justify-between items-center py-3 bg-gray-100 rounded-t-lg rounded-lg p-4">
                   <span className="text-gray-600">Value in 10 years:</span>
-                  <span className="font-semibold text-lg">{formatCurrency(results.futureValueProjections.tenYears)}</span>
+                  <span className="font-semibold text-lg">{formatCurrency(results.futureValueProjections.tenYears, currency)}</span>
                 </div>
               </div>
             </div>

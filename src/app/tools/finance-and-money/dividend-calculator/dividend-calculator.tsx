@@ -6,8 +6,9 @@ import HighchartsReact from 'highcharts-react-official'
 
 import ToolLayout from '../../toolLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
-import CurrencySelector, { CURRENCIES } from '@/components/currencySelector';
+import CurrencySelector from '@/components/currencySelector';
 import { ToolNameLists } from '@/constants/tools';
+import { formatCurrency, getCurrencySymbol } from '@/utils/currencyHelpers';
 
 interface DividendData {
   investmentAmount: number;
@@ -181,15 +182,6 @@ const DividendCalculator: React.FC = () => {
     }));
   };
 
-  const formatCurrency = useCallback((amount: number): string => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: formData.currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount);
-  }, [formData.currency]);
-
   const formatPercentage = (value: number): string => {
     return `${value.toFixed(2)}%`;
   };
@@ -248,14 +240,14 @@ const DividendCalculator: React.FC = () => {
         formatter: function() {
           let tooltip = `<b>${this.x}</b><br/>`;
           this.points?.forEach(point => {
-            tooltip += `${point.series.name}: ${formatCurrency(point.y as number)}<br/>`;
+            tooltip += `${point.series.name}: ${formatCurrency(point.y as number, formData.currency)}<br/>`;
           });
           return tooltip;
         }
       },
       credits: { enabled: false },
     };
-  }, [results, formData.currency, formatCurrency]);
+  }, [results, formData.currency]);
 
   return (
     <ToolLayout 
@@ -279,7 +271,7 @@ const DividendCalculator: React.FC = () => {
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-3 text-gray-500">
-                    {CURRENCIES.find(c => c.value === formData.currency)?.symbol || '$'}
+                    {getCurrencySymbol(formData.currency)}
                   </span>
                   <input
                     type="number"
@@ -416,7 +408,7 @@ const DividendCalculator: React.FC = () => {
                 <div className="text-center">
                   <h4 className="text-sm font-medium text-gray-700 mb-2">Annual Dividend Income:</h4>
                   <div className="text-2xl font-bold text-green-600">
-                    {formatCurrency(results.annualDividendIncome)}
+                    {formatCurrency(results.annualDividendIncome, formData.currency)}
                   </div>
                   <div className="text-sm text-gray-500">Before taxes</div>
                 </div>
@@ -439,14 +431,14 @@ const DividendCalculator: React.FC = () => {
                 <div className="bg-blue-100 p-4 rounded-lg">
                   <div className="text-sm font-medium text-blue-800 mb-1">Monthly Dividend Income</div>
                   <div className="text-xl font-bold text-blue-700">
-                    {formatCurrency(results.monthlyDividendIncome)}
+                    {formatCurrency(results.monthlyDividendIncome, formData.currency)}
                   </div>
                 </div>
 
                 <div className="bg-purple-100 p-4 rounded-lg">
                   <div className="text-sm font-medium text-purple-800 mb-1">After-Tax Annual Income</div>
                   <div className="text-xl font-bold text-purple-700">
-                    {formatCurrency(results.afterTaxAnnualIncome)}
+                    {formatCurrency(results.afterTaxAnnualIncome, formData.currency)}
                   </div>
                 </div>
 
@@ -462,11 +454,11 @@ const DividendCalculator: React.FC = () => {
                   <div className="text-sm text-gray-600">
                     <div className="flex justify-between">
                       <span>Final Portfolio Value:</span>
-                      <span className="font-medium">{formatCurrency(results.finalPortfolioValue)}</span>
+                      <span className="font-medium">{formatCurrency(results.finalPortfolioValue, formData.currency)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Total Dividends Received:</span>
-                      <span className="font-medium">{formatCurrency(results.totalDividendsReceived)}</span>
+                      <span className="font-medium">{formatCurrency(results.totalDividendsReceived, formData.currency)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Compound Annual Growth:</span>
@@ -488,7 +480,7 @@ const DividendCalculator: React.FC = () => {
                     </div>
                     <div className="flex justify-between">
                       <span>Annual Tax Burden:</span>
-                      <span className="font-medium">{formatCurrency(results.annualTaxBurden)}</span>
+                      <span className="font-medium">{formatCurrency(results.annualTaxBurden, formData.currency)}</span>
                     </div>
                   </div>
                 </div>
@@ -498,15 +490,15 @@ const DividendCalculator: React.FC = () => {
                   <div className="text-sm text-gray-600">
                     <div className="flex justify-between">
                       <span>Year 1:</span>
-                      <span className="font-medium">{formatCurrency(results.yearlyBreakdown[0]?.dividendIncome || 0)}</span>
+                      <span className="font-medium">{formatCurrency(results.yearlyBreakdown[0]?.dividendIncome || 0, formData.currency)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Year 5:</span>
-                      <span className="font-medium">{formatCurrency(results.yearlyBreakdown[4]?.dividendIncome || 0)}</span>
+                      <span className="font-medium">{formatCurrency(results.yearlyBreakdown[4]?.dividendIncome || 0, formData.currency)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Year 10:</span>
-                      <span className="font-medium">{formatCurrency(results.yearlyBreakdown[9]?.dividendIncome || 0)}</span>
+                      <span className="font-medium">{formatCurrency(results.yearlyBreakdown[9]?.dividendIncome || 0, formData.currency)}</span>
                     </div>
                   </div>
                 </div>
@@ -593,10 +585,10 @@ const DividendCalculator: React.FC = () => {
                         <tr key={index} className="border-b border-gray-100">
                           <td className="py-2">{projection.year}</td>
                           <td className="py-2 text-green-600 font-medium">
-                            {formatCurrency(typeof projection.dividend === 'number' ? projection.dividend : 0)}
+                            {formatCurrency(typeof projection.dividend === 'number' ? projection.dividend : 0, formData.currency)}
                           </td>
                           <td className="py-2">{formatPercentage(projection.yieldOnCost)}</td>
-                          <td className="py-2">{formatCurrency(projection.portfolioValue)}</td>
+                          <td className="py-2">{formatCurrency(projection.portfolioValue, formData.currency)}</td>
                         </tr>
                       ))}
                     </tbody>

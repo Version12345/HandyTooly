@@ -6,8 +6,9 @@ import HighchartsReact from 'highcharts-react-official'
 
 import ToolLayout from '../../toolLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
-import CurrencySelector, { CURRENCIES } from '@/components/currencySelector';
+import CurrencySelector from '@/components/currencySelector';
 import { ToolNameLists } from '@/constants/tools';
+import { formatCurrency, getCurrencySymbol } from '@/utils/currencyHelpers';
 
 interface InvestmentData {
   initialPrincipal: number;
@@ -208,15 +209,6 @@ export function CompoundInterestCalculator() {
     });
   }, [investmentData, calculateCompoundInterest]);
 
-  const formatCurrency = useCallback((amount: number): string => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: investmentData.currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(amount);
-  }, [investmentData.currency]);
-
   // Chart options for Highcharts
   const options = useMemo<Highcharts.Options>(() => ({
     credits: { 
@@ -242,7 +234,7 @@ export function CompoundInterestCalculator() {
     },
     yAxis: {
       title: {
-        text: `Investment Value (${CURRENCIES.find(c => c.value === investmentData.currency)?.symbol || '$'})`
+        text: `Investment Value (${getCurrencySymbol(investmentData.currency)})`
       }
     },
     legend: {
@@ -253,7 +245,7 @@ export function CompoundInterestCalculator() {
           if (this.x && this.y) {
             return  `
               <b>${Highcharts.dateFormat('%b %e, %Y', this.x)}</b><br/>
-              ${formatCurrency(this.y)}
+              ${formatCurrency(this.y, investmentData.currency)}
             `;
           }
         }
@@ -331,7 +323,7 @@ export function CompoundInterestCalculator() {
               <label className="block text-sm font-medium text-gray-700 mb-2">Initial Principal</label>
               <div className="relative">
                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
-                  {CURRENCIES.find(c => c.value === investmentData.currency)?.symbol || '$'}
+                  {getCurrencySymbol(investmentData.currency)}
                 </span>
                 <input
                   type="number"
@@ -340,7 +332,7 @@ export function CompoundInterestCalculator() {
                     handleInputChange('initialPrincipal', e.target.value);
                   }}
                   className="w-full px-3 pl-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder={`${CURRENCIES.find(c => c.value === investmentData.currency)?.symbol || '$'} 10,000`}
+                  placeholder={`${getCurrencySymbol(investmentData.currency)} 10,000`}
                 />
               </div>
               <p className="text-xs text-gray-500 mt-1">Starting investment amount</p>
@@ -415,7 +407,7 @@ export function CompoundInterestCalculator() {
               <label className="block text-sm font-medium text-gray-700 mb-2">Additional Monthly Contribution</label>
               <div className="relative">
                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
-                  {CURRENCIES.find(c => c.value === investmentData.currency)?.symbol || '$'}
+                  {getCurrencySymbol(investmentData.currency)}
                 </span>
                 <input
                   type="number"
@@ -469,7 +461,7 @@ export function CompoundInterestCalculator() {
                 <div className="bg-blue-50 rounded-lg p-4">
                   <strong className="text-sm font-medium mb-1">Total Interest Earned</strong>
                   <div className="text-2xl font-bold text-blue-600">
-                    {formatCurrency(result.totalInterestEarned)}
+                    {formatCurrency(result.totalInterestEarned, investmentData.currency)}
                   </div>
                 </div>
 
@@ -477,7 +469,7 @@ export function CompoundInterestCalculator() {
                 <div className="bg-orange-50 rounded-lg p-4">
                   <strong className="text-sm font-medium mb-1">Total Contributions</strong>
                   <div className="text-2xl font-bold text-orange-600">
-                    {formatCurrency(result.totalContributions)}
+                    {formatCurrency(result.totalContributions, investmentData.currency)}
                   </div>
                 </div>
 
@@ -485,7 +477,7 @@ export function CompoundInterestCalculator() {
                 <div className="bg-green-50 rounded-lg p-4">
                   <strong className="text-sm font-medium mb-1">Final Investment value:</strong>
                   <div className="text-2xl font-bold text-green-600">
-                    {formatCurrency(result.finalAmount)}
+                    {formatCurrency(result.finalAmount, investmentData.currency)}
                   </div>
                 </div>
 
@@ -562,7 +554,7 @@ export function CompoundInterestCalculator() {
                   <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                     <span className="font-medium text-sm">Average Monthly Growth</span>
                     <span className="text-lg font-bold text-purple-600">
-                      {formatCurrency(result.averageMonthlyGrowth)}
+                      {formatCurrency(result.averageMonthlyGrowth, investmentData.currency)}
                     </span>
                   </div>
                 </div>
@@ -642,10 +634,10 @@ export function CompoundInterestCalculator() {
                               </div>
                               <div className="text-right">
                                 <div className="font-medium text-gray-900">
-                                  {formatCurrency(yearData.balance)}
+                                  {formatCurrency(yearData.balance, investmentData.currency)}
                                 </div>
                                 <div className="text-xs text-gray-500">
-                                  Interest: {formatCurrency(yearData.interest)}
+                                  Interest: {formatCurrency(yearData.interest, investmentData.currency)}
                                 </div>
                               </div>
                             </div>
@@ -672,9 +664,9 @@ export function CompoundInterestCalculator() {
                         {result.yearlyBreakdown.map((yearData) => (
                           <div key={yearData.year} className="grid grid-cols-[9%_28%_28%_28%] gap-1 text-xs py-1 border-b border-gray-100">
                             <div className="font-medium">{yearData.year}</div>
-                            <div>{formatCurrency(yearData.balance)}</div>
-                            <div className="text-blue-600">{formatCurrency(yearData.interest)}</div>
-                            <div className="text-green-600">{formatCurrency(yearData.contributions)}</div>
+                            <div>{formatCurrency(yearData.balance, investmentData.currency)}</div>
+                            <div className="text-blue-600">{formatCurrency(yearData.interest, investmentData.currency)}</div>
+                            <div className="text-green-600">{formatCurrency(yearData.contributions, investmentData.currency)}</div>
                           </div>
                         ))}
                       </div>
@@ -689,19 +681,19 @@ export function CompoundInterestCalculator() {
                     <div className="flex justify-between items-center">
                       <span className="font-medium">Compound Interest:</span>
                       <span>
-                        {formatCurrency(result.compoundInterest)}
+                        {formatCurrency(result.compoundInterest, investmentData.currency)}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="font-medium">Simple Interest:</span>
                       <span>
-                        {formatCurrency(result.simpleInterest)}
+                        {formatCurrency(result.simpleInterest, investmentData.currency)}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="font-medium">Compound Advantage:</span>
                       <span>
-                        {formatCurrency(result.compoundAdvantage)}
+                        {formatCurrency(result.compoundAdvantage, investmentData.currency)}
                       </span>
                     </div>
                   </div>
@@ -714,19 +706,19 @@ export function CompoundInterestCalculator() {
                     <div className="flex justify-between items-center">
                       <span className="font-medium">Daily:</span>
                       <span>
-                        {formatCurrency(result.compoundingImpact.daily)}
+                        {formatCurrency(result.compoundingImpact.daily, investmentData.currency)}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="font-medium">Monthly:</span>
                       <span>
-                        {formatCurrency(result.compoundingImpact.monthly)}
+                        {formatCurrency(result.compoundingImpact.monthly, investmentData.currency)}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="font-medium">Annually:</span>
                       <span>
-                        {formatCurrency(result.compoundingImpact.annually)}
+                        {formatCurrency(result.compoundingImpact.annually, investmentData.currency)}
                       </span>
                     </div>
                   </div>

@@ -7,7 +7,8 @@ import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
-import CurrencySelector, { CURRENCIES } from '@/components/currencySelector';
+import CurrencySelector from '@/components/currencySelector';
+import { formatCurrency, getCurrencySymbol } from '@/utils/currencyHelpers';
 
 enum CALCULATION_MODE {
     PAYOFF_TIME = 'Pay Off Calculator',
@@ -52,20 +53,6 @@ export function CreditCardPaymentCalculator() {
     const [results, setResults] = useState<PayoffResults | null>(null);
     const [payoffStrategies, setPayoffStrategies] = useState<PayoffStrategy[]>([]);
     const [options, setOptions] = useState<Highcharts.Options>({});
-
-    const formatCurrency = useCallback((amount: number): string => {
-        const selectedCurrency = CURRENCIES.find(c => c.value === currency);
-        const symbol = selectedCurrency?.symbol || '$';
-        
-        // Handle different currency formats
-        if (currency === 'JPY') {
-            return `${symbol}${Math.round(amount).toLocaleString()}`;
-        } else if (currency === 'EUR') {
-            return `${amount.toFixed(2).replace('.', ',')} ${symbol}`;
-        } else {
-            return `${symbol}${amount.toFixed(2)}`;
-        }
-    }, [currency]);
 
     const calculatePayoffTime = useCallback((
         principal: number,
@@ -249,8 +236,7 @@ export function CreditCardPaymentCalculator() {
     };
 
     const getSelectedCurrencySymbol = useCallback((): string => {
-        const selectedCurrency = CURRENCIES.find(c => c.value === currency);
-        return selectedCurrency?.symbol || '$';
+        return getCurrencySymbol(currency);
     }, [currency]);
 
     const updateChartOptions = useCallback((): Highcharts.Options => {
@@ -547,7 +533,7 @@ export function CreditCardPaymentCalculator() {
                                             <div className="text-2xl font-bold text-gray-900">
                                                 {calculationMode === CALCULATION_MODE.PAYOFF_TIME 
                                                     ? formatMonths(results.monthsToPayoff)
-                                                    : formatCurrency(parseFloat(monthlyPayment) || results.totalAmountPaid / results.monthsToPayoff)
+                                                    : formatCurrency(parseFloat(monthlyPayment) || results.totalAmountPaid / results.monthsToPayoff, currency)
                                                 }
                                             </div>
                                             <button
@@ -565,10 +551,10 @@ export function CreditCardPaymentCalculator() {
                                         <div>
                                             <div className="text-sm text-gray-600">Total interest you will pay:</div>
                                             <div className="text-xl font-semibold text-gray-900">
-                                                {formatCurrency(results.totalInterestPaid)}
+                                                {formatCurrency(results.totalInterestPaid, currency)}
                                             </div>
                                             <button
-                                                onClick={() => handleCopy(formatCurrency(results.totalInterestPaid))}
+                                                onClick={() => handleCopy(formatCurrency(results.totalInterestPaid, currency))}
                                                 className="mt-2 px-3 py-1 text-xs bg-orange-300 hover:bg-orange-400 text-white rounded transition-colors"
                                             >
                                                 Copy
@@ -578,10 +564,10 @@ export function CreditCardPaymentCalculator() {
                                         <div>
                                             <div className="text-sm text-gray-600">Total to pay back:</div>
                                             <div className="text-xl font-semibold text-gray-900">
-                                                {formatCurrency(results.totalAmountPaid)}
+                                                {formatCurrency(results.totalAmountPaid, currency)}
                                             </div>
                                             <button
-                                                onClick={() => handleCopy(formatCurrency(results.totalAmountPaid))}
+                                                onClick={() => handleCopy(formatCurrency(results.totalAmountPaid, currency))}
                                                 className="mt-2 px-3 py-1 text-xs bg-orange-300 hover:bg-orange-400 text-white rounded transition-colors"
                                             >
                                                 Copy
@@ -608,8 +594,8 @@ export function CreditCardPaymentCalculator() {
                                         ></div>
                                     </div>
                                     <div className="flex justify-between text-xs text-gray-600 mt-1">
-                                        <span>Interest: {formatCurrency(results.totalInterestPaid)}</span>
-                                        <span>Principal: {formatCurrency(parseFloat(balance))}</span>
+                                        <span>Interest: {formatCurrency(results.totalInterestPaid, currency)}</span>
+                                        <span>Principal: {formatCurrency(parseFloat(balance), currency)}</span>
                                     </div>
                                 </div>
                             </div>
@@ -638,7 +624,7 @@ export function CreditCardPaymentCalculator() {
                                                 <span className="text-gray-500">Interest saved:</span>
                                                 <br />
                                                 <span className="font-semibold text-green-600">
-                                                    {results ? formatCurrency(results.totalInterestPaid - strategy.totalInterest) : '$0'}
+                                                    {results ? formatCurrency(results.totalInterestPaid - strategy.totalInterest, currency) : '$0'}
                                                 </span>
                                             </div>
                                         </div>
