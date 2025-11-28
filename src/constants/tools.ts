@@ -90,15 +90,18 @@ export enum ToolNameLists {
   Base64Converter = "Base64 Converter",
   HtmlEncoder = "HTML Encoder/Decoder",
   AnnualizedReturnCalculator = "Annualized Return Calculator",
-    RandomTextGenerator = "Random Text Generator",
+  RandomTextGenerator = "Random Text Generator",
   RandomNumberGenerator = "Random Number Generator",
-    PasswordGenerator = "Password Generator",
-    JWTDecoder = "JWT Decoder",
+  UUIDGenerator = "UUID Generator",
+  PasswordGenerator = "Password Generator",
+  JWTDecoder = "JWT Decoder",
   JsonFormatterCompare = "JSON Formatter & Compare",
   IPChecker = "IP Address Checker",
   HtmlFormatter = "HTML Formatter",
   DividendCalculator = "Dividend Calculator",
-}export const ToolDescription: Record<string, string> = {
+}
+
+export const ToolDescription: Record<string, string> = {
   [ToolNameLists.BMICalculator]: "Calculate your Body Mass Index (BMI) for weight loss, maintenance, or gain. You can use kg & cm or lbs & inches conversions.",
   [ToolNameLists.BMRCalculator]: "Calculate your Basal Metabolic Rate (BMR) for weight loss, maintenance, or gain. You can use kg & cm or lbs & inches conversions.",
   [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest & track continuous contributions in different currencies.",
@@ -127,6 +130,7 @@ export enum ToolNameLists {
   [ToolNameLists.HtmlEncoder]: "Encode HTML to entities or decode HTML entities to text. Convert special characters like <, >, &, quotes for safe HTML display. Perfect for web development & content management.",
   [ToolNameLists.RandomTextGenerator]: "Generate placeholder text (lorem ipsum), usernames, email addresses, sample data & more. Perfect for testing, mockups & placeholder content.",
   [ToolNameLists.RandomNumberGenerator]: "Generate random numbers in batches with customizable ranges, unique options. Perfect for testing, gaming, statistics & development.",
+  [ToolNameLists.UUIDGenerator]: "Generate Universally Unique Identifiers (UUIDs) in batches. Supports UUID v1 (time-based) and v4 (random) with multiple formatting options & programming examples.",
   [ToolNameLists.PasswordGenerator]: "Generate secure, random passwords with different character types, lengths, and security levels. All generation happens locally in your browser.",
   [ToolNameLists.JWTDecoder]: "Decode JWT (JSON Web Tokens) to view header, payload, and signature components. Analyze token structure, claims, and expiration dates with secure client-side processing.",
   [ToolNameLists.JsonFormatterCompare]: "Format, validate, and compare JSON objects with instant difference highlighting. Perfect for API development, configuration management, and data analysis with client-side processing.",
@@ -164,6 +168,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.HtmlEncoder]: `${URL_BASE}/${ToolCategorySlug.Conversions}/html-encoder`,
   [ToolNameLists.RandomTextGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/random-text-generator`,
   [ToolNameLists.RandomNumberGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/random-number-generator`,
+  [ToolNameLists.UUIDGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/uuid-generator`,
   [ToolNameLists.PasswordGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/password-generator`,
   [ToolNameLists.JWTDecoder]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/jwt-decoder`,
   [ToolNameLists.JsonFormatterCompare]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/json-formatter-compare`,
@@ -345,11 +350,6 @@ export const Tools: Record<string, Tool[]> = {
       link: ToolUrls[ToolNameLists.JWTDecoder]
     },
     {
-      name: ToolNameLists.RandomTextGenerator,
-      description: ToolDescription[ToolNameLists.RandomTextGenerator],
-      link: ToolUrls[ToolNameLists.RandomTextGenerator]
-    },
-    {
       name: ToolNameLists.PasswordGenerator,
       description: ToolDescription[ToolNameLists.PasswordGenerator],
       link: ToolUrls[ToolNameLists.PasswordGenerator]
@@ -358,6 +358,16 @@ export const Tools: Record<string, Tool[]> = {
       name: ToolNameLists.RandomNumberGenerator,
       description: ToolDescription[ToolNameLists.RandomNumberGenerator],
       link: ToolUrls[ToolNameLists.RandomNumberGenerator]
+    },
+    {
+      name: ToolNameLists.RandomTextGenerator,
+      description: ToolDescription[ToolNameLists.RandomTextGenerator],
+      link: ToolUrls[ToolNameLists.RandomTextGenerator]
+    },
+    {
+      name: ToolNameLists.UUIDGenerator,
+      description: ToolDescription[ToolNameLists.UUIDGenerator],
+      link: ToolUrls[ToolNameLists.UUIDGenerator]
     },
   ]
 };
