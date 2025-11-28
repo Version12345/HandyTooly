@@ -7,17 +7,7 @@ import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
-
-enum CURRENCY {
-    USD = '$',
-    EUR = '€',
-    GBP = '£',
-    INR = '₹',
-    JPY = '¥',
-    CAD = 'C$',
-    AUD = 'A$',
-    CHF = 'CHF'
-}
+import CurrencySelector, { CURRENCIES } from '@/components/currencySelector';
 
 enum CALCULATION_MODE {
     PAYOFF_TIME = 'Pay Off Calculator',
@@ -47,17 +37,6 @@ interface PayoffStrategy {
     monthlySavings: number;
 }
 
-const CURRENCIES = [
-    { value: CURRENCY.USD, label: 'US Dollar ($)', symbol: '$' },
-    { value: CURRENCY.EUR, label: 'Euro (€)', symbol: '€' },
-    { value: CURRENCY.GBP, label: 'British Pound (£)', symbol: '£' },
-    { value: CURRENCY.INR, label: 'Indian Rupee (₹)', symbol: '₹' },
-    { value: CURRENCY.JPY, label: 'Japanese Yen (¥)', symbol: '¥' },
-    { value: CURRENCY.CAD, label: 'Canadian Dollar (C$)', symbol: 'C$' },
-    { value: CURRENCY.AUD, label: 'Australian Dollar (A$)', symbol: 'A$' },
-    { value: CURRENCY.CHF, label: 'Swiss Franc (CHF)', symbol: 'CHF' }
-];
-
 const CALCULATION_MODES = [
     { value: CALCULATION_MODE.PAYOFF_TIME, label: 'Pay Off Calculator' },
     { value: CALCULATION_MODE.MONTHLY_PAYMENT, label: 'Monthly Repayments' }
@@ -65,7 +44,7 @@ const CALCULATION_MODES = [
 
 export function CreditCardPaymentCalculator() {
     const [calculationMode, setCalculationMode] = useState<CALCULATION_MODE>(CALCULATION_MODE.PAYOFF_TIME);
-    const [currency, setCurrency] = useState<CURRENCY>(CURRENCY.USD);
+    const [currency, setCurrency] = useState<string>('USD');
     const [balance, setBalance] = useState('1000');
     const [interestRate, setInterestRate] = useState('25');
     const [monthlyPayment, setMonthlyPayment] = useState('100');
@@ -79,9 +58,9 @@ export function CreditCardPaymentCalculator() {
         const symbol = selectedCurrency?.symbol || '$';
         
         // Handle different currency formats
-        if (currency === CURRENCY.JPY) {
+        if (currency === 'JPY') {
             return `${symbol}${Math.round(amount).toLocaleString()}`;
-        } else if (currency === CURRENCY.EUR) {
+        } else if (currency === 'EUR') {
             return `${amount.toFixed(2).replace('.', ',')} ${symbol}`;
         } else {
             return `${symbol}${amount.toFixed(2)}`;
@@ -452,22 +431,11 @@ export function CreditCardPaymentCalculator() {
                         </div>
 
                         {/* Currency Selection */}
-                        <div className="mb-4">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Currency
-                            </label>
-                            <select
-                                value={currency}
-                                onChange={(e) => setCurrency(e.target.value as CURRENCY)}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
-                            >
-                                {CURRENCIES.map((curr) => (
-                                    <option key={curr.value} value={curr.value}>
-                                        {curr.label}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <CurrencySelector
+                            value={currency}
+                            onChange={(selectedCurrency) => setCurrency(selectedCurrency)}
+                            className="mb-4"
+                        />
 
                         {/* Credit Card Balance */}
                         <div className="mb-4">

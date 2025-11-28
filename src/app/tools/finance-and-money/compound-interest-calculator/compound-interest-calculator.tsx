@@ -6,6 +6,7 @@ import HighchartsReact from 'highcharts-react-official'
 
 import ToolLayout from '../../toolLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
+import CurrencySelector, { CURRENCIES } from '@/components/currencySelector';
 import { ToolNameLists } from '@/constants/tools';
 
 interface InvestmentData {
@@ -52,17 +53,6 @@ const COMPOUNDING_FREQUENCIES = [
   { value: 'monthly', label: 'Monthly', periodsPerYear: 12 },
   { value: 'quarterly', label: 'Quarterly', periodsPerYear: 4 },
   { value: 'annually', label: 'Annually', periodsPerYear: 1 }
-];
-
-const CURRENCIES = [
-  { value: 'USD', label: 'USD ($)', symbol: '$' },
-  { value: 'EUR', label: 'EUR (€)', symbol: '€' },
-  { value: 'GBP', label: 'GBP (£)', symbol: '£' },
-  { value: 'JPY', label: 'JPY (¥)', symbol: '¥' },
-  { value: 'CAD', label: 'CAD (C$)', symbol: 'C$' },
-  { value: 'AUD', label: 'AUD (A$)', symbol: 'A$' },
-  { value: 'CHF', label: 'CHF (CHF)', symbol: 'CHF' },
-  { value: 'CNY', label: 'CNY (¥)', symbol: '¥' }
 ];
 
 export function CompoundInterestCalculator() {
@@ -330,21 +320,11 @@ export function CompoundInterestCalculator() {
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Investment Details</h2>
             
             {/* Currency */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
-              <select
-                value={investmentData.currency}
-                onChange={(e) => handleInputChange('currency', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-              >
-                {CURRENCIES.map((currency) => (
-                  <option key={currency.value} value={currency.value}>
-                    {currency.label}
-                  </option>
-                ))}
-              </select>
-              <p className="text-xs text-gray-500 mt-1">Select your preferred currency</p>
-            </div>
+            <CurrencySelector
+              value={investmentData.currency}
+              onChange={(currency) => handleInputChange('currency', currency)}
+              className="mb-4"
+            />
             
             {/* Initial Principal */}
             <div className="mb-4">

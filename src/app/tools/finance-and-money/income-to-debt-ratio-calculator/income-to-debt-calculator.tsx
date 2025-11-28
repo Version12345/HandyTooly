@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
+import CurrencySelector, { CURRENCIES } from '@/components/currencySelector';
 import { ToolNameLists } from '@/constants/tools';
 
 type riskLevel = 'low' | 'moderate' | 'high';
@@ -44,19 +45,8 @@ interface DTIResult {
   qualificationOutlook: Status;
 }
 
-const CURRENCY_SYMBOLS = {
-  USD: '$',
-  EUR: '€',
-  GBP: '£',
-  CAD: 'C$',
-  AUD: 'A$',
-  JPY: '¥',
-};
-
-type Currency = keyof typeof CURRENCY_SYMBOLS;
-
 export function IncomeToDebtCalculator() {
-  const [currency, setCurrency] = useState<Currency>('USD');
+  const [currency, setCurrency] = useState<string>('USD');
   const [income, setIncome] = useState<IncomeData>({
     primaryIncome: 0,
     additionalIncome: 0,
@@ -175,10 +165,12 @@ export function IncomeToDebtCalculator() {
   }, [income, debts, calculateDTI]);
 
   const formatCurrency = (amount: number) => {
-    return `${CURRENCY_SYMBOLS[currency]}${amount.toLocaleString()}`;
+    const selectedCurrency = CURRENCIES.find(c => c.value === currency);
+    const symbol = selectedCurrency?.symbol || '$';
+    return `${symbol}${amount.toLocaleString()}`;
   };
 
-  const currencySymbol = CURRENCY_SYMBOLS[currency];
+  const currencySymbol = CURRENCIES.find(c => c.value === currency)?.symbol || '$';
 
   return (
     <ToolLayout
@@ -193,22 +185,10 @@ export function IncomeToDebtCalculator() {
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Monthly Income</h2>
             
             <div className="space-y-4">
-              <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Currency
-              </label>
-              <select
+              <CurrencySelector
                 value={currency}
-                onChange={(e) => setCurrency(e.target.value as Currency)}
-                className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-              >
-                {Object.keys(CURRENCY_SYMBOLS).map((curr) => (
-                  <option key={curr} value={curr}>
-                    {curr} ({CURRENCY_SYMBOLS[curr as Currency]})
-                  </option>
-                ))}
-              </select>
-              </div>
+                onChange={(selectedCurrency) => setCurrency(selectedCurrency)}
+              />
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">

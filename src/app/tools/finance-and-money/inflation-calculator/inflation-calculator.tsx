@@ -4,6 +4,7 @@ import React, { useState, useCallback } from 'react';
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
+import CurrencySelector, { CURRENCIES } from '@/components/currencySelector';
 
 interface InflationData {
   initialAmount: number;
@@ -36,15 +37,7 @@ interface ValidationErrors {
   annualInflationRate?: string;
 }
 
-const CURRENCIES = [
-  { code: 'USD', name: 'US Dollar', symbol: '$' },
-  { code: 'EUR', name: 'Euro', symbol: '€' },
-  { code: 'GBP', name: 'British Pound', symbol: '£' },
-  { code: 'JPY', name: 'Japanese Yen', symbol: '¥' },
-  { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$' },
-  { code: 'AUD', name: 'Australian Dollar', symbol: 'A$' },
-  { code: 'CHF', name: 'Swiss Franc', symbol: 'Fr' },
-];
+
 
 // Real-world comparisons data (moved outside component to prevent recreations)
 const REAL_WORLD_ITEMS = [
@@ -217,7 +210,8 @@ export default function InflationCalculator() {
   }, [calculateInflation]);
 
   const formatCurrency = (amount: number): string => {
-    const symbol = CURRENCIES.find(c => c.code === inflationData.currency)?.symbol || '$';
+    const currency = CURRENCIES.find(c => c.value === inflationData.currency);
+    const symbol = currency?.symbol || '$';
     if (amount >= 1000000) {
       return `${symbol}${(amount / 1000000).toFixed(1)}M`;
     }
@@ -243,20 +237,10 @@ export default function InflationCalculator() {
             
             <div className="space-y-4">
               {/* Currency Selection */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
-                <select
-                  value={inflationData.currency}
-                  onChange={(e) => updateInflationData('currency', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                >
-                  {CURRENCIES.map((currency) => (
-                    <option key={currency.code} value={currency.code}>
-                      {currency.symbol} {currency.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <CurrencySelector
+                value={inflationData.currency}
+                onChange={(selectedCurrency) => updateInflationData('currency', selectedCurrency)}
+              />
 
               {/* Calculation Mode Toggle */}
               <div>
@@ -305,7 +289,7 @@ export default function InflationCalculator() {
                     placeholder="Enter amount (e.g. 1000)"
                   />
                   <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
-                    {CURRENCIES.find(c => c.code === inflationData.currency)?.symbol}
+                    {CURRENCIES.find(c => c.value === inflationData.currency)?.symbol}
                   </span>
                 </div>
                 {validationErrors.initialAmount && (

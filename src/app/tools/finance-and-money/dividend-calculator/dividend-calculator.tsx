@@ -6,6 +6,7 @@ import HighchartsReact from 'highcharts-react-official'
 
 import ToolLayout from '../../toolLayout';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
+import CurrencySelector, { CURRENCIES } from '@/components/currencySelector';
 import { ToolNameLists } from '@/constants/tools';
 
 interface DividendData {
@@ -267,26 +268,10 @@ const DividendCalculator: React.FC = () => {
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Investment Details</h3>
             <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Currency
-                </label>
-                <select
-                  value={formData.currency}
-                  onChange={(e) => handleInputChange('currency', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                >
-                  <option value="USD">USD ($)</option>
-                  <option value="EUR">EUR (€)</option>
-                  <option value="GBP">GBP (£)</option>
-                  <option value="JPY">JPY (¥)</option>
-                  <option value="CAD">CAD (C$)</option>
-                  <option value="AUD">AUD (A$)</option>
-                  <option value="CHF">CHF (CHF)</option>
-                  <option value="CNY">CNY (¥)</option>
-                </select>
-                <p className="text-xs text-gray-500 mt-1">Select your preferred currency</p>
-              </div>
+              <CurrencySelector
+                value={formData.currency}
+                onChange={(currency) => handleInputChange('currency', currency)}
+              />
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -294,7 +279,7 @@ const DividendCalculator: React.FC = () => {
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-3 text-gray-500">
-                    $
+                    {CURRENCIES.find(c => c.value === formData.currency)?.symbol || '$'}
                   </span>
                   <input
                     type="number"
