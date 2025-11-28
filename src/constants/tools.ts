@@ -128,7 +128,7 @@ export enum ToolNameLists {
   [ToolNameLists.JsonFormatterCompare]: "Format, validate, and compare JSON objects with instant difference highlighting. Perfect for API development, configuration management, and data analysis with client-side processing.",
   [ToolNameLists.IPChecker]: "Instantly see your public IP address and get clear details about your connection, including IPv4, IPv6, location, ISP, and network information.",
   [ToolNameLists.HtmlFormatter]: "Format and beautify HTML code with customizable indentation levels. Clean up messy HTML, improve readability, and maintain proper code structure with client-side processing.",
-  [ToolNameLists.DividendCalculator]: "Calculate dividend income projections, yield on cost, and total returns with reinvestment analysis. Plan dividend investment strategies with tax considerations and risk assessment.",
+  [ToolNameLists.DividendCalculator]: "Calculate dividend income projections, yield on cost & total returns. Plan dividend investment strategies with tax considerations & risk assessment.",
 }
 
 export const ToolUrls: Record<string, string> = {

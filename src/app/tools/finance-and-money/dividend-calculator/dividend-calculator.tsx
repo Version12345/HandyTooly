@@ -128,15 +128,12 @@ const DividendCalculator: React.FC = () => {
         sharesOwned: currentShares,
       });
 
-      // Add to projection schedule (showing every few years)
-      if (year <= 10) {
-        projectionSchedule.push({
-          year,
-          dividend: yearlyDividendIncome,
-          yieldOnCost,
-          portfolioValue,
-        });
-      }
+      projectionSchedule.push({
+        year,
+        dividend: yearlyDividendIncome,
+        yieldOnCost,
+        portfolioValue,
+      });
     }
 
     const finalPortfolioValue = yearlyBreakdown[yearlyBreakdown.length - 1]?.portfolioValue || investmentAmount;
@@ -203,11 +200,12 @@ const DividendCalculator: React.FC = () => {
         style: { fontSize: '16px', fontWeight: 'bold' }
       },
       xAxis: {
-        categories: results.yearlyBreakdown.map(data => `Year ${data.year}`),
+        categories: results.yearlyBreakdown.map(data => `${data.year}`),
         gridLineWidth: 1,
+        title: { text: 'Years' },
       },
       yAxis: {
-        title: { text: `Income (${formData.currency})` },
+        title: { text: `Income (${getCurrencySymbol(formData.currency)})` },
         gridLineWidth: 1,
       },
       plotOptions: {
@@ -238,7 +236,7 @@ const DividendCalculator: React.FC = () => {
       tooltip: {
         shared: true,
         formatter: function() {
-          let tooltip = `<b>${this.x}</b><br/>`;
+          let tooltip = `<b>Year ${this.x}</b><br/>`;
           this.points?.forEach(point => {
             tooltip += `${point.series.name}: ${formatCurrency(point.y as number, formData.currency)}<br/>`;
           });
@@ -252,6 +250,8 @@ const DividendCalculator: React.FC = () => {
   return (
     <ToolLayout 
       toolCategory={ToolNameLists.DividendCalculator}
+      educationContent={educationContent}
+      disclaimer={<FinancialDisclaimer />}
     >
       <div className="space-y-8">
         {/* Input Section */}
@@ -404,7 +404,7 @@ const DividendCalculator: React.FC = () => {
             </div>
 
             {results && (
-              <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+              <div className="mt-6 p-4 bg-gray-100 rounded-lg">
                 <div className="text-center">
                   <h4 className="text-sm font-medium text-gray-700 mb-2">Annual Dividend Income:</h4>
                   <div className="text-2xl font-bold text-green-600">
@@ -443,7 +443,7 @@ const DividendCalculator: React.FC = () => {
                 </div>
 
                 <div className="bg-amber-100 p-4 rounded-lg">
-                  <div className="text-sm font-medium text-amber-800 mb-1">Total Return (10 years)</div>
+                  <div className="text-sm font-medium text-amber-800 mb-1">Total Return ({formData.timeHorizon} years)</div>
                   <div className="text-xl font-bold text-amber-700">
                     {formatPercentage(results.totalReturn)}
                   </div>
@@ -534,47 +534,62 @@ const DividendCalculator: React.FC = () => {
 
           {/* Dividend Projection Schedule */}
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Dividend Projection Schedule</h3>
-            
-            <div className="flex bg-gray-100 rounded-lg p-1">
-              <button 
-                onClick={() => setProjectionViewMode('annual')}
-                className={`p-2 rounded-md text-xs font-medium transition-colors ${
-                  projectionViewMode === 'annual' 
-                    ? 'bg-orange-500 text-white shadow-sm'
-                    : 'text-gray-600 hover:text-gray-800'
-                }`}
-              >
-                Annual
-              </button>
-              <button 
-                onClick={() => setProjectionViewMode('quarterly')}
-                className={`p-2 ml-2 rounded-md text-xs font-medium transition-colors ${
-                  projectionViewMode === 'quarterly' 
-                    ? 'bg-orange-500 text-white shadow-sm'
-                    : 'text-gray-600 hover:text-gray-800'
-                }`}
-              >
-                Quarterly
-              </button>
-            </div>
-
             {results && (
               <div className="space-y-4">
-                <div className="overflow-x-auto">
+                <h3 className="text-sm font-medium text-blue-800 mb-2">Projection Summary</h3>
+
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <strong className="text-blue-600">Total Periods:</strong>
+                      <div className="font-medium">{formData.timeHorizon}</div>
+                    </div>
+                    <div>
+                      <strong className="text-blue-600">Final Yield on Cost:</strong>
+                      <div className="font-medium">{formatPercentage(results.yieldOnCost * 2)}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Dividend Projection Schedule</h3>
+                
+                <div className="flex bg-gray-100 rounded-lg p-1">
+                  <button 
+                    onClick={() => setProjectionViewMode('annual')}
+                    className={`p-2 rounded-md text-xs font-medium transition-colors ${
+                      projectionViewMode === 'annual' 
+                        ? 'bg-orange-500 text-white shadow-sm'
+                        : 'text-gray-600 hover:text-gray-800'
+                    }`}
+                  >
+                    Annual
+                  </button>
+                  <button 
+                    onClick={() => setProjectionViewMode('quarterly')}
+                    className={`p-2 ml-2 rounded-md text-xs font-medium transition-colors ${
+                      projectionViewMode === 'quarterly' 
+                        ? 'bg-orange-500 text-white shadow-sm'
+                        : 'text-gray-600 hover:text-gray-800'
+                    }`}
+                  >
+                    Quarterly
+                  </button>
+                </div>
+
+                <div className="overflow-x-auto max-h-96">
                   <table className="w-full text-sm">
-                    <thead>
+                    <thead className="bg-white shadow sticky top-0">
                       <tr className="border-b border-gray-200">
-                        <th className="text-left py-2">{projectionViewMode === 'annual' ? 'Year' : 'Quarter'}</th>
-                        <th className="text-left py-2">Dividend</th>
-                        <th className="text-left py-2">Yield on Cost</th>
-                        <th className="text-left py-2">Portfolio Value</th>
+                        <th className="text-left py-2 pr-2">{projectionViewMode === 'annual' ? 'Year' : 'Qtr'}</th>
+                        <th className="text-left py-2 pr-2">Dividend</th>
+                        <th className="text-left py-2 pr-2">Yield</th>
+                        <th className="text-left py-2 pr-2">Value</th>
                       </tr>
                     </thead>
                     <tbody>
                       {(projectionViewMode === 'annual' 
-                        ? results.projectionSchedule.slice(0, 9)
-                        : results.projectionSchedule.slice(0, 3).flatMap(projection => 
+                        ? results.projectionSchedule
+                        : results.projectionSchedule.flatMap(projection => 
                             Array.from({length: 4}, (_, i) => ({
                               ...projection,
                               year: `${projection.year}Q${i + 1}`,
@@ -583,30 +598,16 @@ const DividendCalculator: React.FC = () => {
                           )
                       ).map((projection, index) => (
                         <tr key={index} className="border-b border-gray-100">
-                          <td className="py-2">{projection.year}</td>
-                          <td className="py-2 text-green-600 font-medium">
+                          <td className="py-2 pr-2">{projection.year}</td>
+                          <td className="py-2 pr-2 text-green-600 font-medium">
                             {formatCurrency(typeof projection.dividend === 'number' ? projection.dividend : 0, formData.currency)}
                           </td>
-                          <td className="py-2">{formatPercentage(projection.yieldOnCost)}</td>
-                          <td className="py-2">{formatCurrency(projection.portfolioValue, formData.currency)}</td>
+                          <td className="py-2 pr-2">{formatPercentage(projection.yieldOnCost)}</td>
+                          <td className="py-2 pr-2">{formatCurrency(projection.portfolioValue, formData.currency)}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
-                </div>
-
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-blue-800 mb-2">Projection Summary</h4>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <div className="text-blue-600">Total Periods:</div>
-                      <div className="font-medium">{formData.timeHorizon}</div>
-                    </div>
-                    <div>
-                      <div className="text-blue-600">Final Yield on Cost:</div>
-                      <div className="font-medium">{formatPercentage(results.yieldOnCost * 2)}</div>
-                    </div>
-                  </div>
                 </div>
               </div>
             )}
@@ -622,11 +623,43 @@ const DividendCalculator: React.FC = () => {
             />
           </div>
         )}
-
-        <FinancialDisclaimer />
       </div>
     </ToolLayout>
   );
 };
 
 export default DividendCalculator;
+
+const educationContent: React.ReactNode = (
+  <div>
+    <h3>Understanding Dividend Investing</h3>
+    <p>
+      Dividend investing involves purchasing stocks that pay regular dividends to shareholders. These dividends can provide a steady income stream and can be reinvested to purchase additional shares, compounding growth over time. 
+    </p>  
+    
+    <h3>What Dividends Are</h3>
+    <p>
+      Dividends are payments that companies send to their shareholders. These payments come from profits that the company earns. Some firms pay dividends every three months. Others pay once a year. A few send special payouts when profits reach a strong level. Many large names like Coca Cola and Johnson and Johnson use steady dividends to show strength and trust.
+    </p>
+
+    <h3>How Dividend Investing Works</h3>
+    <p>
+      Dividend investing focuses on buying stocks that pay regular cash. You earn money from the payout itself and from any rise in the stock price. People often look for companies with long records of stable payments. They also check the payout ratio, which shows how much of the profit goes to dividends. A healthy ratio gives room for growth and keeps the payment safe.
+    </p>
+
+    <h3>Why Dividends Matter</h3>
+    <p>
+      Dividends create steady income without selling your shares. This helps people who want cash flow, including retirees. It also gives investors a clear view of a company&apos;s health. A strong dividend shows confidence from the business. The payment can smooth out market swings and give you money even when stock prices move in rough patterns.
+    </p>
+
+    <h3>The Power of Reinvesting</h3>
+    <p>
+      Reinvesting dividends turns small payments into real long term growth. Each payout buys more shares. Those new shares create more future payouts. The effect builds year after year. A person who reinvests a one hundred dollar dividend at a steady rate can turn that money into far more over time. Reinvestment uses the strength of compounding, which grows faster as your share count climbs.
+    </p>
+
+    <h3>Building a Dividend Strategy</h3>
+    <p>
+      A strong plan starts with clear goals. Some people want steady income. Others want long term growth through reinvestment. You can mix both paths. Pick companies with solid records, honest balance sheets, and simple business models. Review your holdings at least once a year. Keep reinvesting, stay patient, and let the power of steady payouts work in your favor.
+    </p>
+  </div>
+);
