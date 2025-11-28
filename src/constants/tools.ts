@@ -76,6 +76,7 @@ export enum ToolNameLists {
   StepsToDistanceCalculator = "Steps to Distance Calculator",
   TimeUnitConverter = "Time Unit Converter",
   UTCTimeZoneConverter = "UTC Time Zone Converter",
+  TimeZoneConverter = "Time Zone Converter",
   WeightConverter = "Weight Converter",
   WeightLossCalculator = "Weight Loss Percentage Calculator",
   LengthConverter = "Length Converter",
@@ -110,6 +111,7 @@ export enum ToolNameLists {
   [ToolNameLists.StepsToDistanceCalculator]: "Convert your daily steps into miles or kilometers, see calories burned, and track your walking distance with simple, personalized stats.",
   [ToolNameLists.TimeUnitConverter]: "Convert between different time units like seconds, minutes, hours, days, etc.",
   [ToolNameLists.UTCTimeZoneConverter]: "Convert between UTC & local time zones with real-time conversion & multiple time zone support.",
+  [ToolNameLists.TimeZoneConverter]: "Convert time between any time zones worldwide with real-time world clock, popular conversions & daylight saving time support.",
   [ToolNameLists.WeightConverter]: "Convert pounds, kilograms (kg), ounces (oz), grams (g), etc with our weight converter. Perfect for cooking, fitness tracking, & scientific measurements.",
   [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, & get personalized insights.",
   [ToolNameLists.LengthConverter]: "Convert meters (m), feet (ft), inches (in), kilometers (km), miles (mil), etc with our length converter. Perfect for construction, & scientific measurements.",
@@ -145,6 +147,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.StepsToDistanceCalculator]: `${URL_BASE}/${ToolCategorySlug.Conversions}/steps-to-distance-calculator`,
   [ToolNameLists.TimeUnitConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/time-unit-converter`,
   [ToolNameLists.UTCTimeZoneConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/utc-time-zone-converter`,
+  [ToolNameLists.TimeZoneConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/timezone-converter`,
   [ToolNameLists.WeightConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/weight-converter`,
   [ToolNameLists.WeightLossCalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/weight-loss-calculator`,
   [ToolNameLists.LengthConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/length-converter`,
@@ -283,6 +286,11 @@ export const Tools: Record<string, Tool[]> = {
       name: ToolNameLists.TimeUnitConverter,
       description: ToolDescription[ToolNameLists.TimeUnitConverter],
       link: ToolUrls[ToolNameLists.TimeUnitConverter]
+    },
+    {
+      name: ToolNameLists.TimeZoneConverter,
+      description: ToolDescription[ToolNameLists.TimeZoneConverter],
+      link: ToolUrls[ToolNameLists.TimeZoneConverter]
     },
     {
       name: ToolNameLists.UTCTimeZoneConverter,
