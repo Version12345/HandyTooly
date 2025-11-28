@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 
@@ -149,7 +149,7 @@ const getTimeZonesList = () => {
 
 export default function TimeZoneConverter() {
   const currentTimeZone = getUserTimeZone();
-  const timeZones = getTimeZonesList();
+  const timeZones = useMemo(() => getTimeZonesList(), []);
   
   const [conversionData, setConversionData] = useState<TimeZoneConversionData>({
     inputTime: new Date().toTimeString().slice(0, 5),
@@ -160,36 +160,6 @@ export default function TimeZoneConverter() {
   });
 
   const [result, setResult] = useState<ConversionResult | null>(null);
-  const [currentTimes, setCurrentTimes] = useState<{[key: string]: string}>({});
-
-  // Update current times every second
-  useEffect(() => {
-    const updateCurrentTimes = () => {
-      const now = new Date();
-      const times: {[key: string]: string} = {};
-      
-      timeZones.slice(0, 10).forEach(zone => {
-        try {
-          const timeInZone = now.toLocaleString('en-US', {
-            timeZone: zone.value,
-            hour12: !conversionData.is24Hour,
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-          });
-          times[zone.value] = timeInZone;
-        } catch (error) {
-          times[zone.value] = 'Invalid';
-        }
-      });
-      
-      setCurrentTimes(times);
-    };
-
-    updateCurrentTimes();
-    const interval = setInterval(updateCurrentTimes, 1000);
-    return () => clearInterval(interval);
-  }, [conversionData.is24Hour, timeZones]);
 
   const convertTimeZone = useCallback(() => {
     try {
@@ -200,14 +170,6 @@ export default function TimeZoneConverter() {
       // Create datetime string and parse in from timezone
       const dateTimeString = `${inputDate}T${inputTime}:00`;
       const inputDateTime = new Date(dateTimeString);
-      
-      // Get timezone offsets
-      const fromOffset = inputDateTime.getTimezoneOffset();
-      const toOffset = new Date().toLocaleString('en-US', { timeZone: toTimeZone });
-      
-      // Convert to target timezone
-      const fromTime = new Date(inputDateTime.toLocaleString('en-US', { timeZone: fromTimeZone }));
-      const toTime = new Date(inputDateTime.toLocaleString('en-US', { timeZone: toTimeZone }));
       
       // Format times
       const formatOptions: Intl.DateTimeFormatOptions = {
@@ -279,7 +241,7 @@ export default function TimeZoneConverter() {
       console.error('Conversion error:', error);
       setResult(null);
     }
-  }, [conversionData, timeZones]);
+  }, [conversionData]);
 
   useEffect(() => {
     convertTimeZone();
@@ -306,7 +268,7 @@ export default function TimeZoneConverter() {
     }));
   };
 
-  const groupTimeZonesByRegion = () => {
+  const groupedTimeZones = useMemo(() => {
     const grouped: {[key: string]: typeof timeZones} = {};
     timeZones.forEach(tz => {
       if (!grouped[tz.region]) {
@@ -315,14 +277,12 @@ export default function TimeZoneConverter() {
       grouped[tz.region].push(tz);
     });
     return grouped;
-  };
-
-  const groupedTimeZones = groupTimeZonesByRegion();
+  }, [timeZones]);
 
   return (
     <ToolLayout toolCategory={ToolNameLists.UTCTimeZoneConverter}>
       <div className="space-y-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Input Section */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Time Zone Converter</h2>
@@ -480,47 +440,6 @@ export default function TimeZoneConverter() {
                 <p>Enter time details to see conversion</p>
               </div>
             )}
-          </div>
-
-          {/* Live World Clock */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Live World Clock</h2>
-            
-            <div className="space-y-3">
-              {timeZones.slice(0, 8).map(zone => (
-                <div key={zone.value} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0">
-                  <div>
-                    <div className="text-sm font-medium text-gray-900">
-                      {zone.label.split(' - ')[0] || zone.label}
-                    </div>
-                    <div className="text-xs text-gray-500">
-                      {zone.region}
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm font-mono font-semibold text-gray-900">
-                      {currentTimes[zone.value] || 'Loading...'}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-4 pt-4 border-t border-gray-200">
-              <button
-                onClick={() => {
-                  const now = new Date();
-                  setConversionData(prev => ({
-                    ...prev,
-                    inputTime: now.toTimeString().slice(0, 5),
-                    inputDate: now.toISOString().split('T')[0],
-                  }));
-                }}
-                className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-sm"
-              >
-                Convert Current Time
-              </button>
-            </div>
           </div>
         </div>
 
