@@ -1,5 +1,6 @@
 'use client';
 
+import AdBanner from '@/components/adsBanner/adBanner';
 import Breadcrumb from '@/components/breadcrumb';
 import React from 'react';
 
@@ -28,6 +29,14 @@ export default function CategoryLayout({ pageTitle, children, disclaimer }: Layo
               {/* Left Column */}
               {children}
               {disclaimer}
+
+              <div className="mt-4">
+                <AdBanner
+                  data-ad-slot="1993929346"
+                  data-full-width-responsive="true"
+                  data-ad-format="auto"
+                />
+              </div>
             </div>
           </div>
         </div>
