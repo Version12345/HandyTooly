@@ -91,6 +91,7 @@ export enum ToolNameLists {
   HtmlEncoder = "HTML Encoder/Decoder",
   AnnualizedReturnCalculator = "Annualized Return Calculator",
     RandomTextGenerator = "Random Text Generator",
+  RandomNumberGenerator = "Random Number Generator",
     PasswordGenerator = "Password Generator",
     JWTDecoder = "JWT Decoder",
   JsonFormatterCompare = "JSON Formatter & Compare",
@@ -125,6 +126,7 @@ export enum ToolNameLists {
   [ToolNameLists.Base64Converter]: "Encode text to Base64 or decode Base64 to text. Convert images to Base64 format for web development, data storage, & API integration. Perfect for developers & data encoding needs.",
   [ToolNameLists.HtmlEncoder]: "Encode HTML to entities or decode HTML entities to text. Convert special characters like <, >, &, quotes for safe HTML display. Perfect for web development & content management.",
   [ToolNameLists.RandomTextGenerator]: "Generate placeholder text (lorem ipsum), usernames, email addresses, sample data & more. Perfect for testing, mockups & placeholder content.",
+  [ToolNameLists.RandomNumberGenerator]: "Generate random numbers in batches with customizable ranges, unique options. Perfect for testing, gaming, statistics & development.",
   [ToolNameLists.PasswordGenerator]: "Generate secure, random passwords with different character types, lengths, and security levels. All generation happens locally in your browser.",
   [ToolNameLists.JWTDecoder]: "Decode JWT (JSON Web Tokens) to view header, payload, and signature components. Analyze token structure, claims, and expiration dates with secure client-side processing.",
   [ToolNameLists.JsonFormatterCompare]: "Format, validate, and compare JSON objects with instant difference highlighting. Perfect for API development, configuration management, and data analysis with client-side processing.",
@@ -161,6 +163,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.Base64Converter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/base64-converter`,
   [ToolNameLists.HtmlEncoder]: `${URL_BASE}/${ToolCategorySlug.Conversions}/html-encoder`,
   [ToolNameLists.RandomTextGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/random-text-generator`,
+  [ToolNameLists.RandomNumberGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/random-number-generator`,
   [ToolNameLists.PasswordGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/password-generator`,
   [ToolNameLists.JWTDecoder]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/jwt-decoder`,
   [ToolNameLists.JsonFormatterCompare]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/json-formatter-compare`,
@@ -342,14 +345,19 @@ export const Tools: Record<string, Tool[]> = {
       link: ToolUrls[ToolNameLists.JWTDecoder]
     },
     {
+      name: ToolNameLists.RandomTextGenerator,
+      description: ToolDescription[ToolNameLists.RandomTextGenerator],
+      link: ToolUrls[ToolNameLists.RandomTextGenerator]
+    },
+    {
       name: ToolNameLists.PasswordGenerator,
       description: ToolDescription[ToolNameLists.PasswordGenerator],
       link: ToolUrls[ToolNameLists.PasswordGenerator]
     },
     {
-      name: ToolNameLists.RandomTextGenerator,
-      description: ToolDescription[ToolNameLists.RandomTextGenerator],
-      link: ToolUrls[ToolNameLists.RandomTextGenerator]
+      name: ToolNameLists.RandomNumberGenerator,
+      description: ToolDescription[ToolNameLists.RandomNumberGenerator],
+      link: ToolUrls[ToolNameLists.RandomNumberGenerator]
     },
   ]
 };
