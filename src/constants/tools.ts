@@ -99,6 +99,7 @@ export enum ToolNameLists {
   IPChecker = "IP Address Checker",
   HtmlFormatter = "HTML Formatter",
   DividendCalculator = "Dividend Calculator",
+  MortgageAffordabilityCalculator = "Mortgage Affordability Calculator",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -137,6 +138,7 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.IPChecker]: "Instantly see your public IP address and get clear details about your connection, including IPv4, IPv6, location, ISP, and network information.",
   [ToolNameLists.HtmlFormatter]: "Format and beautify HTML code with customizable indentation levels. Clean up messy HTML, improve readability, and maintain proper code structure with client-side processing.",
   [ToolNameLists.DividendCalculator]: "Calculate dividend income projections, yield on cost & total returns. Plan dividend investment strategies with tax considerations & risk assessment.",
+  [ToolNameLists.MortgageAffordabilityCalculator]: "Determine how much house you can afford based on income, expenses & loan parameters. Get detailed affordability analysis with home price scenarios.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -175,6 +177,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.IPChecker]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/ip-checker`,
   [ToolNameLists.HtmlFormatter]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/html-formatter`,
   [ToolNameLists.DividendCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/dividend-calculator`,
+  [ToolNameLists.MortgageAffordabilityCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/mortgage-affordability-calculator`,
 };
 
 export const Tools: Record<string, Tool[]> = {
@@ -242,6 +245,11 @@ export const Tools: Record<string, Tool[]> = {
       name: ToolNameLists.SalaryCalculator,
       description: ToolDescription[ToolNameLists.SalaryCalculator],
       link: ToolUrls[ToolNameLists.SalaryCalculator]
+    },
+    {
+      name: ToolNameLists.MortgageAffordabilityCalculator,
+      description: ToolDescription[ToolNameLists.MortgageAffordabilityCalculator],
+      link: ToolUrls[ToolNameLists.MortgageAffordabilityCalculator]
     },
   ],
   [ToolCategory.Conversions]: [
