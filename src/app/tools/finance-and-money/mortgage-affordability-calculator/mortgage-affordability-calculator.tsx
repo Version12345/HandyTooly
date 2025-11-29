@@ -4,6 +4,8 @@ import React, { useState, useCallback, useMemo } from 'react';
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
+import CurrencySelector from '@/components/currencySelector';
+import { formatCurrency, getCurrencySymbol } from '@/utils/currencyHelpers';
 
 interface IncomeExpenses {
   grossAnnualIncome: number;
@@ -11,6 +13,7 @@ interface IncomeExpenses {
   monthlyExpenses: number;
   availableDownPayment: number;
   creditScore: string;
+  currency: string;
 }
 
 interface LoanParameters {
@@ -64,19 +67,20 @@ const LOAN_TERMS = [
 export default function HomeAffordabilityCalculator() {
   const [incomeExpenses, setIncomeExpenses] = useState<IncomeExpenses>({
     grossAnnualIncome: 75000,
-    monthlyDebtPayments: 500,
-    monthlyExpenses: 2000,
-    availableDownPayment: 50000,
-    creditScore: '740-799'
+    monthlyDebtPayments: 300,
+    monthlyExpenses: 1500,
+    availableDownPayment: 25000,
+    creditScore: '740-799',
+    currency: 'USD'
   });
 
   const [loanParameters, setLoanParameters] = useState<LoanParameters>({
     loanTerm: 30,
-    interestRate: 6.5,
-    propertyTaxRate: 1.2,
-    homeInsurance: 1200,
+    interestRate: 7.0,
+    propertyTaxRate: 1.0,
+    homeInsurance: 1000,
     pmiMortgageInsurance: 0.5,
-    hoaFees: 150
+    hoaFees: 100
   });
 
   const calculateAffordability = useCallback((): AffordabilityResults => {
@@ -204,15 +208,6 @@ export default function HomeAffordabilityCalculator() {
     setLoanParameters(prev => ({ ...prev, [field]: value }));
   };
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
-
   const formatPercentage = (value: number) => {
     return `${value.toFixed(1)}%`;
   };
@@ -249,11 +244,20 @@ export default function HomeAffordabilityCalculator() {
             
             <div className="space-y-4">
               <div>
+                <div>
+                  <CurrencySelector
+                    value={incomeExpenses.currency}
+                    onChange={(currency: string) => updateIncomeExpenses('currency', currency)}
+                  />
+                </div>
+
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Gross Annual Income
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                    {getCurrencySymbol(incomeExpenses.currency)}
+                  </span>
                   <input
                     type="number"
                     min="0"
@@ -271,7 +275,9 @@ export default function HomeAffordabilityCalculator() {
                   Monthly Debt Payments
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                    {getCurrencySymbol(incomeExpenses.currency)}
+                  </span>
                   <input
                     type="number"
                     min="0"
@@ -289,7 +295,9 @@ export default function HomeAffordabilityCalculator() {
                   Monthly Expenses
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                    {getCurrencySymbol(incomeExpenses.currency)}
+                  </span>
                   <input
                     type="number"
                     min="0"
@@ -307,7 +315,9 @@ export default function HomeAffordabilityCalculator() {
                   Available Down Payment
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                    {getCurrencySymbol(incomeExpenses.currency)}
+                  </span>
                   <input
                     type="number"
                     min="0"
@@ -408,7 +418,9 @@ export default function HomeAffordabilityCalculator() {
                   Home Insurance (Annual)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                    {getCurrencySymbol(incomeExpenses.currency)}
+                  </span>
                   <input
                     type="number"
                     min="0"
@@ -418,7 +430,7 @@ export default function HomeAffordabilityCalculator() {
                     className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Annual homeowner's insurance premium</p>
+                <p className="text-xs text-gray-500 mt-1">Annual homeowner&apos;s insurance premium</p>
               </div>
 
               <div>
@@ -445,7 +457,9 @@ export default function HomeAffordabilityCalculator() {
                   HOA Fees (Monthly)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                    {getCurrencySymbol(incomeExpenses.currency)}
+                  </span>
                   <input
                     type="number"
                     min="0"
@@ -456,6 +470,15 @@ export default function HomeAffordabilityCalculator() {
                   />
                 </div>
                 <p className="text-xs text-gray-500 mt-1">Homeowners association fees</p>
+              </div>
+
+              {/* Maximum Home Price */}
+              <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h3 className="text-sm font-semibold text-gray-900 mb-2">Maximum Home Price:</h3>
+                <div className="text-2xl font-bold text-gray-900">
+                  {formatCurrency(results.loanAmount + results.downPayment, incomeExpenses.currency)}
+                </div>
+                <p className="text-xs text-blue-600 mt-1">Based on your financial profile</p>
               </div>
             </div>
           </div>
@@ -470,42 +493,82 @@ export default function HomeAffordabilityCalculator() {
               <div className={`p-3 rounded-lg ${getAffordabilityColor(results.affordabilityStatus)}`}>
                 <div className="text-sm font-medium mb-1">Monthly Payment</div>
                 <div className="text-xl font-bold">
-                  {formatCurrency(results.monthlyPayment)}
+                  {formatCurrency(results.monthlyPayment, incomeExpenses.currency)}
                 </div>
               </div>
 
               <div className="bg-blue-50 p-3 rounded-lg">
                 <div className="text-sm font-medium text-blue-800 mb-1">Principal & Interest</div>
                 <div className="text-lg font-semibold text-blue-900">
-                  {formatCurrency(results.principalAndInterest)}
+                  {formatCurrency(results.principalAndInterest, incomeExpenses.currency)}
                 </div>
               </div>
 
               <div className="bg-purple-50 p-3 rounded-lg">
                 <div className="text-sm font-medium text-purple-800 mb-1">Loan Amount</div>
                 <div className="text-lg font-semibold text-purple-900">
-                  {formatCurrency(results.loanAmount)}
+                  {formatCurrency(results.loanAmount, incomeExpenses.currency)}
                 </div>
               </div>
 
               <div className="bg-orange-50 p-3 rounded-lg">
                 <div className="text-sm font-medium text-orange-800 mb-1">Down Payment</div>
                 <div className="text-lg font-semibold text-orange-900">
-                  {formatCurrency(results.downPayment)}
+                  {formatCurrency(results.downPayment, incomeExpenses.currency)}
                 </div>
               </div>
 
               <div className="space-y-3 pt-4 border-t">
                 <h3 className="text-sm font-semibold text-gray-900">Debt-to-Income Ratios</h3>
                 
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Housing Ratio (Front-end):</span>
-                  <span className="font-semibold text-gray-900">{formatPercentage(results.housingRatio)}</span>
+                {/* Housing Ratio Bar Chart */}
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-600">Housing Ratio (Front-end)</span>
+                    <span className="font-semibold text-gray-900">{formatPercentage(results.housingRatio)}</span>
+                  </div>
+                  <div className="relative h-2 bg-gray-200 rounded-full overflow-hidden mb-1">
+                    <div 
+                      className={`absolute top-0 left-0 h-full rounded-full transition-all duration-300 ${
+                        results.housingRatio <= 28 ? 'bg-green-500' : 
+                        results.housingRatio <= 32 ? 'bg-yellow-500' : 'bg-red-500'
+                      }`}
+                      style={{ width: `${Math.min(results.housingRatio / 40 * 100, 100)}%` }}
+                    ></div>
+                    {/* 28% marker */}
+                    <div 
+                      className="absolute top-0 h-full w-0.5 bg-gray-600"
+                      style={{ left: `${28 / 40 * 100}%` }}
+                    ></div>
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    Recommended: ≤ 28%
+                  </div>
                 </div>
                 
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Total Debt Ratio (Back-end):</span>
-                  <span className="font-semibold text-gray-900">{formatPercentage(results.debtToIncomeRatio)}</span>
+                {/* Total Debt Ratio Bar Chart */}
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-600">Total Debt Ratio (Back-end)</span>
+                    <span className="font-semibold text-gray-900">{formatPercentage(results.debtToIncomeRatio)}</span>
+                  </div>
+                  <div className="relative h-2 bg-gray-200 rounded-full overflow-hidden mb-1">
+                    <div 
+                      className={`absolute top-0 left-0 h-full rounded-full transition-all duration-300 ${
+                        results.debtToIncomeRatio <= 36 ? 'bg-green-500' : 
+                        results.debtToIncomeRatio <= 42 ? 'bg-yellow-500' : 'bg-red-500'
+                      }`}
+                      style={{ width: `${Math.min(results.debtToIncomeRatio / 50 * 100, 100)}%` }}
+                    ></div>
+                    {/* 36% marker */}
+                    <div 
+                      className="absolute top-0 h-full w-0.5 bg-gray-600"
+                      style={{ left: `${36 / 50 * 100}%` }}
+                    ></div>
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    Recommended: ≤ 36%
+                  </div>
                 </div>
 
                 <div className="bg-gray-50 p-3 rounded-lg">
@@ -529,11 +592,11 @@ export default function HomeAffordabilityCalculator() {
                 <div className="text-sm space-y-1">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Monthly Gross Income:</span>
-                    <span className="font-medium">{formatCurrency(results.monthlyGrossIncome)}</span>
+                    <span className="font-medium">{formatCurrency(results.monthlyGrossIncome, incomeExpenses.currency)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Available for Housing:</span>
-                    <span className="font-medium">{formatCurrency(results.availableForHousing)}</span>
+                    <span className="font-medium">{formatCurrency(results.availableForHousing, incomeExpenses.currency)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Down Payment Percentage:</span>
@@ -553,37 +616,37 @@ export default function HomeAffordabilityCalculator() {
             <div className="text-center">
               <div className="text-sm text-gray-600 mb-1">Principal & Interest</div>
               <div className="text-lg font-semibold text-blue-600">
-                {formatCurrency(results.principalAndInterest)}
+                {formatCurrency(results.principalAndInterest, incomeExpenses.currency)}
               </div>
             </div>
             <div className="text-center">
               <div className="text-sm text-gray-600 mb-1">Property Tax</div>
               <div className="text-lg font-semibold text-purple-600">
-                {formatCurrency((results.loanAmount + results.downPayment) * loanParameters.propertyTaxRate / 100 / 12)}
+                {formatCurrency((results.loanAmount + results.downPayment) * loanParameters.propertyTaxRate / 100 / 12, incomeExpenses.currency)}
               </div>
             </div>
             <div className="text-center">
               <div className="text-sm text-gray-600 mb-1">Insurance</div>
               <div className="text-lg font-semibold text-green-600">
-                {formatCurrency(loanParameters.homeInsurance / 12)}
+                {formatCurrency(loanParameters.homeInsurance / 12, incomeExpenses.currency)}
               </div>
             </div>
             <div className="text-center">
               <div className="text-sm text-gray-600 mb-1">HOA Fees</div>
               <div className="text-lg font-semibold text-orange-600">
-                {formatCurrency(loanParameters.hoaFees)}
+                {formatCurrency(loanParameters.hoaFees, incomeExpenses.currency)}
               </div>
             </div>
             <div className="text-center">
               <div className="text-sm text-gray-600 mb-1">PMI</div>
               <div className="text-lg font-semibold text-red-600">
-                {formatCurrency(results.loanAmount * loanParameters.pmiMortgageInsurance / 100 / 12)}
+                {formatCurrency(results.loanAmount * loanParameters.pmiMortgageInsurance / 100 / 12, incomeExpenses.currency)}
               </div>
             </div>
             <div className="text-center">
               <div className="text-sm text-gray-600 mb-1">Total Monthly Payment</div>
               <div className="text-xl font-bold text-gray-900">
-                {formatCurrency(results.monthlyPayment)}
+                {formatCurrency(results.monthlyPayment, incomeExpenses.currency)}
               </div>
             </div>
           </div>
@@ -601,22 +664,22 @@ export default function HomeAffordabilityCalculator() {
                     {scenario.type} ({scenario.percentage}%)
                   </h4>
                   <div className="text-2xl font-bold text-gray-900 mt-1">
-                    {formatCurrency(scenario.homePrice)}
+                    {formatCurrency(scenario.homePrice, incomeExpenses.currency)}
                   </div>
                 </div>
                 
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Monthly Payment:</span>
-                    <span className="font-medium">{formatCurrency(scenario.monthlyPayment)}</span>
+                    <span className="font-medium">{formatCurrency(scenario.monthlyPayment, incomeExpenses.currency)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Down Payment:</span>
-                    <span className="font-medium">{formatCurrency(scenario.downPayment)}</span>
+                    <span className="font-medium">{formatCurrency(scenario.downPayment, incomeExpenses.currency )}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Loan Amount:</span>
-                    <span className="font-medium">{formatCurrency(scenario.loanAmount)}</span>
+                    <span className="font-medium">{formatCurrency(scenario.loanAmount, incomeExpenses.currency)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">DTI Ratio:</span>
