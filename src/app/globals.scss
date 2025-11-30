@@ -133,6 +133,16 @@ select {
   cursor: pointer;
 }
 
+.class-education-content {
+  a {
+    color: var(--color-orange-500);
+
+    &:hover {
+      color: var(--color-orange-700);
+    }
+  }
+}
+
 .blog-post-layout {
   a {
     color: var(--color-orange-500);

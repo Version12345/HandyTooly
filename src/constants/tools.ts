@@ -123,7 +123,7 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.VolumeConverter]: "Convert liters (L), gallons (gal), cups (c), milliliters (mL), etc with our volume converter. Perfect for cooking, engineering, & everyday measurements.",
   [ToolNameLists.AreaConverter]: "Convert square meters (m²), square feet (ft²), acres, hectares, etc with our area converter. Perfect for real estate, gardening, & land measurements.",
   [ToolNameLists.TemperatureConverter]: "Convert Celsius (°C), Fahrenheit (°F), Kelvin (K), Rankine (°R), etc with our temperature converter. Perfect for cooking, science, & weather measurements.",
-  [ToolNameLists.CreditCardPaymentCalculator]: "Calculate how long it takes to pay off credit card debt & total interest. Plan payments, compare strategies & get debt-free faster with multiple currencies.",
+  [ToolNameLists.CreditCardPaymentCalculator]: "Calculate how long it takes to pay off credit card debt & interest. Plan payments, compare strategies & get debt-free faster with multiple currencies.",
   [ToolNameLists.AnnualizedReturnCalculator]: "Calculate annualized returns, CAGR, and analyze investment performance with comprehensive metrics and benchmarking.",
   [ToolNameLists.MeanMedianModeCalculator]: "Calculate mean, median, mode along with minimum, maximum, range, quartiles, and sum for a set of data. Perfect for statistics, data analysis, & mathematical calculations.",
   [ToolNameLists.WordCharacterCounter]: "Count words, characters, sentences, and paragraphs in your text. Analyze readability, and reading time. Perfect for content creation, and text analysis.",
@@ -137,8 +137,8 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.JsonFormatterCompare]: "Format, validate, and compare JSON objects with instant difference highlighting. Perfect for API development, configuration management, and data analysis with client-side processing.",
   [ToolNameLists.IPChecker]: "Instantly see your public IP address and get clear details about your connection, including IPv4, IPv6, location, ISP, and network information.",
   [ToolNameLists.HtmlFormatter]: "Format and beautify HTML code with customizable indentation levels. Clean up messy HTML, improve readability, and maintain proper code structure with client-side processing.",
-  [ToolNameLists.DividendCalculator]: "Calculate dividend income projections, yield on cost & total returns. Plan dividend investment strategies with tax considerations & risk assessment.",
-  [ToolNameLists.MortgageAffordabilityCalculator]: "Determine how much house you can afford based on income, expenses & loan parameters. Get detailed affordability analysis with home price scenarios.",
+  [ToolNameLists.DividendCalculator]: "Calculate dividend income projections, yield on cost & total returns. Plan investment strategies with tax considerations & risk assessment.",
+  [ToolNameLists.MortgageAffordabilityCalculator]: "Determine how much house you can afford based on income, expenses & debts. Get detailed analysis with home price scenarios in different currencies.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -242,14 +242,14 @@ export const Tools: Record<string, Tool[]> = {
       link: ToolUrls[ToolNameLists.InflationCalculator]
     },
     {
-      name: ToolNameLists.SalaryCalculator,
-      description: ToolDescription[ToolNameLists.SalaryCalculator],
-      link: ToolUrls[ToolNameLists.SalaryCalculator]
-    },
-    {
       name: ToolNameLists.MortgageAffordabilityCalculator,
       description: ToolDescription[ToolNameLists.MortgageAffordabilityCalculator],
       link: ToolUrls[ToolNameLists.MortgageAffordabilityCalculator]
+    },
+    {
+      name: ToolNameLists.SalaryCalculator,
+      description: ToolDescription[ToolNameLists.SalaryCalculator],
+      link: ToolUrls[ToolNameLists.SalaryCalculator]
     },
   ],
   [ToolCategory.Conversions]: [

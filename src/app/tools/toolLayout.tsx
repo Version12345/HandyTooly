@@ -74,10 +74,10 @@ export default function ToolLayout({ toolCategory, children, disclaimer, seconda
             )}
             {children}
             {educationContent ? (
-              <>
+              <div className="class-education-content">
                 <hr className="my-6" />
                 {educationContent}
-              </>
+              </div>
             ) : null}
             {disclaimer}
 

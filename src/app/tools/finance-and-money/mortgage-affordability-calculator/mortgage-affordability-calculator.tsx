@@ -6,6 +6,7 @@ import { ToolNameLists } from '@/constants/tools';
 import FinancialDisclaimer from '@/components/disclaimers/financialDisclaimer';
 import CurrencySelector from '@/components/currencySelector';
 import { formatCurrency, getCurrencySymbol } from '@/utils/currencyHelpers';
+import Link from 'next/link';
 
 interface IncomeExpenses {
   grossAnnualIncome: number;
@@ -66,10 +67,10 @@ const LOAN_TERMS = [
 
 export default function HomeAffordabilityCalculator() {
   const [incomeExpenses, setIncomeExpenses] = useState<IncomeExpenses>({
-    grossAnnualIncome: 75000,
-    monthlyDebtPayments: 300,
-    monthlyExpenses: 1500,
-    availableDownPayment: 25000,
+    grossAnnualIncome: 85000,
+    monthlyDebtPayments: 500,
+    monthlyExpenses: 2000,
+    availableDownPayment: 200000,
     creditScore: '740-799',
     currency: 'USD'
   });
@@ -82,39 +83,138 @@ export default function HomeAffordabilityCalculator() {
     pmiMortgageInsurance: 0.5,
     hoaFees: 100
   });
+  
+  /**
+   * Calculate the maximum house price based on income, down payment,
+   * interest rate, loan term, and other expenses.
+   *
+   * @param {number} monthlyIncome - Gross monthly income (I)
+   * @param {number} fractionForHousing - Fraction of income for housing (f)
+   * @param {number} otherExpenses - Other monthly housing expenses (E)
+   * @param {number} annualInterestRate - Annual interest rate in percent (e.g., 6 for 6%)
+   * @param {number} loanTermYears - Loan term in years (n)
+   * @param {number} downPayment - Down payment (D)
+   * @returns {number} Maximum house price (P)
+   */
+  const calculateMaxHousePrice = (
+    monthlyIncome: number, 
+    fractionForHousing: number, 
+    otherExpenses: number, 
+    annualInterestRate: number, 
+    loanTermYears: number, 
+    downPayment: number
+  ) => {
+      const r = (annualInterestRate / 100) / 12; // monthly interest rate
+      const n = loanTermYears * 12; // total number of monthly payments
+      const M_max = (fractionForHousing * monthlyIncome) - otherExpenses; // max monthly mortgage payment
+      
+      // Mortgage loan amount using full formula
+      const loanAmount = M_max * ((Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n)));
+      
+      // Maximum house price
+      const maxHousePrice = loanAmount + downPayment;
+      
+      return maxHousePrice;
+  };
 
   const calculateAffordability = useCallback((): AffordabilityResults => {
     const monthlyGrossIncome = incomeExpenses.grossAnnualIncome / 12;
     const monthlyInterestRate = loanParameters.interestRate / 100 / 12;
     const numberOfPayments = loanParameters.loanTerm * 12;
 
+    let maxHomePrice = calculateMaxHousePrice(
+      monthlyGrossIncome,
+      0.28,
+      incomeExpenses.monthlyDebtPayments + incomeExpenses.monthlyExpenses,
+      loanParameters.interestRate,
+      loanParameters.loanTerm,
+      incomeExpenses.availableDownPayment 
+    );
+
     // Calculate maximum housing payment (28% rule)
     const maxHousingPayment = monthlyGrossIncome * 0.28;
     
     // Calculate maximum total debt payment (36% rule)
     const maxTotalDebtPayment = monthlyGrossIncome * 0.36;
-    const maxHousingAfterDebt = maxTotalDebtPayment - incomeExpenses.monthlyDebtPayments;
+    const maxHousingAfterDebt = maxTotalDebtPayment - incomeExpenses.monthlyDebtPayments - incomeExpenses.monthlyExpenses;
     
     // Use the lower of the two
     const availableForHousing = Math.min(maxHousingPayment, maxHousingAfterDebt);
     
-    // Subtract fixed monthly costs
+    // Fixed monthly costs
     const monthlyInsurance = loanParameters.homeInsurance / 12;
-    const availableForPI = availableForHousing - monthlyInsurance - loanParameters.hoaFees;
     
-    // Calculate maximum loan amount
-    const loanAmount = availableForPI * (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments)) / monthlyInterestRate;
+    // Use iterative approach to find the maximum affordable home price
+    // We need to account for property tax being based on home price
+    let iterations = 0;
+    const maxIterations = 50;
     
-    // Calculate maximum home price
-    const maxHomePrice = loanAmount + incomeExpenses.availableDownPayment;
+    while (iterations < maxIterations) {
+      // Calculate loan amount for this home price
+      const tempLoanAmount = Math.max(0, maxHomePrice - incomeExpenses.availableDownPayment);
+      
+      // Calculate all monthly costs for this home price
+      const monthlyPropertyTax = (maxHomePrice * loanParameters.propertyTaxRate / 100) / 12;
+      const monthlyPMI = tempLoanAmount > 0 ? (tempLoanAmount * loanParameters.pmiMortgageInsurance / 100) / 12 : 0;
+      
+      // Calculate principal and interest
+      const principalAndInterest = tempLoanAmount > 0 && monthlyInterestRate > 0 ? 
+        tempLoanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / 
+        (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1) : 0;
+      
+      // Total monthly payment for this home price
+      const totalMonthlyForThisPrice = principalAndInterest + monthlyPropertyTax + monthlyInsurance + monthlyPMI + loanParameters.hoaFees;
+      
+      // Check if this total payment fits within our budget
+      const difference = availableForHousing - totalMonthlyForThisPrice;
+      
+      // If we're close enough (within $5), we found our answer
+      if (Math.abs(difference) < 5) break;
+      
+      // Adjust home price based on difference
+      // Use a conservative adjustment factor to prevent oscillation
+      const adjustmentFactor = Math.min(Math.abs(difference) * 100, maxHomePrice * 0.1);
+      if (difference > 0) {
+        maxHomePrice += adjustmentFactor;
+      } else {
+        maxHomePrice -= adjustmentFactor;
+      }
+      
+      // Ensure we don't go too low
+      if (maxHomePrice < 10000) {
+        maxHomePrice = 10000;
+        break;
+      }
+      
+      iterations++;
+    }
     
-    // Calculate monthly property tax and PMI
-    const monthlyPropertyTax = (maxHomePrice * loanParameters.propertyTaxRate / 100) / 12;
-    const monthlyPMI = loanAmount * (loanParameters.pmiMortgageInsurance / 100) / 12;
+    // Final calculations with the determined max home price
+    // Check if down payment exceeds max home price
+    let loanAmount: number;
+    let totalMonthlyPayment: number;
+    let principalAndInterest: number;
     
-    // Calculate actual monthly payment
-    const principalAndInterest = loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
-    const totalMonthlyPayment = principalAndInterest + monthlyPropertyTax + monthlyInsurance + monthlyPMI + loanParameters.hoaFees;
+    if (incomeExpenses.availableDownPayment >= maxHomePrice) {
+      // Down payment covers the entire home price - no loan needed
+      loanAmount = 0;
+      principalAndInterest = 0;
+      totalMonthlyPayment = 0;
+    } else {
+      // Normal calculation
+      loanAmount = maxHomePrice - incomeExpenses.availableDownPayment;
+      
+      // Calculate monthly property tax and PMI
+      const monthlyPropertyTax = (maxHomePrice * loanParameters.propertyTaxRate / 100) / 12;
+      const monthlyPMI = loanAmount * (loanParameters.pmiMortgageInsurance / 100) / 12;
+      
+      // Calculate principal and interest
+      principalAndInterest = monthlyInterestRate > 0 ? 
+        loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / 
+        (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1) : 0;
+      
+      totalMonthlyPayment = principalAndInterest + monthlyPropertyTax + monthlyInsurance + monthlyPMI + loanParameters.hoaFees;
+    }
     
     // Calculate ratios
     const housingRatio = (totalMonthlyPayment / monthlyGrossIncome) * 100;
@@ -232,6 +332,7 @@ export default function HomeAffordabilityCalculator() {
   return (
     <ToolLayout 
       toolCategory={ToolNameLists.MortgageAffordabilityCalculator}
+      educationContent={educationContent}
       disclaimer={<FinancialDisclaimer />}
     >
       <div className="space-y-6">
@@ -383,7 +484,7 @@ export default function HomeAffordabilityCalculator() {
                   <input
                     type="number"
                     min="0"
-                    max="15"
+                    max="100"
                     step="0.1"
                     value={loanParameters.interestRate}
                     onChange={(e) => updateLoanParameters('interestRate', parseFloat(e.target.value) || 0)}
@@ -473,12 +574,12 @@ export default function HomeAffordabilityCalculator() {
               </div>
 
               {/* Maximum Home Price */}
-              <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="mt-6 p-4 bg-gray-100 rounded-lg">
                 <h3 className="text-sm font-semibold text-gray-900 mb-2">Maximum Home Price:</h3>
                 <div className="text-2xl font-bold text-gray-900">
                   {formatCurrency(results.loanAmount + results.downPayment, incomeExpenses.currency)}
                 </div>
-                <p className="text-xs text-blue-600 mt-1">Based on your financial profile</p>
+                <p className="text-xs text-gray-500 mt-1">Based on your financial profile</p>
               </div>
             </div>
           </div>
@@ -690,31 +791,46 @@ export default function HomeAffordabilityCalculator() {
             ))}
           </div>
         </div>
-
-        {/* Educational Content */}
-        <div className="bg-indigo-50 rounded-lg p-6">
-          <div className="flex items-start gap-3">
-            <div className="text-xl">💡</div>
-            <div>
-              <h3 className="font-semibold text-indigo-900 mb-2">Understanding Home Affordability</h3>
-              <div className="text-sm text-indigo-800 space-y-2">
-                <p>
-                  <strong>28/36 Rule:</strong> Your housing costs should not exceed 28% of gross monthly income, 
-                  and total debt should not exceed 36% of gross monthly income.
-                </p>
-                <p>
-                  <strong>Down Payment:</strong> While 20% down avoids PMI, many loan programs allow 3-5% down. 
-                  Consider the total cost including PMI when deciding.
-                </p>
-                <p>
-                  <strong>Emergency Fund:</strong> Maintain 3-6 months of expenses in savings after home purchase 
-                  for unexpected repairs and maintenance.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </ToolLayout>
   );
 }
+
+const educationContent = (
+  <div>
+    <h3>Understanding Home Mortgage Affordability</h3>
+    <p>Buying a home is a big step. Clear numbers and simple rules help you understand what you can handle. When you know how lenders judge your money, you gain confidence. This guide explains the key ideas and shows how affordability is calculated.</p>
+
+    <h3>The 28/36 Rule</h3>
+
+    <p>Most lenders follow the 28/36 rule. It sets limits on how much of your income can go toward housing and debt.</p>
+
+    <ul className="mb-4">
+      <li> <strong>Housing limit</strong> &mdash; Your monthly housing cost should stay under 28 percent of your gross income. This cost includes the loan payment, property tax, insurance, and any mortgage insurance.</li>
+      <li> <strong>Debt limit</strong> &mdash; Your total debt should stay under 36 percent of your gross income. Total debt includes your housing cost plus items like car payments, credit cards, and student loans.</li>
+    </ul>
+
+    <p>These limits help protect you from stress. They keep your budget steady even when life changes.</p>
+
+    <h3>The Role of the Down Payment</h3>
+    <p>Your down payment shapes your loan size and your monthly payments. A 20 percent down payment removes PMI. Many people still buy homes with 3 to 5 percent down. Smaller down payments raise the total cost because PMI adds to your monthly bill.</p>
+
+    <p>Think about more than the interest rate. Look at the full picture. Include PMI, taxes, insurance, and HOA fees. A home with a lower price but higher fees can cost more each month than a home with a higher price and fewer extras.</p>
+
+    <h3>Why an Emergency Fund Matters</h3>
+    <p>Homes need care. Systems break. Roofs leak. Water heaters fail. You need money ready for the sudden problems that come with home ownership. An emergency fund with 3 to 6 months of expenses covers these shocks. It lets you fix issues fast. It keeps your loan payments steady. It protects you from risk in a way a low monthly payment cannot.</p>
+    <p>Buyers who skip this step often feel pressure later. A strong emergency fund gives you peace and space.</p>
+
+    <h3>How Affordability Is Calculated</h3>
+
+    <p>Affordability begins with your income. Lenders check your <Link href="/tools/finance-and-money/salary-calculator">gross monthly income</Link>, your <Link href="/tools/finance-and-money/debt-to-income-calculator">current debts</Link>, and your planned housing costs.</p>
+
+    <p>Start with the 28 percent limit. Multiply your income by 0.28. That number shows the highest housing cost that fits the rule. Then check the 36 percent limit. Multiply your income by 0.36 and subtract your other debts. This gives your true ceiling.</p>
+
+    <p>Your loan officer then runs the numbers. They use the interest rate, loan term, and down payment to find the loan amount that fits your limits. They add taxes and insurance to find the final payment. The loan amount plus your down payment gives you the home price you can afford.</p>
+
+    <h3>Bringing It All Together</h3>
+
+    <p>A home that fits your life has three traits. The payment sits under the 28 percent limit. Your full debt stays under the 36 percent limit. You still hold an emergency fund after closing. When these pieces line up, you gain strength and stability. Home ownership feels better when the home fits your money. These rules help you find that fit.</p>
+  </div>
+);
