@@ -49,14 +49,6 @@ interface HomePriceScenario {
   dtiRatio: number;
 }
 
-const CREDIT_SCORE_RANGES = [
-  { value: '800-850', label: 'Excellent (800-850)' },
-  { value: '740-799', label: 'Very Good (740-799)' },
-  { value: '670-739', label: 'Good (670-739)' },
-  { value: '580-669', label: 'Fair (580-669)' },
-  { value: '300-579', label: 'Poor (300-579)' }
-];
-
 const LOAN_TERMS = [
   { value: 30, label: '30 years' },
   { value: 25, label: '25 years' },
@@ -70,7 +62,7 @@ export default function HomeAffordabilityCalculator() {
     grossAnnualIncome: 85000,
     monthlyDebtPayments: 500,
     monthlyExpenses: 2000,
-    availableDownPayment: 200000,
+    availableDownPayment: 90000,
     creditScore: '740-799',
     currency: 'USD'
   });
@@ -80,7 +72,7 @@ export default function HomeAffordabilityCalculator() {
     interestRate: 7.0,
     propertyTaxRate: 1.0,
     homeInsurance: 1000,
-    pmiMortgageInsurance: 0.5,
+    pmiMortgageInsurance: 0.0,
     hoaFees: 100
   });
   
@@ -98,23 +90,18 @@ export default function HomeAffordabilityCalculator() {
    */
   const calculateMaxHousePrice = (
     monthlyIncome: number, 
-    fractionForHousing: number, 
-    otherExpenses: number, 
-    annualInterestRate: number, 
-    loanTermYears: number, 
-    downPayment: number
+    monthlyInterestRate: number, 
+    loanTermYears: number,
   ) => {
-      const r = (annualInterestRate / 100) / 12; // monthly interest rate
-      const n = loanTermYears * 12; // total number of monthly payments
-      const M_max = (fractionForHousing * monthlyIncome) - otherExpenses; // max monthly mortgage payment
-      
-      // Mortgage loan amount using full formula
-      const loanAmount = M_max * ((Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n)));
-      
-      // Maximum house price
-      const maxHousePrice = loanAmount + downPayment;
-      
-      return maxHousePrice;
+    const grossIncomeRate = 0.4; // 28% rule
+    const maxMonthlyPayment = grossIncomeRate * monthlyIncome
+
+    const loanAmount = maxMonthlyPayment * (
+      (Math.pow(1 + monthlyInterestRate, loanTermYears * 12) - 1) / 
+      (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTermYears * 12))
+    )
+
+    return loanAmount;
   };
 
   const calculateAffordability = useCallback((): AffordabilityResults => {
@@ -122,21 +109,17 @@ export default function HomeAffordabilityCalculator() {
     const monthlyInterestRate = loanParameters.interestRate / 100 / 12;
     const numberOfPayments = loanParameters.loanTerm * 12;
 
-    let maxHomePrice = calculateMaxHousePrice(
+    const maxHomePrice = calculateMaxHousePrice(
       monthlyGrossIncome,
-      0.28,
-      incomeExpenses.monthlyDebtPayments + incomeExpenses.monthlyExpenses,
-      loanParameters.interestRate,
-      loanParameters.loanTerm,
-      incomeExpenses.availableDownPayment 
+      monthlyInterestRate,
+      loanParameters.loanTerm
     );
 
     // Calculate maximum housing payment (28% rule)
     const maxHousingPayment = monthlyGrossIncome * 0.28;
     
     // Calculate maximum total debt payment (36% rule)
-    const maxTotalDebtPayment = monthlyGrossIncome * 0.36;
-    const maxHousingAfterDebt = maxTotalDebtPayment - incomeExpenses.monthlyDebtPayments - incomeExpenses.monthlyExpenses;
+    const maxHousingAfterDebt = monthlyGrossIncome - incomeExpenses.monthlyDebtPayments - incomeExpenses.monthlyExpenses;
     
     // Use the lower of the two
     const availableForHousing = Math.min(maxHousingPayment, maxHousingAfterDebt);
@@ -144,63 +127,13 @@ export default function HomeAffordabilityCalculator() {
     // Fixed monthly costs
     const monthlyInsurance = loanParameters.homeInsurance / 12;
     
-    // Use iterative approach to find the maximum affordable home price
-    // We need to account for property tax being based on home price
-    let iterations = 0;
-    const maxIterations = 50;
-    
-    while (iterations < maxIterations) {
-      // Calculate loan amount for this home price
-      const tempLoanAmount = Math.max(0, maxHomePrice - incomeExpenses.availableDownPayment);
-      
-      // Calculate all monthly costs for this home price
-      const monthlyPropertyTax = (maxHomePrice * loanParameters.propertyTaxRate / 100) / 12;
-      const monthlyPMI = tempLoanAmount > 0 ? (tempLoanAmount * loanParameters.pmiMortgageInsurance / 100) / 12 : 0;
-      
-      // Calculate principal and interest
-      const principalAndInterest = tempLoanAmount > 0 && monthlyInterestRate > 0 ? 
-        tempLoanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / 
-        (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1) : 0;
-      
-      // Total monthly payment for this home price
-      const totalMonthlyForThisPrice = principalAndInterest + monthlyPropertyTax + monthlyInsurance + monthlyPMI + loanParameters.hoaFees;
-      
-      // Check if this total payment fits within our budget
-      const difference = availableForHousing - totalMonthlyForThisPrice;
-      
-      // If we're close enough (within $5), we found our answer
-      if (Math.abs(difference) < 5) break;
-      
-      // Adjust home price based on difference
-      // Use a conservative adjustment factor to prevent oscillation
-      const adjustmentFactor = Math.min(Math.abs(difference) * 100, maxHomePrice * 0.1);
-      if (difference > 0) {
-        maxHomePrice += adjustmentFactor;
-      } else {
-        maxHomePrice -= adjustmentFactor;
-      }
-      
-      // Ensure we don't go too low
-      if (maxHomePrice < 10000) {
-        maxHomePrice = 10000;
-        break;
-      }
-      
-      iterations++;
-    }
-    
     // Final calculations with the determined max home price
     // Check if down payment exceeds max home price
-    let loanAmount: number;
-    let totalMonthlyPayment: number;
-    let principalAndInterest: number;
+    let loanAmount: number = 0;
+    let totalMonthlyPayment: number = 0;
+    let principalAndInterest: number = 0;
     
-    if (incomeExpenses.availableDownPayment >= maxHomePrice) {
-      // Down payment covers the entire home price - no loan needed
-      loanAmount = 0;
-      principalAndInterest = 0;
-      totalMonthlyPayment = 0;
-    } else {
+    if (incomeExpenses.availableDownPayment <= maxHomePrice) {
       // Normal calculation
       loanAmount = maxHomePrice - incomeExpenses.availableDownPayment;
       
@@ -309,7 +242,7 @@ export default function HomeAffordabilityCalculator() {
   };
 
   const formatPercentage = (value: number) => {
-    return `${value.toFixed(1)}%`;
+    return `${value.toFixed(2)}%`;
   };
 
   const getAffordabilityColor = (status: AffordabilityResults['affordabilityStatus']) => {
@@ -413,7 +346,7 @@ export default function HomeAffordabilityCalculator() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Available Down Payment
+                  Down Payment
                 </label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
@@ -428,25 +361,6 @@ export default function HomeAffordabilityCalculator() {
                     className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Cash available for down payment</p>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Credit Score Range
-                </label>
-                <select
-                  value={incomeExpenses.creditScore}
-                  onChange={(e) => updateIncomeExpenses('creditScore', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                >
-                  {CREDIT_SCORE_RANGES.map(range => (
-                    <option key={range.value} value={range.value}>
-                      {range.label}
-                    </option>
-                  ))}
-                </select>
-                <p className="text-xs text-gray-500 mt-1">Affects interest rate and loan terms</p>
               </div>
             </div>
           </div>
@@ -473,12 +387,11 @@ export default function HomeAffordabilityCalculator() {
                     </option>
                   ))}
                 </select>
-                <p className="text-xs text-gray-500 mt-1">Longer terms = lower monthly payment</p>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Interest Rate
+                  Interest Rate (Annual)
                 </label>
                 <div className="relative">
                   <input
@@ -492,12 +405,12 @@ export default function HomeAffordabilityCalculator() {
                   />
                   <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">%</span>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Annual interest rate (APR) - based on credit score</p>
+                <p className="text-xs text-gray-500 mt-1">Annual Percentage Rate (APR) based on credit score</p>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Property Tax Rate
+                  Property Tax Rate (Annual)
                 </label>
                 <div className="relative">
                   <input
@@ -511,7 +424,7 @@ export default function HomeAffordabilityCalculator() {
                   />
                   <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">%</span>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Annual property tax as % of home value</p>
+                <p className="text-xs text-gray-500 mt-1">Property tax as % of home value</p>
               </div>
 
               <div>
@@ -531,7 +444,6 @@ export default function HomeAffordabilityCalculator() {
                     className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Annual homeowner&apos;s insurance premium</p>
               </div>
 
               <div>
@@ -591,6 +503,13 @@ export default function HomeAffordabilityCalculator() {
             </h2>
             
             <div className="space-y-4">
+              <div className="bg-red-50 p-3 rounded-lg">
+                <div className="text-sm font-medium text-red-800 mb-1">Loan Amount</div>
+                <div className="text-lg font-semibold text-red-900">
+                  {formatCurrency(results.loanAmount, incomeExpenses.currency)}
+                </div>
+              </div>
+              
               <div className={`p-3 rounded-lg ${getAffordabilityColor(results.affordabilityStatus)}`}>
                 <div className="text-sm font-medium mb-1">Monthly Payment</div>
                 <div className="text-xl font-bold">
@@ -605,21 +524,30 @@ export default function HomeAffordabilityCalculator() {
                 </div>
               </div>
 
-              <div className="bg-purple-50 p-3 rounded-lg">
-                <div className="text-sm font-medium text-purple-800 mb-1">Loan Amount</div>
-                <div className="text-lg font-semibold text-purple-900">
-                  {formatCurrency(results.loanAmount, incomeExpenses.currency)}
-                </div>
-              </div>
-
               <div className="bg-orange-50 p-3 rounded-lg">
-                <div className="text-sm font-medium text-orange-800 mb-1">Down Payment</div>
+                <div className="text-sm font-medium text-orange-800 mb-1">Monthly Gross Income</div>
                 <div className="text-lg font-semibold text-orange-900">
-                  {formatCurrency(results.downPayment, incomeExpenses.currency)}
+                  {formatCurrency(results.monthlyGrossIncome, incomeExpenses.currency)}
                 </div>
               </div>
 
-              <div className="space-y-3 pt-4 border-t">
+              <div className="bg-lime-50 p-3 rounded-lg">
+                <div className="text-sm font-medium text-lime-800 mb-1">Down Payment Percentage</div>
+                <div className="text-lg font-semibold text-lime-900">
+                  {formatPercentage(results.downPaymentPercentage)}
+                </div>
+              </div>
+
+              <div className="bg-fuchsia-50 p-3 rounded-lg">
+                <div className="text-sm font-medium text-fuchsia-800 mb-1">Available for Housing</div>
+                <div className="text-lg font-semibold text-fuchsia-900">
+                  {formatCurrency(results.availableForHousing, incomeExpenses.currency)}
+                  <br />
+                  <span className="text-xs font-normal">Money available after expenses</span>
+                </div>
+              </div>
+
+              <div className="space-y-3 pt-4">
                 <h3 className="text-sm font-semibold text-gray-900">Debt-to-Income Ratios</h3>
                 
                 {/* Housing Ratio Bar Chart */}
@@ -683,25 +611,6 @@ export default function HomeAffordabilityCalculator() {
                   </div>
                   <div className="text-xs text-gray-600">
                     Your debt-to-income ratio falls within conservative lending guidelines. You should have comfortable monthly payments with room for unexpected expenses.
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-2 pt-4 border-t">
-                <h3 className="text-sm font-semibold text-gray-900">Key Financial Metrics</h3>
-                
-                <div className="text-sm space-y-1">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Monthly Gross Income:</span>
-                    <span className="font-medium">{formatCurrency(results.monthlyGrossIncome, incomeExpenses.currency)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Available for Housing:</span>
-                    <span className="font-medium">{formatCurrency(results.availableForHousing, incomeExpenses.currency)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Down Payment Percentage:</span>
-                    <span className="font-medium">{formatPercentage(results.downPaymentPercentage)}</span>
                   </div>
                 </div>
               </div>
@@ -821,13 +730,45 @@ const educationContent = (
     <p>Homes need care. Systems break. Roofs leak. Water heaters fail. You need money ready for the sudden problems that come with home ownership. An emergency fund with 3 to 6 months of expenses covers these shocks. It lets you fix issues fast. It keeps your loan payments steady. It protects you from risk in a way a low monthly payment cannot.</p>
     <p>Buyers who skip this step often feel pressure later. A strong emergency fund gives you peace and space.</p>
 
-    <h3>How Affordability Is Calculated</h3>
+    <h3>The Impact of Credit Scores</h3>
+    <p>Credit scores shape the interest rate a buyer receives on a home loan. Lenders review this score to judge risk. Higher scores signal steady payments and lower risk. Lower scores tell a lender that missed payments or high balances are more common. This score affects the cost of the loan from the first day. A strong score keeps the monthly payment lower, which helps long term budgets.</p>
 
+    <h3>What is a good credit score?</h3>
+    <p>Most lenders see a score above 740 as strong. Borrowers in this range usually get the lowest rates. A score between 670 and 739 is average. Rates in this range stay competitive, though the cost tends to rise. A score from 580 to 669 is poor. Buyers in this group pay more for the same loan. The difference can reach hundreds of dollars each month. That extra cost changes the total loan amount a buyer can afford.</p>
+
+    <h3>How to Build a Better Score</h3>
+    <p>This relationship connects price, risk, and access. A better score gives the buyer more power in the loan process. It raises the loan limit because lower rates create space in the monthly budget. A poor score does the opposite. It shrinks the budget and narrows the options. Buyers who want stronger offers can improve a score by lowering balances and paying on time. These steps build a path to cheaper loans and a more stable home purchase.</p>
+
+    <h3>How Affordability Is Calculated</h3>
     <p>Affordability begins with your income. Lenders check your <Link href="/tools/finance-and-money/salary-calculator">gross monthly income</Link>, your <Link href="/tools/finance-and-money/debt-to-income-calculator">current debts</Link>, and your planned housing costs.</p>
 
     <p>Start with the 28 percent limit. Multiply your income by 0.28. That number shows the highest housing cost that fits the rule. Then check the 36 percent limit. Multiply your income by 0.36 and subtract your other debts. This gives your true ceiling.</p>
 
     <p>Your loan officer then runs the numbers. They use the interest rate, loan term, and down payment to find the loan amount that fits your limits. They add taxes and insurance to find the final payment. The loan amount plus your down payment gives you the home price you can afford.</p>
+
+    <p>Below is the formula we use to calculate maximum mortgage amount:</p>
+    
+    <div className="my-6 p-4 bg-gray-200 rounded-lg text-center">
+      <div className="flex justify-center mb-2">
+        <div className="mt-4 mr-1">
+          <span>L = M ·</span>
+        </div>
+        <div>
+          <div className="text-lg font-mono">
+            <span className="inline-block border-b border-black px-2">{"(1 + r)^n - 1"}</span>
+          </div>
+          <div className="text-lg font-mono mt-1">
+            <span>{"r(1 + r)^n"}</span>
+          </div>
+        </div>
+      </div>
+      <div className="text-sm text-gray-600 mt-3">
+        <strong>L</strong> = Loan Amount<br />
+        <strong>M</strong> = Monthly Payment<br />
+        <strong>r</strong> = Monthly Interest Rate<br />
+        <strong>n</strong> = Number of Payments
+      </div>
+    </div>
 
     <h3>Bringing It All Together</h3>
 

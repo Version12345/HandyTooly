@@ -13,6 +13,6 @@ export const formatCurrency = (amount: number, currency: string): string => {
     } else if (currency === 'EUR') {
         return `${amount.toFixed(2).replace('.', ',')} ${symbol}`;
     } else {
-        return `${symbol}${amount.toFixed(2)}`;
+        return `${symbol}${amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
 };
