@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
     BASE_URL: process.env.BASE_URL,
     GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
   },
+  images: {
+    remotePatterns: [new URL('https://zosi0vn2uecxzezz.public.blob.vercel-storage.com/**')],
+  },
 };
 
 export default nextConfig;

@@ -15,7 +15,7 @@ export default function Footer() {
           href="/"
         >
             <Image 
-                src="/images/handy-tooly-logo.svg" 
+                src="https://zosi0vn2uecxzezz.public.blob.vercel-storage.com/handy-tooly-logo.svg" 
                 alt="HandyTooly Logo" 
                 className="h-6 w-auto"
                 width={300}

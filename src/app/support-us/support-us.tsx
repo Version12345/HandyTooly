@@ -95,7 +95,7 @@ export default function SupportUs({ searchParams }: { searchParams: Promise<{ is
                     </h2>
 
                     <Image 
-                      src="/images/qrcode.png" 
+                      src="https://zosi0vn2uecxzezz.public.blob.vercel-storage.com/qrcode.png" 
                       alt="Stripe Logo" 
                       className="mx-auto my-4"
                       height={40}

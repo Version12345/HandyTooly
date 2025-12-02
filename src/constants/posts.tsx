@@ -24,7 +24,7 @@ export const POSTS: Record<string, IPost> = {
     tags: ["Insights", "Updates"],
     author: "HandyTooly Team",
     readTime: 2,
-    featuredImage: "/images/blogs/christmas-is-coming.jpg",
+    featuredImage: "https://zosi0vn2uecxzezz.public.blob.vercel-storage.com/christmas-is-coming.jpg",
   }, 
   'daily-steps-into-distance': {
     title: "Turn Your Daily Steps Into Real Distance",
@@ -34,7 +34,7 @@ export const POSTS: Record<string, IPost> = {
     tags: ["Updates"],
     author: "HandyTooly Team",
     readTime: 2,
-    featuredImage: "/images/blogs/daily-steps-into-distance.jpg",
+    featuredImage: "https://zosi0vn2uecxzezz.public.blob.vercel-storage.com/daily-steps-into-distance.jpg",
   }, 
   'time-zone-conversion': {
     title: "Time Zone Conversion Made Easy",
@@ -44,7 +44,7 @@ export const POSTS: Record<string, IPost> = {
     tags: ["Updates"],
     author: "HandyTooly Team",
     readTime: 2,
-    featuredImage: "/images/blogs/time-zone-conversion.jpg",
+    featuredImage: "https://zosi0vn2uecxzezz.public.blob.vercel-storage.com/time-zone-conversion.jpg",
   }, 
   'welcome': {
     title: "Welcome to the HandyTooly",
@@ -54,7 +54,7 @@ export const POSTS: Record<string, IPost> = {
     tags: ["Updates"],
     author: "HandyTooly Team",
     readTime: 2,
-    featuredImage: "/images/blogs/welcome-to-HandyTooly.jpg",
+    featuredImage: "https://zosi0vn2uecxzezz.public.blob.vercel-storage.com/welcome-to-HandyTooly.jpg",
   }, 
   
 };
