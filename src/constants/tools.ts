@@ -140,7 +140,7 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.HtmlFormatter]: "Format and beautify HTML code with customizable indentation levels. Clean up messy HTML, improve readability, and maintain proper code structure with client-side processing.",
   [ToolNameLists.DividendCalculator]: "Calculate dividend income projections, yield on cost & total returns. Plan investment strategies with tax considerations & risk assessment.",
   [ToolNameLists.MortgageAffordabilityCalculator]: "Determine how much house you can afford based on income, expenses & debts. Get detailed analysis with home price scenarios in different currencies.",
-  [ToolNameLists.ChristmasCountdown]: "Count down to Christmas Day with a live countdown timer. Features special snow effects and Christmas lights on Christmas Day with holiday facts and activities.",
+  [ToolNameLists.ChristmasCountdown]: "How many days until Christmas? Use our live countdown timer to track when the holiday is coming Christmas Day. Perfect for getting into the holiday spirit & planning festive activities.",
 }
 
 export const ToolUrls: Record<string, string> = {
