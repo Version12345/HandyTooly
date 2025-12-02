@@ -16,6 +16,16 @@ export interface IPost {
 };
 
 export const POSTS: Record<string, IPost> = {
+  'christmas-is-coming': {
+    title: "Tick Tock, Santa's Watching the Clock Too",
+    description: "Get ready for the holidays with our Christmas countdown timer. Find out how many days are left until Christmas Day and start planning your festive activities!",
+    slug: "christmas-is-coming",
+    date: "2025-12-02",
+    tags: ["Insights", "Updates"],
+    author: "HandyTooly Team",
+    readTime: 2,
+    featuredImage: "/images/blogs/christmas-is-coming.jpg",
+  }, 
   'daily-steps-into-distance': {
     title: "Turn Your Daily Steps Into Real Distance",
     description: "Learn how a steps to distance calculator uses stride, pace, and weight to show miles, calories, and real progress you can trust.",
