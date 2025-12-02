@@ -100,6 +100,7 @@ export enum ToolNameLists {
   HtmlFormatter = "HTML Formatter",
   DividendCalculator = "Dividend Calculator",
   MortgageAffordabilityCalculator = "Mortgage Affordability Calculator",
+  ChristmasCountdown = "Christmas Countdown",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -139,6 +140,7 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.HtmlFormatter]: "Format and beautify HTML code with customizable indentation levels. Clean up messy HTML, improve readability, and maintain proper code structure with client-side processing.",
   [ToolNameLists.DividendCalculator]: "Calculate dividend income projections, yield on cost & total returns. Plan investment strategies with tax considerations & risk assessment.",
   [ToolNameLists.MortgageAffordabilityCalculator]: "Determine how much house you can afford based on income, expenses & debts. Get detailed analysis with home price scenarios in different currencies.",
+  [ToolNameLists.ChristmasCountdown]: "Count down to Christmas Day with a live countdown timer. Features special snow effects and Christmas lights on Christmas Day with holiday facts and activities.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -178,6 +180,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.HtmlFormatter]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/html-formatter`,
   [ToolNameLists.DividendCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/dividend-calculator`,
   [ToolNameLists.MortgageAffordabilityCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/mortgage-affordability-calculator`,
+  [ToolNameLists.ChristmasCountdown]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/christmas-countdown`,
 };
 
 export const Tools: Record<string, Tool[]> = {
@@ -337,6 +340,11 @@ export const Tools: Record<string, Tool[]> = {
     }
   ],
   [ToolCategory.Miscellaneous]: [
+    {
+      name: ToolNameLists.ChristmasCountdown,
+      description: ToolDescription[ToolNameLists.ChristmasCountdown],
+      link: ToolUrls[ToolNameLists.ChristmasCountdown]
+    },
     {
       name: ToolNameLists.HtmlFormatter,
       description: ToolDescription[ToolNameLists.HtmlFormatter],
