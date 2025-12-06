@@ -1,9 +1,9 @@
 import Router from "next/router";
 import { useEffect } from "react";
 declare global {
-interface Window {
-adsbygoogle: unknown[];
-}
+  interface Window {
+    adsbygoogle: unknown[];
+  }
 }
 
 interface AdsBannerProps {

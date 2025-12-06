@@ -97,6 +97,14 @@ export default function ToolLayout({ toolCategory, children, disclaimer, seconda
               <RightCol
                 title={toolCategory}
               />
+
+              <div className="mt-8">
+                <AdBanner
+                  data-ad-slot="1993929346"
+                  data-full-width-responsive="true"
+                  data-ad-format="auto"
+                />
+              </div>
             </div>
           )}
         </div>

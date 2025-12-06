@@ -101,6 +101,7 @@ export enum ToolNameLists {
   DividendCalculator = "Dividend Calculator",
   MortgageAffordabilityCalculator = "Mortgage Affordability Calculator",
   ChristmasCountdown = "Christmas Countdown",
+  DecimalFractionConverter = "Decimal to Fraction Converter",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -141,6 +142,7 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.DividendCalculator]: "Calculate dividend income projections, yield on cost & total returns. Plan investment strategies with tax considerations & risk assessment.",
   [ToolNameLists.MortgageAffordabilityCalculator]: "Determine how much house you can afford based on income, expenses & debts. Get detailed analysis with home price scenarios in different currencies.",
   [ToolNameLists.ChristmasCountdown]: "How many days until Christmas? Use our live countdown timer to track when the holiday is coming Christmas Day. Perfect for getting into the holiday spirit & planning festive activities.",
+  [ToolNameLists.DecimalFractionConverter]: "Convert between decimals & fractions with step-by-step explanations. Handles repeating decimals, mixed numbers, & provides simplified results.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -181,6 +183,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.DividendCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/dividend-calculator`,
   [ToolNameLists.MortgageAffordabilityCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/mortgage-affordability-calculator`,
   [ToolNameLists.ChristmasCountdown]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/christmas-countdown`,
+  [ToolNameLists.DecimalFractionConverter]: `${URL_BASE}/${ToolCategorySlug.Mathematics}/decimal-fraction-converter`,
 };
 
 export const Tools: Record<string, Tool[]> = {
@@ -333,6 +336,11 @@ export const Tools: Record<string, Tool[]> = {
     },
   ],
   [ToolCategory.Mathematics]: [
+    {
+      name: ToolNameLists.DecimalFractionConverter,
+      description: ToolDescription[ToolNameLists.DecimalFractionConverter],
+      link: ToolUrls[ToolNameLists.DecimalFractionConverter]
+    },
     {
       name: ToolNameLists.MeanMedianModeCalculator,
       description: ToolDescription[ToolNameLists.MeanMedianModeCalculator],
