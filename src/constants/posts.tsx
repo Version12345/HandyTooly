@@ -16,6 +16,16 @@ export interface IPost {
 };
 
 export const POSTS: Record<string, IPost> = {
+  'grow-your-money-smarter': {
+    title: "Grow Your Money Smarter From Pennies to Profits: Understanding Annualized Returns",
+    description: "Learn smart strategies to grow your money effectively. Discover tips and insights to make informed financial decisions and maximize your savings.",
+    slug: "grow-your-money-smarter",
+    date: "2025-12-11",
+    tags: ["Insights", "Updates"],
+    author: "HandyTooly Team",
+    readTime: 3,
+    featuredImage: "https://zosi0vn2uecxzezz.public.blob.vercel-storage.com/grow-your-money-smarter.jpg",
+  }, 
   'christmas-is-coming': {
     title: "Tick Tock, Santa's Watching the Clock Too",
     description: "Get ready for the holidays with our Christmas countdown timer. Find out how many days are left until Christmas Day and start planning your festive activities!",
@@ -23,7 +33,7 @@ export const POSTS: Record<string, IPost> = {
     date: "2025-12-02",
     tags: ["Insights", "Updates"],
     author: "HandyTooly Team",
-    readTime: 2,
+    readTime: 3,
     featuredImage: "https://zosi0vn2uecxzezz.public.blob.vercel-storage.com/christmas-is-coming.jpg",
   }, 
   'daily-steps-into-distance': {
