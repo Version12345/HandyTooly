@@ -102,6 +102,7 @@ export enum ToolNameLists {
   MortgageAffordabilityCalculator = "Mortgage Affordability Calculator",
   ChristmasCountdown = "Christmas Countdown",
   DecimalFractionConverter = "Decimal to Fraction Converter",
+  GenerationFinder = "What Generation Am I?",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -143,6 +144,7 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.MortgageAffordabilityCalculator]: "Determine how much house you can afford based on income, expenses & debts. Get detailed analysis with home price scenarios in different currencies.",
   [ToolNameLists.ChristmasCountdown]: "How many days until Christmas? Use our live countdown timer to track when the holiday is coming Christmas Day. Perfect for getting into the holiday spirit & planning festive activities.",
   [ToolNameLists.DecimalFractionConverter]: "Convert between decimals & fractions with step-by-step explanations. Handles repeating decimals, mixed numbers, & provides simplified results.",
+  [ToolNameLists.GenerationFinder]: "Discover your generation based on birth year! Learn about generations from 1900 to now - Greatest Generation, Baby Boomers, Gen X, Millennials, Gen Z & Gen Alpha with defining moments.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -184,6 +186,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.MortgageAffordabilityCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/mortgage-affordability-calculator`,
   [ToolNameLists.ChristmasCountdown]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/christmas-countdown`,
   [ToolNameLists.DecimalFractionConverter]: `${URL_BASE}/${ToolCategorySlug.Mathematics}/decimal-fraction-converter`,
+  [ToolNameLists.GenerationFinder]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/generation-finder`,
 };
 
 export const Tools: Record<string, Tool[]> = {
@@ -393,5 +396,10 @@ export const Tools: Record<string, Tool[]> = {
       description: ToolDescription[ToolNameLists.UUIDGenerator],
       link: ToolUrls[ToolNameLists.UUIDGenerator]
     },
+    {
+      name: ToolNameLists.GenerationFinder,
+      description: ToolDescription[ToolNameLists.GenerationFinder],
+      link: ToolUrls[ToolNameLists.GenerationFinder]
+    }
   ]
 };
