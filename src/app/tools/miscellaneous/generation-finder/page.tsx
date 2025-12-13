@@ -1,9 +1,11 @@
 import { Metadata } from 'next';
 import GenerationFinder from './generation-finder';
+import { ToolDescription, ToolNameLists, ToolUrls } from '@/constants/tools';
+import { canonicalUrl } from '@/utils/canonicalUrl';
 
 export const metadata: Metadata = {
-  title: 'What Generation Am I? - Generation Calculator | HandyTooly',
-  description: 'Discover your generation based on your birth year. Learn about generations from 1900 to now including Greatest Generation, Baby Boomers, Gen X, Millennials, Gen Z, and Gen Alpha.',
+  title: ToolNameLists.GenerationFinder,
+  description: ToolDescription[ToolNameLists.GenerationFinder],
   keywords: [
     'generation calculator',
     'what generation am i',
@@ -17,14 +19,13 @@ export const metadata: Metadata = {
     'generation finder'
   ],
   openGraph: {
-    title: 'What Generation Am I? - Generation Calculator',
-    description: 'Discover your generation based on your birth year. Learn about different generations and their defining characteristics.',
+    title: ToolNameLists.AnnualizedReturnCalculator,
+    description: ToolDescription[ToolNameLists.AnnualizedReturnCalculator],
     type: 'website',
+    url: canonicalUrl(ToolUrls[ToolNameLists.AnnualizedReturnCalculator]),
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'What Generation Am I? - Generation Calculator',
-    description: 'Discover your generation based on your birth year. Learn about different generations and their defining characteristics.',
+  alternates: {
+    canonical: canonicalUrl(ToolUrls[ToolNameLists.AnnualizedReturnCalculator]),
   },
 };
 
