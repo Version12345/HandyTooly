@@ -151,32 +151,6 @@ export default function GenerationFinder() {
   );
 }
 
-const educationContent = (
-  <div>
-    <h3>Understanding Generational Cohorts</h3>
-    <p>
-      <strong>Generational Theory:</strong> Generations are defined by shared experiences, 
-      major events, and cultural touchstones that shape their worldview and values. While 
-      individual experiences vary, generational cohorts often share common characteristics.
-    </p>
-    <p>
-      <strong>Birth Year Ranges:</strong> Generational boundaries are somewhat fluid and 
-      different organizations may use slightly different year ranges. The dates used here 
-      represent commonly accepted ranges based on major demographic and cultural shifts.
-    </p>
-    <p>
-      <strong>Cultural Impact:</strong> Each generation experiences formative events during 
-      their youth that influence their perspectives on work, technology, politics, and society. 
-      Understanding these influences helps explain generational differences and similarities.
-    </p>
-    <p>
-      <strong>Modern Generations:</strong> Recent generations have shorter spans due to the 
-      rapid pace of technological and social change. Generation Alpha, born from 2013 onwards, 
-      is growing up in an era of AI, climate change awareness, and global connectivity.
-    </p>
-  </div>
-);
-
 const generations: Generation[] = [
   {
     name: 'Lost Generation',
@@ -466,3 +440,60 @@ const generations: Generation[] = [
     backgroundColor: 'bg-emerald-50'
   }
 ];
+
+const generateGeneration = () => {
+  return generations.map((gen, i) => {
+    return (
+      <div key={i}>
+        <h3>{gen.name} ({gen.years})</h3>
+        <p>{gen.description}</p>
+        <p><strong>Characteristics:</strong></p>
+        <ul className="mb-4 text-sm" style={{ marginLeft: 0, paddingLeft: 0 }}>
+          {gen.characteristics.map((characteristic, index) => (
+            <li key={index} className="flex items-start gap-3 text-gray-700 ml-0 pl-0">
+              <span className="text-gray-900 text-sm mt–1">●</span>
+              <span>{characteristic}</span>
+            </li>
+          ))}
+        </ul>
+        <p><strong>Defining Moments:</strong></p>
+        <ul className="mb-4 text-sm" style={{ marginLeft: 0, paddingLeft: 0 }}>
+          {gen.definingMoments.map((moment, index) => (
+            <li key={index} className="flex items-start gap-3 text-gray-700 ml-0 pl-0">
+              <span className="text-gray-900 text-sm mt–1">●</span>
+              <span><strong>{moment.title}:</strong> {moment.description}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  });
+};
+
+const educationContent = (
+  <div>
+    <h3>Understanding Generational Cohorts</h3>
+    <p>
+      <strong>Generational Theory:</strong> Generations are defined by shared experiences, 
+      major events, and cultural touchstones that shape their worldview and values. While 
+      individual experiences vary, generational cohorts often share common characteristics.
+    </p>
+    <p>
+      <strong>Birth Year Ranges:</strong> Generational boundaries are somewhat fluid and 
+      different organizations may use slightly different year ranges. The dates used here 
+      represent commonly accepted ranges based on major demographic and cultural shifts.
+    </p>
+    <p>
+      <strong>Cultural Impact:</strong> Each generation experiences formative events during 
+      their youth that influence their perspectives on work, technology, politics, and society. 
+      Understanding these influences helps explain generational differences and similarities.
+    </p>
+    <p>
+      <strong>Modern Generations:</strong> Recent generations have shorter spans due to the 
+      rapid pace of technological and social change. Generation Alpha, born from 2013 onwards, 
+      is growing up in an era of AI, climate change awareness, and global connectivity.
+    </p>
+    <h3>Differences Between Generations</h3>
+    {generateGeneration()}
+  </div>
+);
