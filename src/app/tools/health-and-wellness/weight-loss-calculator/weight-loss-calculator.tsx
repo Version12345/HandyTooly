@@ -335,7 +335,7 @@ export function WeightLossCalculator() {
                                 const totalInches = feet * 12 + inches;
                                 handleInputChange('height', totalInches);
                               }}
-                              className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-orange-500"
+                              className="w-full shadow-sm px-3 py-2 pr-8 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                               placeholder="5 ft"
                             />
                             <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">ft</span>
@@ -352,7 +352,7 @@ export function WeightLossCalculator() {
                                 const totalInches = feet * 12 + Math.min(inches, 11); // Cap inches at 11
                                 handleInputChange('height', totalInches);
                               }}
-                              className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md shadow-sm focus:ring-2"
+                              className="w-full shadow-sm px-3 py-2 pr-8 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                               placeholder="8 in"
                             />
                             <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">in</span>
@@ -459,12 +459,12 @@ export function WeightLossCalculator() {
 
             {/* Current BMI Display */}
             {result && (
-              <div className="bg-blue-50 rounded-lg p-4 mt-6">
-                <h3 className="font-medium text-blue-800 mb-1">Current BMI:</h3>
-                <div className="text-2xl font-bold text-blue-600">
+              <div className="bg-sky-50 rounded-lg p-4 mt-6">
+                <h3 className="font-medium text-sky-800 mb-1">Current BMI:</h3>
+                <div className="text-2xl font-bold text-sky-600">
                   {result.currentBMI.toFixed(1)}
                 </div>
-                <div className="text-sm text-blue-700">
+                <div className="text-sm text-sky-700">
                   {result.healthCategory}
                 </div>
               </div>
@@ -497,12 +497,12 @@ export function WeightLossCalculator() {
                 </div>
 
                 {/* Weight to Lose */}
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <h3 className="text-sm font-medium text-blue-700 mb-1">Weight to Lose</h3>
-                  <div className="text-2xl font-bold text-blue-800 mb-1">
+                <div className="bg-sky-50 rounded-lg p-4">
+                  <h3 className="text-sm font-medium text-sky-700 mb-1">Weight to Lose</h3>
+                  <div className="text-2xl font-bold text-sky-800 mb-1">
                     {Math.max(0, (weightData.currentWeight - (weightData.goalWeight || weightData.currentWeight))).toFixed(1)} {weightData.isMetric ? 'kg' : 'lbs'}
                   </div>
-                  <div className="text-sm text-blue-600">
+                  <div className="text-sm text-sky-600">
                     At {weightData.isMetric ? '0.5 kg' : '1.0 lbs'} per week
                   </div>
                 </div>

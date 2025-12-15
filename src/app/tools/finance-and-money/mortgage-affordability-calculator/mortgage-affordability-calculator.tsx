@@ -248,7 +248,7 @@ export default function HomeAffordabilityCalculator() {
   const getAffordabilityColor = (status: AffordabilityResults['affordabilityStatus']) => {
     switch (status) {
       case 'excellent': return 'bg-green-100 text-green-800';
-      case 'good': return 'bg-blue-100 text-blue-800';
+      case 'good': return 'bg-sky-100 text-sky-800';
       case 'fair': return 'bg-amber-100 text-amber-800';
       case 'poor': return 'bg-red-100 text-red-800';
     }
@@ -257,7 +257,7 @@ export default function HomeAffordabilityCalculator() {
   const getScenarioColor = (type: HomePriceScenario['type']) => {
     switch (type) {
       case 'conservative': return 'bg-green-50';
-      case 'recommended': return 'bg-blue-50';
+      case 'recommended': return 'bg-sky-50';
       case 'maximum': return 'bg-orange-50';
     }
   };
@@ -298,7 +298,7 @@ export default function HomeAffordabilityCalculator() {
                     step="1000"
                     value={incomeExpenses.grossAnnualIncome}
                     onChange={(e) => updateIncomeExpenses('grossAnnualIncome', parseFloat(e.target.value) || 0)}
-                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                 </div>
                 <p className="text-xs text-gray-500 mt-1">Before taxes and deductions</p>
@@ -318,7 +318,7 @@ export default function HomeAffordabilityCalculator() {
                     step="50"
                     value={incomeExpenses.monthlyDebtPayments}
                     onChange={(e) => updateIncomeExpenses('monthlyDebtPayments', parseFloat(e.target.value) || 0)}
-                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                 </div>
                 <p className="text-xs text-gray-500 mt-1">Auto loans, credit cards, student loans</p>
@@ -338,7 +338,7 @@ export default function HomeAffordabilityCalculator() {
                     step="100"
                     value={incomeExpenses.monthlyExpenses}
                     onChange={(e) => updateIncomeExpenses('monthlyExpenses', parseFloat(e.target.value) || 0)}
-                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                 </div>
                 <p className="text-xs text-gray-500 mt-1">Living expenses, insurance, food, utilities</p>
@@ -358,7 +358,7 @@ export default function HomeAffordabilityCalculator() {
                     step="1000"
                     value={incomeExpenses.availableDownPayment}
                     onChange={(e) => updateIncomeExpenses('availableDownPayment', parseFloat(e.target.value) || 0)}
-                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                 </div>
               </div>
@@ -379,7 +379,7 @@ export default function HomeAffordabilityCalculator() {
                 <select
                   value={loanParameters.loanTerm}
                   onChange={(e) => updateLoanParameters('loanTerm', parseInt(e.target.value))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   {LOAN_TERMS.map(term => (
                     <option key={term.value} value={term.value}>
@@ -401,7 +401,7 @@ export default function HomeAffordabilityCalculator() {
                     step="0.1"
                     value={loanParameters.interestRate}
                     onChange={(e) => updateLoanParameters('interestRate', parseFloat(e.target.value) || 0)}
-                    className="w-full pr-8 pl-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pr-8 pl-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                   <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">%</span>
                 </div>
@@ -420,7 +420,7 @@ export default function HomeAffordabilityCalculator() {
                     step="0.1"
                     value={loanParameters.propertyTaxRate}
                     onChange={(e) => updateLoanParameters('propertyTaxRate', parseFloat(e.target.value) || 0)}
-                    className="w-full pr-8 pl-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pr-8 pl-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                   <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">%</span>
                 </div>
@@ -441,7 +441,7 @@ export default function HomeAffordabilityCalculator() {
                     step="100"
                     value={loanParameters.homeInsurance}
                     onChange={(e) => updateLoanParameters('homeInsurance', parseFloat(e.target.value) || 0)}
-                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                 </div>
               </div>
@@ -458,7 +458,7 @@ export default function HomeAffordabilityCalculator() {
                     step="0.1"
                     value={loanParameters.pmiMortgageInsurance}
                     onChange={(e) => updateLoanParameters('pmiMortgageInsurance', parseFloat(e.target.value) || 0)}
-                    className="w-full pr-8 pl-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pr-8 pl-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                   <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">%</span>
                 </div>
@@ -479,7 +479,7 @@ export default function HomeAffordabilityCalculator() {
                     step="25"
                     value={loanParameters.hoaFees}
                     onChange={(e) => updateLoanParameters('hoaFees', parseFloat(e.target.value) || 0)}
-                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                 </div>
                 <p className="text-xs text-gray-500 mt-1">Homeowners association fees</p>
@@ -517,9 +517,9 @@ export default function HomeAffordabilityCalculator() {
                 </div>
               </div>
 
-              <div className="bg-blue-50 p-3 rounded-lg">
-                <div className="text-sm font-medium text-blue-800 mb-1">Principal & Interest</div>
-                <div className="text-lg font-semibold text-blue-900">
+              <div className="bg-sky-50 p-3 rounded-lg">
+                <div className="text-sm font-medium text-sky-800 mb-1">Principal & Interest</div>
+                <div className="text-lg font-semibold text-sky-900">
                   {formatCurrency(results.principalAndInterest, incomeExpenses.currency)}
                 </div>
               </div>
@@ -602,7 +602,7 @@ export default function HomeAffordabilityCalculator() {
 
                 <div className="bg-gray-50 p-3 rounded-lg">
                   <div className={`text-xs font-medium mb-2 ${results.affordabilityStatus === 'excellent' ? 'text-green-700' : 
-                    results.affordabilityStatus === 'good' ? 'text-blue-700' :
+                    results.affordabilityStatus === 'good' ? 'text-sky-700' :
                     results.affordabilityStatus === 'fair' ? 'text-yellow-700' : 'text-red-700'}`}>
                     {results.affordabilityStatus === 'excellent' && 'Excellent Affordability'}
                     {results.affordabilityStatus === 'good' && 'Good Affordability'}
@@ -625,7 +625,7 @@ export default function HomeAffordabilityCalculator() {
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             <div className="text-center">
               <div className="text-sm text-gray-600 mb-1">Principal & Interest</div>
-              <div className="text-lg font-semibold text-blue-600">
+              <div className="text-lg font-semibold text-sky-600">
                 {formatCurrency(results.principalAndInterest, incomeExpenses.currency)}
               </div>
             </div>

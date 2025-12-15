@@ -133,7 +133,7 @@ export default function ChristmasCountdown() {
                       className={`w-3 h-3 rounded-full animate-pulse ${
                         i % 4 === 0 ? 'bg-red-500' :
                         i % 4 === 1 ? 'bg-green-500' :
-                        i % 4 === 2 ? 'bg-blue-500' :
+                        i % 4 === 2 ? 'bg-sky-500' :
                         'bg-yellow-500'
                       }`}
                       style={{
@@ -186,11 +186,11 @@ export default function ChristmasCountdown() {
                 </div>
               </div>
               
-              <div className="bg-blue-100 rounded-lg p-6">
-                <div className="text-4xl md:text-5xl font-bold text-blue-600 mb-2">
+              <div className="bg-sky-100 rounded-lg p-6">
+                <div className="text-4xl md:text-5xl font-bold text-sky-600 mb-2">
                   {formatNumber(timeRemaining.minutes)}
                 </div>
-                <div className="text-blue-800 font-medium text-lg">
+                <div className="text-sky-800 font-medium text-lg">
                   {timeRemaining.minutes === 1 ? 'Minute' : 'Minutes'}
                 </div>
               </div>
@@ -233,10 +233,10 @@ export default function ChristmasCountdown() {
                   <h3 className="font-bold text-green-700 mb-2">Christmas Feast</h3>
                   <p className="text-green-600 text-sm">Enjoy delicious holiday meals!</p>
                 </div>
-                <div className="bg-blue-100 p-6 rounded-lg">
+                <div className="bg-sky-100 p-6 rounded-lg">
                   <div className="text-3xl mb-3">👨‍👩‍👧‍👦</div>
-                  <h3 className="font-bold text-blue-700 mb-2">Family Time</h3>
-                  <p className="text-blue-600 text-sm">Cherish moments with loved ones!</p>
+                  <h3 className="font-bold text-sky-700 mb-2">Family Time</h3>
+                  <p className="text-sky-600 text-sm">Cherish moments with loved ones!</p>
                 </div>
               </div>
             </div>

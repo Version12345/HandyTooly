@@ -163,7 +163,7 @@ export default function RandomNumberGenerator() {
                     max="100"
                     value={config.count}
                     onChange={(e) => updateConfig('count', Math.max(1, parseInt(e.target.value) || 1))}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                   <span className="text-sm text-gray-500">(1-100)</span>
                 </div>
@@ -178,7 +178,7 @@ export default function RandomNumberGenerator() {
                     type="number"
                     value={config.min}
                     onChange={(e) => updateConfig('min', parseInt(e.target.value) || 0)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                 </div>
                 <div>
@@ -189,7 +189,7 @@ export default function RandomNumberGenerator() {
                     type="number"
                     value={config.max}
                     onChange={(e) => updateConfig('max', parseInt(e.target.value) || 1)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                 </div>
               </div>
@@ -200,7 +200,7 @@ export default function RandomNumberGenerator() {
                   id="unique"
                   checked={config.isUnique}
                   onChange={(e) => updateConfig('isUnique', e.target.checked)}
-                  className="mr-2 w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                  className="mr-2 w-4 h-4 text-orange-600 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 />
                 <label htmlFor="unique" className="text-sm text-gray-700">
                   Is it unique (Selected as unique)

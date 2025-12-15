@@ -205,7 +205,7 @@ const JsonFormatterCompare: React.FC = () => {
             value={modifiedJson}
             onChange={(e) => setModifiedJson(e.target.value)}
             placeholder='{  "test": "dd",  "test2": "dd",  "test3": "dd"}'
-            className="w-full h-64 p-3 border border-gray-300 rounded-lg font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full h-64 p-3 border border-gray-300 rounded-lg font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
           />
         </div>
       </div>
@@ -245,9 +245,9 @@ const JsonFormatterCompare: React.FC = () => {
           <h2 className="text-lg font-semibold text-gray-900">Comparison Results:</h2>
           
           {/* Summary */}
-          <div className="p-4 bg-blue-50 rounded-lg">
-            <div className="flex items-center gap-2 text-blue-800">
-              <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+          <div className="p-4 bg-sky-50 rounded-lg">
+            <div className="flex items-center gap-2 text-sky-800">
+              <span className="w-2 h-2 bg-sky-500 rounded-full"></span>
               <span className="font-medium">Found {differences.length} difference(s)</span>
             </div>
           </div>

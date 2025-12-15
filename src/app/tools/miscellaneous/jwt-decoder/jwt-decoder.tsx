@@ -175,7 +175,7 @@ export function JWTDecoder() {
                 <div className="font-mono text-sm break-all">
                   <span className="text-red-600 bg-red-50 px-1 rounded">{decodedJWT.raw.header}</span>
                   <span className="text-gray-400">.</span>
-                  <span className="text-blue-600 bg-blue-50 px-1 rounded">{decodedJWT.raw.payload}</span>
+                  <span className="text-sky-600 bg-sky-50 px-1 rounded">{decodedJWT.raw.payload}</span>
                   <span className="text-gray-400">.</span>
                   <span className="text-orange-600 bg-orange-50 px-1 rounded">{decodedJWT.signature}</span>
                 </div>
@@ -185,7 +185,7 @@ export function JWTDecoder() {
                     Header
                   </span>
                   <span className="flex items-center gap-1">
-                    <div className="w-3 h-3 bg-blue-600 rounded"></div>
+                    <div className="w-3 h-3 bg-sky-600 rounded"></div>
                     Payload
                   </span>
                   <span className="flex items-center gap-1">
@@ -208,7 +208,7 @@ export function JWTDecoder() {
             {/* Payload Section */}
             <div className="mb-6 group">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-4 h-4 bg-blue-600 rounded"></div>
+                <div className="w-4 h-4 bg-sky-600 rounded"></div>
                 <h4 className="text-lg font-medium text-gray-900">Payload</h4>
               </div>
               {renderJsonWithHighlight(decodedJWT.payload, 'payload')}

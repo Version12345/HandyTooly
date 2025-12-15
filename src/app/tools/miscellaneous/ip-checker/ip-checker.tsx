@@ -99,7 +99,7 @@ const IPChecker: React.FC = () => {
       {/* Loading State */}
       {loading && (
         <div className="flex items-center justify-center py-12">
-          <RefreshCw className="w-8 h-8 text-blue-500 animate-spin" />
+          <RefreshCw className="w-8 h-8 text-sky-500 animate-spin" />
           <span className="ml-3 text-gray-600">Fetching your IP information...</span>
         </div>
       )}
@@ -133,7 +133,7 @@ const IPChecker: React.FC = () => {
                 {ipInfo.ip}
               </div>
               <div className="flex items-center justify-center gap-4 mb-4">
-                <div className="flex items-center gap-1 text-blue-600">
+                <div className="flex items-center gap-1 text-sky-600">
                   <Globe className="w-4 h-4" />
                   <span className="text-sm">{getIPVersion(ipInfo.ip)}</span>
                 </div>

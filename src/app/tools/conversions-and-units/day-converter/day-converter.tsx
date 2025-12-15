@@ -356,11 +356,11 @@ export function DayConverter() {
               <div className="space-y-4">
                 {/* Main Result Display */}
                 {result.weekday && (
-                  <div className="bg-blue-50 rounded-lg p-6 text-center">
-                    <div className="text-4xl font-bold text-blue-600 mb-2">
+                  <div className="bg-sky-50 rounded-lg p-6 text-center">
+                    <div className="text-4xl font-bold text-sky-600 mb-2">
                       {result.weekday}
                     </div>
-                    <div className="text-lg text-blue-800">
+                    <div className="text-lg text-sky-800">
                       {result.date}
                     </div>
                   </div>

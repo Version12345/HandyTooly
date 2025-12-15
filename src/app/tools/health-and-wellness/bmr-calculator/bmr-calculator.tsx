@@ -265,7 +265,7 @@ export function BMRCalculator() {
 
     const bmi = weight / ((height / 100) ** 2);
 
-    if (bmi < 18.5) return { category: 'Underweight', color: 'text-blue-600' };
+    if (bmi < 18.5) return { category: 'Underweight', color: 'text-sky-600' };
     if (bmi < 25) return { category: 'Normal weight', color: 'text-green-600' };
     if (bmi < 30) return { category: 'Overweight', color: 'text-yellow-600' };
     return { category: 'Obese', color: 'text-red-600' };
@@ -462,8 +462,8 @@ export function BMRCalculator() {
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Body Composition (Optional)</h2>
             
             {/* Enhanced Calculations Note */}
-            <div className="bg-blue-50 rounded-lg p-3 mb-4">
-              <p className="text-sm text-blue-800">
+            <div className="bg-sky-50 rounded-lg p-3 mb-4">
+              <p className="text-sm text-sky-800">
                 <strong>Enhanced Calculations</strong><br />
                 For more accurate BMR using Katch-McArdle formula
               </p>
@@ -562,13 +562,13 @@ export function BMRCalculator() {
                 </div>
 
                 {/* Total Daily Energy Expenditure */}
-                <div className="bg-blue-50 rounded-lg p-4">
+                <div className="bg-sky-50 rounded-lg p-4">
                   <div className="text-sm text-gray-600">Total Daily Energy Expenditure</div>
                   <div className="text-2xl font-bold text-gray-900">{results.tdee}</div>
-                  <div className="text-sm text-blue-600">calories/day for maintenance</div>
+                  <div className="text-sm text-sky-600">calories/day for maintenance</div>
                   <button
                     onClick={() => handleCopy(results.tdee.toString())}
-                    className="mt-2 px-3 py-1 text-xs bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors"
+                    className="mt-2 px-3 py-1 text-xs bg-sky-500 hover:bg-sky-600 text-white rounded transition-colors"
                   >
                     Copy
                   </button>
@@ -659,7 +659,7 @@ export function BMRCalculator() {
                       <div 
                         key={level.value} 
                         className={`flex justify-between p-2 rounded ${
-                          level.value === activityLevel ? 'bg-blue-100' : ''
+                          level.value === activityLevel ? 'bg-sky-100' : ''
                         }`}
                       >
                         <span className="text-gray-600">{level.label}:</span>

@@ -458,9 +458,9 @@ export function CompoundInterestCalculator() {
             {result && (
               <div className="space-y-4">
                 {/* Total Interest Earned */}
-                <div className="bg-blue-50 rounded-lg p-4">
+                <div className="bg-sky-50 rounded-lg p-4">
                   <strong className="text-sm font-medium mb-1">Total Interest Earned</strong>
-                  <div className="text-2xl font-bold text-blue-600">
+                  <div className="text-2xl font-bold text-sky-600">
                     {formatCurrency(result.totalInterestEarned, investmentData.currency)}
                   </div>
                 </div>
@@ -495,7 +495,7 @@ export function CompoundInterestCalculator() {
                   <div className="w-full bg-gray-200 rounded-full h-6 mb-2">
                     <div className="flex h-full rounded-full overflow-hidden">
                       <div
-                        className="bg-blue-500"
+                        className="bg-sky-500"
                         style={{
                           width: `${(investmentData.initialPrincipal / result.finalAmount) * 100}%`
                         }}
@@ -515,7 +515,7 @@ export function CompoundInterestCalculator() {
                     </div>
                   </div>
                   <div className="grid grid-cols-3 gap-2 text-xs">
-                    <div className="text-center text-blue-600">
+                    <div className="text-center text-sky-600">
                       <div className="font-medium">
                         <strong>Principal</strong><br/> ({((investmentData.initialPrincipal / result.finalAmount) * 100).toFixed(1)}%)
                       </div>
@@ -546,7 +546,7 @@ export function CompoundInterestCalculator() {
                   
                   <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                     <span className="font-medium text-sm">Doubling Time</span>
-                    <span className="text-lg font-bold text-blue-600">
+                    <span className="text-lg font-bold text-sky-600">
                       {result.doublingTime.toFixed(1)} years
                     </span>
                   </div>
@@ -563,9 +563,9 @@ export function CompoundInterestCalculator() {
                 <div className="mt-6">
                   <h3 className="text-sm font-medium text-gray-700 mb-3">Investment Milestones</h3>
                   <div className="space-y-2">
-                    <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                    <div className="flex justify-between items-center p-3 bg-sky-50 rounded-lg">
                       <span className="font-medium">First $100k:</span>
-                      <span className="font-bold text-blue-600">
+                      <span className="font-bold text-sky-600">
                         {result.yearlyBreakdown.find(y => y.balance >= 100000)?.year || '—'} years
                       </span>
                     </div>
@@ -665,7 +665,7 @@ export function CompoundInterestCalculator() {
                           <div key={yearData.year} className="grid grid-cols-[9%_28%_28%_28%] gap-1 text-xs py-1 border-b border-gray-100">
                             <div className="font-medium">{yearData.year}</div>
                             <div>{formatCurrency(yearData.balance, investmentData.currency)}</div>
-                            <div className="text-blue-600">{formatCurrency(yearData.interest, investmentData.currency)}</div>
+                            <div className="text-sky-600">{formatCurrency(yearData.interest, investmentData.currency)}</div>
                             <div className="text-green-600">{formatCurrency(yearData.contributions, investmentData.currency)}</div>
                           </div>
                         ))}

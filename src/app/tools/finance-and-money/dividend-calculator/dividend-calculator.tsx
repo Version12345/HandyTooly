@@ -277,7 +277,7 @@ const DividendCalculator: React.FC = () => {
                     type="number"
                     value={formData.investmentAmount}
                     onChange={(e) => handleInputChange('investmentAmount', e.target.value)}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="10000"
                   />
                 </div>
@@ -294,7 +294,7 @@ const DividendCalculator: React.FC = () => {
                     step="0.1"
                     value={formData.annualDividendYield}
                     onChange={(e) => handleInputChange('annualDividendYield', e.target.value)}
-                    className="w-full pr-8 pl-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pr-8 pl-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="4.5"
                   />
                   <span className="absolute right-3 top-3 text-gray-500">%</span>
@@ -312,7 +312,7 @@ const DividendCalculator: React.FC = () => {
                     step="0.1"
                     value={formData.dividendGrowthRate}
                     onChange={(e) => handleInputChange('dividendGrowthRate', e.target.value)}
-                    className="w-full pr-8 pl-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pr-8 pl-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="5.0"
                   />
                   <span className="absolute right-3 top-3 text-gray-500">%</span>
@@ -330,7 +330,7 @@ const DividendCalculator: React.FC = () => {
                     step="0.1"
                     value={formData.sharePrice}
                     onChange={(e) => handleInputChange('sharePrice', e.target.value)}
-                    className="w-full pr-8 pl-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pr-8 pl-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="6.0"
                   />
                   <span className="absolute right-3 top-3 text-gray-500">%</span>
@@ -347,7 +347,7 @@ const DividendCalculator: React.FC = () => {
                     type="number"
                     value={formData.timeHorizon}
                     onChange={(e) => handleInputChange('timeHorizon', e.target.value)}
-                    className="w-full pr-16 pl-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pr-16 pl-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="10"
                   />
                   <span className="absolute right-3 top-3 text-gray-500">years</span>
@@ -365,7 +365,7 @@ const DividendCalculator: React.FC = () => {
                     step="0.1"
                     value={formData.taxRateOnDividends}
                     onChange={(e) => handleInputChange('taxRateOnDividends', e.target.value)}
-                    className="w-full pr-8 pl-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full pr-16 pl-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="15.0"
                   />
                   <span className="absolute right-3 top-3 text-gray-500">%</span>
@@ -428,9 +428,9 @@ const DividendCalculator: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-blue-100 p-4 rounded-lg">
-                  <div className="text-sm font-medium text-blue-800 mb-1">Monthly Dividend Income</div>
-                  <div className="text-xl font-bold text-blue-700">
+                <div className="bg-sky-100 p-4 rounded-lg">
+                  <div className="text-sm font-medium text-sky-800 mb-1">Monthly Dividend Income</div>
+                  <div className="text-xl font-bold text-sky-700">
                     {formatCurrency(results.monthlyDividendIncome, formData.currency)}
                   </div>
                 </div>
@@ -450,7 +450,7 @@ const DividendCalculator: React.FC = () => {
                 </div>
 
                 <div className="space-y-3">
-                  <h4 className="text-sm font-medium text-blue-800">Reinvestment Benefits</h4>
+                  <h4 className="text-sm font-medium text-sky-800">Reinvestment Benefits</h4>
                   <div className="text-sm text-gray-600">
                     <div className="flex justify-between">
                       <span>Final Portfolio Value:</span>
@@ -536,16 +536,16 @@ const DividendCalculator: React.FC = () => {
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
             {results && (
               <div className="space-y-4">
-                <h3 className="text-sm font-medium text-blue-800 mb-2">Projection Summary</h3>
+                <h3 className="text-sm font-medium text-sky-800 mb-2">Projection Summary</h3>
 
-                <div className="bg-blue-50 p-4 rounded-lg">
+                <div className="bg-sky-50 p-4 rounded-lg">
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                      <strong className="text-blue-600">Total Periods:</strong>
+                      <strong className="text-sky-600">Total Periods:</strong>
                       <div className="font-medium">{formData.timeHorizon}</div>
                     </div>
                     <div>
-                      <strong className="text-blue-600">Final Yield on Cost:</strong>
+                      <strong className="text-sky-600">Final Yield on Cost:</strong>
                       <div className="font-medium">{formatPercentage(results.yieldOnCost * 2)}</div>
                     </div>
                   </div>

@@ -336,9 +336,9 @@ export function TemperatureConverter() {
   const getTemperatureColor = (): string => {
     if (!conversions) return 'bg-gray-500';
     const celsius = conversions[TEMPERATURE_UNIT.CELSIUS];
-    if (celsius < -50) return 'bg-blue-900';
-    if (celsius < -10) return 'bg-blue-600';
-    if (celsius < 0) return 'bg-blue-400';
+    if (celsius < -50) return 'bg-sky-900';
+    if (celsius < -10) return 'bg-sky-600';
+    if (celsius < 0) return 'bg-sky-400';
     if (celsius < 15) return 'bg-green-400';
     if (celsius < 30) return 'bg-yellow-400';
     if (celsius < 50) return 'bg-orange-400';

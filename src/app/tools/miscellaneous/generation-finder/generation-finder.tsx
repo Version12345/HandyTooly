@@ -62,7 +62,7 @@ export default function GenerationFinder() {
                   setSelectedGeneration(e.target.value);
                   handleCalculate();
                 }}
-                className="flex–1 px-3 py-2 bg-white border border-gray-300 text-gray-900 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-blue-500"
+                className="flex–1 px-3 py-2 bg-white border border-gray-300 text-gray-900 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-sky-500"
               >
                 <option value="">Choose your birth year range...</option>
                 {yearRangeOptions.map(option => (
@@ -217,8 +217,8 @@ const generations: Generation[] = [
       }
     ],
     icon: '🎖️',
-    color: 'bg-blue-700',
-    backgroundColor: 'bg-blue-50'
+    color: 'bg-sky-700',
+    backgroundColor: 'bg-sky-50'
   },
   {
     name: 'Silent Generation',
@@ -362,8 +362,8 @@ const generations: Generation[] = [
       }
     ],
     icon: '📱',
-    color: 'bg-blue-500',
-    backgroundColor: 'bg-blue-50'
+    color: 'bg-sky-500',
+    backgroundColor: 'bg-sky-50'
   },
   {
     name: 'Generation Z',

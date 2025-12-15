@@ -42,8 +42,8 @@ export default function BMICalculator() {
   }), []);
 
   const BMI_COLORS = useMemo(() => ({
-    [BMICategory.SEVERELY_UNDERWEIGHT]: 'bg-blue-400 text-blue-800',
-    [BMICategory.UNDERWEIGHT]: 'bg-blue-300 text-blue-700',
+    [BMICategory.SEVERELY_UNDERWEIGHT]: 'bg-sky-400 text-sky-800',
+    [BMICategory.UNDERWEIGHT]: 'bg-sky-300 text-sky-700',
     [BMICategory.NORMAL_WEIGHT]: 'bg-green-300 text-green-800',
     [BMICategory.OVERWEIGHT]: 'bg-yellow-300 text-orange-700',
     [BMICategory.OBESE_CLASS_I]: 'bg-orange-300 text-orange-700',
@@ -574,9 +574,9 @@ export default function BMICalculator() {
                 </div>
 
                 {/* Status */}
-                <div className="p-4 bg-blue-50 rounded-lg">
-                  <h4 className="font-medium text-blue-900">Status</h4>
-                  <p className="text-blue-800 text-sm mt-1">{result.status}</p>
+                <div className="p-4 bg-sky-50 rounded-lg">
+                  <h4 className="font-medium text-sky-900">Status</h4>
+                  <p className="text-sky-800 text-sm mt-1">{result.status}</p>
                 </div>
 
                 {/* Health Risk */}

@@ -296,7 +296,7 @@ export default function TimeZoneConverter() {
                   type="date"
                   value={conversionData.inputDate}
                   onChange={(e) => updateConversionData('inputDate', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 />
               </div>
 
@@ -309,11 +309,11 @@ export default function TimeZoneConverter() {
                     type="time"
                     value={conversionData.inputTime}
                     onChange={(e) => updateConversionData('inputTime', e.target.value)}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                   <button
                     onClick={setCurrentTime}
-                    className="px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-sm"
+                    className="px-3 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 text-sm"
                   >
                     Now
                   </button>
@@ -327,7 +327,7 @@ export default function TimeZoneConverter() {
                 <select
                   value={conversionData.fromTimeZone}
                   onChange={(e) => updateConversionData('fromTimeZone', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   {Object.entries(groupedTimeZones).map(([region, zones]) => (
                     <optgroup key={region} label={region}>
@@ -361,7 +361,7 @@ export default function TimeZoneConverter() {
                 <select
                   value={conversionData.toTimeZone}
                   onChange={(e) => updateConversionData('toTimeZone', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   {Object.entries(groupedTimeZones).map(([region, zones]) => (
                     <optgroup key={region} label={region}>
@@ -396,15 +396,15 @@ export default function TimeZoneConverter() {
             
             {result ? (
               <div className="space-y-6">
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <div className="text-sm font-medium text-blue-800 mb-1">From</div>
-                  <div className="text-lg font-semibold text-blue-900">
+                <div className="bg-sky-50 rounded-lg p-4">
+                  <div className="text-sm font-medium text-sky-800 mb-1">From</div>
+                  <div className="text-lg font-semibold text-sky-900">
                     {result.fromTimeString}
                   </div>
-                  <div className="text-sm text-blue-700">
+                  <div className="text-sm text-sky-700">
                     {result.fromTimeZoneName}
                   </div>
-                  <div className="text-xs text-blue-600 mt-1">
+                  <div className="text-xs text-sky-600 mt-1">
                     {result.fromOffset} {result.isDSTFrom && '(DST)'}
                   </div>
                 </div>

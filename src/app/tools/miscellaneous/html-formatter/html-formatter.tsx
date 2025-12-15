@@ -278,7 +278,7 @@ const HtmlFormatter: React.FC = () => {
                 id="stripAttributes"
                 checked={stripAttributes}
                 onChange={(e) => setStripAttributes(e.target.checked)}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-sky-600 bg-gray-100 border-gray-300 rounded focus:ring-sky-500 focus:ring-2"
               />
               <label htmlFor="stripAttributes" className="text-sm font-medium text-gray-700">
                 Strip all styles and attributes from HTML tags
@@ -291,7 +291,7 @@ const HtmlFormatter: React.FC = () => {
                 id="removeScripts"
                 checked={removeScripts}
                 onChange={(e) => setRemoveScripts(e.target.checked)}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-sky-600 bg-gray-100 border-gray-300 rounded focus:ring-sky-500 focus:ring-2"
               />
               <label htmlFor="removeScripts" className="text-sm font-medium text-gray-700">
                 Remove script tags and their content
@@ -304,7 +304,7 @@ const HtmlFormatter: React.FC = () => {
                 id="removeComments"
                 checked={removeComments}
                 onChange={(e) => setRemoveComments(e.target.checked)}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                className="w-4 h-4 text-sky-600 bg-gray-100 border-gray-300 rounded focus:ring-sky-500 focus:ring-2"
               />
               <label htmlFor="removeComments" className="text-sm font-medium text-gray-700">
                 Remove HTML comments

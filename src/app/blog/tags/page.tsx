@@ -43,7 +43,7 @@ export default function BlogTagsPage() {
 
   const getTagColor = (index: number) => {
     const colors = [
-      'bg-blue-100 text-blue-800',
+      'bg-sky-100 text-sky-800',
       'bg-green-100 text-green-800',
       'bg-purple-100 text-purple-800',
       'bg-pink-100 text-pink-800',

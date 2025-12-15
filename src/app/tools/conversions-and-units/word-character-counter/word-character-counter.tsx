@@ -244,7 +244,7 @@ export function WordCharacterCounter() {
             
             <div className="space-y-4 mb-6">
               {/* Words */}
-              <div className="bg-blue-50 rounded-lg p-4 relative flex justify-between items-start">
+              <div className="bg-sky-50 rounded-lg p-4 relative flex justify-between items-start">
                 <div className="text-sm text-gray-600">Words</div>
                 <div className="text-xl font-bold text-gray-900">{stats.words.toLocaleString()}</div>
               </div>
@@ -294,7 +294,7 @@ export function WordCharacterCounter() {
                 <div className="text-sm text-gray-600">Readability</div>
                 <div className={`text-xl font-semibold ${
                   readability.color === 'green' ? 'text-green-600' :
-                  readability.color === 'blue' ? 'text-blue-600' :
+                  readability.color === 'blue' ? 'text-sky-600' :
                   readability.color === 'yellow' ? 'text-yellow-600' :
                   readability.color === 'orange' ? 'text-orange-600' :
                   readability.color === 'red' ? 'text-red-600' :

@@ -302,7 +302,7 @@ export default function DecimalFractionConverter() {
                     type="text"
                     value={decimalInput}
                     onChange={(e) => setDecimalInput(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="Enter decimal number (e.g., 1.4, 0.333...)"
                   />
                 </div>
@@ -317,7 +317,7 @@ export default function DecimalFractionConverter() {
                     type="text"
                     value={wholeNumberInput}
                     onChange={(e) => setWholeNumberInput(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="Enter whole number (leave empty for proper fractions)"
                   />
                   <p className="text-xs text-gray-500 mt-1">
@@ -334,7 +334,7 @@ export default function DecimalFractionConverter() {
                       type="text"
                       value={numeratorInput}
                       onChange={(e) => setNumeratorInput(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                       placeholder="Enter numerator"
                     />
                   </div>
@@ -347,7 +347,7 @@ export default function DecimalFractionConverter() {
                       type="text"
                       value={denominatorInput}
                       onChange={(e) => setDenominatorInput(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                       placeholder="Enter denominator"
                     />
                   </div>
@@ -368,7 +368,7 @@ export default function DecimalFractionConverter() {
                     }}
                     min="1"
                     max="15"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder="e.g., enter '4' for 4 decimal places"
                   />
                   <p className="text-xs text-gray-500 mt-1">

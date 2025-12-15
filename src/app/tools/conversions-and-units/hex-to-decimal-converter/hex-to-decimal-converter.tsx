@@ -351,9 +351,9 @@ export function HexToDecimalConverter() {
             </button>
 
             {/* Input Format Info */}
-            <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-              <h4 className="text-sm font-medium text-blue-900 mb-1">Supported Formats</h4>
-              <ul className="text-xs text-blue-800 space-y-1">
+            <div className="mt-4 p-3 bg-sky-50 rounded-lg">
+              <h4 className="text-sm font-medium text-sky-900 mb-1">Supported Formats</h4>
+              <ul className="text-xs text-sky-800 space-y-1">
                 <li>FF (basic hex)</li>
                 <li>0xFF (C-style)</li>
                 <li>#FF0000 (HTML color)</li>
@@ -409,16 +409,16 @@ export function HexToDecimalConverter() {
                 )}
 
                 {/* Binary Result */}
-                <div className="bg-blue-50 rounded-lg p-4 relative">
+                <div className="bg-sky-50 rounded-lg p-4 relative">
                   <button
                     onClick={() => handleCopy(binaryResult)}
-                    className="absolute top-3 right-3 px-3 py-1 text-xs bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors"
+                    className="absolute top-3 right-3 px-3 py-1 text-xs bg-sky-500 hover:bg-sky-600 text-white rounded transition-colors"
                   >
                     Copy
                   </button>
                   <div className="text-sm text-gray-600">Binary</div>
                   <div className="text-xl font-bold text-gray-900 font-mono break-all pr-16">{binaryResult}</div>
-                  <div className="text-sm text-blue-600">Base 2</div>
+                  <div className="text-sm text-sky-600">Base 2</div>
                 </div>
 
                 {/* Octal Result */}

@@ -66,7 +66,7 @@ export default async function RootLayout({
           <Header />
 
           {/* Page Content */}
-          <div className="bg-slate-100 pb-10">
+          <div className="bg-gray-100 pb-10">
             {children}
           </div>
 

@@ -488,7 +488,7 @@ export function UTCTimeZoneConverter() {
                   type="datetime-local"
                   value={timeZoneData.inputTime}
                   onChange={(e) => updateTimeZoneData('inputTime', e.target.value)}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
                 />
                 <p className="text-xs text-gray-500 mt-1">
                   {timeZoneData.conversionDirection === 'utc-to-local' 
@@ -514,7 +514,7 @@ export function UTCTimeZoneConverter() {
                 <select
                   value={timeZoneData.timeZone}
                   onChange={(e) => updateTimeZoneData('timeZone', e.target.value)}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
                 >
                   {TIME_ZONES.map((tz) => (
                     <option key={tz.value} value={tz.value}>
@@ -588,19 +588,19 @@ export function UTCTimeZoneConverter() {
             {result && (
               <div className="space-y-6">
                 {/* First Time (Input or UTC) */}
-                <div className="bg-blue-50 rounded-lg p-4">
+                <div className="bg-sky-50 rounded-lg p-4">
                   <div className="flex justify-between items-center">
                     <div>
-                      <div className="text-sm text-blue-700 mb-1">
+                      <div className="text-sm text-sky-700 mb-1">
                         {timeZoneData.conversionDirection === 'utc-to-local' ? 'UTC Time' : 'Input Time'}
                       </div>
-                      <div className="text-xl font-bold text-blue-800 font-mono">
+                      <div className="text-xl font-bold text-sky-800 font-mono">
                         {timeZoneData.conversionDirection === 'utc-to-local' ? result.utcTimeString : result.localTimeString}
                       </div>
                     </div>
                     <button
                       onClick={() => copyToClipboard(timeZoneData.conversionDirection === 'utc-to-local' ? result.utcTimeString : result.localTimeString)}
-                      className="text-blue-600 hover:text-blue-800 p-2"
+                      className="text-sky-600 hover:text-sky-800 p-2"
                       title="Copy to clipboard"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

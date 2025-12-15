@@ -373,7 +373,7 @@ Body Fat Goal: ${results.healthMetrics.bodyFatGoal}`;
               type="number"
               value={age}
               onChange={(e) => setAge(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
               placeholder="30"
               min="1"
               max="120"
@@ -391,7 +391,7 @@ Body Fat Goal: ${results.healthMetrics.bodyFatGoal}`;
                     type="number"
                     value={heightFt}
                     onChange={(e) => setHeightFt(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                     placeholder="5"
                     min="1"
                     max="8"
@@ -403,7 +403,7 @@ Body Fat Goal: ${results.healthMetrics.bodyFatGoal}`;
                     type="number"
                     value={heightIn}
                     onChange={(e) => setHeightIn(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                     placeholder="8"
                     min="0"
                     max="11"
@@ -416,7 +416,7 @@ Body Fat Goal: ${results.healthMetrics.bodyFatGoal}`;
                 type="number"
                 value={heightCm}
                 onChange={(e) => setHeightCm(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                 placeholder="175"
                 min="100"
                 max="250"
@@ -434,7 +434,7 @@ Body Fat Goal: ${results.healthMetrics.bodyFatGoal}`;
               type="number"
               value={unitSystem === UNIT_SYSTEM.IMPERIAL ? weightLbs : weightKg}
               onChange={(e) => unitSystem === UNIT_SYSTEM.IMPERIAL ? setWeightLbs(e.target.value) : setWeightKg(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
               placeholder={unitSystem === UNIT_SYSTEM.IMPERIAL ? "160" : "73"}
               min="1"
             />
@@ -449,7 +449,7 @@ Body Fat Goal: ${results.healthMetrics.bodyFatGoal}`;
             <select
               value={activityLevel}
               onChange={(e) => setActivityLevel(e.target.value as ACTIVITY_LEVEL)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
             >
               {ACTIVITY_LEVELS.map((level) => (
                 <option key={level.value} value={level.value}>
@@ -478,7 +478,7 @@ Body Fat Goal: ${results.healthMetrics.bodyFatGoal}`;
                 type="number"
                 value={neckCircumference}
                 onChange={(e) => setNeckCircumference(e.target.value)}
-                className="w-full px-3 py-2 pr-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 pr-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                 placeholder="15"
                 min="1"
                 step="0.1"
@@ -498,7 +498,7 @@ Body Fat Goal: ${results.healthMetrics.bodyFatGoal}`;
                 type="number"
                 value={waistCircumference}
                 onChange={(e) => setWaistCircumference(e.target.value)}
-                className="w-full px-3 py-2 pr-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 pr-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                 placeholder="32"
                 min="1"
                 step="0.1"
@@ -519,7 +519,7 @@ Body Fat Goal: ${results.healthMetrics.bodyFatGoal}`;
                   type="number"
                   value={hipCircumference}
                   onChange={(e) => setHipCircumference(e.target.value)}
-                  className="w-full px-3 py-2 pr-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 pr-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                   placeholder="38"
                   min="1"
                   step="0.1"
@@ -568,9 +568,9 @@ Body Fat Goal: ${results.healthMetrics.bodyFatGoal}`;
               {/* Alternative Methods */}
               <div>
                 <h3 className="font-medium text-gray-900 mb-3">Alternative Methods</h3>
-                <div className="bg-blue-50 rounded-lg p-3 mb-3">
-                  <h4 className="font-medium text-blue-900">BMI-Based Estimate</h4>
-                  <p className="text-xl font-semibold text-blue-800">{results.bmiBasedBodyFat.toFixed(1)}%</p>
+                <div className="bg-sky-50 rounded-lg p-3 mb-3">
+                  <h4 className="font-medium text-sky-900">BMI-Based Estimate</h4>
+                  <p className="text-xl font-semibold text-sky-800">{results.bmiBasedBodyFat.toFixed(1)}%</p>
                 </div>
               </div>
 
@@ -646,12 +646,12 @@ Body Fat Goal: ${results.healthMetrics.bodyFatGoal}`;
                 <h3 className="font-medium text-gray-900 mb-3">Health Metrics</h3>
                 
                 <div className="space-y-3">
-                  <div className="bg-blue-50 rounded-lg p-3">
+                  <div className="bg-sky-50 rounded-lg p-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-blue-800">Waist-to-Height Ratio</span>
-                      <span className="font-semibold text-blue-900">{results.healthMetrics.waistToHeightRatio.toFixed(2)}</span>
+                      <span className="text-sm text-sky-800">Waist-to-Height Ratio</span>
+                      <span className="font-semibold text-sky-900">{results.healthMetrics.waistToHeightRatio.toFixed(2)}</span>
                     </div>
-                    <p className="text-xs text-blue-700 mt-1">
+                    <p className="text-xs text-sky-700 mt-1">
                       {results.healthMetrics.waistToHeightRatio < 0.5 ? 'Healthy' : 'Above recommended'}
                     </p>
                   </div>

@@ -316,7 +316,7 @@ export function IncomeToDebtCalculator() {
               {/* Add Custom Debt Button */}
               <button
                 onClick={addCustomDebt}
-                className="w-full py-2 border-2 border-dashed border-gray-300 rounded-md text-gray-600 hover:border-blue-400 hover:text-blue-600 transition-colors"
+                className="w-full py-2 border-2 border-dashed border-gray-300 rounded-md text-gray-600 hover:border-sky-400 hover:text-sky-600 transition-colors"
               >
                 + Add Custom Debt
               </button>
@@ -395,8 +395,8 @@ export function IncomeToDebtCalculator() {
                 </div>
 
                 {/* Lending Guidelines */}
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <h4 className="font-medium text-blue-900 mb-3">Lending Guidelines</h4>
+                <div className="bg-sky-50 rounded-lg p-4">
+                  <h4 className="font-medium text-sky-900 mb-3">Lending Guidelines</h4>
                   <div className="space-y-2 text-sm">
                     {[
                       { type: 'Conventional Mortgage', limit: '≤ 28% (front-end)', status: result.lendingGuidelines.conventional.status },
@@ -407,7 +407,7 @@ export function IncomeToDebtCalculator() {
                       <div key={index} className="flex justify-between items-center">
                         <span>{guideline.type}:</span>
                         <div className="flex items-center gap-2">
-                          <span className="text-blue-700">{guideline.limit}</span>
+                          <span className="text-sky-700">{guideline.limit}</span>
                           <span className={`w-2 h-2 rounded-full ${
                             guideline.status === 'good' ? 'bg-green-500' :
                             guideline.status === 'challenging' ? 'bg-yellow-500' : 'bg-red-500'

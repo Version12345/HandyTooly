@@ -339,7 +339,7 @@ export function SalaryCalculator() {
                   <select
                     value={salaryData.currency}
                     onChange={(e) => updateSalaryData('currency', e.target.value as Currency)}
-                    className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   >
                     {Object.keys(CURRENCY_SYMBOLS).map((curr) => (
                       <option key={curr} value={curr}>
@@ -356,7 +356,7 @@ export function SalaryCalculator() {
                   <select
                     value={salaryData.country}
                     onChange={(e) => updateSalaryData('country', e.target.value)}
-                    className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   >
                     {COUNTRIES.map((country) => (
                       <option key={country} value={country}>
@@ -375,7 +375,7 @@ export function SalaryCalculator() {
                 <select
                   value={salaryData.inputMethod}
                   onChange={(e) => updateInputMethod(e.target.value as SalaryData['inputMethod'])}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   <option value="annual">Annual Salary</option>
                   <option value="monthly">Monthly Salary</option>
@@ -402,7 +402,7 @@ export function SalaryCalculator() {
                     type="number"
                     value={salaryData.inputValue || ''}
                     onChange={(e) => updateSalaryData('inputValue', Number(e.target.value) || 0)}
-                    className="w-full shadow-sm pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full shadow-sm pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                     placeholder={
                       salaryData.inputMethod === 'annual' ? '75000' :
                       salaryData.inputMethod === 'monthly' ? '6250' :
@@ -438,7 +438,7 @@ export function SalaryCalculator() {
                   type="number"
                   value={salaryData.hoursPerWeek || ''}
                   onChange={(e) => updateSalaryData('hoursPerWeek', Number(e.target.value) || 0)}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="40"
                 />
                 <p className="text-xs text-gray-500 mt-1">Standard working hours per week</p>
@@ -453,7 +453,7 @@ export function SalaryCalculator() {
                   type="number"
                   value={salaryData.weeksPerYear || ''}
                   onChange={(e) => updateSalaryData('weeksPerYear', Number(e.target.value) || 0)}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="52"
                 />
                 <p className="text-xs text-gray-500 mt-1">Include vacation time (typically 50-52)</p>
@@ -465,12 +465,12 @@ export function SalaryCalculator() {
             
             {/* Country Update Notification */}
             {showCountryUpdateNotification && (
-              <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+              <div className="mb-4 p-3 bg-sky-50 border border-sky-200 rounded-md">
                 <div className="flex items-center">
-                  <svg className="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-4 h-4 text-sky-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                   </svg>
-                  <p className="text-sm text-blue-700">
+                  <p className="text-sm text-sky-700">
                     Tax rates updated for {salaryData.country}. You can adjust them manually if needed.
                   </p>
                 </div>
@@ -488,7 +488,7 @@ export function SalaryCalculator() {
                   step="0.1"
                   value={taxRates.federalTax || ''}
                   onChange={(e) => updateTaxRates('federalTax', Number(e.target.value) || 0)}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="20.5"
                 />
                 <p className="text-xs text-gray-500 mt-1">
@@ -518,7 +518,7 @@ export function SalaryCalculator() {
                   step="0.1"
                   value={taxRates.stateTax || ''}
                   onChange={(e) => updateTaxRates('stateTax', Number(e.target.value) || 0)}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="10"
                 />
                 <p className="text-xs text-gray-500 mt-1">
@@ -546,7 +546,7 @@ export function SalaryCalculator() {
                   step="0.1"
                   value={taxRates.socialSecurity || ''}
                   onChange={(e) => updateTaxRates('socialSecurity', Number(e.target.value) || 0)}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="6.95"
                 />
                 <p className="text-xs text-gray-500 mt-1">
@@ -576,7 +576,7 @@ export function SalaryCalculator() {
                   step="0.1"
                   value={taxRates.medicare || ''}
                   onChange={(e) => updateTaxRates('medicare', Number(e.target.value) || 0)}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="1.25"
                 />
                 <p className="text-xs text-gray-500 mt-1">
@@ -600,7 +600,7 @@ export function SalaryCalculator() {
                   step="0.1"
                   value={taxRates.otherDeductions || ''}
                   onChange={(e) => updateTaxRates('otherDeductions', Number(e.target.value) || 0)}
-                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full shadow-sm px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="0"
                 />
                 <p className="text-xs text-gray-500 mt-1">401k, insurance, etc. monthly amount</p>
@@ -639,9 +639,9 @@ export function SalaryCalculator() {
                   </div>
 
                   {/* Monthly Gross */}
-                  <div className="bg-blue-100 rounded-lg p-4 mb-3">
-                    <div className="text-sm text-blue-700 mb-1">Monthly Gross</div>
-                    <div className="text-xl font-bold text-blue-800">
+                  <div className="bg-sky-100 rounded-lg p-4 mb-3">
+                    <div className="text-sm text-sky-700 mb-1">Monthly Gross</div>
+                    <div className="text-xl font-bold text-sky-800">
                       {formatCurrency(result.monthlyGross, salaryData.currency)}
                     </div>
                   </div>
@@ -668,9 +668,9 @@ export function SalaryCalculator() {
                   </div>
 
                   {/* Monthly Net */}
-                  <div className="bg-blue-100 rounded-lg p-4 mb-3">
-                    <div className="text-sm text-blue-700 mb-1">Monthly Net</div>
-                    <div className="text-xl font-bold text-blue-800">
+                  <div className="bg-sky-100 rounded-lg p-4 mb-3">
+                    <div className="text-sm text-sky-700 mb-1">Monthly Net</div>
+                    <div className="text-xl font-bold text-sky-800">
                       {formatCurrency(result.monthlyNet, salaryData.currency)}
                     </div>
                   </div>

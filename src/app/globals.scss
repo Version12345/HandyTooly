@@ -1,7 +1,7 @@
 @use "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #e4e4e4;
   --foreground: #171717;
   --dark-gray: #575757;
   --opacity-70: 0.7;
@@ -33,7 +33,8 @@ h4,
 h5,
 h6 {
   font-weight: bold;
-  color: var(--color-teal-600);
+  color: var(--color-gray-600);
+  text-transform: uppercase;
 }
 
 h1 {

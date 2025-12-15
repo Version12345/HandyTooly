@@ -246,9 +246,9 @@ export function MeanMedianModeCalculator() {
             </div>
 
             {/* Input Format Info */}
-            <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-              <h4 className="text-sm font-medium text-blue-900 mb-1">Supported Formats</h4>
-              <ul className="text-xs text-blue-800 space-y-1">
+            <div className="mt-4 p-3 bg-sky-50 rounded-lg">
+              <h4 className="text-sm font-medium text-sky-900 mb-1">Supported Formats</h4>
+              <ul className="text-xs text-sky-800 space-y-1">
                 <li>Comma-separated: 1, 2, 3, 4</li>
                 <li>Space-separated: 1 2 3 4</li>
                 <li>Line-separated (paste from Excel)</li>
@@ -296,10 +296,10 @@ export function MeanMedianModeCalculator() {
                 </div>
 
                 {/* Mode */}
-                <div className="bg-blue-50 rounded-lg p-4 relative">
+                <div className="bg-sky-50 rounded-lg p-4 relative">
                   <button
                     onClick={() => handleCopy(results.mode.map(formatNumber).join(', '))}
-                    className="absolute top-3 right-3 px-3 py-1 text-xs bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors"
+                    className="absolute top-3 right-3 px-3 py-1 text-xs bg-sky-500 hover:bg-sky-600 text-white rounded transition-colors"
                   >
                     Copy
                   </button>
@@ -307,7 +307,7 @@ export function MeanMedianModeCalculator() {
                   <div className="text-xl font-bold text-gray-900 font-mono pr-16">
                     {results.mode.length === results.count ? 'No mode' : results.mode.map(formatNumber).join(', ')}
                   </div>
-                  <div className="text-sm text-blue-600">Most frequent value(s)</div>
+                  <div className="text-sm text-sky-600">Most frequent value(s)</div>
                 </div>
 
                 {/* Range */}

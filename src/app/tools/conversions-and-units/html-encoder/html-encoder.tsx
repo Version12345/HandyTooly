@@ -324,7 +324,7 @@ export function HtmlEncoder() {
                 setInputText(e.target.value);
               }}
               placeholder={mode === 'encode' ? 'Enter HTML code to encode...' : 'Enter HTML entities to decode...'}
-              className="w-full h-64 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none font-mono text-sm"
+              className="w-full h-64 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none font-mono text-sm"
             />
           </div>
 
@@ -353,7 +353,7 @@ export function HtmlEncoder() {
               value={outputText}
               onChange={(e) => handleOutputChange(e.target.value)}
               placeholder={mode === 'encode' ? 'Encoded HTML entities will appear here...' : 'Decoded HTML will appear here...'}
-              className="w-full h-64 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none font-mono text-sm whitespace-pre-wrap"
+              className="w-full h-64 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none font-mono text-sm whitespace-pre-wrap"
             />
           </div>
         </div>

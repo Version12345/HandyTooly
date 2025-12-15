@@ -81,7 +81,7 @@ export const Step5: React.FC<Step5Props> = ({ finalResume, finalCoverLetter, onC
                             className={`px-4 py-2 rounded-md transition-colors text-sm flex items-center gap-2 ${
                                 isCopying 
                                     ? 'bg-gray-400 cursor-not-allowed' 
-                                    : 'bg-blue-500 hover:bg-blue-600'
+                                    : 'bg-sky-500 hover:bg-sky-600'
                             } text-white`}
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -121,7 +121,7 @@ export const Step5: React.FC<Step5Props> = ({ finalResume, finalCoverLetter, onC
                             className={`px-4 py-2 rounded-md transition-colors text-sm flex items-center gap-2 ${
                                 isCopying 
                                     ? 'bg-gray-400 cursor-not-allowed' 
-                                    : 'bg-blue-500 hover:bg-blue-600'
+                                    : 'bg-sky-500 hover:bg-sky-600'
                             } text-white`}
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

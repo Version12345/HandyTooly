@@ -193,7 +193,7 @@ export default function UUIDGenerator() {
                     max="100"
                     value={config.count}
                     onChange={(e) => updateConfig('count', Math.max(1, parseInt(e.target.value) || 1))}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   />
                   <span className="text-sm text-gray-500">(1-100)</span>
                 </div>
@@ -212,7 +212,7 @@ export default function UUIDGenerator() {
                         value={versionInfo.version}
                         checked={config.version === versionInfo.version}
                         onChange={(e) => updateConfig('version', e.target.value as 'v1' | 'v4')}
-                        className="mt-1 mr-3 text-blue-600"
+                        className="mt-1 mr-3 text-sky-600"
                       />
                       <div>
                         <div className="font-medium text-sm text-gray-900">
@@ -234,7 +234,7 @@ export default function UUIDGenerator() {
                 <select
                   value={config.format}
                   onChange={(e) => updateConfig('format', e.target.value as UUIDConfig['format'])}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   {FORMAT_OPTIONS.map((option) => (
                     <option key={option.value} value={option.value}>

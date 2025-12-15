@@ -304,10 +304,10 @@ export function AnnualizedReturnCalculator() {
             
             {results && (
               <div className="space-y-4">
-                <div className="bg-blue-50 rounded-lg p-4 relative">
+                <div className="bg-sky-50 rounded-lg p-4 relative">
                   <button
                     onClick={() => handleCopy(formatPercent(results.totalReturn))}
-                    className="absolute top-3 right-3 px-3 py-1 text-xs bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors"
+                    className="absolute top-3 right-3 px-3 py-1 text-xs bg-sky-500 hover:bg-sky-600 text-white rounded transition-colors"
                   >
                     Copy
                   </button>
@@ -359,7 +359,7 @@ export function AnnualizedReturnCalculator() {
                   <div className="flex items-center">
                     <div className="flex-1 bg-gray-200 rounded-full h-4 relative overflow-hidden">
                       <div 
-                        className="bg-blue-500 h-4 transition-all duration-300"
+                        className="bg-sky-500 h-4 transition-all duration-300"
                         style={{ width: `${Math.min(100, (parseFloat(initialInvestment) / parseFloat(finalValue)) * 100)}%` }}
                       ></div>
                       <div 
@@ -372,7 +372,7 @@ export function AnnualizedReturnCalculator() {
                     </div>
                   </div>
                   <div className="flex justify-between text-xs mt-2">
-                    <span className="text-blue-600">Initial (85.7%)</span>
+                    <span className="text-sky-600">Initial (85.7%)</span>
                     <span className="text-green-600">Gains (33.3%)</span>
                   </div>
                 </div>

@@ -541,11 +541,11 @@ export default function InflationCalculator() {
                         In {inflationData.startingYear}:
                       </div>
                       {result.realWorldComparisons.slice(0, 2).map((comparison, index) => (
-                        <div key={index} className="bg-blue-50 p-3 rounded">
+                        <div key={index} className="bg-sky-50 p-3 rounded">
                           <div className="flex justify-between">
                             <span className="text-sm font-medium text-gray-900">{comparison.originalQuantity}  {comparison.item}</span>
                             <span className="text-sm text-gray-600">
-                              <div className="text-xs text-blue-600">
+                              <div className="text-xs text-sky-600">
                                 {formatCurrency(comparison.originalPrice, inflationData.currency)} each
                               </div>
                             </span>
