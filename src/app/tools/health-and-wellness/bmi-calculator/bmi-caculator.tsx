@@ -316,6 +316,7 @@ export default function BMICalculator() {
   return (
     <ToolLayout 
       toolCategory={ToolNameLists.BMICalculator}
+      educationContent={educationContent}
       disclaimer={<MedicalDisclaimer />}
     >
       <div className="space-y-6">
@@ -607,19 +608,19 @@ export default function BMICalculator() {
           </div>
         </div>
       </div>
-
-      <hr className="my-5" />
-
-      <div>
-        <h3>
-          What is BMI?
-        </h3>
-        <p className="text-md">
-          Body Mass Index (BMI) is a simple calculation using a person&apos;s height and weight. The formula is BMI = kg/m², where kg is a person&apos;s weight in kilograms and m² is their height in meters squared.
-
-          Body Mass Index (BMI) is a numerical value that helps estimate whether a person&apos;s weight is appropriate for their height. The formula is BMI = weight/height². BMI is commonly used as a quick screening tool to categorize individuals as underweight, normal weight, overweight, or obese. However, it does not measure body fat directly and may not accurately reflect health for everyone, especially athletes or people with higher muscle mass. It&apos;s best used alongside other health assessments and professional medical advice.
-        </p>
-      </div>
     </ToolLayout>
   );
 }
+
+const educationContent = (
+  <div>
+    <h3>
+      What is BMI?
+    </h3>
+    <p className="text-md">
+      Body Mass Index (BMI) is a simple calculation using a person&apos;s height and weight. The formula is BMI = kg/m², where kg is a person&apos;s weight in kilograms and m² is their height in meters squared.
+
+      Body Mass Index (BMI) is a numerical value that helps estimate whether a person&apos;s weight is appropriate for their height. The formula is BMI = weight/height². BMI is commonly used as a quick screening tool to categorize individuals as underweight, normal weight, overweight, or obese. However, it does not measure body fat directly and may not accurately reflect health for everyone, especially athletes or people with higher muscle mass. It&apos;s best used alongside other health assessments and professional medical advice.
+    </p>
+  </div>
+);

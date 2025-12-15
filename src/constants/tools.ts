@@ -85,6 +85,7 @@ export enum ToolNameLists {
   TemperatureConverter = "Temperature Converter",
   CreditCardPaymentCalculator = "Credit Card Payment Calculator",
   BMRCalculator = "BMR Calculator",
+  BodyFatCalculator = "Body Fat Calculator",
   MeanMedianModeCalculator = "Mean Median Mode Calculator",
   WordCharacterCounter = "Word Character Counter",
   Base64Converter = "Base64 Converter",
@@ -108,6 +109,7 @@ export enum ToolNameLists {
 export const ToolDescription: Record<string, string> = {
   [ToolNameLists.BMICalculator]: "Calculate your Body Mass Index (BMI) for weight loss, maintenance, or gain. You can use kg & cm or lbs & inches conversions.",
   [ToolNameLists.BMRCalculator]: "Calculate your Basal Metabolic Rate (BMR) for weight loss, maintenance, or gain. You can use kg & cm or lbs & inches conversions.",
+  [ToolNameLists.BodyFatCalculator]: "Calculate your body fat percentage using the US Navy method and BMI-based estimation. Get detailed body composition analysis and health metrics.",
   [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest & track continuous contributions in different currencies.",
   [ToolNameLists.DayConverterDateCalculator]: "Calculate dates, find weekdays, date differences, & perform various date-related calculations.",
   [ToolNameLists.HexToDecimalConverter]: "Convert hexadecimal (hex) numbers to decimal, binary, octal & more. Perfect for programming, web development & computer science calculations.",
@@ -170,6 +172,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.TemperatureConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/temperature-converter`,
   [ToolNameLists.CreditCardPaymentCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/credit-card-payment-calculator`,
   [ToolNameLists.BMRCalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/bmr-calculator`,
+  [ToolNameLists.BodyFatCalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/body-fat-calculator`,
   [ToolNameLists.MeanMedianModeCalculator]: `${URL_BASE}/${ToolCategorySlug.Mathematics}/mean-median-mode-calculator`,
   [ToolNameLists.WordCharacterCounter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/word-character-counter`,
   [ToolNameLists.Base64Converter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/base64-converter`,
@@ -207,6 +210,11 @@ export const Tools: Record<string, Tool[]> = {
       name: ToolNameLists.BMRCalculator,
       description: ToolDescription[ToolNameLists.BMRCalculator],
       link: ToolUrls[ToolNameLists.BMRCalculator]
+    },
+    {
+      name: ToolNameLists.BodyFatCalculator,
+      description: ToolDescription[ToolNameLists.BodyFatCalculator],
+      link: ToolUrls[ToolNameLists.BodyFatCalculator]
     },
     {
       name: ToolNameLists.StepsToDistanceCalculator,
