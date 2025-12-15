@@ -1,19 +1,20 @@
 import { Metadata } from 'next';
 import BodyFatCalculator from './body-fat-calculator';
 import { canonicalUrl } from '@/utils/canonicalUrl';
+import { ToolDescription, ToolNameLists, ToolUrls } from '@/constants/tools';
 
 export const metadata: Metadata = {
-  title: 'Body Fat Calculator - US Navy Method & BMI-Based Estimation | HandyTooly',
-  description: 'Calculate your body fat percentage using the accurate US Navy method and BMI-based estimation. Get detailed body composition analysis, ideal fat ranges, and health metrics.',
+  title: ToolNameLists.BodyFatCalculator,
+  description: ToolDescription[ToolNameLists.BodyFatCalculator],
   keywords: 'body fat calculator, US Navy method, body fat percentage, body composition, circumference measurements, fitness calculator, health assessment, lean body mass',
   openGraph: {
-    title: 'Body Fat Calculator - US Navy Method & BMI-Based Estimation',
-    description: 'Calculate your body fat percentage using the accurate US Navy method and BMI-based estimation. Get detailed body composition analysis, ideal fat ranges, and health metrics.',
+    title: ToolNameLists.BodyFatCalculator,
+    description: ToolDescription[ToolNameLists.BodyFatCalculator],
     type: 'website',
-    url: canonicalUrl('/tools/health-and-wellness/body-fat-calculator', true),
+    url: canonicalUrl(ToolUrls[ToolNameLists.BodyFatCalculator], true),
   },
   alternates: {
-    canonical: canonicalUrl('/tools/health-and-wellness/body-fat-calculator'),
+    canonical: canonicalUrl(ToolUrls[ToolNameLists.BodyFatCalculator], true),
   },
 };
 
