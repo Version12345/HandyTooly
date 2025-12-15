@@ -4,48 +4,37 @@ import { ToolDescription, ToolNameLists, ToolUrls } from '@/constants/tools';
 import { canonicalUrl } from '@/utils/canonicalUrl';
 
 export const metadata: Metadata = {
-  title: ToolNameLists.Base64Converter,
-  description: ToolDescription[ToolNameLists.Base64Converter],
+  title: 'Base64 Text Converter - Encode & Decode Text to Base64 | HandyTooly',
+  description: 'Convert text to Base64 format or decode Base64 strings back to readable text. Perfect for encoding configuration data, API tokens, and secure text transmission.',
   keywords: [
-    'base64 converter',
+    'base64 text converter',
     'base64 encoder',
     'base64 decoder',
     'text to base64',
     'base64 to text',
-    'image to base64',
     'base64 encoding',
     'base64 decoding',
-    'online base64 tool',
+    'text encoding tool',
     'web development',
     'data encoding',
-    'file to base64',
+    'api tokens',
     'base64 generator',
     'encode decode base64',
-    'base64 translator',
+    'configuration data',
     'programming tools',
     'developer tools',
     'data conversion',
     'string encoding',
-    'binary to base64'
+    'secure text transmission'
   ],
   openGraph: {
-    title: ToolNameLists.Base64Converter,
-    description: ToolDescription[ToolNameLists.Base64Converter],
+    title: 'Base64 Text Converter - Encode & Decode Text to Base64',
+    description: 'Convert text to Base64 format or decode Base64 strings back to readable text. Perfect for encoding configuration data, API tokens, and secure text transmission.',
     type: 'website',
-    url: ToolUrls[ToolNameLists.Base64Converter],
-    siteName: 'HandyTooly',
-  },
-  twitter: {
-    card: 'summary_large_image',    
-    title: ToolNameLists.Base64Converter,
-    description: ToolDescription[ToolNameLists.Base64Converter],    
-  },
-  robots: {
-    index: true,
-    follow: true,
+    url: canonicalUrl('/tools/conversions-and-units/base64-converter', true),
   },
   alternates: {
-    canonical: canonicalUrl(ToolUrls[ToolNameLists.Base64Converter]),
+    canonical: canonicalUrl('/tools/conversions-and-units/base64-converter'),
   },
 };
 

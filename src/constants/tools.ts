@@ -89,6 +89,7 @@ export enum ToolNameLists {
   MeanMedianModeCalculator = "Mean Median Mode Calculator",
   WordCharacterCounter = "Word Character Counter",
   Base64Converter = "Base64 Converter",
+  Base64ImageConverter = "Base64 Image Converter",
   HtmlEncoder = "HTML Encoder/Decoder",
   AnnualizedReturnCalculator = "Annualized Return Calculator",
   RandomTextGenerator = "Random Text Generator",
@@ -132,7 +133,8 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.AnnualizedReturnCalculator]: "Calculate annualized returns, CAGR, and analyze investment performance with comprehensive metrics and benchmarking.",
   [ToolNameLists.MeanMedianModeCalculator]: "Calculate mean, median, mode along with minimum, maximum, range, quartiles, and sum for a set of data. Perfect for statistics, data analysis, & mathematical calculations.",
   [ToolNameLists.WordCharacterCounter]: "Count words, characters, sentences, and paragraphs in your text. Analyze readability, and reading time. Perfect for content creation, and text analysis.",
-  [ToolNameLists.Base64Converter]: "Encode text to Base64 or decode Base64 to text. Convert images to Base64 format for web development, data storage, & API integration. Perfect for developers & data encoding needs.",
+  [ToolNameLists.Base64Converter]: "Encode text to Base64 or decode Base64 to text. Perfect for encoding configuration data, API tokens, and text that needs safe transmission.",
+  [ToolNameLists.Base64ImageConverter]: "Convert images to Base64 format or decode Base64 to images. Perfect for data URIs, CSS embedding, and image encoding for web development.",
   [ToolNameLists.HtmlEncoder]: "Encode HTML to entities or decode HTML entities to text. Convert special characters like <, >, &, quotes for safe HTML display. Perfect for web development & content management.",
   [ToolNameLists.RandomTextGenerator]: "Generate placeholder text (lorem ipsum), usernames, email addresses, sample data & more. Perfect for testing, mockups & placeholder content.",
   [ToolNameLists.RandomNumberGenerator]: "Generate random numbers in batches with customizable ranges, unique options. Perfect for testing, gaming, statistics & development.",
@@ -176,6 +178,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.MeanMedianModeCalculator]: `${URL_BASE}/${ToolCategorySlug.Mathematics}/mean-median-mode-calculator`,
   [ToolNameLists.WordCharacterCounter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/word-character-counter`,
   [ToolNameLists.Base64Converter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/base64-converter`,
+  [ToolNameLists.Base64ImageConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/base64-image-converter`,
   [ToolNameLists.HtmlEncoder]: `${URL_BASE}/${ToolCategorySlug.Conversions}/html-encoder`,
   [ToolNameLists.RandomTextGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/random-text-generator`,
   [ToolNameLists.RandomNumberGenerator]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/random-number-generator`,
@@ -279,6 +282,11 @@ export const Tools: Record<string, Tool[]> = {
       name: ToolNameLists.Base64Converter,
       description: ToolDescription[ToolNameLists.Base64Converter],
       link: ToolUrls[ToolNameLists.Base64Converter]
+    },
+    {
+      name: ToolNameLists.Base64ImageConverter,
+      description: ToolDescription[ToolNameLists.Base64ImageConverter],
+      link: ToolUrls[ToolNameLists.Base64ImageConverter]
     },
     {
       name: ToolNameLists.DayConverterDateCalculator,
