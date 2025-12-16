@@ -67,6 +67,11 @@ export enum ToolNameLists {
   BMICalculator = "BMI Calculator",
   CompoundInterestCalculator = "Compound Interest Calculator",
   DayConverterDateCalculator = "Day Converter & Date Calculator",
+  FindWeekday = "Find Weekday Calculator",
+  DateDifference = "Date Difference Calculator",
+  AddTimeToDate = "Add Time to Date Calculator",
+  SubtractTimeFromDate = "Subtract Time from Date Calculator",
+  BusinessDaysCalculator = "Business Days Calculator",
   HexToDecimalConverter = "Hex to Decimal Converter",
   IncomeToDebtRatioCalculator = "Income-to-Debt Ratio Calculator",
   InflationCalculator = "Inflation Calculator",
@@ -113,6 +118,11 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.BodyFatCalculator]: "Calculate your body fat percentage using the US Navy method and BMI-based estimation. Get detailed body composition analysis and health metrics.",
   [ToolNameLists.CompoundInterestCalculator]: "Calculate investment growth with compound interest & track continuous contributions in different currencies.",
   [ToolNameLists.DayConverterDateCalculator]: "Calculate dates, find weekdays, date differences, & perform various date-related calculations.",
+  [ToolNameLists.FindWeekday]: "Find what day of the week any date falls on. Get weekday, day of year, and week number for any date.",
+  [ToolNameLists.DateDifference]: "Calculate the exact time difference between two dates in days, months, and years. Perfect for project planning.",
+  [ToolNameLists.AddTimeToDate]: "Add days, weeks, months, or years to any date to find future dates. Perfect for planning and scheduling.",
+  [ToolNameLists.SubtractTimeFromDate]: "Subtract days, weeks, months, or years to any date to find past dates. Perfect for historical calculations and reverse planning.",
+  [ToolNameLists.BusinessDaysCalculator]: "Calculate business days between dates, excluding weekends. Perfect for project timelines and work planning.",
   [ToolNameLists.HexToDecimalConverter]: "Convert hexadecimal (hex) numbers to decimal, binary, octal & more. Perfect for programming, web development & computer science calculations.",
   [ToolNameLists.IncomeToDebtRatioCalculator]: "Assess your financial health by calculating your income-to-debt ratio & get lending guidance in different currencies.",
   [ToolNameLists.InflationCalculator]: "Calculate the impact of inflation on purchasing power, analyze future value, & understand real-world cost changes over time.",
@@ -126,7 +136,7 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.WeightConverter]: "Convert pounds, kilograms (kg), ounces (oz), grams (g), etc with our weight converter. Perfect for cooking, fitness tracking, & scientific measurements.",
   [ToolNameLists.WeightLossCalculator]: "Track your weight loss progress, calculate BMI changes, & get personalized insights.",
   [ToolNameLists.LengthConverter]: "Convert meters (m), feet (ft), inches (in), kilometers (km), miles (mil), etc with our length converter. Perfect for construction, & scientific measurements.",
-  [ToolNameLists.VolumeConverter]: "Convert liters (L), gallons (gal), cups (c), milliliters (mL), etc with our volume converter. Perfect for cooking, engineering, & everyday measurements.",
+  [ToolNameLists.VolumeConverter]: "Convert liters (L), gallons (gal), cups (c), milliliters (mL), etc with our volume converter. Perfect for cooking, engineering, & measurements.",
   [ToolNameLists.AreaConverter]: "Convert square meters (m²), square feet (ft²), acres, hectares, etc with our area converter. Perfect for real estate, gardening, & land measurements.",
   [ToolNameLists.TemperatureConverter]: "Convert Celsius (°C), Fahrenheit (°F), Kelvin (K), Rankine (°R), etc with our temperature converter. Perfect for cooking, science, & weather measurements.",
   [ToolNameLists.CreditCardPaymentCalculator]: "Calculate how long it takes to pay off credit card debt & interest. Plan payments, compare strategies & get debt-free faster with multiple currencies.",
@@ -156,6 +166,11 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.BMICalculator]: `${URL_BASE}/${ToolCategorySlug.Health}/bmi-calculator`,
   [ToolNameLists.CompoundInterestCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/compound-interest-calculator`,
   [ToolNameLists.DayConverterDateCalculator]: `${URL_BASE}/${ToolCategorySlug.Conversions}/day-converter`,
+  [ToolNameLists.FindWeekday]: `${URL_BASE}/${ToolCategorySlug.Conversions}/find-weekday`,
+  [ToolNameLists.DateDifference]: `${URL_BASE}/${ToolCategorySlug.Conversions}/date-difference`,
+  [ToolNameLists.AddTimeToDate]: `${URL_BASE}/${ToolCategorySlug.Conversions}/add-time-to-date`,
+  [ToolNameLists.SubtractTimeFromDate]: `${URL_BASE}/${ToolCategorySlug.Conversions}/subtract-time-from-date`,
+  [ToolNameLists.BusinessDaysCalculator]: `${URL_BASE}/${ToolCategorySlug.Conversions}/business-days-calculator`,
   [ToolNameLists.HexToDecimalConverter]: `${URL_BASE}/${ToolCategorySlug.Conversions}/hex-to-decimal-converter`,
   [ToolNameLists.IncomeToDebtRatioCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/income-to-debt-ratio-calculator`,
   [ToolNameLists.InflationCalculator]: `${URL_BASE}/${ToolCategorySlug.Finance}/inflation-calculator`,
@@ -274,6 +289,11 @@ export const Tools: Record<string, Tool[]> = {
   ],
   [ToolCategory.Conversions]: [
     {
+      name: ToolNameLists.AddTimeToDate,
+      description: ToolDescription[ToolNameLists.AddTimeToDate],
+      link: ToolUrls[ToolNameLists.AddTimeToDate]
+    },
+    {
       name: ToolNameLists.AreaConverter,
       description: ToolDescription[ToolNameLists.AreaConverter],
       link: ToolUrls[ToolNameLists.AreaConverter]
@@ -289,9 +309,19 @@ export const Tools: Record<string, Tool[]> = {
       link: ToolUrls[ToolNameLists.Base64ImageConverter]
     },
     {
-      name: ToolNameLists.DayConverterDateCalculator,
-      description: ToolDescription[ToolNameLists.DayConverterDateCalculator],
-      link: ToolUrls[ToolNameLists.DayConverterDateCalculator]
+      name: ToolNameLists.BusinessDaysCalculator,
+      description: ToolDescription[ToolNameLists.BusinessDaysCalculator],
+      link: ToolUrls[ToolNameLists.BusinessDaysCalculator]
+    },
+    {
+      name: ToolNameLists.DateDifference,
+      description: ToolDescription[ToolNameLists.DateDifference],
+      link: ToolUrls[ToolNameLists.DateDifference]
+    },
+    {
+      name: ToolNameLists.FindWeekday,
+      description: ToolDescription[ToolNameLists.FindWeekday],
+      link: ToolUrls[ToolNameLists.FindWeekday]
     },
     {
       name: ToolNameLists.HexToDecimalConverter,
@@ -317,6 +347,11 @@ export const Tools: Record<string, Tool[]> = {
       name: ToolNameLists.StepsToDistanceCalculator,
       description: ToolDescription[ToolNameLists.StepsToDistanceCalculator],
       link: ToolUrls[ToolNameLists.StepsToDistanceCalculator]
+    },
+    {
+      name: ToolNameLists.SubtractTimeFromDate,
+      description: ToolDescription[ToolNameLists.SubtractTimeFromDate],
+      link: ToolUrls[ToolNameLists.SubtractTimeFromDate]
     },
     {
       name: ToolNameLists.TemperatureConverter,
