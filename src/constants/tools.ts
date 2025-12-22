@@ -415,9 +415,19 @@ export const Tools: Record<string, Tool[]> = {
   ],
   [ToolCategory.Miscellaneous]: [
     {
+      name: ToolNameLists.CSVColumnExtractor,
+      description: ToolDescription[ToolNameLists.CSVColumnExtractor],
+      link: ToolUrls[ToolNameLists.CSVColumnExtractor]
+    },
+    {
       name: ToolNameLists.ChristmasCountdown,
       description: ToolDescription[ToolNameLists.ChristmasCountdown],
       link: ToolUrls[ToolNameLists.ChristmasCountdown]
+    },
+    {
+      name: ToolNameLists.FindAndReplace,
+      description: ToolDescription[ToolNameLists.FindAndReplace],
+      link: ToolUrls[ToolNameLists.FindAndReplace]
     },
     {
       name: ToolNameLists.HtmlFormatter,
@@ -428,6 +438,11 @@ export const Tools: Record<string, Tool[]> = {
       name: ToolNameLists.IPChecker,
       description: ToolDescription[ToolNameLists.IPChecker],
       link: ToolUrls[ToolNameLists.IPChecker]
+    },
+    {
+      name: ToolNameLists.JoinText,
+      description: ToolDescription[ToolNameLists.JoinText],
+      link: ToolUrls[ToolNameLists.JoinText]
     },
     {
       name: ToolNameLists.JsonFormatterCompare,
@@ -455,6 +470,11 @@ export const Tools: Record<string, Tool[]> = {
       link: ToolUrls[ToolNameLists.RandomTextGenerator]
     },
     {
+      name: ToolNameLists.SplitText,
+      description: ToolDescription[ToolNameLists.SplitText],
+      link: ToolUrls[ToolNameLists.SplitText]
+    },
+    {
       name: ToolNameLists.UUIDGenerator,
       description: ToolDescription[ToolNameLists.UUIDGenerator],
       link: ToolUrls[ToolNameLists.UUIDGenerator]
@@ -464,25 +484,5 @@ export const Tools: Record<string, Tool[]> = {
       description: ToolDescription[ToolNameLists.GenerationFinder],
       link: ToolUrls[ToolNameLists.GenerationFinder]
     },
-    {
-      name: ToolNameLists.FindAndReplace,
-      description: ToolDescription[ToolNameLists.FindAndReplace],
-      link: ToolUrls[ToolNameLists.FindAndReplace]
-    },
-    {
-      name: ToolNameLists.SplitText,
-      description: ToolDescription[ToolNameLists.SplitText],
-      link: ToolUrls[ToolNameLists.SplitText]
-    },
-    {
-      name: ToolNameLists.JoinText,
-      description: ToolDescription[ToolNameLists.JoinText],
-      link: ToolUrls[ToolNameLists.JoinText]
-    },
-    {
-      name: ToolNameLists.CSVColumnExtractor,
-      description: ToolDescription[ToolNameLists.CSVColumnExtractor],
-      link: ToolUrls[ToolNameLists.CSVColumnExtractor]
-    }
   ],
 };

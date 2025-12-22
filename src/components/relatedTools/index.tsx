@@ -25,7 +25,11 @@ export default function RelatedTools({ className = "" }: RelatedToolsProps) {
       currentCategory = ToolCategory.Conversions;
     } else if (pathname.includes(ToolCategorySlug.Jobs)) {
       currentCategory = ToolCategory.Jobs;
-    }
+    } else if (pathname.includes(ToolCategorySlug.Miscellaneous)) {
+      currentCategory = ToolCategory.Miscellaneous;
+    } else if (pathname.includes(ToolCategorySlug.Mathematics)) {
+      currentCategory = ToolCategory.Mathematics;
+    } 
 
     // If no category found, return empty array
     if (!currentCategory) {

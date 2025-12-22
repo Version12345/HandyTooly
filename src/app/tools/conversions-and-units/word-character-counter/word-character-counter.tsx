@@ -123,7 +123,6 @@ export function WordCharacterCounter() {
   return (
     <ToolLayout 
       toolCategory={ToolNameLists.WordCharacterCounter}
-      secondaryToolDescription="Perfect for writing, content creation, and text analysis."
     >
       <div className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

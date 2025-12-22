@@ -392,7 +392,7 @@ export function SplitText() {
 }
 
 const educationContent = (
-  <div className="bg-white rounded-lg shadow-md p-6">
+  <div>
     <h3>About Split Text Tool</h3>
     <p>
       The Split Text Tool allows you to break down large text blocks into smaller, manageable chunks using various splitting methods. 

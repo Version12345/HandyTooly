@@ -196,6 +196,7 @@ export function CSVColumnExtractor() {
     <ToolLayout 
       toolCategory={ToolNameLists.CSVColumnExtractor}
       secondaryToolDescription="Perfect for data analysis, CSV processing, and column-based data extraction."
+      educationContent={educationContent}
     >
       <div className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -432,38 +433,37 @@ export function CSVColumnExtractor() {
             </div>
           </div>
         </div>
-
-        <hr className="my-6" />
-
-        {/* Information Section */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">About CSV Column Extractor</h3>
-          <div className="prose prose-sm max-w-none text-gray-600">
-            <p>
-              The CSV Column Extractor allows you to extract specific columns from CSV data using various methods. 
-              This is particularly useful for data analysis, processing large datasets, and isolating specific information.
-            </p>
-            <h4 className="font-semibold text-gray-800">Extraction Methods:</h4>
-            <ul className="list-disc list-inside">
-              <li><strong>By Number:</strong> Extract columns by their position (1, 2, 3, etc.)</li>
-              <li><strong>By Name:</strong> Extract columns by their header names</li>
-              <li><strong>Range Support:</strong> Use ranges like &laquo;1&ndash;4&raquo; or combinations like &laquo;1,3,5&ndash;7&raquo;</li>
-              <li><strong>Multiple Copies:</strong> Extract all columns with the same name</li>
-            </ul>
-            <h4 className="font-semibold text-gray-800">Output Formats:</h4>
-            <ul className="list-disc list-inside">
-              <li><strong>Plain Text:</strong> Simple text output, one value per line</li>
-              <li><strong>CSV Format:</strong> Proper CSV with headers and comma separation</li>
-              <li><strong>JSON Format:</strong> Structured JSON array of objects</li>
-            </ul>
-            <h4 className="font-semibold text-gray-800">Processing Options:</h4>
-            <ul className="list-disc list-inside">
-              <li><strong>Comment Handling:</strong> Skip lines that start with comment symbols</li>
-              <li><strong>Empty Line Removal:</strong> Filter out empty rows from the data</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </ToolLayout>
   );
 }
+
+const educationContent = (
+  <div>
+    <h3>About CSV Column Extractor</h3>
+    <div className="prose prose-sm max-w-none text-gray-600">
+      <p>
+        The CSV Column Extractor allows you to extract specific columns from CSV data using various methods. 
+        This is particularly useful for data analysis, processing large datasets, and isolating specific information.
+      </p>
+      <h4 className="font-semibold text-gray-800">Extraction Methods:</h4>
+      <ul className="list-disc list-inside">
+        <li><strong>By Number:</strong> Extract columns by their position (1, 2, 3, etc.)</li>
+        <li><strong>By Name:</strong> Extract columns by their header names</li>
+        <li><strong>Range Support:</strong> Use ranges like &laquo;1&ndash;4&raquo; or combinations like &laquo;1,3,5&ndash;7&raquo;</li>
+        <li><strong>Multiple Copies:</strong> Extract all columns with the same name</li>
+      </ul>
+      <h4 className="font-semibold text-gray-800">Output Formats:</h4>
+      <ul className="list-disc list-inside">
+        <li><strong>Plain Text:</strong> Simple text output, one value per line</li>
+        <li><strong>CSV Format:</strong> Proper CSV with headers and comma separation</li>
+        <li><strong>JSON Format:</strong> Structured JSON array of objects</li>
+      </ul>
+      <h4 className="font-semibold text-gray-800">Processing Options:</h4>
+      <ul className="list-disc list-inside">
+        <li><strong>Comment Handling:</strong> Skip lines that start with comment symbols</li>
+        <li><strong>Empty Line Removal:</strong> Filter out empty rows from the data</li>
+      </ul>
+    </div>
+  </div>
+);

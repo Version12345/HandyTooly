@@ -121,6 +121,7 @@ export function JoinText() {
     <ToolLayout 
       toolCategory={ToolNameLists.JoinText}
       secondaryToolDescription="Perfect for combining data, creating lists, and assembling structured text."
+      educationContent={educationContent}
     >
       <div className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -409,33 +410,32 @@ export function JoinText() {
             </div>
           </div>
         </div>
-
-        <hr className="my-6" />
-
-        {/* Information Section */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">About Join Text Tool</h3>
-          <div className="prose prose-sm max-w-none text-gray-600">
-            <p>
-              The Join Text Tool allows you to combine multiple text pieces into a single, unified text using various joining methods. 
-              This is particularly useful for data assembly, list creation, and content organization tasks.
-            </p>
-            <h4 className="font-semibold text-gray-800">Joining Methods:</h4>
-            <ul className="list-disc list-inside">
-              <li><strong>New Lines:</strong> Join pieces with line breaks (perfect for lists)</li>
-              <li><strong>Character:</strong> Use any character as separator (comma, space, etc.)</li>
-              <li><strong>Custom Separator:</strong> Define complex separators with escape sequences</li>
-              <li><strong>Concatenate:</strong> Join pieces directly without any separator</li>
-            </ul>
-            <h4 className="font-semibold text-gray-800">Formatting Features:</h4>
-            <ul className="list-disc list-inside">
-              <li><strong>Line Numbers:</strong> Automatically number each piece</li>
-              <li><strong>Text Wrappers:</strong> Add quotes, brackets, or other symbols around each piece</li>
-              <li><strong>Empty Line Removal:</strong> Skip empty or whitespace-only pieces</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </ToolLayout>
   );
 }
+
+const educationContent = (
+  <div>
+    <h3 className="text-xl font-semibold text-gray-900 mb-4">About Join Text Tool</h3>
+    <div className="prose prose-sm max-w-none text-gray-600">
+      <p>
+        The Join Text Tool allows you to combine multiple text pieces into a single, unified text using various joining methods. 
+        This is particularly useful for data assembly, list creation, and content organization tasks.
+      </p>
+      <h4 className="font-semibold text-gray-800">Joining Methods:</h4>
+      <ul className="list-disc list-inside">
+        <li><strong>New Lines:</strong> Join pieces with line breaks (perfect for lists)</li>
+        <li><strong>Character:</strong> Use any character as separator (comma, space, etc.)</li>
+        <li><strong>Custom Separator:</strong> Define complex separators with escape sequences</li>
+        <li><strong>Concatenate:</strong> Join pieces directly without any separator</li>
+      </ul>
+      <h4 className="font-semibold text-gray-800">Formatting Features:</h4>
+      <ul className="list-disc list-inside">
+        <li><strong>Line Numbers:</strong> Automatically number each piece</li>
+        <li><strong>Text Wrappers:</strong> Add quotes, brackets, or other symbols around each piece</li>
+        <li><strong>Empty Line Removal:</strong> Skip empty or whitespace-only pieces</li>
+      </ul>
+    </div>
+  </div>
+);
