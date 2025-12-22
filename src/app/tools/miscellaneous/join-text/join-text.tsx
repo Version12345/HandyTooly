@@ -7,7 +7,7 @@ import { copyToClipboard } from '@/utils/copyToClipboard';
 type JoinerMode = 'character' | 'newline' | 'custom' | 'none';
 
 export function JoinText() {
-  const [inputTexts, setInputTexts] = useState(['foo', 'bar', 'baz', 'qux', 'quux', 'quuz', 'corge', 'grault', 'garply', 'waldo', 'fred', 'plugh', 'xyzzy', 'thud']);
+  const [inputText, setInputText] = useState('foo\nbar\nbaz\nqux\nquux\nquuz\ncorge\ngrault\ngarply\nwaldo\nfred\nplugh\nxyzzy\nthud');
   const [joinerMode, setJoinerMode] = useState<JoinerMode>('newline');
   const [joinCharacter, setJoinCharacter] = useState(' ');
   const [customSeparator, setCustomSeparator] = useState('');
@@ -18,9 +18,9 @@ export function JoinText() {
 
   // Parse input text into array of lines
   const parsedTexts = useMemo((): string[] => {
-    if (!inputTexts.length) return [];
+    if (!inputText.trim()) return [];
     
-    let texts = [...inputTexts];
+    let texts = inputText.split('\n');
     
     // Remove empty lines if option is enabled
     if (removeEmptyLines) {
@@ -28,7 +28,7 @@ export function JoinText() {
     }
     
     return texts;
-  }, [inputTexts, removeEmptyLines]);
+  }, [inputText, removeEmptyLines]);
 
   // Generate joined output
   const joinedText = useMemo(() => {
@@ -55,7 +55,7 @@ export function JoinText() {
     
     // Apply wrappers and line numbers
     const processedTexts = parsedTexts.map((text, index) => {
-      let processedText = text;
+      let processedText = text.trim(); // Trim to remove extra spaces
       
       // Add line numbers if enabled
       if (addLineNumbers) {
@@ -68,7 +68,7 @@ export function JoinText() {
       return processedText;
     });
     
-    return processedTexts.join(separator);
+    return processedTexts.join(separator + ' ');
   }, [parsedTexts, joinerMode, joinCharacter, customSeparator, leftWrapper, rightWrapper, addLineNumbers]);
 
   // Handle file import
@@ -82,9 +82,7 @@ export function JoinText() {
         const reader = new FileReader();
         reader.onload = (e) => {
           const text = e.target?.result as string;
-          // Split by lines and set as input texts
-          const lines = text.split('\n');
-          setInputTexts(lines);
+          setInputText(text);
         };
         reader.readAsText(file);
       }
@@ -105,48 +103,28 @@ export function JoinText() {
     URL.revokeObjectURL(url);
   };
 
-  // Add new text input
-  const addTextInput = () => {
-    setInputTexts([...inputTexts, '']);
-  };
-
-  // Remove text input
-  const removeTextInput = (index: number) => {
-    if (inputTexts.length > 1) {
-      const newTexts = inputTexts.filter((_, i) => i !== index);
-      setInputTexts(newTexts);
-    }
-  };
-
-  // Update specific text input
-  const updateTextInput = (index: number, value: string) => {
-    const newTexts = [...inputTexts];
-    newTexts[index] = value;
-    setInputTexts(newTexts);
-  };
-
-  // Clear all inputs
-  const clearAllInputs = () => {
-    setInputTexts(['']);
+  // Clear input
+  const clearInput = () => {
+    setInputText('');
   };
 
   // Sample text sets for quick testing
   const sampleTextSets = [
     {
       name: 'Words',
-      texts: ['foo', 'bar', 'baz', 'qux', 'quux', 'quuz', 'corge', 'grault', 'garply', 'waldo', 'fred', 'plugh', 'xyzzy', 'thud']
+      text: 'foo\nbar\nbaz\nqux\nquux\nquuz\ncorge\ngrault\ngarply\nwaldo\nfred\nplugh\nxyzzy\nthud'
     },
     {
       name: 'Names',
-      texts: ['John Smith', 'Jane Doe', 'Bob Johnson', 'Alice Brown', 'Charlie Davis']
+      text: 'John Smith\nJane Doe\nBob Johnson\nAlice Brown\nCharlie Davis'
     },
     {
       name: 'Cities',
-      texts: ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia']
+      text: 'New York\nLos Angeles\nChicago\nHouston\nPhoenix\nPhiladelphia'
     },
     {
       name: 'Programming Languages',
-      texts: ['JavaScript', 'Python', 'Java', 'C++', 'Go', 'Rust', 'TypeScript']
+      text: 'JavaScript\nPython\nJava\nC++\nGo\nRust\nTypeScript'
     }
   ];
 
@@ -169,15 +147,15 @@ export function JoinText() {
                   Import from file
                 </button>
                 <button
-                  onClick={() => handleSaveAs(inputTexts.join('\n'), 'input-pieces.txt')}
-                  disabled={!inputTexts.some(t => t.trim())}
+                  onClick={() => handleSaveAs(inputText, 'input-pieces.txt')}
+                  disabled={!inputText.trim()}
                   className="px-3 py-1 text-sm bg-green-500 hover:bg-green-600 text-white rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Export
                 </button>
                 <button
-                  onClick={() => copyToClipboard(inputTexts.join('\n'))}
-                  disabled={!inputTexts.some(t => t.trim())}
+                  onClick={() => copyToClipboard(inputText)}
+                  disabled={!inputText.trim()}
                   className="px-3 py-1 text-sm bg-gray-500 hover:bg-gray-600 text-white rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Copy
@@ -185,39 +163,19 @@ export function JoinText() {
               </div>
             </div>
             
-            <div className="space-y-2 max-h-64 overflow-y-auto">
-              {inputTexts.map((text, index) => (
-                <div key={index} className="flex gap-2">
-                  <input
-                    type="text"
-                    value={text}
-                    onChange={(e) => updateTextInput(index, e.target.value)}
-                    placeholder={`Text piece ${index + 1}`}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
-                  />
-                  <button
-                    onClick={() => removeTextInput(index)}
-                    disabled={inputTexts.length <= 1}
-                    className="px-2 py-2 text-sm bg-red-500 hover:bg-red-600 text-white rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    ×
-                  </button>
-                </div>
-              ))}
-            </div>
+            <textarea
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              placeholder="Enter text pieces (one per line)..."
+              className="w-full h-64 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none font-mono text-sm"
+            />
 
             <div className="mt-4 flex gap-2">
               <button
-                onClick={addTextInput}
-                className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded transition-colors"
-              >
-                Add Text Piece
-              </button>
-              <button
-                onClick={clearAllInputs}
+                onClick={clearInput}
                 className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded transition-colors"
               >
-                Clear All
+                Clear
               </button>
             </div>
 
@@ -228,12 +186,12 @@ export function JoinText() {
                 {sampleTextSets.map((sample, index) => (
                   <button
                     key={index}
-                    onClick={() => setInputTexts(sample.texts)}
+                    onClick={() => setInputText(sample.text)}
                     className="w-full text-left px-3 py-2 text-sm bg-gray-100 hover:bg-orange-100 rounded transition-colors"
                   >
                     <span className="font-semibold text-gray-900">{sample.name}</span>
                     <div className="text-xs text-gray-600 mt-1">
-                      {sample.texts.slice(0, 3).join(', ')}{sample.texts.length > 3 ? '...' : ''}
+                      {sample.text.split('\n').slice(0, 3).join(', ')}{sample.text.split('\n').length > 3 ? '...' : ''}
                     </div>
                   </button>
                 ))}
