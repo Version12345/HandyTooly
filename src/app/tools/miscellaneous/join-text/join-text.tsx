@@ -3,6 +3,7 @@ import React, { useState, useMemo } from 'react';
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 import { copyToClipboard } from '@/utils/copyToClipboard';
+import { exportToFile, importFromFile } from '@/utils/fileOperations';
 
 type JoinerMode = 'character' | 'newline' | 'custom' | 'none';
 
@@ -72,22 +73,10 @@ export function JoinText() {
   }, [parsedTexts, joinerMode, joinCharacter, customSeparator, leftWrapper, rightWrapper, addLineNumbers]);
 
   // Handle file import
-  const importFromFile = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.txt,.md,.html,.css,.js,.json,.xml,.csv';
-    input.onchange = (e) => {
-      const file = (e.target as HTMLInputElement).files?.[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const text = e.target?.result as string;
-          setInputText(text);
-        };
-        reader.readAsText(file);
-      }
-    };
-    input.click();
+  const handleImportFromFile = () => {
+    importFromFile('.txt,.md,.html,.css,.js,.json,.xml,.csv', (content) => {
+      setInputText(content);
+    });
   };
 
   // Handle save as
@@ -141,13 +130,13 @@ export function JoinText() {
               <h2 className="text-xl font-semibold text-gray-900">Text Pieces</h2>
               <div className="flex gap-2">
                 <button
-                  onClick={importFromFile}
+                  onClick={handleImportFromFile}
                   className="px-3 py-1 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors"
                 >
                   Import from file
                 </button>
                 <button
-                  onClick={() => handleSaveAs(inputText, 'input-pieces.txt')}
+                  onClick={() => exportToFile(inputText, 'input-text.txt')}
                   disabled={!inputText.trim()}
                   className="px-3 py-1 text-sm bg-green-500 hover:bg-green-600 text-white rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
@@ -395,7 +384,7 @@ export function JoinText() {
                     onClick={() => {setLeftWrapper('"'); setRightWrapper('"');}}
                     className="px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 rounded"
                   >
-                    "Quotes"
+                    &laquo;Quotes&raquo;
                   </button>
                   <button
                     onClick={() => {setLeftWrapper('['); setRightWrapper(']');}}

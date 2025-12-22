@@ -113,6 +113,7 @@ export enum ToolNameLists {
   FindAndReplace = "Find & Replace Text",
   SplitText = "Split Text Tool",
   JoinText = "Join Text Tool",
+  CSVColumnExtractor = "CSV Column Extractor",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -165,6 +166,7 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.FindAndReplace]: "Find and replace text patterns in large text blocks. Support for regex patterns, case sensitivity, and bulk text processing.",
   [ToolNameLists.SplitText]: "Split text into chunks using various methods: characters, regex patterns, fixed lengths, or equal parts. Perfect for data processing and text manipulation.",
   [ToolNameLists.JoinText]: "Join multiple text pieces into one unified text using various separators and formatting options. Perfect for combining data and creating structured output.",
+  [ToolNameLists.CSVColumnExtractor]: "Extract specific columns from CSV data by column number or name. Support for handling comments, empty lines, and multiple output formats.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -217,6 +219,7 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.FindAndReplace]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/find-and-replace`,
   [ToolNameLists.SplitText]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/split-text`,
   [ToolNameLists.JoinText]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/join-text`,
+  [ToolNameLists.CSVColumnExtractor]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/csv-column-extractor`,
 };
 
 export const Tools: Record<string, Tool[]> = {
@@ -475,6 +478,11 @@ export const Tools: Record<string, Tool[]> = {
       name: ToolNameLists.JoinText,
       description: ToolDescription[ToolNameLists.JoinText],
       link: ToolUrls[ToolNameLists.JoinText]
+    },
+    {
+      name: ToolNameLists.CSVColumnExtractor,
+      description: ToolDescription[ToolNameLists.CSVColumnExtractor],
+      link: ToolUrls[ToolNameLists.CSVColumnExtractor]
     }
   ],
 };

@@ -3,6 +3,7 @@ import React, { useState, useMemo } from 'react';
 import ToolLayout from '../../toolLayout';
 import { ToolNameLists } from '@/constants/tools';
 import { copyToClipboard } from '@/utils/copyToClipboard';
+import { importFromFile, exportToFile } from '@/utils/fileOperations';
 
 type SplitterMode = 'character' | 'regex' | 'length' | 'parts';
 
@@ -88,31 +89,14 @@ export function SplitText() {
     return wrappedChunks.join(actualJoinChar);
   }, [chunks, leftSymbol, rightSymbol, joinCharacter]);
 
-  // Handle file import
-  const handleFileImport = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const content = e.target?.result as string;
-        setInputText(content);
-      };
-      reader.readAsText(file);
-    }
+  // Handle file import using utility
+  const handleImportFromFile = () => {
+    importFromFile('.txt,.md,.html,.css,.js,.json,.xml,.csv', (content) => {
+      setInputText(content);
+    });
   };
 
-  // Handle save as
-  const handleSaveAs = (content: string, filename: string) => {
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
+
 
   // Sample texts for quick testing
   const sampleTexts = [
@@ -138,6 +122,7 @@ export function SplitText() {
     <ToolLayout 
       toolCategory={ToolNameLists.SplitText}
       secondaryToolDescription="Perfect for data processing, text manipulation, and content organization."
+      educationContent={educationContent}
     >
       <div className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -147,29 +132,13 @@ export function SplitText() {
               <h2 className="text-xl font-semibold text-gray-900">Input Text</h2>
               <div className="flex gap-2">
                 <button
-                  onClick={() => {
-                    const input = document.createElement('input');
-                    input.type = 'file';
-                    input.accept = '.txt,.md,.html,.css,.js,.json,.xml,.csv';
-                    input.onchange = (e) => {
-                      const file = (e.target as HTMLInputElement).files?.[0];
-                      if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                          const text = e.target?.result as string;
-                          setInputText(text);
-                        };
-                        reader.readAsText(file);
-                      }
-                    };
-                    input.click();
-                  }}
+                  onClick={handleImportFromFile}
                   className="px-3 py-1 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors"
                 >
                   Import from file
                 </button>
                 <button
-                  onClick={() => handleSaveAs(inputText, 'input-text.txt')}
+                  onClick={() => exportToFile(inputText, 'input-text.txt')}
                   disabled={!inputText}
                   className="px-3 py-1 text-sm bg-green-500 hover:bg-green-600 text-white rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
@@ -215,7 +184,7 @@ export function SplitText() {
               <h2 className="text-xl font-semibold text-gray-900">Split Results</h2>
               <div className="flex gap-2">
                 <button
-                  onClick={() => handleSaveAs(outputText, 'split-results.txt')}
+                  onClick={() => exportToFile(outputText, 'split-results.txt')}
                   disabled={!outputText}
                   className="px-3 py-1 text-sm bg-green-500 hover:bg-green-600 text-white rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
