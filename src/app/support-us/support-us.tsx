@@ -26,7 +26,7 @@ export default function SupportUs({ searchParams }: { searchParams: Promise<{ is
   }, [searchParams]);
   
   return (
-    <main className="px-8 py-16">
+    <main className="p-3">
       <div className="max-w-4xl mx-auto text-center space-y-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">
           Support Our Mission

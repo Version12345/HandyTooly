@@ -17,7 +17,7 @@ interface LayoutProps {
 
 export default function BlogPostLayout({ post, children }: LayoutProps) {
   return (
-    <main className="p-8 pt-4 blog-post-layout"> 
+    <main className="p-3 pt-4 blog-post-layout"> 
       <div className="max-w-6xl mx-auto">
         {/* Breadcrumb */}
         <Breadcrumb />

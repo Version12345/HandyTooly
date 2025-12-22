@@ -18,7 +18,7 @@ export const metadata = {
 
 export default function BlogHome() {
   return (
-    <div className="p-8 pt-4 blog-layout"> 
+    <div className="p-3 pt-4 blog-layout"> 
       <BlogHomeLayout />
     </div>
   )

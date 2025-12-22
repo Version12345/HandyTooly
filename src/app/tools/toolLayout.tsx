@@ -83,7 +83,7 @@ export default function ToolLayout({ toolCategory, children, disclaimer, seconda
   };
 
   return (
-    <main className="p-8 pt-4 tool-layout"> 
+    <main className="p-3 pt-4 tool-layout"> 
       <div className="max-w-6xl mx-auto">
         {/* Breadcrumb */}
         <Breadcrumb />

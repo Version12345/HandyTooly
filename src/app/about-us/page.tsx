@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function ContactUs() {
     return (
-    <main className="px-8 py-16">
+    <main className="p-3">
       <div className="max-w-6xl mx-auto text-left">
         <h1>
           About HandyTooly
