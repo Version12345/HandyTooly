@@ -110,6 +110,9 @@ export enum ToolNameLists {
   ChristmasCountdown = "Christmas Countdown",
   DecimalFractionConverter = "Decimal to Fraction Converter",
   GenerationFinder = "What Generation Am I?",
+  FindAndReplace = "Find & Replace Text",
+  SplitText = "Split Text Tool",
+  JoinText = "Join Text Tool",
 }
 
 export const ToolDescription: Record<string, string> = {
@@ -159,6 +162,9 @@ export const ToolDescription: Record<string, string> = {
   [ToolNameLists.ChristmasCountdown]: "How many days until Christmas? Use our live countdown timer to track when the holiday is coming Christmas Day. Perfect for getting into the holiday spirit & planning festive activities.",
   [ToolNameLists.DecimalFractionConverter]: "Convert between decimals & fractions with step-by-step explanations. Handles repeating decimals, mixed numbers, & provides simplified results.",
   [ToolNameLists.GenerationFinder]: "Discover your generation based on birth year! Learn about generations from 1900 to now - Greatest Generation, Baby Boomers, Gen X, Millennials, Gen Z & Gen Alpha with defining moments.",
+  [ToolNameLists.FindAndReplace]: "Find and replace text patterns in large text blocks. Support for regex patterns, case sensitivity, and bulk text processing.",
+  [ToolNameLists.SplitText]: "Split text into chunks using various methods: characters, regex patterns, fixed lengths, or equal parts. Perfect for data processing and text manipulation.",
+  [ToolNameLists.JoinText]: "Join multiple text pieces into one unified text using various separators and formatting options. Perfect for combining data and creating structured output.",
 }
 
 export const ToolUrls: Record<string, string> = {
@@ -208,6 +214,9 @@ export const ToolUrls: Record<string, string> = {
   [ToolNameLists.ChristmasCountdown]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/christmas-countdown`,
   [ToolNameLists.DecimalFractionConverter]: `${URL_BASE}/${ToolCategorySlug.Mathematics}/decimal-fraction-converter`,
   [ToolNameLists.GenerationFinder]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/generation-finder`,
+  [ToolNameLists.FindAndReplace]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/find-and-replace`,
+  [ToolNameLists.SplitText]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/split-text`,
+  [ToolNameLists.JoinText]: `${URL_BASE}/${ToolCategorySlug.Miscellaneous}/join-text`,
 };
 
 export const Tools: Record<string, Tool[]> = {
@@ -451,6 +460,21 @@ export const Tools: Record<string, Tool[]> = {
       name: ToolNameLists.GenerationFinder,
       description: ToolDescription[ToolNameLists.GenerationFinder],
       link: ToolUrls[ToolNameLists.GenerationFinder]
+    },
+    {
+      name: ToolNameLists.FindAndReplace,
+      description: ToolDescription[ToolNameLists.FindAndReplace],
+      link: ToolUrls[ToolNameLists.FindAndReplace]
+    },
+    {
+      name: ToolNameLists.SplitText,
+      description: ToolDescription[ToolNameLists.SplitText],
+      link: ToolUrls[ToolNameLists.SplitText]
+    },
+    {
+      name: ToolNameLists.JoinText,
+      description: ToolDescription[ToolNameLists.JoinText],
+      link: ToolUrls[ToolNameLists.JoinText]
     }
-  ]
+  ],
 };
